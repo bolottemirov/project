@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архив Подотчетности (Прототип v2)</title>
+    <style>
+        /* Общие стили */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        :root {
+            --primary-color: #0d2a4c;
+            --secondary-color: #f8f9fa;
+            --border-color: #dee2e6;
+            --un-blue: #009edb;
+            --un-light-blue: #eaf8ff;
+            --accent-color: #007bff; /* Новый акцентный цвет */
+            --accent-hover-color: #0056b3; /* Цвет при наведении для акцента */
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень для карточек */
+            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #212529;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f0f2f5; /* Более мягкий фон для тела */
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            padding-top: 80px;
+            margin-top: -60px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+            background-color: #fff; /* Фон для секций */
+            margin-bottom: 20px; /* Отступ между секциями */
+            border-radius: 8px; /* Закругленные углы для секций */
+            box-shadow: var(--card-shadow); /* Тень для секций */
+        }
+        section:last-of-type {
+            border-bottom: none; /* Убрать нижнюю границу у последней секции */
+        }
+
+
+        /* Шапка */
+        .site-header {
+            background-color: var(--primary-color); /* Темный фон для шапки */
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0; /* Увеличить отступ */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+        }
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.4em; /* Увеличить размер логотипа */
+            font-weight: 700;
+            color: #fff; /* Белый цвет для логотипа */
+            text-decoration: none;
+            text-transform: uppercase; /* Заглавные буквы */
+            letter-spacing: 1px;
+        }
+        .main-nav a {
+            color: #fff; /* Белый цвет для ссылок навигации */
+            text-decoration: none;
+            margin-left: 25px; /* Увеличить отступ между ссылками */
+            font-weight: 500;
+            font-size: 1em; /* Увеличить размер шрифта */
+            transition: color 0.3s ease; /* Плавный переход цвета */
+        }
+        .main-nav a:hover {
+            color: var(--un-blue); /* Изменение цвета при наведении */
+        }
+
+        /* Заголовки и карточки */
+        .section-title {
+            text-align: center;
+            font-size: 2.5em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-bottom: 40px; /* Увеличить отступ */
+            padding-top: 20px;
+        }
+        .case-card {
+            background-color: #fff; /* Белый фон для карточек */
+            border: 1px solid var(--border-color);
+            padding: 30px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            margin-bottom: 25px; /* Увеличить отступ */
+            box-shadow: var(--card-shadow); /* Легкая тень */
+            transition: all 0.3s ease; /* Плавный переход для ховера */
+        }
+        .case-card:hover {
+            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
+            transform: translateY(-5px); /* Небольшой подъем при наведении */
+        }
+        .case-card h3 {
+            margin-top: 0;
+            font-size: 1.8em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+        }
+        .case-card a {
+            text-decoration: none;
+            color: var(--accent-color); /* Акцентный цвет для ссылок */
+            transition: color 0.3s ease;
+        }
+        .case-card a:hover {
+            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            text-decoration: underline;
+        }
+        .dossier-link {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
+            transition: color 0.3s ease;
+        }
+        .dossier-link:hover {
+            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            text-decoration: underline;
+        }
+
+        /* Досье */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr; /* Немного увеличить ширину сайдбара */
+            gap: 50px; /* Увеличить отступ */
+            background-color: #fff; /* Белый фон для досье */
+            padding: 30px; /* Отступ внутри досье */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: var(--card-shadow); /* Тень */
+            margin-bottom: 40px; /* Отступ снизу */
+        }
+        @media (max-width: 800px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .profile-card {
+            background-color: #f8f9fa; /* Более светлый фон для карточки профиля */
+            padding: 25px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            text-align: center;
+            align-self: start;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень */
+        }
+        .profile-photo {
+            width: 160px; /* Увеличить размер фото */
+            height: 160px;
+            background-color: #e9ecef; /* Более нейтральный цвет для заглушки */
+            border-radius: 50%;
+            margin: 0 auto 25px auto; /* Увеличить отступ */
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--accent-color); /* Акцентная рамка */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+        }
+        .profile-card h2 {
+            margin: 0 0 15px 0; /* Увеличить отступ */
+            font-size: 1.8em; /* Увеличить размер заголовка */
+            line-height: 1.2;
+            color: var(--primary-color);
+        }
+        .profile-card p {
+            margin: 8px 0; /* Увеличить отступ */
+            text-align: left;
+            font-size: 0.95em;
+        }
+        .profile-card strong {
+            color: var(--primary-color);
+        }
+
+        .dossier-content h3 {
+            font-size: 2em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+        .episode-card {
+            border: 1px solid var(--border-color);
+            padding: 25px; /* Увеличить отступ */
+            margin-bottom: 25px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            background-color: #fdfefe; /* Немного более светлый фон */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Очень легкая тень */
+        }
+        .episode-card h4 {
+            margin-top: 0;
+            font-size: 1.5em; /* Увеличить размер заголовка */
+            color: var(--accent-color); /* Акцентный цвет для заголовка эпизода */
+            margin-bottom: 10px;
+        }
+        .episode-card h5 {
+            font-size: 1.2em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        .un-opinion-box {
+            background-color: var(--un-light-blue);
+            border: 1px solid var(--un-blue);
+            border-left: 8px solid var(--un-blue); /* Более толстая левая граница */
+            padding: 20px 25px; /* Увеличить отступы */
+            margin-top: 30px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Тень для выделения */
+        }
+        .un-opinion-box h5 {
+            color: var(--un-blue); /* Цвет заголовка ООН */
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .un-opinion-box p {
+            font-size: 1em;
+            color: #343a40;
+        }
+        .disclaimer {
+            font-size: 0.85em; /* Немного увеличить размер */
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 15px;
+            display: block;
+        }
+        .sanction {
+            font-weight: 700; /* Более жирный шрифт */
+            color: #dc3545; /* Красный цвет для санкций */
+        }
+
+        /* Секция "О проекте" */
+        #about {
+            text-align: center;
+            padding-bottom: 60px;
+        }
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="#home" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav">
+                <a href="#home">Главная</a>
+                <a href="#cases">Дела</a>
+                <a href="#archive">Архив</a>
+                <a href="#about">О проекте</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="container">
+                <h1 class="section-title" style="font-size: 2.8em;">Фиксация нарушений.<br>Имена тех, кто стоит за репрессиями.</h1>
+                <p style="text-align:center; max-width: 700px; margin: 0 auto 40px auto; font-size: 1.2em; color: #495057;">Общественный архив для повышения подотчетности должностных лиц в Кыргызстане, основанный на официальных документах и журналистских расследованиях.</p>
+            </div>
+        </section>
+
+        <section id="cases">
+            <div class="container">
+                <h2 class="section-title">Картотека дел</h2>
+                <div class="case-card">
+                    <h3><a href="#case-kolbayev">Дело о переделе собственности после убийства Камчы Кольбаева</a></h3>
+                    <p>Расследование Temirov Live и «Клооп» о том, как аресты бизнесменов, якобы связанных с ОПГ, стали прикрытием для передачи их активов окружению президента Садыра Жапарова.</p>
+                </div>
+                <div class="case-card">
+                    <h3><a href="#case-journalists">Дело 11 журналистов</a></h3>
+                    <p>Системное преследование и аресты сотрудников Temirov Live и других независимых журналистов, признанные ООН произвольными.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="case-journalists">
+            <div class="container">
+                <h2 class="section-title">Дело: «Дело 11 журналистов»</h2>
+                <p style="font-size: 1.1em; margin-bottom: 30px;"><strong>Суть:</strong> В январе 2024 года была проведена серия обысков и арестов журналистов, связанных с проектами Temirov Live и Ait Ait Dese. Им было предъявлено обвинение в «призывах к массовым беспорядкам» на основании спорной лингвистической экспертизы. Рабочая группа ООН по произвольным задержаниям признала эти действия нарушением международного права.</p>
+
+                <h4 style="font-size: 1.8em; color: var(--primary-color); margin-top: 40px; margin-bottom: 20px;">Фигуранты и участники дела:</h4>
+
+                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-bottom: 15px;">Исполнители (представители госорганов):</h5>
+                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
+                    <li><a href="#dossier-zhumabaev" class="dossier-link">Жумабаев А.А.</a> (Начальник управления Следственной службы МВД Кыргызской Республики)</li>
+                    <li><a href="#dossier-shermatov" class="dossier-link">Шерматов Миран Бакытбекович</a> (Судья)</li>
+                    <li><a href="#dossier-turdukulov" class="dossier-link">Турдукулов Тилек Ураимжанович</a> (Судья)</li>
+                    <li><a href="#dossier-bekenov" class="dossier-link">Бекенов Т.О.</a> (Судья)</li>
+                    <li><a href="#dossier-chamashova" class="dossier-link">Чамашова М.</a> (Секретарь судебного заседания)</li>
+                    <li><a href="#dossier-mairambek-kyzy" class="dossier-link">А.Майрамбек кызы</a> (Секретарь судебного заседания)</li>
+                    <li><a href="#dossier-zikiraliev" class="dossier-link">Зикиралиев Улан Спартакович</a> (Руководитель следственной группы)</li>
+                    <li><a href="#dossier-baiyshov" class="dossier-link">Байышов Кубанбек Эмилбекович</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-kalmuratov" class="dossier-link">Калмуратов А.К.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-baratov" class="dossier-link">Баратов Т.</a> (Прокурор)</li>
+                    <li><a href="#dossier-sultanov" class="dossier-link">Султанов У.Т.</a> (Прокурор)</li>
+                    <li><a href="#dossier-atantaev" class="dossier-link">Атантаев Б.</a> (Прокурор)</li>
+                    <li><a href="#dossier-karypbek-uulu" class="dossier-link">А.Карыпбек уулу</a> (Прокурор)</li>
+                    <li><a href="#dossier-osmonaliev" class="dossier-link">Осмоналиев А.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-patanov" class="dossier-link">Патанов А.К.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-dzhapekova" class="dossier-link">Джапекова У.Дж.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-momunaliev" class="dossier-link">Момуналиев Э.С.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-murzabekov" class="dossier-link">Мурзабеков А.Б.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-mukanbetov" class="dossier-link">Муканбетов У.И.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-abdyrahmanov" class="dossier-link">Абдырахманов У.М.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-narbaev" class="dossier-link">Нарбаев М.Н.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-kozhenberdieva" class="dossier-link">Коженбердиева С.Б.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-shadmanova" class="dossier-link">Шадманова С.К.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-apysov" class="dossier-link">Апысов А.А.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-kamalova" class="dossier-link">Камалова А.Д.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-kalmurzaev" class="dossier-link">Калмурзаев Н.С.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-osmonov" class="dossier-link">Осмонов А.А.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-kadyrkulov" class="dossier-link">Кадыркулов Э.Ш.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-kaykiev" class="dossier-link">Кайкиев Р.Б.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-isagaliev" class="dossier-link">Исагалиев М.И.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-satymkulov" class="dossier-link">Сатымкулов Б.К.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-akunaliuiev" class="dossier-link">Акуналиев Н.А.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-erkinbekov" class="dossier-link">Эркинбеков А.Т.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-akzholov" class="dossier-link">Акжолов А.А.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-tolubaev" class="dossier-link">Толубаева М.М.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-alchakpaev" class="dossier-link">Алчакпаева М.Д.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-raiymbekov" class="dossier-link">Райымбеков С.Ю.</a> (Следователь)</li>
+                    <li><a href="#dossier-koomanov" class="dossier-link">Кооманов У.О.</a> (Следователь)</li>
+                    <li><a href="#dossier-aliev" class="dossier-link">Алиев Т.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-karazak-uulu-nurkyiaz" class="dossier-link">Каразак уулу Нуркыяз</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-murzuraimov" class="dossier-link">Мурзураимов К.П.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-tashmamatov" class="dossier-link">Ташмаматов К.Ж.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-dogdurabekov" class="dossier-link">Догдурбеков И.Д.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-kydyraliev" class="dossier-link">Кыдыралиев Б.А.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-tanchibekov" class="dossier-link">Танчибеков Р.А.</a> (Следователь следственной группы)</li>
+                    <li><a href="#dossier-ranat-uulu-aibek" class="dossier-link">Ранат уулу Аибеку</a> (Следователь следственной группы)</li>
+                </ul>
+
+                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-top: 40px; margin-bottom: 15px;">Жертвы преследования:</h5>
+                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
+                    <li><a href="#dossier-kaparov" class="dossier-link">Капаров Мааданбек Таалайбекович</a></li>
+                    <li><a href="#dossier-turdaliev" class="dossier-link">Турдалиев Жумабек Искендерович</a></li>
+                    <li><a href="#dossier-tazhibek-uulu" class="dossier-link">Тажибек уулу Максат</a></li>
+                    <li><a href="#dossier-sultanaliyev" class="dossier-link">Сайпидин Султаналиев</a></li>
+                    <li><a href="#dossier-tazhibek-kyzy-mahabat" class="dossier-link">Тажибек кызы Махабат</a></li>
+                    <li><a href="#dossier-akunbekov" class="dossier-link">Акунбеков Сапарбек Акунбекович</a></li>
+                    <li><a href="#dossier-asypbekov" class="dossier-link">Асыпбеков Тыныстан Бекназарович</a></li>
+                    <li><a href="#dossier-beishekeeva" class="dossier-link">Бейшекеева Айке Нурлановна</a></li>
+                    <li><a href="#dossier-buzumov" class="dossier-link">Бузумов Жоодарбек Бакыталыевич</a></li>
+                    <li><a href="#dossier-ishenbekov" class="dossier-link">Ишенбеков Азамат Ишенбекович</a></li>
+                    <li><a href="#dossier-orozbekov" class="dossier-link">Орозбеков Асылбек Орозбекович</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="archive">
+            <div class="container">
+                <h2 class="section-title">Архив досье</h2>
+
+                <!-- Dossier: Jumabaev A.A. -->
+                <div id="dossier-zhumabaev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Жумабаев А.А.</h2>
+                            <p><strong>Категория:</strong> Начальник управления Следственной службы МВД Кыргызской Республики</p>
+                            <p><strong>Должность:</strong> Полковник милиции</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Поручение уголовного дела группе следователей</h5>
+                                <p>Как начальник управления Следственной службы МВД Кыргызской Республики, полковник милиции, рассмотрел материалы уголовного дела №03-050-2024-000029 и поручил его группе следователей (следственной группе) из-за сложности и большого объема следственных действий.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)**, если поручение уголовного дела было связано с неправомерным преследованием. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Shermatov Miran Bakytbekovich -->
+                <div id="dossier-shermatov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo" style="background-image: url(https://cdn-1.aki.kg/cdn-st-0/qYc/I/1012834.85eb3bfa14ddfd485b4fb67523f2c49f.500.jpg);"></div>
+                            <h2>Шерматов Миран Бакытбекович</h2>
+                            <p><strong>Категория:</strong> Судья</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (17.01.2024): Арест Сайпидина Султаналиева</h5>
+                                <p>Вынес два постановления: о признании задержания журналиста законным и об его аресте на два месяца. В качестве обоснования указал возможность «оказывать негативное влияние на общественное мнение».</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (17.01.2024): Арест Мааданбека Капарова</h5>
+                                <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Мааданбека Капарова, обвиненного в «организации» преступления.</p>
+                            </div>
+                            <div class="un-opinion-box">
+                                <h5>Оценка ООН (Мнение № 57/2024)</h5>
+                                <p>Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Мааданбека Капарова **произвольным и нарушающим международное право**.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях усматриваются признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)**. <br><span class="sanction">Санкция:</span> лишение свободы от 5 до 8 лет.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Turdukulov Tilek Uraimzhanovich -->
+                <div id="dossier-turdukulov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo" style="background-image: url(https://data.kaktus.media/image/big/2022-10-25_18-19-55_997526.jpg);"></div>
+                            <h2>Турдукулов Тилек Ураимжанович</h2>
+                            <p><strong>Категория:</strong> Судья</p>
+                            <p><strong>Должность:</strong> Следственный судья Первомайского районного суда города Бишкек</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (12.03.2024): Продление ареста Максата Тажибек уулу</h5>
+                                <p>Как следственный судья Первомайского районного суда Бишкека, рассмотрел ходатайство следователя У. Зикиралиева о продлении срока меры пресечения в виде заключения под стражу в отношении Тажибек уулу Максата. Суд удовлетворил данное ходатайство, продлив срок содержания под стражей до 13 мая 2024 года.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (01.02.2024): Признание законности обыска</h5>
+                                <p>Как следственный судья Первомайского районного суда г. Бишкек, удовлетворил ходатайство следователя Байышова К.Э. и признал неотложный обыск, проведенный 29.01.2024 по адресу г. Бишкек, ул. Сыдыкова №250/1, законным и обоснованным.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)**, если решение о продлении ареста было необоснованным. <br><span class="sanction">Санкция:</span> лишение свободы от 5 до 8 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)</a>.</p>
+                            <p><a href="#">Постановление от 01.02.2024 (о проверке законности и обоснованности произведенного обыска)</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Bekenov T.O. -->
+                <div id="dossier-bekenov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Бекенов Т.О.</h2>
+                            <p><strong>Категория:</strong> Судья</p>
+                            <p><strong>Должность:</strong> Следственный судья Первомайского районного суда города Бишкек</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (17.01.2024): Проверка законности задержания Ишенбекова Азамата Ишенбековича</h5>
+                                <p>Как следственный судья Первомайского районного суда города Бишкек, в судебном заседании с участием секретаря А.Майрамбек кызы, помощника прокурора А.Карыпбек уулу, следователя Н.Акуналиева, обвиняемого А.Ишенбекова и его адвоката Б.Ботобекова, рассмотрел ходатайство руководителя следственной группы К.Байышова о проверке законности и обоснованности задержания Ишенбекова Азамата Ишенбековича. Суд удовлетворил ходатайство, признав задержание законным и обоснованным.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)**, если решение о законности задержания было необоснованным. <br><span class="sanction">Санкция:</span> лишение свободы от 5 до 8 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Chamashova M. -->
+                <div id="dossier-chamashova" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Чамашова М.</h2>
+                            <p><strong>Категория:</strong> Секретарь судебного заседания</p>
+                            <p><strong>Должность:</strong> Секретарь судебного заседания Первомайского районного суда Бишкека</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (12.03.2024): Участие в судебном заседании</h5>
+                                <p>Выполняла функции секретаря судебного заседания во время рассмотрения ходатайства о продлении меры пресечения в отношении Тажибек уулу Максата.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (01.02.2024): Участие в судебном заседании по проверке законности обыска</h5>
+                                <p>Выполняла функции секретаря судебного заседания во время рассмотрения ходатайства о проверке законности и обоснованности неотложного обыска по адресу г. Бишкек, ул. Сыдыкова №250/1.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Токтом Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)</a>.</p>
+                            <p><a href="#">Постановление от 01.02.2024 (о проверке законности и обоснованности произведенного обыска)</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Mairambek kyzy A. -->
+                <div id="dossier-mairambek-kyzy" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Майрамбек кызы А.</h2>
+                            <p><strong>Категория:</strong> Секретарь судебного заседания</p>
+                            <p><strong>Должность:</strong> Секретарь судебного заседания Первомайского районного суда города Бишкек</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (17.01.2024): Участие в судебном заседании по проверке законности задержания Ишенбекова Азамата Ишенбековича</h5>
+                                <p>Выполняла функции секретаря судебного заседания во время рассмотрения ходатайства о проверке законности и обоснованности задержания Ишенбекова Азамата Ишенбековича.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Baiyshov Kubanbek Emilbekovich -->
+                <div id="dossier-baiyshov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Байышов Кубанбек Эмилбекович</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной Службы МВД КР / Следователь следственной группы / Руководитель следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (17.01.2024): Арест Жумабека Турдалиева</h5>
+                                <p>В качестве руководителя следственной группы по делу №03-050-2024-000029, 17 января 2024 года, майор милиции Байышов К.Э. предъявил обвинение Турдалиеву Жумабеку Искендеровичу по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР (Организатор призывов к массовым беспорядкам). Он инициировал ходатайство о применении меры пресечения в виде заключения под стражу в отношении Турдалиева, обосновывая это тем, что, находясь на свободе, Турдалиев может продолжить свою преступную деятельность и негативно влиять на общественное мнение.</p>
+                                <h5>Действия (17.01.2024): Предъявление обвинения Максату Тажибек уулу</h5>
+                                <p>Как руководитель следственной группы, 17 января 2024 года, Байышов К.Э. вынес постановление о привлечении Тажибек уулу Максата в качестве обвиняемого по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР, обвинив его в пособничестве в организации призывов к активному неповиновению законным требованиям представителей власти и массовым беспорядкам.</p>
+                                <h5>Действия (17.01.2024): Инициирование ходатайства о проверке законности задержания Ишенбекова А.И.</h5>
+                                <p>Как руководитель следственной группы по делу №03-050-2024-000029, инициировал ходатайство перед следственным судьей Первомайского районного суда города Бишкек о проверке законности и обоснованности задержания Ишенбекова Азамата Ишенбековича.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (30.01.2024): Инициирование ходатайства о проверке законности обыска</h5>
+                                <p>Как руководитель следственной группы, возбудил ходатайство перед следственным судьей Первомайского районного суда г. Бишкек о проверке законности неотложного обыска, проведенного 29.01.2024 по адресу г. Бишкек ул. Сыдыкова №250/1, в магазине «Склад №1». Это ходатайство было удовлетворено судом 01.02.2024.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях усматриваются признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)** или других статей, связанных с незаконным лишением свободы или злоупотреблением должностным положением. <br><span class="sanction">Санция:</span> лишение свободы от 5 до 8 лет (для ст. 351 УК КР).</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о ходатайстве о применении меры пресечения в отношении Турдалиева Жумабека Искендеровича от 17.01.2024</a>.</p>
+                            <p><a href="#">Постановление о привлечении в качестве обвиняемого в отношении Тажибек уулу Максата от 17.01.2024</a>.</p>
+                            <p><a href="#">Постановление от 30.01.2024 (о возбуждении ходатайства о проверке законности обыска)</a>.</p>
+                            <p><a href="#">Постановление от 01.02.2024 (о проверке законности и обоснованности произведенного обыска)</a>.</p>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                            <p><a href="#">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Kaparov Maadanbek Taalaibekovich -->
+                <div id="dossier-kaparov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Капаров Мааданбек Таалайбекович</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 16 июля 1994 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержан сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.2 («Организатор») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                    <li><strong>17.01.2024:</strong> Судья Шерматов М.Б. санкционировал арест на два месяца.</li>
+                                </ol>
+                                <div class="un-opinion-box">
+                                    <h5>Правовой статус (согласно оценке ООН)</h5>
+                                    <p>Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Мааданбека Капарова **произвольным и нарушающим международное право**.</p>
+                                </div>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Токтом Первомайского райсуда от 17.01.2024 (дело № -Ap-270/24)</a> и <a href="#">другие документы</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Turdaliev Zhumabek Iskenderovich -->
+                <div id="dossier-turdaliev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Турдалиев Жумабек Искендерович</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 21 февраля 1992 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержан сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.4 («Соучастник») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                    <li><strong>17.01.2024:</strong> По ходатайству следователя Байышова К.Э. санкционирован арест на два месяца (до 13 марта 2024 года).</li>
+                                    <li><strong>12.03.2024:</strong> Первомайский районный суд Бишкека отказал в продлении ареста по ходатайству следователя У. Зикиралиева и изменил меру пресечения на подписку о невыезде. Освобожден из-под стражи в зале суда.</li>
+                                </ol>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Протокол дополнительного допроса обвиняемого Турдалиева Ж.И. от 02.03.2024</a>.</p>
+                                <p><a href="#">Постановление Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения)</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Tazhibek uulu Maksat -->
+                <div id="dossier-tazhibek-uulu" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Тажибек уулу Максат</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 9 сентября 1992 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержан сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.4 («Соучастник») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                    <li><strong>05.03.2024:</strong> Инициировано ходатайство о продлении меры пресечения в виде заключения под стражу до 13 мая 2024 года.</li>
+                                    <li><strong>12.03.2024:</strong> Первомайский районный суд Бишкека удовлетворил ходатайство о продлении ареста до 13 мая 2024 года.</li>
+                                    <li><strong>08.04.2024:</strong> Руководитель следственной группы У. Зикиралиев инициировал ходатайство в Первомайский районный суд Бишкека об изменении меры пресечения с заключения под стражей на домашний арест.</li>
+                                </ol>
+                                <h5>Юридическая квалификация (по УК КР):</h5>
+                                <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                                <p>В действиях усматриваются признаки **st. 41 ч. 4 УК КР (Пособничество)** и **ст. 278 ч. 3 УК КР (Призывы к массовым беспорядкам)**. <br><span class="sanction">Санкция:</span> лишение свободы от 5 до 8 лет (для ст. 278 ч.3 УК КР).</p>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Постановление о привлечении в качестве обвиняемого в отношении Тажибек уулу Максата от 17.01.2024</a>.</p>
+                                <p><a href="#">Постановление об инициировании ходатайства о продлении меры пресечения в отношении Тажибек уулу Максата от 05.03.2024</a>.</p>
+                                <p><a href="#">Токтом Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)</a>.</p>
+                                <p><a href="#">Токтом от 08.04.2024 (о возбуждении ходатайства об изменении меры пресечения)</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Zikiraliev Ulan Spartakovich -->
+                <div id="dossier-zikiraliev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Зикиралиев Улан Спартакович</h2>
+                            <p><strong>Категория:</strong> Высокопоставленный следователь / Руководитель следственной группы</p>
+                            <p><strong>Должность:</strong> Заместитель начальника Управления Следственной Службы МВД КР / Руководитель следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (05.03.2024): Продление срока расследования</h5>
+                                <p>Как руководитель следственной группы, ходатайствовал о продлении срока расследования по делу №03-050-2024-000029 на 4 месяца, до 13 мая 2024 года. Это ходатайство было удовлетворено Генеральной прокуратурой КР.</p>
+                                <h5>Действия (05.03.2024 / 12.03.2024): Ходатайство о продлении ареста Максата Тажибек уулу</h5>
+                                <p>Инициировал и представил в Первомайском районном суде Бишкека ходатайство о продлении меры пресечения в виде заключения под стражу в отношении Тажибек уулу Максата на 4 месяца (до 13.05.2024). Ходатайство было удовлетворено судом 12 марта 2024 года.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (12.03.2024): Ходатайство о продлении ареста Ж. Турдалиева</h5>
+                                <p>Инициировал ходатайство в Первомайский районный суд Бишкека о продлении меры пресечения в виде заключения под стражу в отношении Ж. Турдалиева на 4 месяца (до 13.05.2024). Суд отклонил это ходатайство, изменив меру пресечения на подписку о невыезде.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (08.04.2024): Инициирование ходатайства об изменении меры пресечения для Максата Тажибек уулу</h5>
+                                <p>Как руководитель следственной группы, инициировал ходатайство в Первомайский районный суд Бишкека об изменении меры пресечения для Тажибек уулу Максата с содержания под стражей на домашний арест до 13 мая 2024 года. Ходатайство включает ряд ограничений: запрет на общение с другими обвиняемыми, получение и отправку корреспонденции, выход из жилища в дневное время, выезд за пределы административного района без разрешения суда, а также использование информационно-телекоммуникационной связи.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (19.02.2024): Назначение руководителем следственной группы по уголовному делу №03-050-2024-000029</h5>
+                                <p>Назначен руководителем следственной группы по уголовному делу №03-050-2024-000029 по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)** или **ст. 350 УК КР (Незаконное задержание или заключение под стражу)**, если ходатайство о продлении ареста было необоснованным, что было установлено судом. <br><span class="sanction">Санкция:</span> (для ст. 320 УК КР) штраф или лишение свободы до 5 лет; (для ст. 350 УК КР) лишение свободы от 3 до 5 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения)</a>.</p>
+                            <p><a href="#">Постановление об инициировании ходатайства о продлении меры пресечения в отношении Тажибек уулу Максата от 05.03.2024</a>.</p>
+                            <p><a href="#">Токтом Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)</a>.</p>
+                            <p><a href="#">Токтом от 08.04.2024 (о возбуждении ходатайства об изменении меры пресечения)</a>.</p>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Kalmuratov A.K. -->
+                <div id="dossier-kalmuratov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Калмуратов А.К.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной Службы МВД КР / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (12.03.2024): Поддержка ходатайства о продлении ареста Ж. Турдалиева / Максата Тажибек уулу</h5>
+                                <p>В судебном заседании Первомайского районного суда Бишкека полностью поддержал ходатайство руководителя следственной группы У. Зикиралиева о продлении меры пресечения в виде заключения под стражу в отношении Ж. Турдалиева и Тажибек уулу Максата.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (20.04.2024): Признание видеозаписей обысков вещественным доказательством</h5>
+                                <p>Как следователь следственной группы, признал видеозаписи, содержащиеся на DVD-диске, с обысков, проведенных по адресам г. Бишкек ул. Сыдыкова 250/1 и 169, вещественным доказательством по уголовному делу №03-050-2024-000029.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)** или **ст. 350 УК КР (Незаконное задержание или заключение под стражу)**, если его поддержка способствовала необоснованному требованию о продлении ареста. <br><span class="sanction">Санкция:</span> (для ст. 320 УК КР) штраф или лишение свободы до 5 лет; (для ст. 350 УК КР) лишение свободы от 3 до 5 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения)</a>.</p>
+                            <p><a href="#">Токтом Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)</a>.</p>
+                            <p><a href="#">Постановление от 20.04.2024 (о признании вещественным доказательством)</a>.</p>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Baratov T. -->
+                <div id="dossier-baratov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Баратов Т.</h2>
+                            <p><strong>Категория:</strong> Прокурор</p>
+                            <p><strong>Должность:</strong> Помощник прокурора Первомайского района Бишкека</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (12.03.2024): Поддержка ходатайства о продлении ареста Ж. Турдалиева / Максата Тажибек уулу</h5>
+                                <p>В судебном заседании Первомайского районного суда Бишкека полностью поддержал ходатайство следователя У. Зикиралиева о продлении меры пресечения в виде заключения под стражу в отношении Ж. Турдалиева и Тажибек уулу Максата.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **st. 320 УК КР (Злоупотребление должностным положением)** или **st. 350 УК КР (Незаконное задержание или заключение под стражу)**, если его поддержка способствовала необоснованному требованию о продлении ареста. <br><span class="sanction">Санкция:</span> (для ст. 320 УК КР) штраф или лишение свободы до 5 лет; (для ст. 350 УК КР) лишение свободы от 3 до 5 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения)</a>.</p>
+                            <p><a href="#">Токтом Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Sultanov U.T. -->
+                <div id="dossier-sultanov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Султанов У.Т.</h2>
+                            <p><strong>Категория:</strong> Прокурор</p>
+                            <p><strong>Должность:</strong> Первый заместитель Генерального прокурора Кыргызской Республики</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (08.04.2024): Согласие на ходатайство об изменении меры пресечения для Максата Тажибек уулу</h5>
+                                <p>Как Первый заместитель Генерального прокурора Кыргызской Республики, согласовал (МАКУЛМУН) ходатайство руководителя следственной группы У. Зикиралиева об изменении меры пресечения для Тажибек уулу Максата с содержания под стражей на домашний арест.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **st. 320 УК КР (Злоупотребление должностным положением)**, если согласование данного ходатайства было частью неправомерного процесса преследования. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Токтом от 08.04.2024 (о возбуждении ходатайства об изменении меры пресечения)</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Atantaev B. -->
+                <div id="dossier-atantaev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Атантаев Б.</h2>
+                            <p><strong>Категория:</strong> Прокурор</p>
+                            <p><strong>Должность:</strong> Помощник прокурора Первомайского района г. Бишкек</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (01.02.2024): Поддержка ходатайства о признании законности обыска</h5>
+                                <p>В судебном заседании Первомайского районного суда г. Бишкек поддержал ходатайство о признании законным и обоснованным неотложного обыска, проведенного 29.01.2024 по адресу г. Бишкек, ул. Сыдыкова №250/1.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **st. 320 УК КР (Злоупотребление должностным положением)**, если его поддержка способствовала неправомерному обыску. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление от 01.02.2024 (о проверке законности и обоснованности произведенного обыска)</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Karypbek uulu A. -->
+                <div id="dossier-karypbek-uulu" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Карыпбек уулу А.</h2>
+                            <p><strong>Категория:</strong> Прокурор</p>
+                            <p><strong>Должность:</strong> Помощник прокурора Первомайского района города Бишкек</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (17.01.2024): Участие в судебном заседании по проверке законности задержания Ишенбекова Азамата Ишенбековича</h5>
+                                <p>Как помощник прокурора Первомайского района города Бишкек, участвовал в судебном заседании по рассмотрению ходатайства о проверке законности и обоснованности задержания Ишенбекова Азамата Ишенбековича.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерному решению. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Osmonaliev A. -->
+                <div id="dossier-osmonaliev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Осмоналиев А.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь следственной группы Следственной службы МВД Кыргызской Республики</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (01.02.2024): Поддержка ходатайства о признании законности обыска</h5>
+                                <p>В судебном заседании Первомайского районного суда г. Бишкек поддержал ходатайство о проверке законности и обоснованности неотложного обыска, проведенного по адресу г. Бишкек, ул. Сыдыкова №250/1.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Юридическая квалификация (по УК КР):</h5>
+                            <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                            <p>В действиях могут усматриваться признаки **st. 320 УК КР (Злоупотребление должностным положением)**, если его поддержка способствовала неправомерному обыску. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление от 01.02.2024 (о проверке законности и обоснованности произведенного обыска)</a>.</p>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Patanov A.K. -->
+                <div id="dossier-patanov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Патанов А.К.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Начальник отдела Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Dzhapekova U.Dzh. -->
+                <div id="dossier-dzhapekova" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Джапеков Улан Джолдошбекович</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Старший следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Momunaliev E.S. -->
+                <div id="dossier-momunaliev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Момуналиев Э.С.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Подполковник милиции, следователь по ОВД Управления Следственной службы МВД Кыргызской Республики / Старший следователь по ОВД Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (17.01.2024): Допрос Ишенбекова Азамата Ишенбековича</h5>
+                                <p>Как следователь по ОВД Управления Следственной службы МВД Кыргызской Республики, подполковник милиции, на основании статей 196-200 УПК Кыргызской Республики, допросил Ишенбекова Азамата Ишенбековича в качестве свидетеля в здании УВД Кыргызской Республики.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                            <p><a href="#">Протокол допроса свидетеля Р.А.А. (Ишенбеков Азамат Ишенбекович) от 17.01.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Murzabekov Almazbek Bayitovich -->
+                <div id="dossier-murzabekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Мурзабеков Алмазбек Байитович</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы по ОВД Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2020-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Mukanbetov U.I. -->
+                <div id="dossier-mukanbetov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Муканбетов У.И.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Abdyrahmanov U.M. -->
+                <div id="dossier-abdyrahmanov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Абдырахманов У.М.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Narbaev M.N. -->
+                <div id="dossier-narbaev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Нарбаев М.Н.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Kozhenberdieva S.B. -->
+                <div id="dossier-kozhenberdieva" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Коженбердиева С.Б.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Shadmanova S.K. -->
+                <div id="dossier-shadmanova" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Шадманова С.К.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Apysov Akylbek Aidaralievich -->
+                <div id="dossier-apysov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo" style="background-image: url(https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/486954184_2346244502412547_6492162348633372261_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=fTRz3zjZCHIQ7kNvwG5zbuR&_nc_oc=AdkmSzRSKZ3NWg5kUThOPExQWLAd1ixfR7g4PhJQOVa2-Z6f7frtwm8dhYlkAFsNZeM&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&_nc_gid=FdLlBICh7ceXHx7uRycq2w&oh=00_AfTl3DBzzO5uXWTWOYKYh1peKzTvh-PYZECFm3rRlK4GVg&oe=6876C7B4);"></div>
+                            <h2>Апысов Акылбек Айдаралиевич</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Kamalova A.D. -->
+                <div id="dossier-kamalova" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Камалова А.Д.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Kalmurzaev N.S. -->
+                <div id="dossier-kalmurzaev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Калмурзаев Н.С.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Osmonov A.A. -->
+                <div id="dossier-osmonov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Осмонов А.А.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Kadyrkulov E.Sh. -->
+                <div id="dossier-kadyrkulov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Кадыркулов Э.Ш.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Kaykiev R.B. -->
+                <div id="dossier-kaykiev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Кайкиев Р.Б.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Старший следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Isagaliev M.I. -->
+                <div id="dossier-isagaliev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Исагалиев М.И.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Satymkulov B.K. -->
+                <div id="dossier-satymkulov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Сатымкулов Б.К.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Старший следователь по ОВД Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Akunaliuiev N.A. -->
+                <div id="dossier-akunaliuiev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Акуналиев Н.А.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Старший следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (17.01.2024): Участие в судебном заседании по проверке законности задержания Ишенбекова Азамата Ишенбековича</h5>
+                                <p>Как следователь следственной группы, участвовал в судебном заседании по рассмотрению ходатайства о проверке законности и обоснованности задержания Ишенбекова Азамата Ишенбековича.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                            <p><a href="#">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Erkinbekov A.T. -->
+                <div id="dossier-erkinbekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Эркинбеков А.Т.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Akzholov A.A. -->
+                <div id="dossier-akzholov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Акжолов А.А.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Tolubaeva M.M. -->
+                <div id="dossier-tolubaev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Толубаева М.М.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Alchakpaeva M.D. -->
+                <div id="dossier-alchakpaev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Алчакпаева М.Д.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Raiymbekov S.Yu. -->
+                <div id="dossier-raiymbekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Райымбеков С.Ю.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Koomanov U.O. -->
+                <div id="dossier-koomanov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Кооманов У.О.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Aliev T. -->
+                <div id="dossier-aliev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Алиев Т.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Karazak uulu Nurkyiaz -->
+                <div id="dossier-karazak-uulu-nurkyiaz" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Каразак уулу Нуркыяз</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Murzuraimov Kurmanbek Payzildaevich -->
+                <div id="dossier-murzuraimov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo" style="background-image: url(https://sun9-45.userapi.com/s/v1/ig2/tL8rBNOrtly76YH0Z6nDWKhy2lCy2hx-R8KMsR1SQp2qAibYSB2X9EvcKOpn7OeWWSzTycywbeD63owcWK42PAGC.jpg?quality=96&as=32x62,48x92,72x139,108x208,160x308,240x462,272x524&from=bu&cs=272x0);"></div>
+                            <h2>Мурзураимов Курманбек Пайзилдаевич</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Tashmamatov K.Zh. -->
+                <div id="dossier-tashmamatov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Ташмаматов К.Ж.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Dogdurabekov I.D. -->
+                <div id="dossier-dogdurabekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Догдурбеков И.Д.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы МВД Кыргызской Республики / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Kydyraliev B.A. -->
+                <div id="dossier-kydyraliev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Кыдыралиев Б.А.</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Старший следователь Следственной службы УВД Октябрьского района г. Бишкек / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Tanchibekov Yryskeldi Almazovich -->
+                <div id="dossier-tanchibekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Танчибеков Ырыскелди Алмазович</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Старший следователь Следственной службы ОВД Сокулукского района Чуйской области / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Ranat uulu Aibek -->
+                <div id="dossier-ranat-uulu-aibek" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Ранат уулу Аибеку</h2>
+                            <p><strong>Категория:</strong> Следователь</p>
+                            <p><strong>Должность:</strong> Следователь Следственной службы ОВД Сокулукского района Чуйской области / Следователь следственной группы</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                                <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- NEW JOURNALIST DOSSIERS -->
+
+                <!-- Dossier: Saitpudin Sultanaliyev -->
+                <div id="dossier-sultanaliyev" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Сайпидин Султаналиев</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 29 августа 1972 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержан сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.4 («Соучастник») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                    <li><strong>17.01.2024:</strong> Судья Шерматов М.Б. санкционировал арест на два месяца.</li>
+                                </ol>
+                                <div class="un-opinion-box">
+                                    <h5>Правовой статус (согласно оценке ООН)</h5>
+                                    <p>Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Сайпидина Султаналиева **произвольным и нарушающим международное право**, указывая на отсутствие правовых оснований для обвинений.</p>
+                                </div>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Токтом Первомайского райсуда от 17.01.2024 (дело № -Ap-270/24)</a> и <a href="#">другие документы</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Tazhibek kyzy Mahabat -->
+                <div id="dossier-tazhibek-kyzy-mahabat" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Тажибек кызы Махабат</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 13 мая 1991 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>30.12.2023:</strong> Служба ЭММКАК МВД Кыргызской Республики выявила публикации в YouTube-каналах "Айт айт десе" и "Temirov Live" (пользователь Тажибек кызы Махабат), содержащие призывы к дискредитации органов власти и массовым беспорядкам.</li>
+                                    <li><strong>30.12.2023:</strong> Информация зарегистрирована в КБР АМТ Следственной службой МВД Кыргызской Республики, назначена судебно-лингвистическая экспертиза.</li>
+                                    <li><strong>12.01.2024:</strong> Согласно заключению судебно-лингвистической экспертизы, материалы каналов "Айт айт десе" и "Temirov Live" содержат лингвистические признаки призывов к акциям протеста и массовым беспорядкам через дискредитацию власти.</li>
+                                    <li><strong>13.01.2024:</strong> Возбуждено уголовное дело №03-050-2024-000029 по ст. 278 ч.3 УК КР (Призывы к массовым беспорядкам).</li>
+                                    <li><strong>16.01.2024:</strong> Проведены обыски по месту жительства и в офисе "Айт айт десе" и "Temirov Live", изъяты техника и документы.</li>
+                                    <li><strong>16.01.2024:</strong> Задержана сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.2 («Организатор») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                    <li><strong>17.01.2024:</strong> Судья Шерматов М.Б. санкционировал арест на два месяца (до 13.03.2024).</li>
+                                </ol>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Постановление о возбуждении уголовного дела от 13.01.2024</a>.</p>
+                                <p><a href="#">Заключение судебно-лингвистической экспертизы №21 от 12.01.2024</a>.</p>
+                                <p><a href="#">Протокол обыска от 16.01.2024</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Akunbekov Saparbek Akunbekovich -->
+                <div id="dossier-akunbekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Акунбеков Сапарбек Акунбекович</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 28 января 1990 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержан сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.2 («Организатор») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                </ol>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Протокол задержания от 16.01.2024</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Asypbekov Tynystan Beknazarovich -->
+                <div id="dossier-asypbekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Асыпбеков Тыныстан Бекназарович</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 1994 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержан сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.4 («Соучастник») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                </ol>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Протокол задержания от 16.01.2024</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Beishekeeva Aike Nurlanovna -->
+                <div id="dossier-beishekeeva" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Бейшекеева Айке Нурлановна</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 16 января 2001 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержана сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.4 («Соучастник») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                </ol>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Протокол задержания от 16.01.2024</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Buzumov Zhoodarbek Bakytalyevich -->
+                <div id="dossier-buzumov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Бузумов Жоодарбек Бакыталыевич</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 17 июня 1993 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержан сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.2 («Организатор») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                </ol>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Протокол задержания от 16.01.2024</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Ishenbekov Azamat Ishenbekovich -->
+                <div id="dossier-ishenbekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Ишенбеков Азамат Ишенбекович</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 12 декабря 1997 г.</p>
+                            <p><strong>Место жительства:</strong> г. Бишкек, ул. Радищева, д. 7, кв. 16</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>30.12.2023:</strong> Служба ЭММКАК МВД Кыргызской Республики в ходе мониторинга интернета выявила публикации на YouTube-каналах "Айт Айт Десе" и "Temirov Live" (пользователь Тажибек кызы Махабат), содержащие призывы к дискредитации органов власти и массовым беспорядкам, которые могут привести к различным массовым беспорядкам на территории Кыргызской Республики.</li>
+                                    <li><strong>30.12.2023:</strong> Указанная информация зарегистрирована Следственной службой МВД Кыргызской Республики в КБР АМТ под номером 02-050-2023-001223, 31.12.2023 назначена судебно-лингвистическая экспертиза.</li>
+                                    <li><strong>12.01.2024:</strong> Согласно заключению судебно-лингвистической экспертизы №000007, проведенной Судебно-экспертной службой при Министерстве юстиции Кыргызской Республики, материалы YouTube-каналов "Айт Айт Десе" и "Temirov Live" содержат лингвистические признаки призывов к акциям протеста и массовым беспорядкам через дискредитацию власти.</li>
+                                    <li><strong>13.01.2024:</strong> По данному факту Следственной службой МВД Кыргызской Республики возбуждено уголовное дело №03-050-2024-000029 по ст. 278 ч.3 УК КР (Призывы к массовым беспорядкам).</li>
+                                    <li><strong>16.01.2024 (19:50):</strong> Ишенбеков Азамат Ишенбекович задержан как подозреваемый в совершении тяжкого преступления и доставлен в ИВС ГУВД г. Бишкек.</li>
+                                    <li><strong>17.01.2024:</strong> А.Ишенбекову в присутствии адвоката предъявлено обвинение в совершении преступления, предусмотренного ст. 41 ч. 4 и ст. 278 ч. 3 УК КР.</li>
+                                    <li><strong>17.01.2024:</strong> Следственный судья Первомайского районного суда г. Бишкек Бекенов Т.О. признал задержание Ишенбекова А.И. законным и обоснованным.</li>
+                                </ol>
+                                <h5>Юридическая квалификация (по УК КР):</h5>
+                                <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                                <p>В действиях Ишенбекова Азамата Ишенбековича усматриваются признаки преступления, предусмотренного **ст. 41 ч. 4 УК КР (Соучастие в преступлении)** и **ст. 278 ч. 3 УК КР (Призывы к массовым беспорядкам)**. <br><span class="sanction">Санкция:</span> лишение свободы от 5 до 8 лет (для ст. 278 ч.3 УК КР).</p>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Постановление о возбуждении ходатайства о проверке законности задержания подозреваемого от 17.01.2024</a>.</p>
+                                <p><a href="#">Протокол допроса свидетеля Р.А.А. (Ишенбеков Азамат Ишенбекович) от 17.01.2024</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Orozbekov Asylbek Orozbekovich -->
+                <div id="dossier-orozbekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Орозбеков Асылбек Орозбекович</h2>
+                            <p><strong>Категория:</strong> Журналист</p>
+                            <p><strong>Дата рождения:</strong> 30 декабря 1991 г.</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Эпизод преследования: «Дело 11 журналистов»</h3>
+                            <div class="episode-card">
+                                <h4>Хронология:</h4>
+                                <ol>
+                                    <li><strong>16.01.2024:</strong> Задержан сотрудниками МВД.</li>
+                                    <li><strong>17.01.2024:</strong> Предъявлено обвинение по ст. 41 ч.2 («Организатор») и ст. 278 ч.3 («Призывы к массовым беспорядкам») УК КР.</li>
+                                </ol>
+                                <h5>Источники:</h5>
+                                <p><a href="#">Протокол задержания от 16.01.2024</a>.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Dossier: Botobekov B. -->
+                <div id="dossier-botobekov" style="margin-bottom: 40px; padding-top: 20px;">
+                    <div class="profile-layout">
+                        <aside class="profile-card">
+                            <div class="profile-photo"></div>
+                            <h2>Ботобеков Б.</h2>
+                            <p><strong>Категория:</strong> Адвокат</p>
+                        </aside>
+                        <section class="dossier-content">
+                            <h3>Задокументированные эпизоды</h3>
+                            <div class="episode-card">
+                                <h4>Эпизод: «Дело 11 журналистов»</h4>
+                                <h5>Действия (17.01.2024): Участие в судебном заседании по проверке законности задержания Ишенбекова Азамата Ишенбековича</h5>
+                                <p>Участвовал в судебном заседании Первомайского районного суда города Бишкек в качестве адвоката Ишенбекова Азамата Ишенбековича, выступая против удовлетворения ходатайства о признании задержания законным.</p>
+                            </div>
+                            <h5>Источники:</h5>
+                            <p><a href="#">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">О проекте</h2>
+                <p>«Архив Подотчетности» — это независимый общественный проект, целью которого является содействие укреплению верховенства права и повышение подотчетности должностных лиц в Кыргызстане.</p>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
