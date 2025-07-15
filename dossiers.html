@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архив досье - Архив Подотчетности</title>
+    <style>
+        /* Общие стили (скопированы из index.html для удобства) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        :root {
+            --primary-color: #0d2a4c;
+            --secondary-color: #f8f9fa;
+            --border-color: #dee2e6;
+            --un-blue: #009edb;
+            --un-light-blue: #eaf8ff;
+            --accent-color: #007bff; /* Новый акцентный цвет */
+            --accent-hover-color: #0056b3; /* Цвет при наведении для акцента */
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень для карточек */
+            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #212529;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f0f2f5; /* Более мягкий фон для тела */
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            padding-top: 80px;
+            margin-top: -60px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+            background-color: #fff; /* Фон для секций */
+            margin-bottom: 20px; /* Отступ между секциями */
+            border-radius: 8px; /* Закругленные углы для секций */
+            box-shadow: var(--card-shadow); /* Тень для секций */
+        }
+        section:last-of-type {
+            border-bottom: none; /* Убрать нижнюю границу у последней секции */
+        }
+
+
+        /* Шапка */
+        .site-header {
+            background-color: var(--primary-color); /* Темный фон для шапки */
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0; /* Увеличить отступ */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+        }
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.4em; /* Увеличить размер логотипа */
+            font-weight: 700;
+            color: #fff; /* Белый цвет для логотипа */
+            text-decoration: none;
+            text-transform: uppercase; /* Заглавные буквы */
+            letter-spacing: 1px;
+        }
+        .main-nav a {
+            color: #fff; /* Белый цвет для ссылок навигации */
+            text-decoration: none;
+            margin-left: 25px; /* Увеличить отступ между ссылками */
+            font-weight: 500;
+            font-size: 1em; /* Увеличить размер шрифта */
+            transition: color 0.3s ease; /* Плавный переход цвета */
+        }
+        .main-nav a:hover {
+            color: var(--un-blue); /* Изменение цвета при наведении */
+        }
+
+        /* Заголовки и карточки */
+        .section-title {
+            text-align: center;
+            font-size: 2.5em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-bottom: 40px; /* Увеличить отступ */
+            padding-top: 20px;
+        }
+        .case-card {
+            background-color: #fff; /* Белый фон для карточек */
+            border: 1px solid var(--border-color);
+            padding: 30px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            margin-bottom: 25px; /* Увеличить отступ */
+            box-shadow: var(--card-shadow); /* Легкая тень */
+            transition: all 0.3s ease; /* Плавный переход для ховера */
+        }
+        .case-card:hover {
+            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
+            transform: translateY(-5px); /* Небольшой подъем при наведении */
+        }
+        .case-card h3 {
+            margin-top: 0;
+            font-size: 1.8em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+        }
+        .case-card a {
+            text-decoration: none;
+            color: var(--accent-color); /* Акцентный цвет для ссылок */
+            transition: color 0.3s ease;
+        }
+        .case-card a:hover {
+            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            text-decoration: underline;
+        }
+        .dossier-link {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
+            transition: color 0.3s ease;
+        }
+        .dossier-link:hover {
+            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            text-decoration: underline;
+        }
+
+        /* Досье */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr; /* Немного увеличить ширину сайдбара */
+            gap: 50px; /* Увеличить отступ */
+            background-color: #fff; /* Белый фон для досье */
+            padding: 30px; /* Отступ внутри досье */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: var(--card-shadow); /* Тень */
+            margin-bottom: 40px; /* Отступ снизу */
+        }
+        @media (max-width: 800px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .profile-card {
+            background-color: #f8f9fa; /* Более светлый фон для карточки профиля */
+            padding: 25px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            text-align: center;
+            align-self: start;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень */
+        }
+        .profile-photo {
+            width: 160px; /* Увеличить размер фото */
+            height: 160px;
+            background-color: #e9ecef; /* Более нейтральный цвет для заглушки */
+            border-radius: 50%;
+            margin: 0 auto 25px auto; /* Увеличить отступ */
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--accent-color); /* Акцентная рамка */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+        }
+        .profile-card h2 {
+            margin: 0 0 15px 0; /* Увеличить отступ */
+            font-size: 1.8em; /* Увеличить размер заголовка */
+            line-height: 1.2;
+            color: var(--primary-color);
+        }
+        .profile-card p {
+            margin: 8px 0; /* Увеличить отступ */
+            text-align: left;
+            font-size: 0.95em;
+        }
+        .profile-card strong {
+            color: var(--primary-color);
+        }
+
+        .dossier-content h3 {
+            font-size: 2em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+        .episode-card {
+            border: 1px solid var(--border-color);
+            padding: 25px; /* Увеличить отступ */
+            margin-bottom: 25px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            background-color: #fdfefe; /* Немного более светлый фон */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Очень легкая тень */
+        }
+        .episode-card h4 {
+            margin-top: 0;
+            font-size: 1.5em; /* Увеличить размер заголовка */
+            color: var(--accent-color); /* Акцентный цвет для заголовка эпизода */
+            margin-bottom: 10px;
+        }
+        .episode-card h5 {
+            font-size: 1.2em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        .un-opinion-box {
+            background-color: var(--un-light-blue);
+            border: 1px solid var(--un-blue);
+            border-left: 8px solid var(--un-blue); /* Более толстая левая граница */
+            padding: 20px 25px; /* Увеличить отступы */
+            margin-top: 30px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Тень для выделения */
+        }
+        .un-opinion-box h5 {
+            color: var(--un-blue); /* Цвет заголовка ООН */
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .un-opinion-box p {
+            font-size: 1em;
+            color: #343a40;
+        }
+        .disclaimer {
+            font-size: 0.85em; /* Немного увеличить размер */
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 15px;
+            display: block;
+        }
+        .sanction {
+            font-weight: 700; /* Более жирный шрифт */
+            color: #dc3545; /* Красный цвет для санкций */
+        }
+
+        /* Секция "О проекте" */
+        #about {
+            text-align: center;
+            padding-bottom: 60px;
+        }
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            color: #495057;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--accent-hover-color);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav">
+                <a href="index.html">Главная</a>
+                <a href="index.html#cases">Дела</a>
+                <a href="dossiers.html">Архив досье</a>
+                <a href="index.html#about">О проекте</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="archive">
+            <div class="container">
+                <a href="index.html" class="back-link">&larr; Назад на главную</a>
+                <h2 class="section-title">Архив досье</h2>
+
+                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-bottom: 15px;">Исполнители (представители госорганов):</h5>
+                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
+                    <li><a href="dossiers/zhumabaev.html" class="dossier-link">Жумабаев А.А.</a></li>
+                    <li><a href="dossiers/shermatov.html" class="dossier-link">Шерматов Миран Бакытбекович</a></li>
+                    <li><a href="dossiers/turdukulov.html" class="dossier-link">Турдукулов Тилек Ураимжанович</a></li>
+                    <li><a href="dossiers/bekenov.html" class="dossier-link">Бекенов Т.О.</a></li>
+                    <li><a href="dossiers/chamashova.html" class="dossier-link">Чамашова М.</a></li>
+                    <li><a href="dossiers/mairambek-kyzy.html" class="dossier-link">А.Майрамбек кызы</a></li>
+                    <li><a href="dossiers/zikiraliev.html" class="dossier-link">Зикиралиев Улан Спартакович</a></li>
+                    <li><a href="dossiers/baiyshov.html" class="dossier-link">Байышов Кубанбек Эмилбекович</a></li>
+                    <li><a href="dossiers/kalmuratov.html" class="dossier-link">Калмуратов А.К.</a></li>
+                    <li><a href="dossiers/baratov.html" class="dossier-link">Баратов Т.</a></li>
+                    <li><a href="dossiers/sultanov.html" class="dossier-link">Султанов У.Т.</a></li>
+                    <li><a href="dossiers/atantaev.html" class="dossier-link">Атантаев Б.</a></li>
+                    <li><a href="dossiers/karypbek-uulu.html" class="dossier-link">А.Карыпбек уулу</a></li>
+                    <li><a href="dossiers/osmonaliev.html" class="dossier-link">Осмоналиев А.</a></li>
+                    <li><a href="dossiers/patanov.html" class="dossier-link">Патанов А.К.</a></li>
+                    <li><a href="dossiers/dzhapekova.html" class="dossier-link">Джапекова У.Дж.</a></li>
+                    <li><a href="dossiers/momunaliev.html" class="dossier-link">Момуналиев Э.С.</a></li>
+                    <li><a href="dossiers/murzabekov.html" class="dossier-link">Мурзабеков А.Б.</a></li>
+                    <li><a href="dossiers/mukanbetov.html" class="dossier-link">Муканбетов У.И.</a></li>
+                    <li><a href="dossiers/abdyrahmanov.html" class="dossier-link">Абдырахманов У.М.</a></li>
+                    <li><a href="dossiers/narbaev.html" class="dossier-link">Нарбаев М.Н.</a></li>
+                    <li><a href="dossiers/kozhenberdieva.html" class="dossier-link">Коженбердиева С.Б.</a></li>
+                    <li><a href="dossiers/shadmanova.html" class="dossier-link">Шадманова С.К.</a></li>
+                    <li><a href="dossiers/apysov.html" class="dossier-link">Апысов А.А.</a></li>
+                    <li><a href="dossiers/kamalova.html" class="dossier-link">Камалова А.Д.</a></li>
+                    <li><a href="dossiers/kalmurzaev.html" class="dossier-link">Калмурзаев Н.С.</a></li>
+                    <li><a href="dossiers/osmonov.html" class="dossier-link">Осмонов А.А.</a></li>
+                    <li><a href="dossiers/kadyrkulov.html" class="dossier-link">Кадыркулов Э.Ш.</a></li>
+                    <li><a href="dossiers/kaykiev.html" class="dossier-link">Кайкиев Р.Б.</a></li>
+                    <li><a href="dossiers/isagaliev.html" class="dossier-link">Исагалиев М.И.</a></li>
+                    <li><a href="dossiers/satymkulov.html" class="dossier-link">Сатымкулов Б.К.</a></li>
+                    <li><a href="dossiers/akunaliuiev.html" class="dossier-link">Акуналиев Н.А.</a></li>
+                    <li><a href="dossiers/erkinbekov.html" class="dossier-link">Эркинбеков А.Т.</a></li>
+                    <li><a href="dossiers/akzholov.html" class="dossier-link">Акжолов А.А.</a></li>
+                    <li><a href="dossiers/tolubaev.html" class="dossier-link">Толубаева М.М.</a></li>
+                    <li><a href="dossiers/alchakpaev.html" class="dossier-link">Алчакпаева М.Д.</a> (Следователь следственной группы)</li>
+                    <li><a href="dossiers/raiymbekov.html" class="dossier-link">Райымбеков С.Ю.</a></li>
+                    <li><a href="dossiers/koomanov.html" class="dossier-link">Кооманов У.О.</a></li>
+                    <li><a href="dossiers/aliev.html" class="dossier-link">Алиев Т.</a></li>
+                    <li><a href="dossiers/karazak-uulu-nurkyiaz.html" class="dossier-link">Каразак уулу Нуркыяз</a></li>
+                    <li><a href="dossiers/murzuraimov.html" class="dossier-link">Мурзураимов К.П.</a></li>
+                    <li><a href="dossiers/tashmamatov.html" class="dossier-link">Ташмаматов К.Ж.</a></li>
+                    <li><a href="dossiers/dogdurabekov.html" class="dossier-link">Догдурбеков И.Д.</a></li>
+                    <li><a href="dossiers/kydyraliev.html" class="dossier-link">Кыдыралиев Б.А.</a></li>
+                    <li><a href="dossiers/tanchibekov.html" class="dossier-link">Танчибеков Р.А.</a></li>
+                    <li><a href="dossiers/ranat-uulu-aibek.html" class="dossier-link">Ранат уулу Аибеку</a></li>
+                </ul>
+
+                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-top: 40px; margin-bottom: 15px;">Жертвы преследования:</h5>
+                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
+                    <li><a href="dossiers/kaparov.html" class="dossier-link">Капаров Мааданбек Таалайбекович</a></li>
+                    <li><a href="dossiers/turdaliev.html" class="dossier-link">Турдалиев Жумабек Искендерович</a></li>
+                    <li><a href="dossiers/tazhibek-uulu.html" class="dossier-link">Тажибек уулу Максат</a></li>
+                    <li><a href="dossiers/sultanaliyev.html" class="dossier-link">Сайпидин Султаналиев</a></li>
+                    <li><a href="dossiers/tazhibek-kyzy-mahabat.html" class="dossier-link">Тажибек кызы Махабат</a></li>
+                    <li><a href="dossiers/akunbekov.html" class="dossier-link">Акунбеков Сапарбек Акунбекович</a></li>
+                    <li><a href="dossiers/asypbekov.html" class="dossier-link">Асыпбеков Тыныстан Бекназарович</a></li>
+                    <li><a href="dossiers/beishekeeva.html" class="dossier-link">Бейшекеева Айке Нурлановна</a></li>
+                    <li><a href="dossiers/buzumov.html" class="dossier-link">Бузумов Жоодарбек Бакыталыевич</a></li>
+                    <li><a href="dossiers/ishenbekov.html" class="dossier-link">Ишенбеков Азамат Ишенбекович</a></li>
+                    <li><a href="dossiers/orozbekov.html" class="dossier-link">Орозбеков Асылбек Орозбекович</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
