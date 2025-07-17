@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Досье: Капаров Мааданбек Таалайбекович - Архив Подотчетности</title>
+    <style>
+        /* Общие стили */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        :root {
+            --primary-color: #0d2a4c;
+            --secondary-color: #f8f9fa;
+            --border-color: #dee2e6;
+            --un-blue: #009edb;
+            --un-light-blue: #eaf8ff;
+            --accent-color: #007bff; /* Новый акцентный цвет */
+            --accent-hover-color: #0056b3; /* Цвет при наведении для акцента */
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень для карточек */
+            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #212529;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f0f2f5; /* Более мягкий фон для тела */
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            padding-top: 80px;
+            margin-top: -60px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+            background-color: #fff; /* Фон для секций */
+            margin-bottom: 20px; /* Отступ между секциями */
+            border-radius: 8px; /* Закругленные углы для секций */
+            box-shadow: var(--card-shadow); /* Тень для секций */
+        }
+        section:last-of-type {
+            border-bottom: none; /* Убрать нижнюю границу у последней секции */
+        }
+
+
+        /* Шапка */
+        .site-header {
+            background-color: var(--primary-color); /* Темный фон для шапки */
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0; /* Увеличить отступ */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+        }
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.4em; /* Увеличить размер логотипа */
+            font-weight: 700;
+            color: #fff; /* Белый цвет для логотипа */
+            text-decoration: none;
+            text-transform: uppercase; /* Заглавные буквы */
+            letter-spacing: 1px;
+        }
+        .main-nav a {
+            color: #fff; /* Белый цвет для ссылок навигации */
+            text-decoration: none;
+            margin-left: 25px; /* Увеличить отступ между ссылками */
+            font-weight: 500;
+            font-size: 1em; /* Увеличить размер шрифта */
+            transition: color 0.3s ease; /* Плавный переход цвета */
+        }
+        .main-nav a:hover {
+            color: var(--un-blue); /* Изменение цвета при наведении */
+        }
+
+        /* Заголовки и карточки */
+        .section-title {
+            text-align: center;
+            font-size: 2.5em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-bottom: 40px; /* Увеличить отступ */
+            padding-top: 20px;
+        }
+        .case-card {
+            background-color: #fff; /* Белый фон для карточек */
+            border: 1px solid var(--border-color);
+            padding: 30px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            margin-bottom: 25px; /* Увеличить отступ */
+            box-shadow: var(--card-shadow); /* Легкая тень */
+            transition: all 0.3s ease; /* Плавный переход для ховера */
+        }
+        .case-card:hover {
+            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
+            transform: translateY(-5px); /* Небольшой подъем при наведении */
+        }
+        .case-card h3 {
+            margin-top: 0;
+            font-size: 1.8em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+        }
+        .case-card a {
+            text-decoration: none;
+            color: var(--accent-color); /* Акцентный цвет для ссылок */
+            transition: color 0.3s ease;
+        }
+        .case-card a:hover {
+            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            text-decoration: underline;
+        }
+        .dossier-link {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
+            transition: color 0.3s ease;
+        }
+        .dossier-link:hover {
+            color: var(--accent-hover-color);
+            text-decoration: underline;
+        }
+
+        /* Досье */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr; /* Немного увеличить ширину сайдбара */
+            gap: 50px; /* Увеличить отступ */
+            background-color: #fff; /* Белый фон для досье */
+            padding: 30px; /* Отступ внутри досье */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: var(--card-shadow); /* Тень */
+            margin-bottom: 40px; /* Отступ снизу */
+        }
+        @media (max-width: 800px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .profile-card {
+            background-color: #f8f9fa; /* Более светлый фон для карточки профиля */
+            padding: 25px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            text-align: center;
+            align-self: start;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень */
+        }
+        .profile-photo {
+            width: 160px; /* Увеличить размер фото */
+            height: 160px;
+            background-color: #e9ecef; /* Более нейтральный цвет для заглушки */
+            border-radius: 50%;
+            margin: 0 auto 25px auto; /* Увеличить отступ */
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--accent-color); /* Акцентная рамка */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+        }
+        .profile-card h2 {
+            margin: 0 0 15px 0; /* Увеличить отступ */
+            font-size: 1.8em; /* Увеличить размер заголовка */
+            line-height: 1.2;
+            color: var(--primary-color);
+        }
+        .profile-card p {
+            margin: 8px 0; /* Увеличить отступ */
+            text-align: left;
+            font-size: 0.95em;
+        }
+        .profile-card strong {
+            color: var(--primary-color);
+        }
+
+        .dossier-content h3 {
+            font-size: 2em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+        .episode-card {
+            border: 1px solid var(--border-color);
+            padding: 25px; /* Увеличить отступ */
+            margin-bottom: 25px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            background-color: #fdfefe; /* Немного более светлый фон */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Очень легкая тень */
+        }
+        .episode-card h4 {
+            margin-top: 0;
+            font-size: 1.5em; /* Увеличить размер заголовка */
+            color: var(--accent-color); /* Акцентный цвет для заголовка эпизода */
+            margin-bottom: 10px;
+        }
+        .episode-card h5 {
+            font-size: 1.2em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        .un-opinion-box {
+            background-color: var(--un-light-blue);
+            border: 1px solid var(--un-blue);
+            border-left: 8px solid var(--un-blue); /* Более толстая левая граница */
+            padding: 20px 25px; /* Увеличить отступы */
+            margin-top: 30px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Тень для выделения */
+        }
+        .un-opinion-box h5 {
+            color: var(--un-blue); /* Цвет заголовка ООН */
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .un-opinion-box p {
+            font-size: 1em;
+            color: #343a40;
+        }
+        .disclaimer {
+            font-size: 0.85em; /* Немного увеличить размер */
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 15px;
+            display: block;
+        }
+        .sanction {
+            font-weight: 700; /* Более жирный шрифт */
+            color: #dc3545; /* Красный цвет для санкций */
+        }
+
+        /* Секция "О проекте" */
+        #about {
+            text-align: center;
+            padding-bottom: 60px;
+        }
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            color: #495057;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--accent-hover-color);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav">
+                <a href="../index.html">Главная</a>
+                <a href="../index.html#cases">Дела</a>
+                <a href="../dossiers.html">Архив досье</a>
+                <a href="../index.html#about">О проекте</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="dossier-kaparov">
+            <div class="container">
+                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo"></div>
+                        <h2>Капаров Мааданбек Таалайбекович</h2>
+                        <p><strong>Категория:</strong> Жертва преследования</p>
+                        <p><strong>Должность:</strong> Журналист/Активист</p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3>Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4>Эпизод: «Дело 11 журналистов»</h4>
+                            <h5>Действия: Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029</h5>
+                            <p>Капаров Мааданбек Таалайбекович стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки) и 330 УК КР (Возбуждение расовой, этнической, национальной, религиозной или межрегиональной вражды (розни)).</p>
+                        </div>
+                        <h5>Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>В отношении данного лица могли быть нарушены права, предусмотренные **ст. 165 УК КР (Незаконное задержание)**, **ст. 170 УК КР (Незаконное лишение свободы)**, а также, в случае с журналистами, **ст. 155 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)**. <br><span class="sanction">Санкция:</span> лишение свободы до 5 лет (ст. 165), до 10 лет (ст. 170), штраф или лишение свободы до 3 лет (ст. 155).</p>
+                        <h5>Источники:</h5>
+                        <p><a href="#">Постановление о возбуждении уголовного дела</a>.</p>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
