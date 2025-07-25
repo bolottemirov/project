@@ -119,13 +119,13 @@
             color: #0056b3;
             text-decoration: underline;
         }
-        .about-section {
+        .about-section, .feedback-section {
             background-color: #eaf8ff; /* Light UN Blue */
             padding: 4rem 0;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
-        .about-text {
+        .about-text, .feedback-text {
             font-size: 1.15rem;
             color: #343a40;
             max-width: 900px;
@@ -177,6 +177,75 @@
             color: #495057;
             margin-bottom: 1rem;
         }
+        .language-switcher {
+            margin-left: 20px;
+            position: relative;
+        }
+        .language-switcher select {
+            background-color: #0d2a4c;
+            color: white;
+            border: 1px solid #009edb;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 25px; /* Space for custom arrow */
+        }
+        .language-switcher::after {
+            content: '▼'; /* Custom arrow */
+            color: white;
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .feedback-form-container {
+            max-width: 600px;
+            margin: 2rem auto 0 auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+        .feedback-form-container label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #343a40;
+        }
+        .feedback-form-container input[type="text"],
+        .feedback-form-container input[type="email"],
+        .feedback-form-container textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #495057;
+        }
+        .feedback-form-container textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .feedback-form-container button {
+            background-color: #28a745; /* Green for submit */
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+            cursor: pointer;
+        }
+        .feedback-form-container button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -185,12 +254,22 @@
     <header class="header-bg shadow-md sticky top-0 z-50">
         <div class="container flex justify-between items-center py-4">
             <a href="index_redesigned.html" class="text-white text-2xl font-bold uppercase tracking-wider">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="space-x-8">
-                <a href="#hero" class="nav-link text-lg">Главная</a>
-                <a href="#cases" class="nav-link text-lg">Дела</a>
-                <a href="dossiers.html" class="nav-link text-lg">Архив досье</a>
-                <a href="#about" class="nav-link text-lg">О проекте</a>
-            </nav>
+            <div class="flex items-center">
+                <nav class="space-x-8">
+                    <a href="#hero" class="nav-link text-lg">Главная</a>
+                    <a href="#cases" class="nav-link text-lg">Дела</a>
+                    <a href="dossiers.html" class="nav-link text-lg">Архив досье</a>
+                    <a href="#about" class="nav-link text-lg">О проекте</a>
+                    <a href="#feedback" class="nav-link text-lg">Обратная связь</a>
+                </nav>
+                <div class="language-switcher">
+                    <select id="language-select">
+                        <option value="ru">Русский</option>
+                        <option value="kg">Кыргызча</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -202,7 +281,7 @@
                 <p class="hero-subtitle">
                     Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.
                 </p>
-                <div class="mt-8 flex justify-center items-center gap-4">
+                <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
                     <a href="#cases" class="btn-primary inline-block">Посмотреть дела</a>
                     <div class="relative w-full max-w-md">
                         <input type="text" placeholder="Поиск по досье и делам..." class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
@@ -295,6 +374,36 @@
                 </p>
             </div>
         </section>
+
+        <!-- Feedback Section -->
+        <section id="feedback" class="py-16">
+            <div class="container feedback-section">
+                <h2 class="section-heading">Обратная связь</h2>
+                <p class="feedback-text">
+                    Если у вас есть информация, предложения или вопросы, пожалуйста, используйте форму ниже, чтобы связаться с нами. Ваша конфиденциальность важна для нас.
+                </p>
+                <div class="feedback-form-container">
+                    <form action="#" method="POST">
+                        <div class="mb-4">
+                            <label for="name">Ваше имя (необязательно):</label>
+                            <input type="text" id="name" name="name" placeholder="Иван Иванов">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email">Ваш email (необязательно):</label>
+                            <input type="email" id="email" name="email" placeholder="email@example.com">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message">Сообщение:</label>
+                            <textarea id="message" name="message" placeholder="Введите ваше сообщение здесь..." required></textarea>
+                        </div>
+                        <button type="submit">Отправить сообщение</button>
+                    </form>
+                    <p class="text-sm text-gray-600 mt-4 text-center">
+                        *Эта форма является демонстрационной и не отправляет данные на сервер.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -303,6 +412,24 @@
             <p class="footer-text">&copy; 2025 Архив Подотчетности. Все права защищены.</p>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('language-select').addEventListener('change', function() {
+            const selectedLang = this.value;
+            // In a real application, you would load content based on selectedLang
+            // For demonstration, we'll just log the selection.
+            console.log('Selected language:', selectedLang);
+            alert('Функция переключения языка является демонстрационной. В реальном приложении здесь произошла бы загрузка контента на выбранном языке.');
+            // Example of how you might redirect or change content dynamically
+            // if (selectedLang === 'en') {
+            //     window.location.href = 'index_en.html';
+            // } else if (selectedLang === 'kg') {
+            //     window.location.href = 'index_kg.html';
+            // } else {
+            //     window.location.href = 'index_ru.html';
+            // }
+        });
+    </script>
 
 </body>
 </html>
