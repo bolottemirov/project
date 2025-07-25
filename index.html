@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архив Подотчетности - Обновленная Главная</title>
+    <title data-lang="app_title">Архив Подотчетности - Обновленная Главная</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -119,13 +119,13 @@
             color: #0056b3;
             text-decoration: underline;
         }
-        .about-section, .feedback-section {
+        .about-section {
             background-color: #eaf8ff; /* Light UN Blue */
             padding: 4rem 0;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
-        .about-text, .feedback-text {
+        .about-text {
             font-size: 1.15rem;
             color: #343a40;
             max-width: 900px;
@@ -177,74 +177,21 @@
             color: #495057;
             margin-bottom: 1rem;
         }
-        .language-switcher {
-            margin-left: 20px;
-            position: relative;
-        }
-        .language-switcher select {
-            background-color: #0d2a4c;
+        .lang-switcher button {
+            background-color: #007bff;
             color: white;
-            border: 1px solid #009edb;
-            padding: 6px 10px;
+            padding: 5px 10px;
             border-radius: 5px;
+            margin-left: 5px;
             cursor: pointer;
-            font-size: 0.9em;
-            appearance: none; /* Remove default arrow */
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            padding-right: 25px; /* Space for custom arrow */
+            transition: background-color 0.3s ease;
         }
-        .language-switcher::after {
-            content: '▼'; /* Custom arrow */
-            color: white;
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
+        .lang-switcher button:hover {
+            background-color: #0056b3;
         }
-        .feedback-form-container {
-            max-width: 600px;
-            margin: 2rem auto 0 auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-        }
-        .feedback-form-container label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #343a40;
-        }
-        .feedback-form-container input[type="text"],
-        .feedback-form-container input[type="email"],
-        .feedback-form-container textarea {
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ced4da;
-            border-radius: 8px;
-            font-size: 1rem;
-            color: #495057;
-        }
-        .feedback-form-container textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        .feedback-form-container button {
-            background-color: #28a745; /* Green for submit */
-            color: #ffffff;
-            padding: 0.8rem 2rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
-            cursor: pointer;
-        }
-        .feedback-form-container button:hover {
-            background-color: #218838;
-            transform: translateY(-2px);
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -253,23 +200,18 @@
     <!-- Header -->
     <header class="header-bg shadow-md sticky top-0 z-50">
         <div class="container flex justify-between items-center py-4">
-            <a href="index_redesigned.html" class="text-white text-2xl font-bold uppercase tracking-wider">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <div class="flex items-center">
-                <nav class="space-x-8">
-                    <a href="#hero" class="nav-link text-lg">Главная</a>
-                    <a href="#cases" class="nav-link text-lg">Дела</a>
-                    <a href="dossiers.html" class="nav-link text-lg">Архив досье</a>
-                    <a href="#about" class="nav-link text-lg">О проекте</a>
-                    <a href="#feedback" class="nav-link text-lg">Обратная связь</a>
-                </nav>
-                <div class="language-switcher">
-                    <select id="language-select">
-                        <option value="ru">Русский</option>
-                        <option value="kg">Кыргызча</option>
-                        <option value="en">English</option>
-                    </select>
+            <a href="index_redesigned.html" class="text-white text-2xl font-bold uppercase tracking-wider" data-lang="site_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="flex items-center space-x-8">
+                <a href="#hero" class="nav-link text-lg" data-lang="nav_home">Главная</a>
+                <a href="#cases" class="nav-link text-lg" data-lang="nav_cases">Дела</a>
+                <a href="dossiers.html" class="nav-link text-lg" data-lang="nav_dossiers_archive">Архив досье</a>
+                <a href="#about" class="nav-link text-lg" data-lang="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
                 </div>
-            </div>
+            </nav>
         </div>
     </header>
 
@@ -277,14 +219,14 @@
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="container">
-                <h1 class="hero-title">Архив Подотчетности</h1>
-                <p class="hero-subtitle">
+                <h1 class="hero-title" data-lang="hero_title">Архив Подотчетности</h1>
+                <p class="hero-subtitle" data-lang="hero_subtitle">
                     Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.
                 </p>
-                <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="#cases" class="btn-primary inline-block">Посмотреть дела</a>
+                <div class="mt-8 flex justify-center items-center gap-4">
+                    <a href="#cases" class="btn-primary inline-block" data-lang="view_cases_button">Посмотреть дела</a>
                     <div class="relative w-full max-w-md">
-                        <input type="text" placeholder="Поиск по досье и делам..." class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                        <input type="text" placeholder="Поиск по досье и делам..." class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800" data-lang="search_placeholder">
                         <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                         </svg>
@@ -296,37 +238,37 @@
         <!-- Cases Section -->
         <section id="cases" class="py-16">
             <div class="container">
-                <h2 class="section-heading">Актуальные дела</h2>
+                <h2 class="section-heading" data-lang="current_cases_heading">Актуальные дела</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Case Card 1: Дело 11 журналистов -->
                     <div class="card">
                         <div>
-                            <h3 class="card-title">Дело «11 журналистов»</h3>
-                            <p class="card-description">
+                            <h3 class="card-title" data-lang="case_1_title">Дело «11 журналистов»</h3>
+                            <p class="card-description" data-lang="case_1_description">
                                 В январе 2024 года была проведена серия обысков и арестов журналистов, связанных с проектами Temirov Live и Ait Ait Dese. Им было предъявлено обвинение в «призывах к массовым беспорядкам» на основании спорной лингвистической экспертизы.
                             </p>
                         </div>
-                        <a href="case-journalists.html" class="card-link">Подробнее &rarr;</a>
+                        <a href="case-journalists.html" class="card-link" data-lang="read_more_button">Подробнее &rarr;</a>
                     </div>
                     <!-- Case Card 2: Placeholder for future cases -->
                     <div class="card">
                         <div>
-                            <h3 class="card-title">Будущее дело 1</h3>
-                            <p class="card-description">
+                            <h3 class="card-title" data-lang="future_case_1_title">Будущее дело 1</h3>
+                            <p class="card-description" data-lang="future_case_1_description">
                                 Описание будущего дела, которое будет добавлено в архив. Здесь будет краткая информация о сути дела.
                             </p>
                         </div>
-                        <a href="#" class="card-link">Подробнее &rarr;</a>
+                        <a href="#" class="card-link" data-lang="read_more_button">Подробнее &rarr;</a>
                     </div>
                     <!-- Case Card 3: Placeholder for future cases -->
                     <div class="card">
                         <div>
-                            <h3 class="card-title">Будущее дело 2</h3>
-                            <p class="card-description">
+                            <h3 class="card-title" data-lang="future_case_2_title">Будущее дело 2</h3>
+                            <p class="card-description" data-lang="future_case_2_description">
                                 Описание будущего дела, которое будет добавлено в архив. Здесь будет краткая информация о сути дела.
                             </p>
                         </div>
-                        <a href="#" class="card-link">Подробнее &rarr;</a>
+                        <a href="#" class="card-link" data-lang="read_more_button">Подробнее &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -335,31 +277,31 @@
         <!-- Featured Dossiers Section -->
         <section id="featured-dossiers" class="py-16 bg-gray-50">
             <div class="container">
-                <h2 class="section-heading">Избранные досье</h2>
+                <h2 class="section-heading" data-lang="featured_dossiers_heading">Избранные досье</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Featured Dossier Card 1 -->
                     <a href="dossiers/shermatov.html" class="dossier-card block">
                         <div class="dossier-card-photo" style="background-image: url(https://cdn-1.aki.kg/cdn-st-0/qYc/I/1012834.85eb3bfa14ddfd485b4fb67523f2c49f.500.jpg);"></div>
                         <h3 class="dossier-card-name">Шерматов Миран Бакытбекович</h3>
-                        <p class="dossier-card-role">Судья</p>
+                        <p class="dossier-card-role" data-lang-role="Судья">Судья</p>
                     </a>
                     <!-- Featured Dossier Card 2 -->
                     <a href="dossiers/zikiraliev.html" class="dossier-card block">
                         <div class="dossier-card-photo" style="background-image: url(https://placehold.co/100x100/007bff/ffffff?text=УЗ);"></div>
                         <h3 class="dossier-card-name">Зикиралиев Улан Спартакович</h3>
-                        <p class="dossier-card-role">Руководитель следственной группы</p>
+                        <p class="dossier-card-role" data-lang-role="Руководитель следственной группы">Руководитель следственной группы</p>
                     </a>
                     <!-- Featured Dossier Card 3 -->
                     <a href="dossiers/momunaliev-adis.html" class="dossier-card block">
                         <div class="dossier-card-photo" style="background-image: url(https://admin-bgs.sot.kg/public/sites/26/2020/07/Momunaliev-AZH.-250x167.jpg);"></div>
                         <h3 class="dossier-card-name">Момуналиев Адис Жолдошбекович</h3>
-                        <p class="dossier-card-role">Судья</p>
+                        <p class="dossier-card-role" data-lang-role="Судья">Судья</p>
                     </a>
                     <!-- Featured Dossier Card 4 -->
                     <a href="dossiers/tazhibek-uulu.html" class="dossier-card block">
                         <div class="dossier-card-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_Maksat.jpg);"></div>
                         <h3 class="dossier-card-name">Тажибек уулу Максат</h3>
-                        <p class="dossier-card-role">Журналист</p>
+                        <p class="dossier-card-role" data-lang-role="Журналист">Журналист</p>
                     </a>
                 </div>
             </div>
@@ -368,40 +310,10 @@
         <!-- About Section -->
         <section id="about" class="py-16">
             <div class="container about-section">
-                <h2 class="section-heading">О проекте</h2>
-                <p class="about-text">
+                <h2 class="section-heading" data-lang="about_project_heading">О проекте</h2>
+                <p class="about-text" data-lang="about_project_text">
                     «Архив Подотчетности» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.
                 </p>
-            </div>
-        </section>
-
-        <!-- Feedback Section -->
-        <section id="feedback" class="py-16">
-            <div class="container feedback-section">
-                <h2 class="section-heading">Обратная связь</h2>
-                <p class="feedback-text">
-                    Если у вас есть информация, предложения или вопросы, пожалуйста, используйте форму ниже, чтобы связаться с нами. Ваша конфиденциальность важна для нас.
-                </p>
-                <div class="feedback-form-container">
-                    <form action="#" method="POST">
-                        <div class="mb-4">
-                            <label for="name">Ваше имя (необязательно):</label>
-                            <input type="text" id="name" name="name" placeholder="Иван Иванов">
-                        </div>
-                        <div class="mb-4">
-                            <label for="email">Ваш email (необязательно):</label>
-                            <input type="email" id="email" name="email" placeholder="email@example.com">
-                        </div>
-                        <div class="mb-4">
-                            <label for="message">Сообщение:</label>
-                            <textarea id="message" name="message" placeholder="Введите ваше сообщение здесь..." required></textarea>
-                        </div>
-                        <button type="submit">Отправить сообщение</button>
-                    </form>
-                    <p class="text-sm text-gray-600 mt-4 text-center">
-                        *Эта форма является демонстрационной и не отправляет данные на сервер.
-                    </p>
-                </div>
             </div>
         </section>
     </main>
@@ -409,28 +321,144 @@
     <!-- Footer -->
     <footer class="footer-bg">
         <div class="container py-6">
-            <p class="footer-text">&copy; 2025 Архив Подотчетности. Все права защищены.</p>
+            <p class="footer-text" data-lang="footer_text">&copy; 2025 Архив Подотчетности. Все права защищены.</p>
         </div>
     </footer>
 
     <script>
-        document.getElementById('language-select').addEventListener('change', function() {
-            const selectedLang = this.value;
-            // In a real application, you would load content based on selectedLang
-            // For demonstration, we'll just log the selection.
-            console.log('Selected language:', selectedLang);
-            alert('Функция переключения языка является демонстрационной. В реальном приложении здесь произошла бы загрузка контента на выбранном языке.');
-            // Example of how you might redirect or change content dynamically
-            // if (selectedLang === 'en') {
-            //     window.location.href = 'index_en.html';
-            // } else if (selectedLang === 'kg') {
-            //     window.location.href = 'index_kg.html';
-            // } else {
-            //     window.location.href = 'index_ru.html';
-            // }
+        const translations = {
+            ru: {
+                app_title: "Архив Подотчетности - Обновленная Главная",
+                site_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                hero_title: "Архив Подотчетности",
+                hero_subtitle: "Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.",
+                view_cases_button: "Посмотреть дела",
+                search_placeholder: "Поиск по досье и делам...",
+                current_cases_heading: "Актуальные дела",
+                case_1_title: "Дело «11 журналистов»",
+                case_1_description: "В январе 2024 года была проведена серия обысков и арестов журналистов, связанных с проектами Temirov Live и Ait Ait Dese. Им было предъявлено обвинение в «призывах к массовым беспорядкам» на основании спорной лингвистической экспертизы.",
+                future_case_1_title: "Будущее дело 1",
+                future_case_1_description: "Описание будущего дела, которое будет добавлено в архив. Здесь будет краткая информация о сути дела.",
+                future_case_2_title: "Будущее дело 2",
+                future_case_2_description: "Описание будущего дела, которое будет добавлено в архив. Здесь будет краткая информация о сути дела.",
+                read_more_button: "Подробнее →",
+                featured_dossiers_heading: "Избранные досье",
+                about_project_heading: "О проекте",
+                about_project_text: "«Архив Подотчетности» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.",
+                footer_text: "&copy; 2025 Архив Подотчетности. Все права защищены.",
+                roles: {
+                    "Судья": "Судья",
+                    "Руководитель следственной группы": "Руководитель следственной группы",
+                    "Журналист": "Журналист"
+                }
+            },
+            en: {
+                app_title: "Accountability Archive - Redesigned Home",
+                site_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossiers Archive",
+                nav_about: "About Project",
+                hero_title: "Accountability Archive",
+                hero_subtitle: "Documenting cases of human rights violations and abuse of power to ensure transparency and justice.",
+                view_cases_button: "View Cases",
+                search_placeholder: "Search dossiers and cases...",
+                current_cases_heading: "Current Cases",
+                case_1_title: "Case of «11 Journalists»",
+                case_1_description: "In January 2024, a series of searches and arrests of journalists associated with Temirov Live and Ait Ait Dese projects were carried out. They were accused of 'inciting mass riots' based on a controversial linguistic examination.",
+                future_case_1_title: "Future Case 1",
+                future_case_1_description: "Description of a future case to be added to the archive. Brief information about the case will be here.",
+                future_case_2_title: "Future Case 2",
+                future_case_2_description: "Description of a future case to be added to the archive. Brief information about the case will be here.",
+                read_more_button: "Read More →",
+                featured_dossiers_heading: "Featured Dossiers",
+                about_project_heading: "About the Project",
+                about_project_text: "The 'Accountability Archive' is an independent initiative aimed at documenting cases of human rights violations and abuse of power by state bodies and officials. We collect and systematize information about such cases, creating dossiers on individuals involved in persecutions, illegal detentions, fabrication of cases, and other violations. Our goal is to ensure transparency, hold perpetrators accountable, and promote the protection of civil liberties.",
+                footer_text: "&copy; 2025 Accountability Archive. All rights reserved.",
+                roles: {
+                    "Судья": "Judge",
+                    "Руководитель следственной группы": "Head of Investigation Team",
+                    "Журналист": "Journalist"
+                }
+            },
+            kg: {
+                app_title: "Жоопкерчилик Архивы - Жаңыланган Башкы Бет",
+                site_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                hero_title: "Жоопкерчилик Архивы",
+                hero_subtitle: "Адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирип, ачык-айкындуулукту жана адилеттүүлүктү камсыз кылабыз.",
+                view_cases_button: "Иштерди көрүү",
+                search_placeholder: "Досье жана иштер боюнча издөө...",
+                current_cases_heading: "Учурдагы иштер",
+                case_1_title: "«11 журналисттин» иши",
+                case_1_description: "2024-жылдын январь айында Temirov Live жана Ait Ait Dese долбоорлоруна байланыштуу журналисттерди тинтүү жана камакка алуу иштери жүргүзүлгөн. Аларга талаштуу лингвистикалык экспертизанын негизинде «массалык башаламандыктарга чакырык жасоо» беренеси боюнча айып тагылган.",
+                future_case_1_title: "Келечектеги иш 1",
+                future_case_1_description: "Архивге кошула турган келечектеги иштин сыпаттамасы. Бул жерде иштин маңызы жөнүндө кыскача маалымат болот.",
+                future_case_2_title: "Келечектеги иш 2",
+                future_case_2_description: "Архивге кошула турган келечектеги иштин сыпаттамасы. Бул жерде иштин маңызы жөнүндө кыскача маалымат болот.",
+                read_more_button: "Кененирээк →",
+                featured_dossiers_heading: "Тандалган досьелер",
+                about_project_heading: "Долбоор жөнүндө",
+                about_project_text: "«Жоопкерчилик Архивы» — бул мамлекеттик органдар жана кызмат адамдары тарабынан адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирүүгө багытталган көз карандысыз демилге. Биз мындай учурлар жөнүндө маалыматтарды чогултуп, системалаштырып, куугунтуктоолорго, мыйзамсыз кармоолорго, иштерди жасалмалоого жана башка бузууларга катышкан адамдарга досье түзөбүз. Биздин максат — ачык-айкындуулукту камсыз кылуу, күнөөлүүлөрдү жоопко тартуу жана жарандык эркиндиктерди коргоого көмөктөшүү.",
+                footer_text: "&copy; 2025 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+                roles: {
+                    "Судья": "Сот",
+                    "Руководитель следственной группы": "Тергөө тобунун жетекчиси",
+                    "Журналист": "Журналист"
+                }
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.dataset.lang;
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            document.querySelectorAll('[data-lang-role]').forEach(element => {
+                const originalRole = element.dataset.langRole;
+                if (translations[lang] && translations[lang].roles && translations[lang].roles[originalRole]) {
+                    element.textContent = translations[lang].roles[originalRole];
+                }
+            });
+            // Update title specifically as it's not always textContent
+            document.querySelector('title').textContent = translations[lang].app_title;
+
+            // Update active button state
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            // Store language preference
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            // Load saved language or default to Russian
+            const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
+            setLanguage(savedLang);
         });
     </script>
-
 </body>
 </html>
+
 
