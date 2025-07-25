@@ -193,6 +193,77 @@
             background-color: #009edb;
             font-weight: bold;
         }
+        /* Contact Form Styles */
+        .contact-form-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            padding: 3rem;
+            max-width: 800px;
+            margin: 4rem auto;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0d2a4c;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .submit-button {
+            background-color: #28a745; /* Green for submit */
+            color: #ffffff;
+            padding: 0.8rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+        .submit-button:hover {
+            background-color: #218838; /* Darker green */
+            transform: translateY(-2px);
+        }
+        .message-box {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        .message-box.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message-box.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -206,6 +277,7 @@
                 <a href="#cases" class="nav-link text-lg" data-lang="nav_cases">Дела</a>
                 <a href="dossiers.html" class="nav-link text-lg" data-lang="nav_dossiers_archive">Архив досье</a>
                 <a href="#about" class="nav-link text-lg" data-lang="nav_about">О проекте</a>
+                <a href="#contact" class="nav-link text-lg" data-lang="nav_contact">Связаться с нами</a>
                 <div class="lang-switcher ml-8">
                     <button data-lang-code="ru" class="active">РУ</button>
                     <button data-lang-code="en">EN</button>
@@ -316,6 +388,34 @@
                 </p>
             </div>
         </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="py-16">
+            <div class="container contact-form-section">
+                <h2 class="section-heading" data-lang="contact_heading">Связаться с нами</h2>
+                <p class="text-center text-gray-700 mb-8" data-lang="contact_description">
+                    Если у вас есть информация, которой вы хотели бы поделиться, или вопросы, пожалуйста, используйте форму ниже. Ваша информация может быть отправлена анонимно.
+                </p>
+                <form id="feedback-form" class="max-w-xl mx-auto">
+                    <div class="form-group">
+                        <label for="name" data-lang="form_name_label">Ваше имя (необязательно):</label>
+                        <input type="text" id="name" name="name" placeholder="Введите ваше имя" data-lang="form_name_placeholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-lang="form_email_label">Ваш Email (необязательно):</label>
+                        <input type="email" id="email" name="email" placeholder="Введите ваш email" data-lang="form_email_placeholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-lang="form_message_label">Сообщение (обязательно):</label>
+                        <textarea id="message" name="message" required placeholder="Введите ваше сообщение здесь..." data-lang="form_message_placeholder"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="submit-button" data-lang="form_submit_button">Отправить сообщение</button>
+                    </div>
+                    <div id="form-message" class="message-box hidden"></div>
+                </form>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -334,6 +434,7 @@
                 nav_cases: "Дела",
                 nav_dossiers_archive: "Архив досье",
                 nav_about: "О проекте",
+                nav_contact: "Связаться с нами",
                 hero_title: "Архив Подотчетности",
                 hero_subtitle: "Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.",
                 view_cases_button: "Посмотреть дела",
@@ -349,6 +450,17 @@
                 featured_dossiers_heading: "Избранные досье",
                 about_project_heading: "О проекте",
                 about_project_text: "«Архив Подотчетности» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.",
+                contact_heading: "Связаться с нами",
+                contact_description: "Если у вас есть информация, которой вы хотели бы поделиться, или вопросы, пожалуйста, используйте форму ниже. Ваша информация может быть отправлена анонимно.",
+                form_name_label: "Ваше имя (необязательно):",
+                form_name_placeholder: "Введите ваше имя",
+                form_email_label: "Ваш Email (необязательно):",
+                form_email_placeholder: "Введите ваш email",
+                form_message_label: "Сообщение (обязательно):",
+                form_message_placeholder: "Введите ваше сообщение здесь...",
+                form_submit_button: "Отправить сообщение",
+                form_success_message: "Ваше сообщение успешно отправлено! Мы свяжемся с вами, если потребуется.",
+                form_error_message: "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз.",
                 footer_text: "&copy; 2025 Архив Подотчетности. Все права защищены.",
                 roles: {
                     "Судья": "Судья",
@@ -363,6 +475,7 @@
                 nav_cases: "Cases",
                 nav_dossiers_archive: "Dossiers Archive",
                 nav_about: "About Project",
+                nav_contact: "Contact Us",
                 hero_title: "Accountability Archive",
                 hero_subtitle: "Documenting cases of human rights violations and abuse of power to ensure transparency and justice.",
                 view_cases_button: "View Cases",
@@ -378,6 +491,17 @@
                 featured_dossiers_heading: "Featured Dossiers",
                 about_project_heading: "About the Project",
                 about_project_text: "The 'Accountability Archive' is an independent initiative aimed at documenting cases of human rights violations and abuse of power by state bodies and officials. We collect and systematize information about such cases, creating dossiers on individuals involved in persecutions, illegal detentions, fabrication of cases, and other violations. Our goal is to ensure transparency, hold perpetrators accountable, and promote the protection of civil liberties.",
+                contact_heading: "Contact Us",
+                contact_description: "If you have information you'd like to share, or have questions, please use the form below. Your information can be submitted anonymously.",
+                form_name_label: "Your Name (optional):",
+                form_name_placeholder: "Enter your name",
+                form_email_label: "Your Email (optional):",
+                form_email_placeholder: "Enter your email",
+                form_message_label: "Message (required):",
+                form_message_placeholder: "Enter your message here...",
+                form_submit_button: "Send Message",
+                form_success_message: "Your message has been sent successfully! We will contact you if necessary.",
+                form_error_message: "An error occurred while sending your message. Please try again.",
                 footer_text: "&copy; 2025 Accountability Archive. All rights reserved.",
                 roles: {
                     "Судья": "Judge",
@@ -392,6 +516,7 @@
                 nav_cases: "Иштер",
                 nav_dossiers_archive: "Досье архиви",
                 nav_about: "Долбоор жөнүндө",
+                nav_contact: "Биз менен байланыш",
                 hero_title: "Жоопкерчилик Архивы",
                 hero_subtitle: "Адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирип, ачык-айкындуулукту жана адилеттүүлүктү камсыз кылабыз.",
                 view_cases_button: "Иштерди көрүү",
@@ -407,6 +532,17 @@
                 featured_dossiers_heading: "Тандалган досьелер",
                 about_project_heading: "Долбоор жөнүндө",
                 about_project_text: "«Жоопкерчилик Архивы» — бул мамлекеттик органдар жана кызмат адамдары тарабынан адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирүүгө багытталган көз карандысыз демилге. Биз мындай учурлар жөнүндө маалыматтарды чогултуп, системалаштырып, куугунтуктоолорго, мыйзамсыз кармоолорго, иштерди жасалмалоого жана башка бузууларга катышкан адамдарга досье түзөбүз. Биздин максат — ачык-айкындуулукту камсыз кылуу, күнөөлүүлөрдү жоопко тартуу жана жарандык эркиндиктерди коргоого көмөктөшүү.",
+                contact_heading: "Биз менен байланыш",
+                contact_description: "Эгер сизде бөлүшкүңүз келген маалымат же суроолоруңуз болсо, төмөнкү форманы колдонуңуз. Сиздин маалыматыңыз жашыруун жөнөтүлүшү мүмкүн.",
+                form_name_label: "Атыңыз (милдеттүү эмес):",
+                form_name_placeholder: "Атыңызды киргизиңиз",
+                form_email_label: "Электрондук почтаңыз (милдеттүү эмес):",
+                form_email_placeholder: "Электрондук почтаңызды киргизиңиз",
+                form_message_label: "Кабар (милдеттүү):",
+                form_message_placeholder: "Кабарыңызды бул жерге териңиз...",
+                form_submit_button: "Кабар жөнөтүү",
+                form_success_message: "Кабарыңыз ийгиликтүү жөнөтүлдү! Керек болсо, биз сиз менен байланышабыз.",
+                form_error_message: "Кабар жөнөтүүдө ката кетти. Кайра аракет кылып көрүңүз.",
                 footer_text: "&copy; 2025 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
                 roles: {
                     "Судья": "Сот",
@@ -420,7 +556,12 @@
             document.querySelectorAll('[data-lang]').forEach(element => {
                 const key = element.dataset.lang;
                 if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        // For input/textarea placeholders
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
                 }
             });
             document.querySelectorAll('[data-lang-role]').forEach(element => {
@@ -456,6 +597,47 @@
             // Load saved language or default to Russian
             const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
             setLanguage(savedLang);
+
+            // Handle form submission
+            const feedbackForm = document.getElementById('feedback-form');
+            const formMessage = document.getElementById('form-message');
+
+            feedbackForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                // Simple validation
+                if (message.trim() === '') {
+                    formMessage.classList.remove('hidden', 'success');
+                    formMessage.classList.add('error');
+                    formMessage.textContent = translations[localStorage.getItem('selectedLanguage') || 'ru'].form_error_message;
+                    return;
+                }
+
+                // Simulate API call or form submission
+                // In a real application, you would send this data to a server
+                console.log('Form submitted:', { name, email, message });
+
+                // Simulate success
+                setTimeout(() => {
+                    formMessage.classList.remove('hidden', 'error');
+                    formMessage.classList.add('success');
+                    formMessage.textContent = translations[localStorage.getItem('selectedLanguage') || 'ru'].form_success_message;
+                    feedbackForm.reset(); // Clear form fields
+                }, 1000);
+
+                // Simulate error (uncomment to test error scenario)
+                /*
+                setTimeout(() => {
+                    formMessage.classList.remove('hidden', 'success');
+                    formMessage.classList.add('error');
+                    formMessage.textContent = translations[localStorage.getItem('selectedLanguage') || 'ru'].form_error_message;
+                }, 1000);
+                */
+            });
         });
     </script>
 </body>
