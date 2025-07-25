@@ -143,6 +143,40 @@
             font-size: 0.9rem;
             opacity: 0.8;
         }
+        /* Style for dossier cards in Featured Dossiers */
+        .dossier-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .dossier-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .dossier-card-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem auto;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #007bff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .dossier-card-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0d2a4c;
+            margin-bottom: 0.5rem;
+        }
+        .dossier-card-role {
+            font-size: 0.95rem;
+            color: #495057;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -168,7 +202,15 @@
                 <p class="hero-subtitle">
                     Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.
                 </p>
-                <a href="#cases" class="btn-primary inline-block">Посмотреть дела</a>
+                <div class="mt-8 flex justify-center items-center gap-4">
+                    <a href="#cases" class="btn-primary inline-block">Посмотреть дела</a>
+                    <div class="relative w-full max-w-md">
+                        <input type="text" placeholder="Поиск по досье и делам..." class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -211,6 +253,39 @@
             </div>
         </section>
 
+        <!-- Featured Dossiers Section -->
+        <section id="featured-dossiers" class="py-16 bg-gray-50">
+            <div class="container">
+                <h2 class="section-heading">Избранные досье</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Featured Dossier Card 1 -->
+                    <a href="dossiers/shermatov.html" class="dossier-card block">
+                        <div class="dossier-card-photo" style="background-image: url(https://cdn-1.aki.kg/cdn-st-0/qYc/I/1012834.85eb3bfa14ddfd485b4fb67523f2c49f.500.jpg);"></div>
+                        <h3 class="dossier-card-name">Шерматов Миран Бакытбекович</h3>
+                        <p class="dossier-card-role">Судья</p>
+                    </a>
+                    <!-- Featured Dossier Card 2 -->
+                    <a href="dossiers/zikiraliev.html" class="dossier-card block">
+                        <div class="dossier-card-photo" style="background-image: url(https://placehold.co/100x100/007bff/ffffff?text=УЗ);"></div>
+                        <h3 class="dossier-card-name">Зикиралиев Улан Спартакович</h3>
+                        <p class="dossier-card-role">Руководитель следственной группы</p>
+                    </a>
+                    <!-- Featured Dossier Card 3 -->
+                    <a href="dossiers/momunaliev-adis.html" class="dossier-card block">
+                        <div class="dossier-card-photo" style="background-image: url(https://admin-bgs.sot.kg/public/sites/26/2020/07/Momunaliev-AZH.-250x167.jpg);"></div>
+                        <h3 class="dossier-card-name">Момуналиев Адис Жолдошбекович</h3>
+                        <p class="dossier-card-role">Судья</p>
+                    </a>
+                    <!-- Featured Dossier Card 4 -->
+                    <a href="dossiers/tazhibek-uulu.html" class="dossier-card block">
+                        <div class="dossier-card-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_Maksat.jpg);"></div>
+                        <h3 class="dossier-card-name">Тажибек уулу Максат</h3>
+                        <p class="dossier-card-role">Журналист</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- About Section -->
         <section id="about" class="py-16">
             <div class="container about-section">
@@ -231,3 +306,4 @@
 
 </body>
 </html>
+
