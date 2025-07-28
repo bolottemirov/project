@@ -264,6 +264,60 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #007bff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        #user-info-display {
+            font-size: 0.8rem;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .auth-button {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            border: 1px solid #ccc;
+        }
+        .auth-button:hover {
+            background-color: #e0e0e0;
+        }
+        .admin-link {
+            background-color: #ffc107; /* Yellow for admin link */
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            border: 1px solid #e0a800;
+            text-decoration: none;
+        }
+        .admin-link:hover {
+            background-color: #e0a800;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -278,16 +332,25 @@
                 <a href="dossiers.html" class="nav-link text-lg" data-lang="nav_dossiers_archive">Архив досье</a>
                 <a href="#about" class="nav-link text-lg" data-lang="nav_about">О проекте</a>
                 <a href="#contact" class="nav-link text-lg" data-lang="nav_contact">Связаться с нами</a>
+                <a href="admin.html" id="admin-panel-link" class="nav-link text-lg hidden" data-lang="nav_admin_panel">Админ-панель</a>
                 <div class="lang-switcher ml-8">
                     <button data-lang-code="ru" class="active">РУ</button>
                     <button data-lang-code="en">EN</button>
                     <button data-lang-code="kg">КГ</button>
                 </div>
+                <button id="auth-button" class="auth-button ml-4" data-lang="auth_signin">Войти</button>
             </nav>
         </div>
     </header>
 
     <main>
+        <!-- User Info Display -->
+        <div class="container">
+            <div id="user-info-display">
+                <span id="user-id-display"></span>
+            </div>
+        </div>
+
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="container">
@@ -410,7 +473,10 @@
                         <textarea id="message" name="message" required placeholder="Введите ваше сообщение здесь..." data-lang="form_message_placeholder"></textarea>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="submit-button" data-lang="form_submit_button">Отправить сообщение</button>
+                        <button type="submit" class="submit-button" data-lang="form_submit_button">
+                            Отправить сообщение
+                            <span id="loading-spinner" class="loading-spinner hidden"></span>
+                        </button>
                     </div>
                     <div id="form-message" class="message-box hidden"></div>
                 </form>
@@ -425,7 +491,23 @@
         </div>
     </footer>
 
-    <script>
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the Canvas environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db;
+        let auth;
+        let userId = 'anonymous'; // Default to anonymous
+        let adminUIDs = ["YOUR_ADMIN_UID_1", "YOUR_ADMIN_UID_2"]; // <-- Вставьте сюда свои UID администраторов
+
+        // Translations object (rest of the translations are assumed to be present from previous steps)
         const translations = {
             ru: {
                 app_title: "Архив Подотчетности - Обновленная Главная",
@@ -435,6 +517,7 @@
                 nav_dossiers_archive: "Архив досье",
                 nav_about: "О проекте",
                 nav_contact: "Связаться с нами",
+                nav_admin_panel: "Админ-панель",
                 hero_title: "Архив Подотчетности",
                 hero_subtitle: "Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.",
                 view_cases_button: "Посмотреть дела",
@@ -462,6 +545,9 @@
                 form_success_message: "Ваше сообщение успешно отправлено! Мы свяжемся с вами, если потребуется.",
                 form_error_message: "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз.",
                 footer_text: "&copy; 2025 Архив Подотчетности. Все права защищены.",
+                auth_signin: "Войти",
+                auth_signout: "Выйти",
+                user_id_display: "Ваш ID:",
                 roles: {
                     "Судья": "Судья",
                     "Руководитель следственной группы": "Руководитель следственной группы",
@@ -476,6 +562,7 @@
                 nav_dossiers_archive: "Dossiers Archive",
                 nav_about: "About Project",
                 nav_contact: "Contact Us",
+                nav_admin_panel: "Admin Panel",
                 hero_title: "Accountability Archive",
                 hero_subtitle: "Documenting cases of human rights violations and abuse of power to ensure transparency and justice.",
                 view_cases_button: "View Cases",
@@ -503,6 +590,9 @@
                 form_success_message: "Your message has been sent successfully! We will contact you if necessary.",
                 form_error_message: "An error occurred while sending your message. Please try again.",
                 footer_text: "&copy; 2025 Accountability Archive. All rights reserved.",
+                auth_signin: "Sign In",
+                auth_signout: "Sign Out",
+                user_id_display: "Your ID:",
                 roles: {
                     "Судья": "Judge",
                     "Руководитель следственной группы": "Head of Investigation Team",
@@ -517,6 +607,7 @@
                 nav_dossiers_archive: "Досье архиви",
                 nav_about: "Долбоор жөнүндө",
                 nav_contact: "Биз менен байланыш",
+                nav_admin_panel: "Админ-панель",
                 hero_title: "Жоопкерчилик Архивы",
                 hero_subtitle: "Адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирип, ачык-айкындуулукту жана адилеттүүлүктү камсыз кылабыз.",
                 view_cases_button: "Иштерди көрүү",
@@ -544,6 +635,9 @@
                 form_success_message: "Кабарыңыз ийгиликтүү жөнөтүлдү! Керек болсо, биз сиз менен байланышабыз.",
                 form_error_message: "Кабар жөнөтүүдө ката кетти. Кайра аракет кылып көрүңүз.",
                 footer_text: "&copy; 2025 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+                auth_signin: "Кирүү",
+                auth_signout: "Чыгуу",
+                user_id_display: "Сиздин ID:",
                 roles: {
                     "Судья": "Сот",
                     "Руководитель следственной группы": "Тергөө тобунун жетекчиси",
@@ -557,7 +651,6 @@
                 const key = element.dataset.lang;
                 if (translations[lang] && translations[lang][key]) {
                     if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        // For input/textarea placeholders
                         element.placeholder = translations[lang][key];
                     } else {
                         element.textContent = translations[lang][key];
@@ -570,10 +663,8 @@
                     element.textContent = translations[lang].roles[originalRole];
                 }
             });
-            // Update title specifically as it's not always textContent
             document.querySelector('title').textContent = translations[lang].app_title;
 
-            // Update active button state
             document.querySelectorAll('.lang-switcher button').forEach(button => {
                 if (button.dataset.langCode === lang) {
                     button.classList.add('active');
@@ -582,11 +673,94 @@
                 }
             });
 
-            // Store language preference
             localStorage.setItem('selectedLanguage', lang);
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize Firebase
+            if (Object.keys(firebaseConfig).length > 0) {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Google Auth Provider
+                const provider = new GoogleAuthProvider();
+
+                // Get UI elements
+                const authButton = document.getElementById('auth-button');
+                const userIdDisplay = document.getElementById('user-id-display');
+                const adminPanelLink = document.getElementById('admin-panel-link');
+
+                // Auth state listener
+                onAuthStateChanged(auth, (user) => {
+                    const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+                    if (user) {
+                        userId = user.uid;
+                        userIdDisplay.textContent = `${translations[currentLang].user_id_display} ${userId}`;
+                        authButton.textContent = translations[currentLang].auth_signout;
+                        authButton.onclick = handleSignOut;
+
+                        // Show admin panel link if user is an admin
+                        if (adminUIDs.includes(userId)) {
+                            adminPanelLink.classList.remove('hidden');
+                        } else {
+                            adminPanelLink.classList.add('hidden');
+                        }
+
+                    } else {
+                        userId = 'anonymous';
+                        userIdDisplay.textContent = `${translations[currentLang].user_id_display} ${userId}`;
+                        authButton.textContent = translations[currentLang].auth_signin;
+                        authButton.onclick = handleSignIn;
+                        adminPanelLink.classList.add('hidden'); // Hide admin link if not logged in
+                    }
+                });
+
+                // Initial anonymous sign-in or custom token sign-in
+                try {
+                    // Corrected: Call methods on the auth object
+                    if (initialAuthToken) {
+                        await auth.signInWithCustomToken(initialAuthToken);
+                    } else {
+                        await auth.signInAnonymously();
+                    }
+                } catch (error) {
+                    console.error("Firebase authentication error during initial sign-in:", error);
+                    userIdDisplay.textContent = `Authentication Error: ${error.message}`;
+                }
+
+                // Handle Google Sign-In
+                async function handleSignIn() {
+                    try {
+                        // Corrected: Call method on the auth object
+                        await auth.signInWithPopup(provider);
+                    } catch (error) {
+                        console.error("Google Sign-In error:", error);
+                        const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+                        userIdDisplay.textContent = `${translations[currentLang].auth_signin_error}: ${error.message}`;
+                    }
+                }
+
+                // Handle Sign-Out
+                async function handleSignOut() {
+                    try {
+                        // Corrected: Call method on the auth object
+                        await auth.signOut();
+                        // After signOut, Firebase automatically signs in anonymously
+                    } catch (error) {
+                        console.error("Sign-Out error:", error);
+                        const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+                        userIdDisplay.textContent = `${translations[currentLang].auth_signout_error}: ${error.message}`;
+                    }
+                }
+
+            } else {
+                console.warn("Firebase config not found. Contact form and authentication will not work.");
+                document.getElementById('user-info-display').textContent = `Firebase Not Configured`;
+                document.getElementById('auth-button').disabled = true;
+            }
+
+            // Language switcher logic
             const langButtons = document.querySelectorAll('.lang-switcher button');
             langButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
@@ -601,46 +775,69 @@
             // Handle form submission
             const feedbackForm = document.getElementById('feedback-form');
             const formMessage = document.getElementById('form-message');
+            const submitButton = feedbackForm.querySelector('.submit-button');
+            const loadingSpinner = document.getElementById('loading-spinner');
 
-            feedbackForm.addEventListener('submit', function(event) {
+            feedbackForm.addEventListener('submit', async function(event) {
                 event.preventDefault(); // Prevent default form submission
 
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const message = document.getElementById('message').value;
+                const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+
+                // Clear previous messages
+                formMessage.classList.add('hidden');
+                formMessage.classList.remove('success', 'error');
+                formMessage.textContent = '';
 
                 // Simple validation
                 if (message.trim() === '') {
-                    formMessage.classList.remove('hidden', 'success');
+                    formMessage.classList.remove('hidden');
                     formMessage.classList.add('error');
-                    formMessage.textContent = translations[localStorage.getItem('selectedLanguage') || 'ru'].form_error_message;
+                    formMessage.textContent = translations[currentLang].form_error_message;
                     return;
                 }
 
-                // Simulate API call or form submission
-                // In a real application, you would send this data to a server
-                console.log('Form submitted:', { name, email, message });
+                // Show loading indicator and disable button
+                submitButton.disabled = true;
+                loadingSpinner.classList.remove('hidden');
 
-                // Simulate success
-                setTimeout(() => {
-                    formMessage.classList.remove('hidden', 'error');
+                try {
+                    if (!db) {
+                        throw new Error("Firestore is not initialized. Check Firebase configuration.");
+                    }
+
+                    // Define the path for public data (feedback from any user)
+                    const feedbackCollectionRef = collection(db, `artifacts/${appId}/public/data/feedback`);
+
+                    // Add document to Firestore
+                    await addDoc(feedbackCollectionRef, {
+                        name: name || 'Аноним', // Default to 'Anonymous' if name is empty
+                        email: email || 'Не указан', // Default if email is empty
+                        message: message,
+                        timestamp: serverTimestamp(), // Use server timestamp for consistency
+                        userId: userId, // Store the user ID (anonymous or Google UID)
+                        language: currentLang // Store the language of the message
+                    });
+
+                    formMessage.classList.remove('hidden');
                     formMessage.classList.add('success');
-                    formMessage.textContent = translations[localStorage.getItem('selectedLanguage') || 'ru'].form_success_message;
+                    formMessage.textContent = translations[currentLang].form_success_message;
                     feedbackForm.reset(); // Clear form fields
-                }, 1000);
 
-                // Simulate error (uncomment to test error scenario)
-                /*
-                setTimeout(() => {
-                    formMessage.classList.remove('hidden', 'success');
+                } catch (error) {
+                    console.error("Error sending message to Firestore:", error);
+                    formMessage.classList.remove('hidden');
                     formMessage.classList.add('error');
-                    formMessage.textContent = translations[localStorage.getItem('selectedLanguage') || 'ru'].form_error_message;
-                }, 1000);
-                */
+                    formMessage.textContent = translations[currentLang].form_error_message + ` (${error.message})`;
+                } finally {
+                    // Hide loading indicator and enable button
+                    submitButton.disabled = false;
+                    loadingSpinner.classList.add('hidden');
+                }
             });
         });
     </script>
 </body>
 </html>
-
-
