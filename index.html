@@ -497,10 +497,17 @@
         import { getAuth, signInAnonymously, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Global variables provided by the Canvas environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        const firebaseConfig = {
+          apiKey: "AIzaSyAoS7SNm7gDe1EnTopa5e1qHumgWsH5NWY",
+          authDomain: "archive-915cf.firebaseapp.com",
+          projectId: "archive-915cf",
+          storageBucket: "archive-915cf.firebasestorage.app",
+          messagingSenderId: "368228036181",
+          appId: "1:368228036181:web:86ded413accda15b64eedc"
+        };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
         let db;
         let auth;
@@ -717,14 +724,12 @@
                 });
 
                 // Initial anonymous sign-in or custom token sign-in
-                try {
-                    // Corrected: Call methods on the auth object
-                    if (initialAuthToken) {
-                        await auth.signInWithCustomToken(initialAuthToken);
-                    } else {
+                    try {
                         await auth.signInAnonymously();
+                    } catch (error) {
+                        console.error("Firebase authentication error during initial anonymous sign-in:", error);
+                        userIdDisplay.textContent = `Authentication Error: ${error.message}`;
                     }
-                } catch (error) {
                     console.error("Firebase authentication error during initial sign-in:", error);
                     userIdDisplay.textContent = `Authentication Error: ${error.message}`;
                 }
