@@ -730,9 +730,7 @@ const app = initializeApp(firebaseConfig);
                         console.error("Firebase authentication error during initial anonymous sign-in:", error);
                         userIdDisplay.textContent = `Authentication Error: ${error.message}`;
                     }
-                    console.error("Firebase authentication error during initial sign-in:", error);
-                    userIdDisplay.textContent = `Authentication Error: ${error.message}`;
-                }
+             }
 
                 // Handle Google Sign-In
                 async function handleSignIn() {
@@ -846,3 +844,4 @@ const app = initializeApp(firebaseConfig);
     </script>
 </body>
 </html>
+
