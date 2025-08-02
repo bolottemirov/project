@@ -6,6 +6,29 @@
     <title data-lang="app_title">Архив Подотчетности - Обновленная Главная</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Firebase CDN -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import {
+            getAuth,
+            signInAnonymously,
+            signInWithCustomToken,
+            signOut,
+            onAuthStateChanged,
+            GoogleAuthProvider,
+            signInWithPopup
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            addDoc,
+            collection,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        window.firebase = { initializeApp, getAuth, signInAnonymously, signInWithCustomToken, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, getFirestore, doc, getDoc, addDoc, collection, serverTimestamp };
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -30,644 +53,183 @@
             color: #009edb; /* UN Blue */
         }
         .hero-section {
-            background: linear-gradient(135deg, #0d2a4c 0%, #1a4d80 100%); /* Gradient background */
-            color: #ffffff;
-            padding: 6rem 0;
-            text-align: center;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        .hero-title {
-            font-size: 3.5rem; /* Larger title */
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            max-width: 800px;
-            margin: 0 auto 2.5rem auto;
-            opacity: 0.9;
-        }
-        .btn-primary {
-            background-color: #007bff; /* Accent blue */
-            color: #ffffff;
-            padding: 0.8rem 2rem;
-            border-radius: 9999px; /* Pill shape */
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-        }
-        .btn-primary:hover {
-            background-color: #0056b3; /* Darker accent blue */
-            transform: translateY(-2px);
-        }
-        .section-heading {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #0d2a4c;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-top: 2rem;
-        }
-        .section-heading::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: #009edb; /* UN Blue underline */
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-        .card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-            padding: 2rem;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-        }
-        .card-title {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: #0d2a4c;
-            margin-bottom: 1rem;
-        }
-        .card-description {
-            color: #495057;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        .card-link {
-            display: inline-block;
-            color: #007bff;
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .card-link:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
-        .about-section {
-            background-color: #eaf8ff; /* Light UN Blue */
-            padding: 4rem 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-        .about-text {
-            font-size: 1.15rem;
-            color: #343a40;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .footer-bg {
-            background-color: #0d2a4c; /* Primary dark blue */
-            color: #ffffff;
-            padding: 2rem 0;
-            text-align: center;
-            margin-top: 4rem;
-        }
-        .footer-text {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        /* Style for dossier cards in Featured Dossiers */
-        .dossier-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        .dossier-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-        }
-        .dossier-card-photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 1rem auto;
+            background-image: url('https://placehold.co/1200x500/0d2a4c/ffffff?text=');
             background-size: cover;
             background-position: center;
-            border: 3px solid #007bff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-        .dossier-card-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #0d2a4c;
-            margin-bottom: 0.5rem;
+        .message-item {
+            border-left: 4px solid #009edb;
+            padding-left: 1rem;
         }
-        .dossier-card-role {
-            font-size: 0.95rem;
-            color: #495057;
-            margin-bottom: 1rem;
-        }
-        .lang-switcher button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .lang-switcher button:hover {
-            background-color: #0056b3;
-        }
-        .lang-switcher button.active {
-            background-color: #009edb;
+        .active {
             font-weight: bold;
+            text-decoration: underline;
         }
-        /* Contact Form Styles */
-        .contact-form-section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-            padding: 3rem;
-            max-width: 800px;
-            margin: 4rem auto;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #0d2a4c;
-        }
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
+        .feedback-form input, .feedback-form textarea {
             border: 1px solid #ced4da;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .form-group input[type="text"]:focus,
-        .form-group input[type="email"]:focus,
-        .form-group textarea:focus {
+        .feedback-form input:focus, .feedback-form textarea:focus {
+            border-color: #009edb;
             outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            box-shadow: 0 0 0 2px rgba(0, 158, 219, 0.25);
         }
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
+        .form-message {
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            display: none;
         }
-        .submit-button {
-            background-color: #28a745; /* Green for submit */
-            color: #ffffff;
-            padding: 0.8rem 2.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
-        }
-        .submit-button:hover {
-            background-color: #218838; /* Darker green */
-            transform: translateY(-2px);
-        }
-        .message-box {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-            text-align: center;
-            font-weight: 500;
-        }
-        .message-box.success {
+        .form-message.success {
             background-color: #d4edda;
             color: #155724;
-            border: 1px solid #c3e6cb;
         }
-        .message-box.error {
+        .form-message.error {
             background-color: #f8d7da;
             color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .loading-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #007bff;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 10px;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        #user-info-display {
-            font-size: 0.8rem;
-            color: #ffffff;
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: right;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-        .auth-button {
-            background-color: #f0f0f0;
-            color: #333;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: 500;
-            border: 1px solid #ccc;
-        }
-        .auth-button:hover {
-            background-color: #e0e0e0;
-        }
-        .admin-link {
-            background-color: #ffc107; /* Yellow for admin link */
-            color: #333;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: 500;
-            border: 1px solid #e0a800;
-            text-decoration: none;
-        }
-        .admin-link:hover {
-            background-color: #e0a800;
         }
     </style>
 </head>
-<body class="antialiased">
-
-    <!-- Header -->
-    <header class="header-bg shadow-md sticky top-0 z-50">
+<body>
+    <header class="header-bg text-white shadow-lg">
         <div class="container flex justify-between items-center py-4">
-            <a href="index_redesigned.html" class="text-white text-2xl font-bold uppercase tracking-wider" data-lang="site_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="flex items-center space-x-8">
-                <a href="#hero" class="nav-link text-lg" data-lang="nav_home">Главная</a>
-                <a href="#cases" class="nav-link text-lg" data-lang="nav_cases">Дела</a>
-                <a href="dossiers.html" class="nav-link text-lg" data-lang="nav_dossiers_archive">Архив досье</a>
-                <a href="#about" class="nav-link text-lg" data-lang="nav_about">О проекте</a>
-                <a href="#contact" class="nav-link text-lg" data-lang="nav_contact">Связаться с нами</a>
-                <a href="admin.html" id="admin-panel-link" class="nav-link text-lg hidden" data-lang="nav_admin_panel">Админ-панель</a>
-                <div class="lang-switcher ml-8">
-                    <button data-lang-code="ru" class="active">РУ</button>
-                    <button data-lang-code="en">EN</button>
-                    <button data-lang-code="kg">КГ</button>
-                </div>
-                <button id="auth-button" class="auth-button ml-4" data-lang="auth_signin">Войти</button>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="flex items-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/UN_emblem_blue.svg/1200px-UN_emblem_blue.svg.png" alt="UN Logo" class="h-10">
+                    <span class="text-xl font-bold ml-2 hidden sm:block" data-lang="org_name">Архив Подотчетности</span>
+                </a>
+            </div>
+            <nav class="flex items-center space-x-6">
+                <a href="#" class="nav-link text-lg font-medium" data-lang-role="nav_home">Главная</a>
+                <a href="#" class="nav-link text-lg font-medium" data-lang-role="nav_about">О нас</a>
+                <a href="#" class="nav-link text-lg font-medium" data-lang-role="nav_contact">Контакты</a>
+                <a href="admin.html" id="admin-panel-link" class="nav-link text-lg font-medium hidden" data-lang-role="nav_admin">Админ-панель</a>
             </nav>
+            <div class="lang-switcher flex items-center space-x-2">
+                <button data-lang-code="ru" class="bg-gray-700 text-white text-sm font-semibold py-1 px-3 rounded-md transition-colors duration-200 hover:bg-gray-600">RU</button>
+                <button data-lang-code="en" class="bg-gray-700 text-white text-sm font-semibold py-1 px-3 rounded-md transition-colors duration-200 hover:bg-gray-600">EN</button>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div id="auth-status" class="text-sm">
+                    <span id="user-info" class="mr-2 hidden"></span>
+                    <button id="login-button" class="bg-white text-blue-800 font-bold py-2 px-4 rounded-full shadow-lg transition-transform duration-200 hover:scale-105" data-lang-role="login_button">Войти</button>
+                    <button id="logout-button" class="bg-red-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform duration-200 hover:scale-105 hidden" data-lang-role="logout_button">Выйти</button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main>
-        <!-- User Info Display -->
-        <div class="container">
-            <div id="user-info-display">
-                <span id="user-id-display"></span>
+    <main class="flex-grow">
+        <section class="hero-section text-white flex items-center justify-center text-center px-4 py-20">
+            <div class="bg-black bg-opacity-50 p-8 rounded-lg shadow-xl max-w-2xl">
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4" data-lang-role="hero_title">Защита целостности, обеспечение подотчетности</h1>
+                <p class="text-xl sm:text-2xl font-light mb-6" data-lang-role="hero_subtitle">Наш архив — ваш инструмент для прозрачности и справедливости.</p>
+                <a href="#feedback-form-section" class="inline-block bg-blue-500 text-white font-bold text-lg py-3 px-8 rounded-full transition-transform duration-200 hover:scale-105 shadow-lg" data-lang-role="hero_cta">Связаться с нами</a>
             </div>
-        </div>
+        </section>
 
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
+        <section id="feedback-form-section" class="py-16">
             <div class="container">
-                <h1 class="hero-title" data-lang="hero_title">Архив Подотчетности</h1>
-                <p class="hero-subtitle" data-lang="hero_subtitle">
-                    Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.
-                </p>
-                <div class="mt-8 flex justify-center items-center gap-4">
-                    <a href="#cases" class="btn-primary inline-block" data-lang="view_cases_button">Посмотреть дела</a>
-                    <div class="relative w-full max-w-md">
-                        <input type="text" placeholder="Поиск по досье и делам..." class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800" data-lang="search_placeholder">
-                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
+                <h2 class="text-4xl font-bold mb-4 text-center" data-lang-role="feedback_title">Форма обратной связи</h2>
+                <p class="text-lg text-center mb-10 text-gray-600" data-lang-role="feedback_subtitle">Отправьте нам сообщение, и мы обязательно ответим.</p>
+
+                <div id="auth-info-display" class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6 text-center text-sm hidden">
+                    <p data-lang-role="user_uid_label">Ваш UID пользователя:</p>
+                    <code id="user-id-display" class="font-mono text-gray-700 break-all"></code>
                 </div>
-            </div>
-        </section>
 
-        <!-- Cases Section -->
-        <section id="cases" class="py-16">
-            <div class="container">
-                <h2 class="section-heading" data-lang="current_cases_heading">Актуальные дела</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Case Card 1: Дело 11 журналистов -->
-                    <div class="card">
-                        <div>
-                            <h3 class="card-title" data-lang="case_1_title">Дело «11 журналистов»</h3>
-                            <p class="card-description" data-lang="case_1_description">
-                                В январе 2024 года была проведена серия обысков и арестов журналистов, связанных с проектами Temirov Live и Ait Ait Dese. Им было предъявлено обвинение в «призывах к массовым беспорядкам» на основании спорной лингвистической экспертизы.
-                            </p>
-                        </div>
-                        <a href="case-journalists.html" class="card-link" data-lang="read_more_button">Подробнее &rarr;</a>
+                <form id="feedbackForm" class="max-w-xl mx-auto p-8 bg-white rounded-xl shadow-lg feedback-form">
+                    <div class="mb-5">
+                        <label for="name" class="block text-gray-700 font-semibold mb-2" data-lang-role="form_name_label">Имя (необязательно)</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-lg" data-lang-role="form_name_placeholder" placeholder="Ваше имя">
                     </div>
-                    <!-- Case Card 2: Placeholder for future cases -->
-                    <div class="card">
-                        <div>
-                            <h3 class="card-title" data-lang="future_case_1_title">Будущее дело 1</h3>
-                            <p class="card-description" data-lang="future_case_1_description">
-                                Описание будущего дела, которое будет добавлено в архив. Здесь будет краткая информация о сути дела.
-                            </p>
-                        </div>
-                        <a href="#" class="card-link" data-lang="read_more_button">Подробнее &rarr;</a>
+                    <div class="mb-5">
+                        <label for="email" class="block text-gray-700 font-semibold mb-2" data-lang-role="form_email_label">Email (необязательно)</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg" data-lang-role="form_email_placeholder" placeholder="example@email.com">
                     </div>
-                    <!-- Case Card 3: Placeholder for future cases -->
-                    <div class="card">
-                        <div>
-                            <h3 class="card-title" data-lang="future_case_2_title">Будущее дело 2</h3>
-                            <p class="card-description" data-lang="future_case_2_description">
-                                Описание будущего дела, которое будет добавлено в архив. Здесь будет краткая информация о сути дела.
-                            </p>
-                        </div>
-                        <a href="#" class="card-link" data-lang="read_more_button">Подробнее &rarr;</a>
+                    <div class="mb-5">
+                        <label for="message" class="block text-gray-700 font-semibold mb-2" data-lang-role="form_message_label">Сообщение</label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 rounded-lg" data-lang-role="form_message_placeholder" placeholder="Ваше сообщение..." required></textarea>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Dossiers Section -->
-        <section id="featured-dossiers" class="py-16 bg-gray-50">
-            <div class="container">
-                <h2 class="section-heading" data-lang="featured_dossiers_heading">Избранные досье</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Featured Dossier Card 1 -->
-                    <a href="dossiers/shermatov.html" class="dossier-card block">
-                        <div class="dossier-card-photo" style="background-image: url(https://cdn-1.aki.kg/cdn-st-0/qYc/I/1012834.85eb3bfa14ddfd485b4fb67523f2c49f.500.jpg);"></div>
-                        <h3 class="dossier-card-name">Шерматов Миран Бакытбекович</h3>
-                        <p class="dossier-card-role" data-lang-role="Судья">Судья</p>
-                    </a>
-                    <!-- Featured Dossier Card 2 -->
-                    <a href="dossiers/zikiraliev.html" class="dossier-card block">
-                        <div class="dossier-card-photo" style="background-image: url(https://placehold.co/100x100/007bff/ffffff?text=УЗ);"></div>
-                        <h3 class="dossier-card-name">Зикиралиев Улан Спартакович</h3>
-                        <p class="dossier-card-role" data-lang-role="Руководитель следственной группы">Руководитель следственной группы</p>
-                    </a>
-                    <!-- Featured Dossier Card 3 -->
-                    <a href="dossiers/momunaliev-adis.html" class="dossier-card block">
-                        <div class="dossier-card-photo" style="background-image: url(https://admin-bgs.sot.kg/public/sites/26/2020/07/Momunaliev-AZH.-250x167.jpg);"></div>
-                        <h3 class="dossier-card-name">Момуналиев Адис Жолдошбекович</h3>
-                        <p class="dossier-card-role" data-lang-role="Судья">Судья</p>
-                    </a>
-                    <!-- Featured Dossier Card 4 -->
-                    <a href="dossiers/tazhibek-uulu.html" class="dossier-card block">
-                        <div class="dossier-card-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_Maksat.jpg);"></div>
-                        <h3 class="dossier-card-name">Тажибек уулу Максат</h3>
-                        <p class="dossier-card-role" data-lang-role="Журналист">Журналист</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-16">
-            <div class="container about-section">
-                <h2 class="section-heading" data-lang="about_project_heading">О проекте</h2>
-                <p class="about-text" data-lang="about_project_text">
-                    «Архив Подотчетности» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.
-                </p>
-            </div>
-        </section>
-
-        <!-- Contact Form Section -->
-        <section id="contact" class="py-16">
-            <div class="container contact-form-section">
-                <h2 class="section-heading" data-lang="contact_heading">Связаться с нами</h2>
-                <p class="text-center text-gray-700 mb-8" data-lang="contact_description">
-                    Если у вас есть информация, которой вы хотели бы поделиться, или вопросы, пожалуйста, используйте форму ниже. Ваша информация может быть отправлена анонимно.
-                </p>
-                <form id="feedback-form" class="max-w-xl mx-auto">
-                    <div class="form-group">
-                        <label for="name" data-lang="form_name_label">Ваше имя (необязательно):</label>
-                        <input type="text" id="name" name="name" placeholder="Введите ваше имя" data-lang="form_name_placeholder">
+                    <button id="submitButton" type="submit" class="w-full bg-blue-800 text-white font-bold py-3 px-4 rounded-full transition-transform duration-200 hover:scale-105 shadow-lg" data-lang-role="form_submit_button">Отправить сообщение</button>
+                    <div id="loadingSpinner" class="hidden text-center mt-4">
+                        <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="email" data-lang="form_email_label">Ваш Email (необязательно):</label>
-                        <input type="email" id="email" name="email" placeholder="Введите ваш email" data-lang="form_email_placeholder">
-                    </div>
-                    <div class="form-group">
-                        <label for="message" data-lang="form_message_label">Сообщение (обязательно):</label>
-                        <textarea id="message" name="message" required placeholder="Введите ваше сообщение здесь..." data-lang="form_message_placeholder"></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="submit-button" data-lang="form_submit_button">
-                            Отправить сообщение
-                            <span id="loading-spinner" class="loading-spinner hidden"></span>
-                        </button>
-                    </div>
-                    <div id="form-message" class="message-box hidden"></div>
+                    <div id="formMessage" class="form-message" role="alert"></div>
                 </form>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer-bg">
-        <div class="container py-6">
-            <p class="footer-text" data-lang="footer_text">&copy; 2025 Архив Подотчетности. Все права защищены.</p>
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container text-center">
+            <p>&copy; 2024 Архив Подотчетности. Все права защищены.</p>
         </div>
     </footer>
 
-    <!-- Firebase SDKs -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-          apiKey: "AIzaSyAoS7SNm7gDe1EnTopa5e1qHumgWsH5NWY",
-          authDomain: "archive-915cf.firebaseapp.com",
-          projectId: "archive-915cf",
-          storageBucket: "archive-915cf.firebasestorage.app",
-          messagingSenderId: "368228036181",
-          appId: "1:368228036181:web:86ded413accda15b64eedc"
-        };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-        let db;
-        let auth;
-        let userId = 'anonymous'; // Default to anonymous
-        let adminUIDs = ["YOUR_ADMIN_UID_1", "YOUR_ADMIN_UID_2"]; // <-- Вставьте сюда свои UID администраторов
-
-        // Translations object (rest of the translations are assumed to be present from previous steps)
         const translations = {
-            ru: {
+            'ru': {
                 app_title: "Архив Подотчетности - Обновленная Главная",
-                site_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                org_name: "Архив Подотчетности",
                 nav_home: "Главная",
-                nav_cases: "Дела",
-                nav_dossiers_archive: "Архив досье",
-                nav_about: "О проекте",
-                nav_contact: "Связаться с нами",
-                nav_admin_panel: "Админ-панель",
-                hero_title: "Архив Подотчетности",
-                hero_subtitle: "Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.",
-                view_cases_button: "Посмотреть дела",
-                search_placeholder: "Поиск по досье и делам...",
-                current_cases_heading: "Актуальные дела",
-                case_1_title: "Дело «11 журналистов»",
-                case_1_description: "В январе 2024 года была проведена серия обысков и арестов журналистов, связанных с проектами Temirov Live и Ait Ait Dese. Им было предъявлено обвинение в «призывах к массовым беспорядкам» на основании спорной лингвистической экспертизы.",
-                future_case_1_title: "Будущее дело 1",
-                future_case_1_description: "Описание будущего дела, которое будет добавлено в архив. Здесь будет краткая информация о сути дела.",
-                future_case_2_title: "Будущее дело 2",
-                future_case_2_description: "Описание будущего дела, которое будет добавлено в архив. Здесь будет краткая информация о сути дела.",
-                read_more_button: "Подробнее →",
-                featured_dossiers_heading: "Избранные досье",
-                about_project_heading: "О проекте",
-                about_project_text: "«Архив Подотчетности» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.",
-                contact_heading: "Связаться с нами",
-                contact_description: "Если у вас есть информация, которой вы хотели бы поделиться, или вопросы, пожалуйста, используйте форму ниже. Ваша информация может быть отправлена анонимно.",
-                form_name_label: "Ваше имя (необязательно):",
-                form_name_placeholder: "Введите ваше имя",
-                form_email_label: "Ваш Email (необязательно):",
-                form_email_placeholder: "Введите ваш email",
-                form_message_label: "Сообщение (обязательно):",
-                form_message_placeholder: "Введите ваше сообщение здесь...",
+                nav_about: "О нас",
+                nav_contact: "Контакты",
+                nav_admin: "Админ-панель",
+                login_button: "Войти",
+                logout_button: "Выйти",
+                hero_title: "Защита целостности, обеспечение подотчетности",
+                hero_subtitle: "Наш архив — ваш инструмент для прозрачности и справедливости.",
+                hero_cta: "Связаться с нами",
+                feedback_title: "Форма обратной связи",
+                feedback_subtitle: "Отправьте нам сообщение, и мы обязательно ответим.",
+                form_name_label: "Имя (необязательно)",
+                form_name_placeholder: "Ваше имя",
+                form_email_label: "Email (необязательно)",
+                form_email_placeholder: "example@email.com",
+                form_message_label: "Сообщение",
+                form_message_placeholder: "Ваше сообщение...",
                 form_submit_button: "Отправить сообщение",
-                form_success_message: "Ваше сообщение успешно отправлено! Мы свяжемся с вами, если потребуется.",
-                form_error_message: "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз.",
-                footer_text: "&copy; 2025 Архив Подотчетности. Все права защищены.",
-                auth_signin: "Войти",
-                auth_signout: "Выйти",
-                user_id_display: "Ваш ID:",
-                roles: {
-                    "Судья": "Судья",
-                    "Руководитель следственной группы": "Руководитель следственной группы",
-                    "Журналист": "Журналист"
-                }
+                form_success_message: "Ваше сообщение успешно отправлено!",
+                form_error_message: "Не удалось отправить сообщение. Пожалуйста, попробуйте еще раз.",
+                user_uid_label: "Ваш UID пользователя:",
+                auth_signin_error: "Ошибка аутентификации при входе"
             },
-            en: {
-                app_title: "Accountability Archive - Redesigned Home",
-                site_name: "ACCOUNTABILITY ARCHIVE",
+            'en': {
+                app_title: "Accountability Archive - Updated Home",
+                org_name: "Accountability Archive",
                 nav_home: "Home",
-                nav_cases: "Cases",
-                nav_dossiers_archive: "Dossiers Archive",
-                nav_about: "About Project",
-                nav_contact: "Contact Us",
-                nav_admin_panel: "Admin Panel",
-                hero_title: "Accountability Archive",
-                hero_subtitle: "Documenting cases of human rights violations and abuse of power to ensure transparency and justice.",
-                view_cases_button: "View Cases",
-                search_placeholder: "Search dossiers and cases...",
-                current_cases_heading: "Current Cases",
-                case_1_title: "Case of «11 Journalists»",
-                case_1_description: "In January 2024, a series of searches and arrests of journalists associated with Temirov Live and Ait Ait Dese projects were carried out. They were accused of 'inciting mass riots' based on a controversial linguistic examination.",
-                future_case_1_title: "Future Case 1",
-                future_case_1_description: "Description of a future case to be added to the archive. Brief information about the case will be here.",
-                future_case_2_title: "Future Case 2",
-                future_case_2_description: "Description of a future case to be added to the archive. Brief information about the case will be here.",
-                read_more_button: "Read More →",
-                featured_dossiers_heading: "Featured Dossiers",
-                about_project_heading: "About the Project",
-                about_project_text: "The 'Accountability Archive' is an independent initiative aimed at documenting cases of human rights violations and abuse of power by state bodies and officials. We collect and systematize information about such cases, creating dossiers on individuals involved in persecutions, illegal detentions, fabrication of cases, and other violations. Our goal is to ensure transparency, hold perpetrators accountable, and promote the protection of civil liberties.",
-                contact_heading: "Contact Us",
-                contact_description: "If you have information you'd like to share, or have questions, please use the form below. Your information can be submitted anonymously.",
-                form_name_label: "Your Name (optional):",
-                form_name_placeholder: "Enter your name",
-                form_email_label: "Your Email (optional):",
-                form_email_placeholder: "Enter your email",
-                form_message_label: "Message (required):",
-                form_message_placeholder: "Enter your message here...",
+                nav_about: "About Us",
+                nav_contact: "Contact",
+                nav_admin: "Admin Panel",
+                login_button: "Log In",
+                logout_button: "Log Out",
+                hero_title: "Protecting Integrity, Ensuring Accountability",
+                hero_subtitle: "Our archive is your tool for transparency and justice.",
+                hero_cta: "Contact Us",
+                feedback_title: "Feedback Form",
+                feedback_subtitle: "Send us a message, and we will get back to you.",
+                form_name_label: "Name (optional)",
+                form_name_placeholder: "Your Name",
+                form_email_label: "Email (optional)",
+                form_email_placeholder: "example@email.com",
+                form_message_label: "Message",
+                form_message_placeholder: "Your message...",
                 form_submit_button: "Send Message",
-                form_success_message: "Your message has been sent successfully! We will contact you if necessary.",
-                form_error_message: "An error occurred while sending your message. Please try again.",
-                footer_text: "&copy; 2025 Accountability Archive. All rights reserved.",
-                auth_signin: "Sign In",
-                auth_signout: "Sign Out",
-                user_id_display: "Your ID:",
-                roles: {
-                    "Судья": "Judge",
-                    "Руководитель следственной группы": "Head of Investigation Team",
-                    "Журналист": "Journalist"
-                }
-            },
-            kg: {
-                app_title: "Жоопкерчилик Архивы - Жаңыланган Башкы Бет",
-                site_name: "ЖООПКЕРЧИЛИК АРХИВИ",
-                nav_home: "Башкы бет",
-                nav_cases: "Иштер",
-                nav_dossiers_archive: "Досье архиви",
-                nav_about: "Долбоор жөнүндө",
-                nav_contact: "Биз менен байланыш",
-                nav_admin_panel: "Админ-панель",
-                hero_title: "Жоопкерчилик Архивы",
-                hero_subtitle: "Адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирип, ачык-айкындуулукту жана адилеттүүлүктү камсыз кылабыз.",
-                view_cases_button: "Иштерди көрүү",
-                search_placeholder: "Досье жана иштер боюнча издөө...",
-                current_cases_heading: "Учурдагы иштер",
-                case_1_title: "«11 журналисттин» иши",
-                case_1_description: "2024-жылдын январь айында Temirov Live жана Ait Ait Dese долбоорлоруна байланыштуу журналисттерди тинтүү жана камакка алуу иштери жүргүзүлгөн. Аларга талаштуу лингвистикалык экспертизанын негизинде «массалык башаламандыктарга чакырык жасоо» беренеси боюнча айып тагылган.",
-                future_case_1_title: "Келечектеги иш 1",
-                future_case_1_description: "Архивге кошула турган келечектеги иштин сыпаттамасы. Бул жерде иштин маңызы жөнүндө кыскача маалымат болот.",
-                future_case_2_title: "Келечектеги иш 2",
-                future_case_2_description: "Архивге кошула турган келечектеги иштин сыпаттамасы. Бул жерде иштин маңызы жөнүндө кыскача маалымат болот.",
-                read_more_button: "Кененирээк →",
-                featured_dossiers_heading: "Тандалган досьелер",
-                about_project_heading: "Долбоор жөнүндө",
-                about_project_text: "«Жоопкерчилик Архивы» — бул мамлекеттик органдар жана кызмат адамдары тарабынан адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирүүгө багытталган көз карандысыз демилге. Биз мындай учурлар жөнүндө маалыматтарды чогултуп, системалаштырып, куугунтуктоолорго, мыйзамсыз кармоолорго, иштерди жасалмалоого жана башка бузууларга катышкан адамдарга досье түзөбүз. Биздин максат — ачык-айкындуулукту камсыз кылуу, күнөөлүүлөрдү жоопко тартуу жана жарандык эркиндиктерди коргоого көмөктөшүү.",
-                contact_heading: "Биз менен байланыш",
-                contact_description: "Эгер сизде бөлүшкүңүз келген маалымат же суроолоруңуз болсо, төмөнкү форманы колдонуңуз. Сиздин маалыматыңыз жашыруун жөнөтүлүшү мүмкүн.",
-                form_name_label: "Атыңыз (милдеттүү эмес):",
-                form_name_placeholder: "Атыңызды киргизиңиз",
-                form_email_label: "Электрондук почтаңыз (милдеттүү эмес):",
-                form_email_placeholder: "Электрондук почтаңызды киргизиңиз",
-                form_message_label: "Кабар (милдеттүү):",
-                form_message_placeholder: "Кабарыңызды бул жерге териңиз...",
-                form_submit_button: "Кабар жөнөтүү",
-                form_success_message: "Кабарыңыз ийгиликтүү жөнөтүлдү! Керек болсо, биз сиз менен байланышабыз.",
-                form_error_message: "Кабар жөнөтүүдө ката кетти. Кайра аракет кылып көрүңүз.",
-                footer_text: "&copy; 2025 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
-                auth_signin: "Кирүү",
-                auth_signout: "Чыгуу",
-                user_id_display: "Сиздин ID:",
-                roles: {
-                    "Судья": "Сот",
-                    "Руководитель следственной группы": "Тергөө тобунун жетекчиси",
-                    "Журналист": "Журналист"
-                }
+                form_success_message: "Your message has been sent successfully!",
+                form_error_message: "Failed to send message. Please try again.",
+                user_uid_label: "Your User UID:",
+                auth_signin_error: "Authentication sign-in error"
             }
         };
 
+        let currentLang = 'ru';
+
         function setLanguage(lang) {
-            document.querySelectorAll('[data-lang]').forEach(element => {
-                const key = element.dataset.lang;
-                if (translations[lang] && translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
-                }
-            });
+            currentLang = lang;
             document.querySelectorAll('[data-lang-role]').forEach(element => {
                 const originalRole = element.dataset.langRole;
-                if (translations[lang] && translations[lang].roles && translations[lang].roles[originalRole]) {
-                    element.textContent = translations[lang].roles[originalRole];
+                if (translations[lang] && translations[lang].hasOwnProperty(originalRole)) {
+                    element.textContent = translations[lang][originalRole];
                 }
             });
             document.querySelector('title').textContent = translations[lang].app_title;
@@ -683,87 +245,155 @@ const app = initializeApp(firebaseConfig);
             localStorage.setItem('selectedLanguage', lang);
         }
 
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Initialize Firebase
-            if (Object.keys(firebaseConfig).length > 0) {
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
+        // ---------- Firebase Configuration and Initialization ----------
+        const firebaseConfig = {
+            apiKey: "AIzaSyAoS7SNm7gDe1EnTopa5e1qHumgWsH5NWY",
+            authDomain: "archive-915cf.firebaseapp.com",
+            projectId: "archive-915cf",
+            storageBucket: "archive-915cf.firebasestorage.app",
+            messagingSenderId: "368228036181",
+            appId: "1:368228036181:web:86ded413accda15b64eedc"
+        };
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseApp = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.getAuth(firebaseApp);
+        const db = firebase.getFirestore(firebaseApp);
+        let userId = null;
 
-                // Google Auth Provider
-                const provider = new GoogleAuthProvider();
+        // ---------- User Interface Elements ----------
+        const loginButton = document.getElementById('login-button');
+        const logoutButton = document.getElementById('logout-button');
+        const adminPanelLink = document.getElementById('admin-panel-link');
+        const userIdDisplay = document.getElementById('user-id-display');
+        const authInfoDisplay = document.getElementById('auth-info-display');
+        const feedbackForm = document.getElementById('feedbackForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitButton = document.getElementById('submitButton');
+        const loadingSpinner = document.getElementById('loadingSpinner');
 
-                // Get UI elements
-                const authButton = document.getElementById('auth-button');
-                const userIdDisplay = document.getElementById('user-id-display');
-                const adminPanelLink = document.getElementById('admin-panel-link');
+        // IMPORTANT: Replace these placeholders with your actual Firebase User UIDs
+        // You can find your UID in the Firebase console under Authentication -> Users
+        const adminUIDs = ["YOUR_ADMIN_UID_1", "YOUR_ADMIN_UID_2"];
 
-                // Auth state listener
-                onAuthStateChanged(auth, (user) => {
-                    const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-                    if (user) {
-                        userId = user.uid;
-                        userIdDisplay.textContent = `${translations[currentLang].user_id_display} ${userId}`;
-                        authButton.textContent = translations[currentLang].auth_signout;
-                        authButton.onclick = handleSignOut;
-
-                        // Show admin panel link if user is an admin
-                        if (adminUIDs.includes(userId)) {
-                            adminPanelLink.classList.remove('hidden');
-                        } else {
-                            adminPanelLink.classList.add('hidden');
-                        }
-
-                    } else {
-                        userId = 'anonymous';
-                        userIdDisplay.textContent = `${translations[currentLang].user_id_display} ${userId}`;
-                        authButton.textContent = translations[currentLang].auth_signin;
-                        authButton.onclick = handleSignIn;
-                        adminPanelLink.classList.add('hidden'); // Hide admin link if not logged in
-                    }
-                });
-
-                // Initial anonymous sign-in or custom token sign-in
-                    try {
-                        await auth.signInAnonymously();
-                    } catch (error) {
-                        console.error("Firebase authentication error during initial anonymous sign-in:", error);
-                        userIdDisplay.textContent = `Authentication Error: ${error.message}`;
-                    }
-             }
-
-                // Handle Google Sign-In
-                async function handleSignIn() {
-                    try {
-                        // Corrected: Call method on the auth object
-                        await auth.signInWithPopup(provider);
-                    } catch (error) {
-                        console.error("Google Sign-In error:", error);
-                        const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-                        userIdDisplay.textContent = `${translations[currentLang].auth_signin_error}: ${error.message}`;
-                    }
-                }
-
-                // Handle Sign-Out
-                async function handleSignOut() {
-                    try {
-                        // Corrected: Call method on the auth object
-                        await auth.signOut();
-                        // After signOut, Firebase automatically signs in anonymously
-                    } catch (error) {
-                        console.error("Sign-Out error:", error);
-                        const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-                        userIdDisplay.textContent = `${translations[currentLang].auth_signout_error}: ${error.message}`;
-                    }
-                }
-
+        // Helper function to show/hide elements
+        const toggleVisibility = (element, isVisible) => {
+            if (isVisible) {
+                element.classList.remove('hidden');
             } else {
-                console.warn("Firebase config not found. Contact form and authentication will not work.");
-                document.getElementById('user-info-display').textContent = `Firebase Not Configured`;
-                document.getElementById('auth-button').disabled = true;
+                element.classList.add('hidden');
+            }
+        };
+
+        // ---------- Firebase Authentication and UI Update Logic ----------
+        firebase.onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // User is signed in
+                userId = user.uid;
+                toggleVisibility(loginButton, false);
+                toggleVisibility(logoutButton, true);
+                toggleVisibility(authInfoDisplay, true);
+                userIdDisplay.textContent = userId;
+
+                // Show admin panel link if the user is an admin
+                if (adminUIDs.includes(userId)) {
+                    toggleVisibility(adminPanelLink, true);
+                } else {
+                    toggleVisibility(adminPanelLink, false);
+                }
+            } else {
+                // User is signed out
+                userId = null;
+                toggleVisibility(loginButton, true);
+                toggleVisibility(logoutButton, false);
+                toggleVisibility(adminPanelLink, false);
+                toggleVisibility(authInfoDisplay, false);
+
+                // Sign in anonymously on initial load if not already authenticated
+                // This ensures the app can interact with Firestore.
+                const __initial_auth_token = ""; // This variable is provided by the canvas environment
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    try {
+                        await firebase.signInWithCustomToken(auth, __initial_auth_token);
+                    } catch (error) {
+                        console.error("Authentication error with custom token:", error);
+                    }
+                } else {
+                    try {
+                        await firebase.signInAnonymously(auth);
+                    } catch (error) {
+                        console.error("Authentication error with anonymous sign-in:", error);
+                    }
+                }
+            }
+        });
+
+        // Event listener for Google Sign-In button
+        loginButton.addEventListener('click', async () => {
+            const provider = new firebase.GoogleAuthProvider();
+            try {
+                await firebase.signInWithPopup(auth, provider);
+            } catch (error) {
+                console.error("Error during Google sign-in:", error);
+            }
+        });
+
+        // Event listener for Logout button
+        logoutButton.addEventListener('click', async () => {
+            try {
+                await firebase.signOut(auth);
+            } catch (error) {
+                console.error("Error during sign out:", error);
+            }
+        });
+
+        // ---------- Form Submission Logic ----------
+        feedbackForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            formMessage.style.display = 'none';
+            formMessage.classList.remove('success', 'error');
+            submitButton.disabled = true;
+            toggleVisibility(loadingSpinner, true);
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!message) {
+                formMessage.textContent = translations[currentLang].form_error_message;
+                formMessage.style.display = 'block';
+                formMessage.classList.add('error');
+                submitButton.disabled = false;
+                toggleVisibility(loadingSpinner, false);
+                return;
             }
 
-            // Language switcher logic
+            try {
+                const feedbackCollectionRef = firebase.collection(db, `/artifacts/${appId}/public/data/feedback`);
+                await firebase.addDoc(feedbackCollectionRef, {
+                    name: name || 'Аноним',
+                    email: email || 'Не указан',
+                    message: message,
+                    timestamp: firebase.serverTimestamp(),
+                    userId: auth.currentUser ? auth.currentUser.uid : 'anonymous',
+                    language: currentLang
+                });
+                formMessage.textContent = translations[currentLang].form_success_message;
+                formMessage.style.display = 'block';
+                formMessage.classList.add('success');
+                feedbackForm.reset();
+            } catch (error) {
+                console.error("Error sending message to Firestore:", error);
+                formMessage.textContent = `${translations[currentLang].form_error_message}: ${error.message}`;
+                formMessage.style.display = 'block';
+                formMessage.classList.add('error');
+            } finally {
+                submitButton.disabled = false;
+                toggleVisibility(loadingSpinner, false);
+            }
+        });
+
+        // ---------- Initial Page Load Setup ----------
+        document.addEventListener('DOMContentLoaded', () => {
             const langButtons = document.querySelectorAll('.lang-switcher button');
             langButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
@@ -771,77 +401,9 @@ const app = initializeApp(firebaseConfig);
                 });
             });
 
-            // Load saved language or default to Russian
             const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
             setLanguage(savedLang);
-
-            // Handle form submission
-            const feedbackForm = document.getElementById('feedback-form');
-            const formMessage = document.getElementById('form-message');
-            const submitButton = feedbackForm.querySelector('.submit-button');
-            const loadingSpinner = document.getElementById('loading-spinner');
-
-            feedbackForm.addEventListener('submit', async function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-                const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-
-                // Clear previous messages
-                formMessage.classList.add('hidden');
-                formMessage.classList.remove('success', 'error');
-                formMessage.textContent = '';
-
-                // Simple validation
-                if (message.trim() === '') {
-                    formMessage.classList.remove('hidden');
-                    formMessage.classList.add('error');
-                    formMessage.textContent = translations[currentLang].form_error_message;
-                    return;
-                }
-
-                // Show loading indicator and disable button
-                submitButton.disabled = true;
-                loadingSpinner.classList.remove('hidden');
-
-                try {
-                    if (!db) {
-                        throw new Error("Firestore is not initialized. Check Firebase configuration.");
-                    }
-
-                    // Define the path for public data (feedback from any user)
-                    const feedbackCollectionRef = collection(db, `artifacts/${appId}/public/data/feedback`);
-
-                    // Add document to Firestore
-                    await addDoc(feedbackCollectionRef, {
-                        name: name || 'Аноним', // Default to 'Anonymous' if name is empty
-                        email: email || 'Не указан', // Default if email is empty
-                        message: message,
-                        timestamp: serverTimestamp(), // Use server timestamp for consistency
-                        userId: userId, // Store the user ID (anonymous or Google UID)
-                        language: currentLang // Store the language of the message
-                    });
-
-                    formMessage.classList.remove('hidden');
-                    formMessage.classList.add('success');
-                    formMessage.textContent = translations[currentLang].form_success_message;
-                    feedbackForm.reset(); // Clear form fields
-
-                } catch (error) {
-                    console.error("Error sending message to Firestore:", error);
-                    formMessage.classList.remove('hidden');
-                    formMessage.classList.add('error');
-                    formMessage.textContent = translations[currentLang].form_error_message + ` (${error.message})`;
-                } finally {
-                    // Hide loading indicator and enable button
-                    submitButton.disabled = false;
-                    loadingSpinner.classList.add('hidden');
-                }
-            });
         });
     </script>
 </body>
 </html>
-
