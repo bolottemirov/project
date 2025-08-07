@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архив досье - Архив Подотчетности</title>
+    <title data-lang="dossier_title">Архив досье - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили (скопированы из index.html для удобства) */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .container {
             max-width: 1100px;
@@ -259,103 +265,423 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
     <header class="site-header">
-        <div class="container">
-            <a href="index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="index.html">Главная</a>
-                <a href="index.html#cases">Дела</a>
-                <a href="dossiers.html">Архив досье</a>
-                <a href="index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="index.html" class="logo" data-lang="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="index.html" data-lang="nav_home">Главная</a>
+                <a href="index.html#cases" data-lang="nav_cases">Дела</a>
+                <a href="dossiers.html" data-lang="nav_dossiers_archive">Архив досье</a>
+                <a href="index.html#about" data-lang="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="archive">
             <div class="container">
-                <a href="index.html" class="back-link">&larr; Назад на главную</a>
-                <h2 class="section-title">Архив досье</h2>
+                <a href="index.html" class="back-link" data-lang="back_to_home">&larr; Назад на главную</a>
+                <h2 class="section-title" data-lang="section_title">Архив досье</h2>
 
-                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-bottom: 15px;">Исполнители (представители госорганов):</h5>
+                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-bottom: 15px;" data-lang="executors_heading">Исполнители (представители госорганов):</h5>
                 <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
-                    <li><a href="dossiers/zhumabaev.html" class="dossier-link">Жумабаев А.А.</a></li>
-                    <li><a href="dossiers/shermatov.html" class="dossier-link">Шерматов Миран Бакытбекович</a></li>
-                    <li><a href="dossiers/turdukulov.html" class="dossier-link">Турдукулов Тилек Ураимжанович</a></li>
-                    <li><a href="dossiers/kalybaev.html" class="dossier-link">Калыбаев Алмаз Жээнкулович</a></li>
-                    <li><a href="dossiers/ataev.html" class="dossier-link">Атаев Замирбек Исмаилович</a></li>
-                    <li><a href="dossiers/momunaliev-adis.html" class="dossier-link">Момуналиев Адис Жолдошбекович</a></li>
-                    <li><a href="dossiers/bekenov.html" class="dossier-link">Бекенов Туратбек Орозбаевич</a></li>
-                    <li><a href="dossiers/kozhomberdiev.html" class="dossier-link">Кожомбердиев Нурлан Кожомбердиевич</a></li>
-                    <li><a href="dossiers/zikiraliev.html" class="dossier-link">Зикиралиев Улан Спартакович</a></li>
-                    <li><a href="dossiers/baiyshov.html" class="dossier-link">Байышов Кубанбек Эмилбекович</a></li>
-                    <li><a href="dossiers/beisheeva.html" class="dossier-link">Бейшеева.С.Б</a></li>
-                    <li><a href="dossiers/kalmuratov.html" class="dossier-link">Калмуратов А.К.</a></li>
-                    <li><a href="dossiers/baratov.html" class="dossier-link">Баратов Т.</a></li>
-                    <li><a href="dossiers/sultanov.html" class="dossier-link">Султанов У.Т.</a></li>
-                    <li><a href="dossiers/uvaliev.html" class="dossier-link">Увалиев Адилет Куванычбекович</a></li>
-                    <li><a href="dossiers/atantaev.html" class="dossier-link">Атантаев Б.</a></li>
-                    <li><a href="dossiers/karypbek-uulu.html" class="dossier-link">А.Карыпбек уулу</a></li>
-                    <li><a href="dossiers/osmonaliev.html" class="dossier-link">Осмоналиев А.</a></li>
-                    <li><a href="dossiers/patanov.html" class="dossier-link">Патанов А.К.</a></li>
-                    <li><a href="dossiers/dzhapekova.html" class="dossier-link">Джапекова Улан Джолдошбекович</a></li>
-                    <li><a href="dossiers/momunaliev.html" class="dossier-link">Момуналиев Э.С.</a></li>
-                    <li><a href="dossiers/murzabekov.html" class="dossier-link">Мурзабеков Алмазбек Байитович</a></li>
-                    <li><a href="dossiers/mukanbetov.html" class="dossier-link">Муканбетов У.И.</a></li>
-                    <li><a href="dossiers/abdyrahmanov.html" class="dossier-link">Абдырахманов У.М.</a></li>
-                    <li><a href="dossiers/zhaichybekov.html" class="dossier-link">Жайчыбеков Алмаз Сапарбекович</a></li>
-                    <li><a href="dossiers/zhanybekov-erik.html" class="dossier-link">Джаныбеков Эрик Сабырбекович</a></li>
-                    <li><a href="dossiers/narbaev.html" class="dossier-link">Нарбаев М.Н.</a></li>
-                    <li><a href="dossiers/kozhenberdieva.html" class="dossier-link">Коженбердиева С.Б.</a></li>
-                    <li><a href="dossiers/shadmanova.html" class="dossier-link">Шадманова С.К.</a></li>
-                    <li><a href="dossiers/apysov.html" class="dossier-link">Апысов Акылбек Айдаралиевич</a></li>
-                    <li><a href="dossiers/kamalova.html" class="dossier-link">Камалова А.Д.</a></li>
-                    <li><a href="dossiers/kalmurzaev.html" class="dossier-link">Калмурзаев Н.С.</a></li>
-                    <li><a href="dossiers/osmonov.html" class="dossier-link">Осмонов А.А.</a></li>
-                    <li><a href="dossiers/kadyrkulov.html" class="dossier-link">Кадыркулов Э.Ш.</a></li>
-                    <li><a href="dossiers/kaykiev.html" class="dossier-link">Кайкиев Р.Б.</a></li>
-                    <li><a href="dossiers/isagaliev.html" class="dossier-link">Исагалиев М.И.</a></li>
-                    <li><a href="dossiers/satymkulov.html" class="dossier-link">Сатымкулов Б.К.</a></li>
-                    <li><a href="dossiers/akunaliuiev.html" class="dossier-link">Акуналиев Н.А.</a></li>
-                    <li><a href="dossiers/erkinbekov.html" class="dossier-link">Эркинбеков А.Т.</a></li>
-                    <li><a href="dossiers/akzholov.html" class="dossier-link">Акжолов А.А.</a></li>
-                    <li><a href="dossiers/tolubaev.html" class="dossier-link">Толубаева М.М.</a></li>
-                    <li><a href="dossiers/alchakpaev.html" class="dossier-link">Алчакпаева М.Д.</a></li>
-                    <li><a href="dossiers/raiymbekov.html" class="dossier-link">Райымбеков С.Ю.</a></li>
-                    <li><a href="dossiers/koomanov.html" class="dossier-link">Кооманов У.О.</a></li>
-                    <li><a href="dossiers/aliev.html" class="dossier-link">Алиев Т.</a></li>
-                    <li><a href="dossiers/karazak-uulu-nurkyiaz.html" class="dossier-link">Каразак уулу Нуркыяз</a></li>
-                    <li><a href="dossiers/murzuraimov.html" class="dossier-link">Мурзураимов Курманбек Пайзилдаевич</a></li>
-                    <li><a href="dossiers/tashmamatov.html" class="dossier-link">Ташмаматов К.Ж.</a></li>
-                    <li><a href="dossiers/dogdurabekov.html" class="dossier-link">Догдурбеков И.Д.</a></li>
-                    <li><a href="dossiers/kydyraliev.html" class="dossier-link">Кыдыралиев Б.А.</a></li>
-                    <li><a href="dossiers/tanchibekov.html" class="dossier-link">Танчибеков Ырыскелди Алмазович</a></li>
-                    <li><a href="dossiers/ranat-uulu-aibek.html" class="dossier-link">Ранат уулу Аибек</a></li>
-                    <li><a href="dossiers/sakbaev.html" class="dossier-link">Сакбаев Нурлан</a></li>
-                    <li><a href="dossiers/abdykozhoev.html" class="dossier-link">Абдыкожоев Талайбек Ташбаевич</a></li>
-                    <li><a href="dossiers/zhanyshbek-uulu.html" class="dossier-link">Жанышбек уулу Азамат</a></li>
+                    <li><a href="dossiers/zhumabaev.html" class="dossier-link" data-original-name="Жумабаев А.А.">Жумабаев А.А.</a></li>
+                    <li><a href="dossiers/shermatov.html" class="dossier-link" data-original-name="Шерматов Миран Бакытбекович">Шерматов Миран Бакытбекович</a></li>
+                    <li><a href="dossiers/turdukulov.html" class="dossier-link" data-original-name="Турдукулов Тилек Ураимжанович">Турдукулов Тилек Ураимжанович</a></li>
+                    <li><a href="dossiers/kalybaev.html" class="dossier-link" data-original-name="Калыбаев Алмаз Жээнкулович">Калыбаев Алмаз Жээнкулович</a></li>
+                    <li><a href="dossiers/ataev.html" class="dossier-link" data-original-name="Атаев Замирбек Исмаилович">Атаев Замирбек Исмаилович</a></li>
+                    <li><a href="dossiers/momunaliev-adis.html" class="dossier-link" data-original-name="Момуналиев Адис Жолдошбекович">Момуналиев Адис Жолдошбекович</a></li>
+                    <li><a href="dossiers/bekenov.html" class="dossier-link" data-original-name="Бекенов Туратбек Орозбаевич">Бекенов Туратбек Орозбаевич</a></li>
+                    <li><a href="dossiers/kozhomberdiev.html" class="dossier-link" data-original-name="Кожомбердиев Нурлан Кожомбердиевич">Кожомбердиев Нурлан Кожомбердиевич</a></li>
+                    <li><a href="dossiers/zikiraliev.html" class="dossier-link" data-original-name="Зикиралиев Улан Спартакович">Зикиралиев Улан Спартакович</a></li>
+                    <li><a href="dossiers/baiyshov.html" class="dossier-link" data-original-name="Байышов Кубанбек Эмилбекович">Байышов Кубанбек Эмилбекович</a></li>
+                    <li><a href="dossiers/beisheeva.html" class="dossier-link" data-original-name="Бейшеева.С.Б">Бейшеева.С.Б</a></li>
+                    <li><a href="dossiers/kalmuratov.html" class="dossier-link" data-original-name="Калмуратов А.К.">Калмуратов А.К.</a></li>
+                    <li><a href="dossiers/baratov.html" class="dossier-link" data-original-name="Баратов Т.">Баратов Т.</a></li>
+                    <li><a href="dossiers/sultanov.html" class="dossier-link" data-original-name="Султанов У.Т.">Султанов У.Т.</a></li>
+                    <li><a href="dossiers/uvaliev.html" class="dossier-link" data-original-name="Увалиев Адилет Куванычбекович">Увалиев Адилет Куванычбекович</a></li>
+                    <li><a href="dossiers/atantaev.html" class="dossier-link" data-original-name="Атантаев Б.">Атантаев Б.</a></li>
+                    <li><a href="dossiers/karypbek-uulu.html" class="dossier-link" data-original-name="А.Карыпбек уулу">А.Карыпбек уулу</a></li>
+                    <li><a href="dossiers/osmonaliev.html" class="dossier-link" data-original-name="Осмоналиев А.">Осмоналиев А.</a></li>
+                    <li><a href="dossiers/patanov.html" class="dossier-link" data-original-name="Патанов А.К.">Патанов А.К.</a></li>
+                    <li><a href="dossiers/dzhapekova.html" class="dossier-link" data-original-name="Джапекова Улан Джолдошбекович">Джапекова Улан Джолдошбекович</a></li>
+                    <li><a href="dossiers/momunaliev.html" class="dossier-link" data-original-name="Момуналиев Э.С.">Момуналиев Э.С.</a></li>
+                    <li><a href="dossiers/murzabekov.html" class="dossier-link" data-original-name="Мурзабеков Алмазбек Байитович">Мурзабеков Алмазбек Байитович</a></li>
+                    <li><a href="dossiers/mukanbetov.html" class="dossier-link" data-original-name="Муканбетов У.И.">Муканбетов У.И.</a></li>
+                    <li><a href="dossiers/abdyrahmanov.html" class="dossier-link" data-original-name="Абдырахманов У.М.">Абдырахманов У.М.</a></li>
+                    <li><a href="dossiers/zhaichybekov.html" class="dossier-link" data-original-name="Жайчыбеков Алмаз Сапарбекович">Жайчыбеков Алмаз Сапарбекович</a></li>
+                    <li><a href="dossiers/zhanybekov-erik.html" class="dossier-link" data-original-name="Джаныбеков Эрик Сабырбекович">Джаныбеков Эрик Сабырбекович</a></li>
+                    <li><a href="dossiers/narbaev.html" class="dossier-link" data-original-name="Нарбаев М.Н.">Нарбаев М.Н.</a></li>
+                    <li><a href="dossiers/kozhenberdieva.html" class="dossier-link" data-original-name="Коженбердиева С.Б.">Коженбердиева С.Б.</a></li>
+                    <li><a href="dossiers/shadmanova.html" class="dossier-link" data-original-name="Шадманова С.К.">Шадманова С.К.</a></li>
+                    <li><a href="dossiers/apysov.html" class="dossier-link" data-original-name="Апысов Акылбек Айдаралиевич">Апысов Акылбек Айдаралиевич</a></li>
+                    <li><a href="dossiers/kamalova.html" class="dossier-link" data-original-name="Камалова А.Д.">Камалова А.Д.</a></li>
+                    <li><a href="dossiers/kalmurzaev.html" class="dossier-link" data-original-name="Калмурзаев Н.С.">Калмурзаев Н.С.</a></li>
+                    <li><a href="dossiers/osmonov.html" class="dossier-link" data-original-name="Осмонов А.А.">Осмонов А.А.</a></li>
+                    <li><a href="dossiers/kadyrkulov.html" class="dossier-link" data-original-name="Кадыркулов Э.Ш.">Кадыркулов Э.Ш.</a></li>
+                    <li><a href="dossiers/kaykiev.html" class="dossier-link" data-original-name="Кайкиев Р.Б.">Кайкиев Р.Б.</a></li>
+                    <li><a href="dossiers/isagaliev.html" class="dossier-link" data-original-name="Исагалиев М.И.">Исагалиев М.И.</a></li>
+                    <li><a href="dossiers/satymkulov.html" class="dossier-link" data-original-name="Сатымкулов Б.К.">Сатымкулов Б.К.</a></li>
+                    <li><a href="dossiers/akunaliuiev.html" class="dossier-link" data-original-name="Акуналиев Н.А.">Акуналиев Н.А.</a></li>
+                    <li><a href="dossiers/erkinbekov.html" class="dossier-link" data-original-name="Эркинбеков А.Т.">Эркинбеков А.Т.</a></li>
+                    <li><a href="dossiers/akzholov.html" class="dossier-link" data-original-name="Акжолов А.А.">Акжолов А.А.</a></li>
+                    <li><a href="dossiers/tolubaev.html" class="dossier-link" data-original-name="Толубаева М.М.">Толубаева М.М.</a></li>
+                    <li><a href="dossiers/alchakpaev.html" class="dossier-link" data-original-name="Алчакпаева М.Д.">Алчакпаева М.Д.</a></li>
+                    <li><a href="dossiers/raiymbekov.html" class="dossier-link" data-original-name="Райымбеков С.Ю.">Райымбеков С.Ю.</a></li>
+                    <li><a href="dossiers/koomanov.html" class="dossier-link" data-original-name="Кооманов У.О.">Кооманов У.О.</a></li>
+                    <li><a href="dossiers/aliev.html" class="dossier-link" data-original-name="Алиев Т.">Алиев Т.</a></li>
+                    <li><a href="dossiers/karazak-uulu-nurkyiaz.html" class="dossier-link" data-original-name="Каразак уулу Нуркыяз">Каразак уулу Нуркыяз</a></li>
+                    <li><a href="dossiers/murzuraimov.html" class="dossier-link" data-original-name="Мурзураимов Курманбек Пайзилдаевич">Мурзураимов Курманбек Пайзилдаевич</a></li>
+                    <li><a href="dossiers/tashmamatov.html" class="dossier-link" data-original-name="Ташмаматов К.Ж.">Ташмаматов К.Ж.</a></li>
+                    <li><a href="dossiers/dogdurabekov.html" class="dossier-link" data-original-name="Догдурбеков И.Д.">Догдурбеков И.Д.</a></li>
+                    <li><a href="dossiers/kydyraliev.html" class="dossier-link" data-original-name="Кыдыралиев Б.А.">Кыдыралиев Б.А.</a></li>
+                    <li><a href="dossiers/tanchibekov.html" class="dossier-link" data-original-name="Танчибеков Ырыскелди Алмазович">Танчибеков Ырыскелди Алмазович</a></li>
+                    <li><a href="dossiers/ranat-uulu-aibek.html" class="dossier-link" data-original-name="Ранат уулу Аибек">Ранат уулу Аибек</a></li>
+                    <li><a href="dossiers/sakbaev.html" class="dossier-link" data-original-name="Сакбаев Нурлан">Сакбаев Нурлан</a></li>
+                    <li><a href="dossiers/abdykozhoev.html" class="dossier-link" data-original-name="Абдыкожоев Талайбек Ташбаевич">Абдыкожоев Талайбек Ташбаевич</a></li>
+                    <li><a href="dossiers/zhanyshbek-uulu.html" class="dossier-link" data-original-name="Жанышбек уулу Азамат">Жанышбек уулу Азамат</a></li>
                 </ul>
 
-                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-top: 40px; margin-bottom: 15px;">Жертвы преследования:</h5>
+                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-top: 40px; margin-bottom: 15px;" data-lang="victims_heading">Жертвы преследования:</h5>
                 <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
-                    <li><a href="dossiers/kaparov.html" class="dossier-link">Капаров Мааданбек Таалайбекович</a></li>
-                    <li><a href="dossiers/turdaliev.html" class="dossier-link">Турдалиев Жумабек Искендерович</a></li>
-                    <li><a href="dossiers/tazhibek-uulu.html" class="dossier-link">Тажибек уулу Максат</a></li>
-                    <li><a href="dossiers/sultanaliyev.html" class="dossier-link">Сайпидин Султаналиев</a></li>
-                    <li><a href="dossiers/tazhibek-kyzy-mahabat.html" class="dossier-link">Тажибек кызы Махабат</a></li>
-                    <li><a href="dossiers/akunbekov.html" class="dossier-link">Акунбеков Сапарбек Акунбекович</a></li>
-                    <li><a href="dossiers/asypbekov.html" class="dossier-link">Асыпбеков Тыныстан Бекназарович</a></li>
-                    <li><a href="dossiers/beishekeeva.html" class="dossier-link">Бейшекеева Айке Нурлановна</a></li>
-                    <li><a href="dossiers/buzumov.html" class="dossier-link">Бузумов Жоодарбек Бакыталиевич</a></li>
-                    <li><a href="dossiers/ishenbekov.html" class="dossier-link">Ишенбеков Азамат Ишенбекович</a></li>
-                    <li><a href="dossiers/orozbekov.html" class="dossier-link">Орозбеков Асылбек Орозбекович</a></li>
+                    <li><a href="dossiers/kaparov.html" class="dossier-link" data-original-name="Капаров Мааданбек Таалайбекович">Капаров Мааданбек Таалайбекович</a></li>
+                    <li><a href="dossiers/turdaliev.html" class="dossier-link" data-original-name="Турдалиев Жумабек Искендерович">Турдалиев Жумабек Искендерович</a></li>
+                    <li><a href="dossiers/tazhibek-uulu.html" class="dossier-link" data-original-name="Тажибек уулу Максат">Тажибек уулу Максат</a></li>
+                    <li><a href="dossiers/sultanaliyev.html" class="dossier-link" data-original-name="Сайпидин Султаналиев">Сайпидин Султаналиев</a></li>
+                    <li><a href="dossiers/tazhibek-kyzy-mahabat.html" class="dossier-link" data-original-name="Тажибек кызы Махабат">Тажибек кызы Махабат</a></li>
+                    <li><a href="dossiers/akunbekov.html" class="dossier-link" data-original-name="Акунбеков Сапарбек Акунбекович">Акунбеков Сапарбек Акунбекович</a></li>
+                    <li><a href="dossiers/asypbekov.html" class="dossier-link" data-original-name="Асыпбеков Тыныстан Бекназарович">Асыпбеков Тыныстан Бекназарович</a></li>
+                    <li><a href="dossiers/beishekeeva.html" class="dossier-link" data-original-name="Бейшекеева Айке Нурлановна">Бейшекеева Айке Нурлановна</a></li>
+                    <li><a href="dossiers/buzumov.html" class="dossier-link" data-original-name="Бузумов Жоодарбек Бакыталиевич">Бузумов Жоодарбек Бакыталиевич</a></li>
+                    <li><a href="dossiers/ishenbekov.html" class="dossier-link" data-original-name="Ишенбеков Азамат Ишенбекович">Ишенбеков Азамат Ишенбекович</a></li>
+                    <li><a href="dossiers/orozbekov.html" class="dossier-link" data-original-name="Орозбеков Асылбек Орозбекович">Орозбеков Асылбек Орозбекович</a></li>
                 </ul>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_title: "Архив досье - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                section_title: "Архив досье",
+                executors_heading: "Исполнители (представители госорганов):",
+                victims_heading: "Жертвы преследования:",
+                back_to_home: "Назад на главную",
+                names: {
+                    "Жумабаев А.А.": "Жумабаев А.А.",
+                    "Шерматов Миран Бакытбекович": "Шерматов Миран Бакытбекович",
+                    "Турдукулов Тилек Ураимжанович": "Турдукулов Тилек Ураимжанович",
+                    "Калыбаев Алмаз Жээнкулович": "Калыбаев Алмаз Жээнкулович",
+                    "Атаев Замирбек Исмаилович": "Атаев Замирбек Исмаилович",
+                    "Момуналиев Адис Жолдошбекович": "Момуналиев Адис Жолдошбекович",
+                    "Бекенов Туратбек Орозбаевич": "Бекенов Туратбек Орозбаевич",
+                    "Кожомбердиев Нурлан Кожомбердиевич": "Кожомбердиев Нурлан Кожомбердиевич",
+                    "Зикиралиев Улан Спартакович": "Зикиралиев Улан Спартакович",
+                    "Байышов Кубанбек Эмилбекович": "Байышов Кубанбек Эмилбекович",
+                    "Бейшеева.С.Б": "Бейшеева.С.Б",
+                    "Калмуратов А.К.": "Калмуратов А.К.",
+                    "Баратов Т.": "Баратов Т.",
+                    "Султанов У.Т.": "Султанов У.Т.",
+                    "Увалиев Адилет Куванычбекович": "Увалиев Адилет Куванычбекович",
+                    "Атантаев Б.": "Атантаев Б.",
+                    "А.Карыпбек уулу": "А.Карыпбек уулу",
+                    "Осмоналиев А.": "Осмоналиев А.",
+                    "Патанов А.К.": "Патанов А.К.",
+                    "Джапекова Улан Джолдошбекович": "Джапекова Улан Джолдошбекович",
+                    "Момуналиев Э.С.": "Момуналиев Э.С.",
+                    "Мурзабеков Алмазбек Байитович": "Мурзабеков Алмазбек Байитович",
+                    "Муканбетов У.И.": "Муканбетов У.И.",
+                    "Абдырахманов У.М.": "Абдырахманов У.М.",
+                    "Жайчыбеков Алмаз Сапарбекович": "Жайчыбеков Алмаз Сапарбекович",
+                    "Джаныбеков Эрик Сабырбекович": "Джаныбеков Эрик Сабырбекович",
+                    "Нарбаев М.Н.": "Нарбаев М.Н.",
+                    "Коженбердиева С.Б.": "Коженбердиева С.Б.",
+                    "Шадманова С.К.": "Шадманова С.К.",
+                    "Апысов Акылбек Айдаралиевич": "Апысов Акылбек Айдаралиевич",
+                    "Камалова А.Д.": "Камалова А.Д.",
+                    "Калмурзаев Н.С.": "Калмурзаев Н.С.",
+                    "Осмонов А.А.": "Осмонов А.А.",
+                    "Кадыркулов Э.Ш.": "Кадыркулов Э.Ш.",
+                    "Кайкиев Р.Б.": "Кайкиев Р.Б.",
+                    "Исагалиев М.И.": "Исагалиев М.И.",
+                    "Сатымкулов Б.К.": "Сатымкулов Б.К.",
+                    "Акуналиев Н.А.": "Акуналиев Н.А.",
+                    "Эркинбеков А.Т.": "Эркинбеков А.Т.",
+                    "Акжолов А.А.": "Акжолов А.А.",
+                    "Толубаева М.М.": "Толубаева М.М.",
+                    "Алчакпаева М.Д.": "Алчакпаева М.Д.",
+                    "Райымбеков С.Ю.": "Райымбеков С.Ю.",
+                    "Кооманов У.О.": "Кооманов У.О.",
+                    "Алиев Т.": "Алиев Т.",
+                    "Каразак уулу Нуркыяз": "Каразак уулу Нуркыяз",
+                    "Мурзураимов Курманбек Пайзилдаевич": "Мурзураимов Курманбек Пайзилдаевич",
+                    "Ташмаматов К.Ж.": "Ташмаматов К.Ж.",
+                    "Догдурбеков И.Д.": "Догдурбеков И.Д.",
+                    "Кыдыралиев Б.А.": "Кыдыралиев Б.А.",
+                    "Танчибеков Ырыскелди Алмазович": "Танчибеков Ырыскелди Алмазович",
+                    "Ранат уулу Аибек": "Ранат уулу Аибек",
+                    "Сакбаев Нурлан": "Сакбаев Нурлан",
+                    "Абдыкожоев Талайбек Ташбаевич": "Абдыкожоев Талайбек Ташбаевич",
+                    "Жанышбек уулу Азамат": "Жанышбек уулу Азамат",
+                    "Капаров Мааданбек Таалайбекович": "Капаров Мааданбек Таалайбекович",
+                    "Турдалиев Жумабек Искендерович": "Турдалиев Жумабек Искендерович",
+                    "Тажибек уулу Максат": "Тажибек уулу Максат",
+                    "Сайпидин Султаналиев": "Сайпидин Султаналиев",
+                    "Тажибек кызы Махабат": "Тажибек кызы Махабат",
+                    "Акунбеков Сапарбек Акунбекович": "Акунбеков Сапарбек Акунбекович",
+                    "Асыпбеков Тыныстан Бекназарович": "Асыпбеков Тыныстан Бекназарович",
+                    "Бейшекеева Айке Нурлановна": "Бейшекеева Айке Нурлановна",
+                    "Бузумов Жоодарбек Бакыталиевич": "Бузумов Жоодарбек Бакыталиевич",
+                    "Ишенбеков Азамат Ишенбекович": "Ишенбеков Азамат Ишенбекович",
+                    "Орозбеков Асылбек Орозбекович": "Орозбеков Асылбек Орозбекович",
+                }
+            },
+            en: {
+                dossier_title: "Dossier Archive - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                section_title: "Dossier Archive",
+                executors_heading: "Perpetrators (Government Officials):",
+                victims_heading: "Victims of Persecution:",
+                back_to_home: "Back to Home",
+                names: {
+                    "Жумабаев А.А.": "Zhumabaev A.A.",
+                    "Шерматов Миран Бакытбекович": "Shermatov Miran Bakytbekovich",
+                    "Турдукулов Тилек Ураимжанович": "Turdukulov Tilek Uraimzhanovich",
+                    "Калыбаев Алмаз Жээнкулович": "Kalybaev Almaz Zheenbekovich",
+                    "Атаев Замирбек Исмаилович": "Ataev Zamirbek Ismailovich",
+                    "Момуналиев Адис Жолдошбекович": "Momunaliev Adis Zholdoshbekovich",
+                    "Бекенов Туратбек Орозбаевич": "Bekenov Turatbek Orozbaevich",
+                    "Кожомбердиев Нурлан Кожомбердиевич": "Kozhomberdiev Nurlan Kozhomberdievich",
+                    "Зикиралиев Улан Спартакович": "Zikiraliev Ulan Spartakovich",
+                    "Байышов Кубанбек Эмилбекович": "Baiyshov Kubanbek Emilbekovich",
+                    "Бейшеева.С.Б": "Beisheeva S.B.",
+                    "Калмуратов А.К.": "Kalmuratov A.K.",
+                    "Баратов Т.": "Baratov T.",
+                    "Султанов У.Т.": "Sultanov U.T.",
+                    "Увалиев Адилет Куванычбекович": "Uvaliev Adilet Kuvanychbekovich",
+                    "Атантаев Б.": "Atantaev B.",
+                    "А.Карыпбек уулу": "A. Karypbek uulu",
+                    "Осмоналиев А.": "Osmonaliev A.",
+                    "Патанов А.К.": "Patanov A.K.",
+                    "Джапекова Улан Джолдошбекович": "Dzhapekova Ulan Dzholdoshbekovich",
+                    "Момуналиев Э.С.": "Momunaliev E.S.",
+                    "Мурзабеков Алмазбек Байитович": "Murzabekov Almazbek Baiitovich",
+                    "Муканбетов У.И.": "Mukanbetov U.I.",
+                    "Абдырахманов У.М.": "Abdyrahmanov U.M.",
+                    "Жайчыбеков Алмаз Сапарбекович": "Zhaichybekov Almaz Saparbekovich",
+                    "Джаныбеков Эрик Сабырбекович": "Dzhanibekov Erik Sabyrbekovich",
+                    "Нарбаев М.Н.": "Narbaev M.N.",
+                    "Коженбердиева С.Б.": "Kozhenberdieva S.B.",
+                    "Шадманова С.К.": "Shadmanova S.K.",
+                    "Апысов Акылбек Айдаралиевич": "Apysov Akylbek Aidaralievich",
+                    "Камалова А.Д.": "Kamalova A.D.",
+                    "Калмурзаев Н.С.": "Kalmurzaev N.S.",
+                    "Осмонов А.А.": "Osmonov A.A.",
+                    "Кадыркулов Э.Ш.": "Kadyrkulov E.Sh.",
+                    "Кайкиев Р.Б.": "Kaikiev R.B.",
+                    "Исагалиев М.И.": "Isagaliev M.I.",
+                    "Сатымкулов Б.К.": "Satymkulov B.K.",
+                    "Акуналиев Н.А.": "Akunaliev N.A.",
+                    "Эркинбеков А.Т.": "Erkinbekov A.T.",
+                    "Акжолов А.А.": "Akzholov A.A.",
+                    "Толубаева М.М.": "Tolubaeva M.M.",
+                    "Алчакпаева М.Д.": "Alchakpaeva M.D.",
+                    "Райымбеков С.Ю.": "Raiymbekov S.Yu.",
+                    "Кооманов У.О.": "Koomanov U.O.",
+                    "Алиев Т.": "Aliev T.",
+                    "Каразак уулу Нуркыяз": "Karazak uulu Nurkyiaz",
+                    "Мурзураимов Курманбек Пайзилдаевич": "Murzuraimov Kurmanbek Paizildaevich",
+                    "Ташмаматов К.Ж.": "Tashmamatov K.Zh.",
+                    "Догдурбеков И.Д.": "Dogdurbekov I.D.",
+                    "Кыдыралиев Б.А.": "Kydyraliev B.A.",
+                    "Танчибеков Ырыскелди Алмазович": "Tanchibekov Yryskeldi Almazovich",
+                    "Ранат уулу Аибек": "Ranat uulu Aibek",
+                    "Сакбаев Нурлан": "Sakbaev Nurlan",
+                    "Абдыкожоев Талайбек Ташбаевич": "Abdykozhoev Talaibek Tashbaevich",
+                    "Жанышбек уулу Азамат": "Zhanyshbek uulu Azamat",
+                    "Капаров Мааданбек Таалайбекович": "Kaparov Maadanbek Taalaibekovich",
+                    "Турдалиев Жумабек Искендерович": "Turdailev Zhumabek Iskenderovich",
+                    "Тажибек уулу Максат": "Tazhibek uulu Maksat",
+                    "Сайпидин Султаналиев": "Saipidin Sultanaliyev",
+                    "Тажибек кызы Махабат": "Tazhibek kyzy Mahabat",
+                    "Акунбеков Сапарбек Акунбекович": "Akunbekov Saparbek Akunbekovich",
+                    "Асыпбеков Тыныстан Бекназарович": "Asypbekov Tynystan Beknazarovich",
+                    "Бейшекеева Айке Нурлановна": "Beishekeeva Aike Nurlanovna",
+                    "Бузумов Жоодарбек Бакыталиевич": "Buzumov Zhoodarbek Bakytalievich",
+                    "Ишенбеков Азамат Ишенбекович": "Ishenbekov Azamat Ishenbekovich",
+                    "Орозбеков Асылбек Орозбекович": "Orozbekov Asylbek Orozbekovich",
+                }
+            },
+            kg: {
+                dossier_title: "Досье архиви - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                section_title: "Досье архиви",
+                executors_heading: "Аткаруучулар (мамлекеттик органдардын өкүлдөрү):",
+                victims_heading: "Куугунтуктун курмандыктары:",
+                back_to_home: "Башкы бетке кайтуу",
+                names: {
+                    "Жумабаев А.А.": "Жумабаев А.А.",
+                    "Шерматов Миран Бакытбекович": "Шерматов Миран Бакытбекович",
+                    "Турдукулов Тилек Ураимжанович": "Турдукулов Тилек Ураимжанович",
+                    "Калыбаев Алмаз Жээнкулович": "Калыбаев Алмаз Жээнкулович",
+                    "Атаев Замирбек Исмаилович": "Атаев Замирбек Исмаилович",
+                    "Момуналиев Адис Жолдошбекович": "Момуналиев Адис Жолдошбекович",
+                    "Бекенов Туратбек Орозбаевич": "Бекенов Туратбек Орозбаевич",
+                    "Кожомбердиев Нурлан Кожомбердиевич": "Кожомбердиев Нурлан Кожомбердиевич",
+                    "Зикиралиев Улан Спартакович": "Зикиралиев Улан Спартакович",
+                    "Байышов Кубанбек Эмилбекович": "Байышов Кубанбек Эмилбекович",
+                    "Бейшеева.С.Б": "Бейшеева.С.Б",
+                    "Калмуратов А.К.": "Калмуратов А.К.",
+                    "Баратов Т.": "Баратов Т.",
+                    "Султанов У.Т.": "Султанов У.Т.",
+                    "Увалиев Адилет Куванычбекович": "Увалиев Адилет Куванычбекович",
+                    "Атантаев Б.": "Атантаев Б.",
+                    "А.Карыпбек уулу": "А.Карыпбек уулу",
+                    "Осмоналиев А.": "Осмоналиев А.",
+                    "Патанов А.К.": "Патанов А.К.",
+                    "Джапекова Улан Джолдошбекович": "Жапекова Улан Жолдошбекович",
+                    "Момуналиев Э.С.": "Момуналиев Э.С.",
+                    "Мурзабеков Алмазбек Байитович": "Мурзабеков Алмазбек Байитович",
+                    "Муканбетов У.И.": "Муканбетов У.И.",
+                    "Абдырахманов У.М.": "Абдырахманов У.М.",
+                    "Жайчыбеков Алмаз Сапарбекович": "Жайчыбеков Алмаз Сапарбекович",
+                    "Джаныбеков Эрик Сабырбекович": "Жаныбеков Эрик Сабырбекович",
+                    "Нарбаев М.Н.": "Нарбаев М.Н.",
+                    "Коженбердиева С.Б.": "Коженбердиева С.Б.",
+                    "Шадманова С.К.": "Шадманова С.К.",
+                    "Апысов Акылбек Айдаралиевич": "Апысов Акылбек Айдаралиевич",
+                    "Камалова А.Д.": "Камалова А.Д.",
+                    "Калмурзаев Н.С.": "Калмурзаев Н.С.",
+                    "Осмонов А.А.": "Осмонов А.А.",
+                    "Кадыркулов Э.Ш.": "Кадыркулов Э.Ш.",
+                    "Кайкиев Р.Б.": "Кайкиев Р.Б.",
+                    "Исагалиев М.И.": "Исагалиев М.И.",
+                    "Сатымкулов Б.К.": "Сатымкулов Б.К.",
+                    "Акуналиев Н.А.": "Акуналиев Н.А.",
+                    "Эркинбеков А.Т.": "Эркинбеков А.Т.",
+                    "Акжолов А.А.": "Акжолов А.А.",
+                    "Толубаева М.М.": "Толубаева М.М.",
+                    "Алчакпаева М.Д.": "Алчакпаева М.Д.",
+                    "Райымбеков С.Ю.": "Райымбеков С.Ю.",
+                    "Кооманов У.О.": "Кооманов У.О.",
+                    "Алиев Т.": "Алиев Т.",
+                    "Каразак уулу Нуркыяз": "Каразак уулу Нуркыяз",
+                    "Мурзураимов Курманбек Пайзилдаевич": "Мурзураимов Курманбек Пайзилдаевич",
+                    "Ташмаматов К.Ж.": "Ташмаматов К.Ж.",
+                    "Догдурбеков И.Д.": "Догдурбеков И.Д.",
+                    "Кыдыралиев Б.А.": "Кыдыралиев Б.А.",
+                    "Танчибеков Ырыскелди Алмазович": "Танчибеков Ырыскелди Алмазович",
+                    "Ранат уулу Аибек": "Ранат уулу Аибек",
+                    "Сакбаев Нурлан": "Сакбаев Нурлан",
+                    "Абдыкожоев Талайбек Ташбаевич": "Абдыкожоев Талайбек Ташбаевич",
+                    "Жанышбек уулу Азамат": "Жанышбек уулу Азамат",
+                    "Капаров Мааданбек Таалайбекович": "Капаров Мааданбек Таалайбекович",
+                    "Турдалиев Жумабек Искендерович": "Турдалиев Жумабек Искендерович",
+                    "Тажибек уулу Максат": "Тажибек уулу Максат",
+                    "Сайпидин Султаналиев": "Сайпидин Султаналиев",
+                    "Тажибек кызы Махабат": "Тажибек кызы Махабат",
+                    "Акунбеков Сапарбек Акунбекович": "Акунбеков Сапарбек Акунбекович",
+                    "Асыпбеков Тыныстан Бекназарович": "Асыпбеков Тыныстан Бекназарович",
+                    "Бейшекеева Айке Нурлановна": "Бейшекеева Айке Нурлановна",
+                    "Бузумов Жоодарбек Бакыталиевич": "Бузумов Жоодарбек Бакыталиевич",
+                    "Ишенбеков Азамат Ишенбекович": "Ишенбеков Азамат Ишенбекович",
+                    "Орозбеков Асылбек Орозбекович": "Орозбеков Асылбек Орозбекович",
+                }
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLanguage') || 'ru'; // Initialize currentLang
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.dataset.lang;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            document.querySelector('title').textContent = translations[lang].dossier_title;
+
+            // Handle dossier names
+            document.querySelectorAll('.dossier-link').forEach(linkElement => {
+                const originalName = linkElement.dataset.originalName; // Get original name from data attribute
+                if (translations[lang] && translations[lang].names && translations[lang].names.hasOwnProperty(originalName)) {
+                    linkElement.textContent = translations[lang].names[originalName];
+                } else {
+                    // Fallback to original name if translation not found
+                    linkElement.textContent = originalName;
+                }
+            });
+
+            // Update active button state
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            // Load saved language or default to Russian
+            setLanguage(currentLang); // Apply initial language on load
+        });
+    </script>
 </body>
 </html>
+
