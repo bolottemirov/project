@@ -200,7 +200,7 @@
     <!-- Header -->
     <header class="header-bg shadow-md sticky top-0 z-50">
         <div class="container flex justify-between items-center py-4">
-            <a href="index_redesigned.html" class="text-white text-2xl font-bold uppercase tracking-wider" data-lang="site_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <a href="index.html" class="text-white text-2xl font-bold uppercase tracking-wider" data-lang="site_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
             <nav class="flex items-center space-x-8">
                 <a href="#hero" class="nav-link text-lg" data-lang="nav_home">Главная</a>
                 <a href="#cases" class="nav-link text-lg" data-lang="nav_cases">Дела</a>
@@ -420,7 +420,11 @@
             document.querySelectorAll('[data-lang]').forEach(element => {
                 const key = element.dataset.lang;
                 if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
                 }
             });
             document.querySelectorAll('[data-lang-role]').forEach(element => {
@@ -460,8 +464,4 @@
     </script>
 </body>
 </html>
-
-
-
-
 
