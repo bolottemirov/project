@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Байышов Кубанбек Эмилбекович - Архив Подотчетности</title>
+    <title data-lang-key="dossier_baiyshov_title">Досье: Байышов Кубанбек Эмилбекович - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -259,80 +265,373 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-baiyshov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo"></div>
-                        <h2>Байышов Кубанбек Эмилбекович</h2>
-                        <p><strong>Категория:</strong> Следователь</p>
-                        <p><strong>Должность:</strong> Следователь Следственной Службы МВД КР / Следователь следственной группы / Руководитель следственной группы</p>
+                        <h2 data-lang-key="name_baiyshov_full">Байышов Кубанбек Эмилбекович</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_investigator">Следователь</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="position_baiyshov">Следователь Следственной Службы МВД КР / Следователь следственной группы / Руководитель следственной группы</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия (17.01.2024): Арест журналистов</h5>
-                            <p>В качестве руководителя следственной группы по делу №03-050-2024-000029, 17 января 2024 года, майор милиции Байышов К.Э. предъявил обвинения и инициировал ходатайства о применении меры пресечения в виде заключения под стражу в отношении следующих журналистов, обосновывая это тем, что, находясь на свободе, они могут продолжить свою преступную деятельность и негативно влиять на общественное мнение:</p>
+                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="action_arrest_journalists">Действия (17.01.2024): Арест журналистов</h5>
+                            <p data-lang-key="description_arrest_journalists">В качестве руководителя следственной группы по делу №03-050-2024-000029, 17 января 2024 года, майор милиции Байышов К.Э. предъявил обвинения и инициировал ходатайства о применении меры пресечения в виде заключения под стражу в отношении следующих журналистов, обосновывая это тем, что, находясь на свободе, они могут продолжить свою преступную деятельность и негативно влиять на общественное мнение:</p>
                             <ul>
-                                <li>Турдалиев Жумабек Искендерович (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Тажибек уулу Максат (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Капаров Мааданбек Таалайбекович (обвинение по ст. 41 ч. 2 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Сайпидин Султаналиев (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Тажибек кызы Махабат (обвинение по ст. 41 ч. 2 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Акунбеков Сапарбек Акунбекович (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Асыпбеков Тыныстан Бекназарович (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Бейшекеева Айке Нурлановна (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Бузумов Жоодарбек Бакыталыевич (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Ишенбеков Азамат Ишенбекович (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
-                                <li>Орозбеков Акылбек Орозбекович (обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)</li>
+                                <li><span data-lang-key="name_turdaliev">Турдалиев Жумабек Искендерович</span> (<span data-lang-key="accusation_turdaliev">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_tazhibek_uulu">Тажибек уулу Максат</span> (<span data-lang-key="accusation_tazhibek_uulu">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_kaparov">Капаров Мааданбек Таалайбекович</span> (<span data-lang-key="accusation_kaparov">обвинение по ст. 41 ч. 2 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_sultanaliyev">Сайпидин Султаналиев</span> (<span data-lang-key="accusation_sultanaliyev">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_tazhibek_kyzy_mahabat">Тажибек кызы Махабат</span> (<span data-lang-key="accusation_tazhibek_kyzy_mahabat">обвинение по ст. 41 ч. 2 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_akunbekov">Акунбеков Сапарбек Акунбекович</span> (<span data-lang-key="accusation_akunbekov">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_asypbekov">Асыпбеков Тыныстан Бекназарович</span> (<span data-lang-key="accusation_asypbekov">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_beishekeeva">Бейшекеева Айке Нурлановна</span> (<span data-lang-key="accusation_beishekeeva">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_buzumov">Бузумов Жоодарбек Бакыталыевич</span> (<span data-lang-key="accusation_buzumov">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_ishenbekov">Ишенбеков Азамат Ишенбекович</span> (<span data-lang-key="accusation_ishenbekov">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
+                                <li><span data-lang-key="name_orozbekov">Орозбеков Акылбек Орозбекович</span> (<span data-lang-key="accusation_orozbekov">обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР</span>)</li>
                             </ul>
                         </div>
                         <div class="un-opinion-box">
-                            <h5>Оценка ООН (Мнение № 57/2024)</h5>
-                            <p>Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Сапарбека Акунбекова, Айке Бейшекеевой, Азамата Ишенбекова, Акылбека («Акыл») Орозбекова, Актилек («Мааданбек») Капарова, Тыныстана Асыпбекова, Сайпидина Султаналиева, Максата Тажибек уулу и Жоодарбека Бузумова, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.</p>
+                            <h5 data-lang-key="un_opinion_heading">Оценка ООН (Мнение № 57/2024)</h5>
+                            <p data-lang-key="un_opinion_text">Рабочая группа ООН по произвольным задержаниям в своем <strong data-lang-key="un_opinion_bold_text">Мнении № 57/2024</strong> признала лишение свободы Сапарбека Акунбекова, Айке Бейшекеевой, Азамата Ишенбекова, Акылбека («Акыл») Орозбекова, Актилек («Мааданбек») Капарова, Тыныстана Асыпбекова, Сайпидина Султаналиева, Максата Тажибек уулу и Жоодарбека Бузумова, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, <strong data-lang-key="un_opinion_arbitrary">произвольным и подпадающим под категории I, II, III и V</strong>.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
-                            <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            <h5 data-lang-key="action_inclusion_investigation_group">Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                            <p data-lang-key="description_inclusion_investigation_group">Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (21.02.2024): Отказ в устранении нарушения по жалобе Акылбека Орозбекова</h5>
-                            <p>В судебном заседании по жалобе Акылбека Орозбекова, обвинявшего оперативных сотрудников в незаконном получении паролей под давлением, было указано, что на него возлагалась обязанность устранить допущенное нарушение. Однако, суд оставил жалобу без удовлетворения.</p>
+                            <h5 data-lang-key="action_refusal_eliminate_violation">Действия (21.02.2024): Отказ в устранении нарушения по жалобе Акылбека Орозбекова</h5>
+                            <p data-lang-key="description_refusal_eliminate_violation">В судебном заседании по жалобе Акылбека Орозбекова, обвинявшего оперативных сотрудников в незаконном получении паролей под давлением, было указано, что на него возлагалась обязанность устранить допущенное нарушение. Однако, суд оставил жалобу без удовлетворения.</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В действиях усматриваются признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)** или других статей, связанных с незаконным лишением свободы или злоупотреблением должностным положением. <br><span class="sanction">Санция:</span> лишение свободы от 5 до 8 лет (для ст. 351 УК КР).</p>
-                        <h5>Источники:</h5>
-                        <p><a href="#">Постановление о ходатайстве о применении меры пресечения в отношении Турдалиева Жумабека Искендеровича от 17.01.2024</a>.</p>
-                        <p><a href="#">Постановление о привлечении в качестве обвиняемого в отношении Тажибек уулу Максата от 17.01.2024</a>.</p>
-                        <p><a href="#">Постановление от 30.01.2024 (о возбуждении ходатайства о проверке законности обыска)</a>.</p>
-                        <p><a href="#">Постановление от 01.02.2024 (о проверке законности и обоснованности произведенного обыска)</a>.</p>
-                        <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
-                        <p><a href="#">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
-                        <p><a href="#">Постановление об оставлении жалобы без удовлетворения от 21.02.2024</a>.</p>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>
+                            <span data-lang-key="legal_qualification_description">В действиях усматриваются признаки преступлений, предусмотренных:</span>
+                            <br>
+                            <strong data-lang-key="article_202_name">ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_202">Санкция: штраф или лишение свободы до 3 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_337_name">ст. 337 УК КР (Злоупотребление должностным положением)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_337">Санкция: штраф или лишение свободы до 5 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_360_name">ст. 360 УК КР (Принуждение к даче показаний)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_360">Санкция: лишение свободы до 10 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_191_name">ст. 191 УК КР (Незаконное задержание или заключение под стражу)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_191">Санкция: лишение свободы до 5 лет.</span>
+                        </p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_petition_turdaliev">Постановление о ходатайстве о применении меры пресечения в отношении Турдалиева Жумабека Искендеровича от 17.01.2024</a>.</p>
+                        <p><a href="#" data-lang-key="source_accusation_tazhibek_uulu">Постановление о привлечении в качестве обвиняемого в отношении Тажибек уулу Максата от 17.01.2024</a>.</p>
+                        <p><a href="#" data-lang-key="source_resolution_search_request">Постановление от 30.01.2024 (о возбуждении ходатайства о проверке законности обыска)</a>.</p>
+                        <p><a href="#" data-lang-key="source_resolution_search_check">Постановление от 01.02.2024 (о проверке законности и обоснованности произведенного обыска)</a>.</p>
+                        <p><a href="#" data-lang-key="source_resolution_investigation_group">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        <p><a href="#" data-lang-key="source_resolution_detention_check">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
+                        <p><a href="#" data-lang-key="source_resolution_complaint_rejection">Постановление об оставлении жалобы без удовлетворения от 21.02.2024</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_baiyshov_title: "Досье: Байышов Кубанбек Эмилбекович - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                name_baiyshov_full: "Байышов Кубанбек Эмилбекович",
+                category_label: "Категория:",
+                category_investigator: "Следователь",
+                position_label: "Должность:",
+                position_baiyshov: "Следователь Следственной Службы МВД КР / Следователь следственной группы / Руководитель следственной группы",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
+                action_arrest_journalists: "Действия (17.01.2024): Арест журналистов",
+                description_arrest_journalists: "В качестве руководителя следственной группы по делу №03-050-2024-000029, 17 января 2024 года, майор милиции Байышов К.Э. предъявил обвинения и инициировал ходатайства о применении меры пресечения в виде заключения под стражу в отношении следующих журналистов, обосновывая это тем, что, находясь на свободе, они могут продолжить свою преступную деятельность и негативно влиять на общественное мнение:",
+                name_turdaliev: "Турдалиев Жумабек Искендерович",
+                accusation_turdaliev: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                name_tazhibek_uulu: "Тажибек уулу Максат",
+                accusation_tazhibek_uulu: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                name_kaparov: "Капаров Мааданбек Таалайбекович",
+                accusation_kaparov: "(обвинение по ст. 41 ч. 2 и ст. 278 ч. 3 УК КР)",
+                name_sultanaliyev: "Сайпидин Султаналиев",
+                accusation_sultanaliyev: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
+                accusation_tazhibek_kyzy_mahabat: "(обвинение по ст. 41 ч. 2 и ст. 278 ч. 3 УК КР)",
+                name_akunbekov: "Акунбеков Сапарбек Акунбекович",
+                accusation_akunbekov: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                name_asypbekov: "Асыпбеков Тыныстан Бекназарович",
+                accusation_asypbekov: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                name_beishekeeva: "Бейшекеева Айке Нурлановна",
+                accusation_beishekeeva: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                name_buzumov: "Бузумов Жоодарбек Бакыталыевич",
+                accusation_buzumov: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                name_ishenbekov: "Ишенбеков Азамат Ишенбекович",
+                accusation_ishenbekov: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                name_orozbekov: "Орозбеков Акылбек Орозбекович",
+                accusation_orozbekov: "(обвинение по ст. 41 ч. 4 и ст. 278 ч. 3 УК КР)",
+                un_opinion_heading: "Оценка ООН (Мнение № 57/2024)",
+                un_opinion_bold_text: "Мнении № 57/2024",
+                un_opinion_text: "Рабочая группа ООН по произвольным задержаниям в своем Мнении № 57/2024 признала лишение свободы Сапарбека Акунбекова, Айке Бейшекеевой, Азамата Ишенбекова, Акылбека («Акыл») Орозбекова, Актилек («Мааданбек») Капарова, Тыныстана Асыпбекова, Сайпидина Султаналиева, Максата Тажибек уулу и Жоодарбека Бузумова, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, произвольным и подпадающим под категории I, II, III и V.",
+                un_opinion_arbitrary: "произвольным и подпадающим под категории I, II, III и V",
+                action_inclusion_investigation_group: "Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029",
+                description_inclusion_investigation_group: "Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.",
+                action_refusal_eliminate_violation: "Действия (21.02.2024): Отказ в устранении нарушения по жалобе Акылбека Орозбекова",
+                description_refusal_eliminate_violation: "В судебном заседании по жалобе Акылбека Орозбекова, обвинявшего оперативных сотрудников в незаконном получении паролей под давлением, было указано, что на него возлагалась обязанность устранить допущенное нарушение. Однако, суд оставил жалобу без удовлетворения.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_qualification_description: "В действиях усматриваются признаки преступлений, предусмотренных:",
+                article_202_name: "ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)",
+                sanction_202: "Санкция: штраф или лишение свободы до 3 лет.",
+                article_337_name: "ст. 337 УК КР (Злоупотребление должностным положением)",
+                sanction_337: "Санкция: штраф или лишение свободы до 5 лет.",
+                article_360_name: "ст. 360 УК КР (Принуждение к даче показаний)",
+                sanction_360: "Санкция: лишение свободы до 10 лет.",
+                article_191_name: "ст. 191 УК КР (Незаконное задержание или заключение под стражу)",
+                sanction_191: "Санкция: лишение свободы до 5 лет.",
+                sources_heading: "Источники:",
+                source_petition_turdaliev: "Постановление о ходатайстве о применении меры пресечения в отношении Турдалиева Жумабека Искендеровича от 17.01.2024",
+                source_accusation_tazhibek_uulu: "Постановление о привлечении в качестве обвиняемого в отношении Тажибек уулу Максата от 17.01.2024",
+                source_resolution_search_request: "Постановление от 30.01.2024 (о возбуждении ходатайства о проверке законности обыска)",
+                source_resolution_search_check: "Постановление от 01.02.2024 (о проверке законности и обоснованности произведенного обыска)",
+                source_resolution_investigation_group: "Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024",
+                source_resolution_detention_check: "Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024",
+                source_resolution_complaint_rejection: "Постановление об оставлении жалобы без удовлетворения от 21.02.2024",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+            },
+            en: {
+                dossier_baiyshov_title: "Dossier: Baiyshov Kubanbek Emilbekovich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                name_baiyshov_full: "Baiyshov Kubanbek Emilbekovich",
+                category_label: "Category:",
+                category_investigator: "Investigator",
+                position_label: "Position:",
+                position_baiyshov: "Investigator of the Investigation Service of the Ministry of Internal Affairs of the Kyrgyz Republic / Investigator of the investigation team / Head of the investigation team",
+                documented_episodes_heading: "Documented Episodes",
+                episode_case_journalists: "Episode: «Case of 11 Journalists»",
+                action_arrest_journalists: "Actions (17.01.2024): Arrest of journalists",
+                description_arrest_journalists: "As the head of the investigation group in case No. 03-050-2024-000029, on January 17, 2024, Police Major Baiyshov K.E. filed charges and initiated petitions for the application of a preventive measure in the form of detention against the following journalists, justifying this by the fact that, if free, they could continue their criminal activities and negatively influence public opinion:",
+                name_turdaliev: "Turdailev Zhumabek Iskenderovich",
+                accusation_turdaliev: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_tazhibek_uulu: "Tazhibek uulu Maksat",
+                accusation_tazhibek_uulu: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_kaparov: "Kaparov Maadanbek Taalaibekovich",
+                accusation_kaparov: "(accused under Article 41 Part 2 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_sultanaliyev: "Saipidin Sultanaliyev",
+                accusation_sultanaliyev: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_tazhibek_kyzy_mahabat: "Tazhibek kyzy Mahabat",
+                accusation_tazhibek_kyzy_mahabat: "(accused under Article 41 Part 2 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_akunbekov: "Akunbekov Saparbek Akunbekovich",
+                accusation_akunbekov: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_asypbekov: "Asypbekov Tynystan Beknazarovich",
+                accusation_asypbekov: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_beishekeeva: "Beishekeeva Aike Nurlanovna",
+                accusation_beishekeeva: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_buzumov: "Buzumov Zhoodarbek Bakytalievich",
+                accusation_buzumov: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_ishenbekov: "Ishenbekov Azamat Ishenbekovich",
+                accusation_ishenbekov: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                name_orozbekov: "Orozbekov Asylbek Orozbekovich",
+                accusation_orozbekov: "(accused under Article 41 Part 4 and Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic)",
+                un_opinion_heading: "UN Assessment (Opinion No. 57/2024)",
+                un_opinion_bold_text: "Opinion No. 57/2024",
+                un_opinion_text: "The UN Working Group on Arbitrary Detention, in its Opinion No. 57/2024, recognized the deprivation of liberty of Saparbek Akunbekov, Aike Beishekeeva, Azamat Ishenbekov, Akylbek (“Akyl”) Orozbekov, Aktilek (“Maadanbek”) Kaparov, Tynystan Asypbekov, Saipidin Sultanaliyev, Maksat Tazhibek uulu, and Zhoodarbek Buzumov, as contrary to Articles 2, 7, 9, 11 and 19 of the Universal Declaration of Human Rights and Articles 2, 9, 14, 19 and 26 of the International Covenant on Civil and Political Rights, as arbitrary and falling under categories I, II, III, and V.",
+                un_opinion_arbitrary: "arbitrary and falling under categories I, II, III, and V",
+                action_inclusion_investigation_group: "Actions (19.02.2024): Inclusion in the investigation group for criminal case No. 03-050-2024-000029",
+                description_inclusion_investigation_group: "Included in the investigation group for criminal case No. 03-050-2024-000029 as an investigator of the investigation group by the order of the Head of the Investigation Department of the Ministry of Internal Affairs of the Kyrgyz Republic, Police Colonel Zhumabaev A.A., dated 19.02.2024.",
+                action_refusal_eliminate_violation: "Actions (21.02.2024): Refusal to eliminate violation on Akylbek Orozbekov's complaint",
+                description_refusal_eliminate_violation: "In the court session on Akylbek Orozbekov's complaint, who accused operational officers of illegally obtaining passwords under pressure, it was indicated that he was obliged to eliminate the committed violation. However, the court dismissed the complaint.",
+                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_qualification_description: "The actions show signs of crimes provided for by:",
+                article_202_name: "Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of the lawful professional activities of journalists)",
+                sanction_202: "Sanction: fine or imprisonment for up to 3 years.",
+                article_337_name: "Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)",
+                sanction_337: "Sanction: fine or imprisonment for up to 5 years.",
+                article_360_name: "Article 360 of the Criminal Code of the Kyrgyz Republic (Coercion to give false testimony)",
+                sanction_360: "Sanction: imprisonment for up to 10 years.",
+                article_191_name: "Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or custody)",
+                sanction_191: "Sanction: imprisonment for up to 5 years.",
+                sources_heading: "Sources:",
+                source_petition_turdaliev: "Resolution on the petition for the application of a preventive measure against Turdaliev Zhumabek Iskenderovich dated 17.01.2024",
+                source_accusation_tazhibek_uulu: "Resolution on bringing charges against Tazhibek uulu Maksat dated 17.01.2024",
+                source_resolution_search_request: "Resolution dated 30.01.2024 (on initiating a petition to verify the legality of the search)",
+                source_resolution_search_check: "Resolution dated 01.02.2024 (on verifying the legality and validity of the search conducted)",
+                source_resolution_investigation_group: "Resolution on assigning a criminal case to an investigation group (investigation team) dated 19.02.2024",
+                source_resolution_detention_check: "Resolution on verifying the legality and validity of the suspect's detention dated 17.01.2024",
+                source_resolution_complaint_rejection: "Resolution on dismissing the complaint dated 21.02.2024",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+            },
+            kg: {
+                dossier_baiyshov_title: "Досье: Байышов Кубанбек Эмилбекович - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                name_baiyshov_full: "Байышов Кубанбек Эмилбекович",
+                category_label: "Категория:",
+                category_investigator: "Тергөөчү",
+                position_label: "Кызматы:",
+                position_baiyshov: "КР ИИМдин Тергөө кызматынын тергөөчүсү / Тергөө тобунун тергөөчүсү / Тергөө тобунун жетекчиси",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
+                action_arrest_journalists: "Аракеттер (17.01.2024): Журналисттерди камакка алуу",
+                description_arrest_journalists: "№03-050-2024-000029 кылмыш иши боюнча тергөө тобунун жетекчиси катары, 2024-жылдын 17-январында, милициянын майору Байышов К.Э. төмөнкү журналисттерге карата айыптарды койгон жана камакка алуу түрүндөгү бөгөт коюу чарасын колдонуу жөнүндө өтүнүчтөрдү демилгелеген, муну алар эркиндикте жүрүп кылмыштуу ишмердүүлүгүн улантып, коомдук пикирге терс таасирин тийгизиши мүмкүн деп негиздеген:",
+                name_turdaliev: "Турдалиев Жумабек Искендерович",
+                accusation_turdaliev: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_tazhibek_uulu: "Тажибек уулу Максат",
+                accusation_tazhibek_uulu: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_kaparov: "Капаров Мааданбек Таалайбекович",
+                accusation_kaparov: "(КР Кылмыш-жаза кодексинин 41-беренесинин 2-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_sultanaliyev: "Сайпидин Султаналиев",
+                accusation_sultanaliyev: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
+                accusation_tazhibek_kyzy_mahabat: "(КР Кылмыш-жаза кодексинин 41-беренесинин 2-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_akunbekov: "Акунбеков Сапарбек Акунбекович",
+                accusation_akunbekov: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_asypbekov: "Асыпбеков Тыныстан Бекназарович",
+                accusation_asypbekov: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_beishekeeva: "Бейшекеева Айке Нурлановна",
+                accusation_beishekeeva: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_buzumov: "Бузумов Жоодарбек Бакыталыевич",
+                accusation_buzumov: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_ishenbekov: "Ишенбеков Азамат Ишенбекович",
+                accusation_ishenbekov: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                name_orozbekov: "Орозбеков Акылбек Орозбекович",
+                accusation_orozbekov: "(КР Кылмыш-жаза кодексинин 41-беренесинин 4-бөлүгү жана 278-беренесинин 3-бөлүгү боюнча айыпталган)",
+                un_opinion_heading: "БУУнун баалоосу (№ 57/2024 Корутунду)",
+                un_opinion_bold_text: "№ 57/2024 Корутундусунда",
+                un_opinion_text: "БУУнун Эркиндигинен ажыратуулар боюнча жумушчу тобу өзүнүн № 57/2024 Корутундусунда Сапарбек Акунбековдун, Айке Бейшекееванын, Азамат Ишенбековдун, Акылбек («Акыл») Орозбековдун, Актилек («Мааданбек») Капаровдун, Тыныстан Асыпбековдун, Сайпидин Султаналиевдин, Максат Тажибек уулунун жана Жоодарбек Бузумовдун эркиндигинен ажыратылышын Адам укуктарынын жалпы декларациясынын 2, 7, 9, 11 жана 19-беренелерине, ошондой эле Жарандык жана саясий укуктар жөнүндө эл аралык пакттын 2, 9, 14, 19 жана 26-беренелерине карама-каршы келет деп таанып, муну I, II, III жана V категорияларына кирген өзүмбилемдик деп тапты.",
+                un_opinion_arbitrary: "өзүмбилемдик жана I, II, III жана V категорияларына кирет",
+                action_inclusion_investigation_group: "Аракеттер (19.02.2024): №03-050-2024-000029 кылмыш иши боюнча тергөө тобуна киргизүү",
+                description_inclusion_investigation_group: "Кыргыз Республикасынын ИИМдин Тергөө кызматынын башкармалыгынын начальниги, милициянын полковниги Жумабаев А.А.нын 19.02.2024-жылдагы токтому менен №03-050-2024-000029 кылмыш иши боюнча тергөө тобунун тергөөчүсү катары киргизилген.",
+                action_refusal_eliminate_violation: "Аракеттер (21.02.2024): Акылбек Орозбековдун арызы боюнча бузууну жоюудан баш тартуу",
+                description_refusal_eliminate_violation: "Акылбек Орозбековдун оперативдик кызматкерлерди басым көрсөтүү менен мыйзамсыз пароль алууга айыптаган арызы боюнча сот отурумунда, ага жол берилген бузууну жоюу милдети жүктөлгөнү көрсөтүлгөн. Бирок, сот арызды канааттандыруусуз калтырган.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_qualification_description: "Аракеттерде төмөнкү кылмыштардын белгилери байкалат:",
+                article_202_name: "КР Кылмыш-жаза кодексинин 202-беренеси (Журналисттин мыйзамдуу кесиптик ишмердүүлүгүнө тоскоолдук кылуу)",
+                sanction_202: "Санкция: айып пул же 3 жылга чейин эркиндигинен ажыратуу.",
+                article_337_name: "КР Кылмыш-жаза кодексинин 337-беренеси (Кызмат абалынан кыянаттык менен пайдалануу)",
+                sanction_337: "Санкция: айып пул же 5 жылга чейин эркиндигинен ажыратуу.",
+                article_360_name: "КР Кылмыш-жаза кодексинин 360-беренеси (Көрсөтмө берүүгө мажбурлоо)",
+                sanction_360: "Санкция: 10 жылга чейин эркиндигинен ажыратуу.",
+                article_191_name: "КР Кылмыш-жаза кодексинин 191-беренеси (Мыйзамсыз кармоо же камакка алуу)",
+                sanction_191: "Санкция: 5 жылга чейин эркиндигинен ажыратуу.",
+                sources_heading: "Булактар:",
+                source_petition_turdaliev: "Турдалиев Жумабек Искендеровичке карата бөгөт коюу чарасын колдонуу жөнүндө өтүнүчтү канааттандыруу тууралуу токтом 17.01.2024",
+                source_accusation_tazhibek_uulu: "Тажибек уулу Максатка карата айыптоочу катары тартуу жөнүндө токтом 17.01.2024",
+                source_resolution_search_request: "30.01.2024-жылдагы токтом (тинтүүнүн мыйзамдуулугун текшерүү жөнүндө өтүнүчтү козгоо тууралуу)",
+                source_resolution_search_check: "01.02.2024-жылдагы токтом (жүргүзүлгөн тинтүүнүн мыйзамдуулугун жана негиздүүлүгүн текшерүү жөнүндө)",
+                source_resolution_investigation_group: "19.02.2024-жылдагы кылмыш ишин тергөө тобуна (тергөө тобуна) тапшыруу жөнүндө токтом",
+                source_resolution_detention_check: "17.01.2024-жылдагы шектүүнү кармоонун мыйзамдуулугун жана негиздүүлүгүн текшерүү жөнүндө токтом",
+                source_resolution_complaint_rejection: "21.02.2024-жылдагы арызды канааттандыруусуз калтыруу жөнүндө токтом",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            // Update all elements with data-lang-key attribute
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    // Check if the element is an input or textarea to update placeholder
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update active language button state
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            // Save language preference
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            // Load saved language or default to Russian
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
