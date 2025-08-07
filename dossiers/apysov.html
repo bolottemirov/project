@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Апысов Акылбек Айдаралиевич - Архив Подотчетности</title>
+    <title data-lang="dossier_apysov_title">Досье: Апысов Акылбек Айдаралиевич - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .container {
             max-width: 1100px;
@@ -81,52 +87,6 @@
         }
         .main-nav a:hover {
             color: var(--un-blue); /* Изменение цвета при наведении */
-        }
-
-        /* Заголовки и карточки */
-        .section-title {
-            text-align: center;
-            font-size: 2.5em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-bottom: 40px; /* Увеличить отступ */
-            padding-top: 20px;
-        }
-        .case-card {
-            background-color: #fff; /* Белый фон для карточек */
-            border: 1px solid var(--border-color);
-            padding: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            margin-bottom: 25px; /* Увеличить отступ */
-            box-shadow: var(--card-shadow); /* Легкая тень */
-            transition: all 0.3s ease; /* Плавный переход для ховера */
-        }
-        .case-card:hover {
-            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
-            transform: translateY(-5px); /* Небольшой подъем при наведении */
-        }
-        .case-card h3 {
-            margin-top: 0;
-            font-size: 1.8em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-        }
-        .case-card a {
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок */
-            transition: color 0.3s ease;
-        }
-        .case-card a:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
-            text-decoration: underline;
-        }
-        .dossier-link {
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
-            transition: color 0.3s ease;
-        }
-        .dossier-link:hover {
-            color: var(--accent-hover-color);
-            text-decoration: underline;
         }
 
         /* Досье */
@@ -259,49 +219,207 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-apysov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
-                        <div class="profile-photo"></div>
-                        <h2>Апысов Акылбек Айдаралиевич</h2>
-                        <p><strong>Категория:</strong> Следователь</p>
-                        <p><strong>Должность:</strong> Следователь следственной группы</p>
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Фото);"></div>
+                        <h2 data-lang="person_name">Апысов Акылбек Айдаралиевич</h2>
+                        <p><strong data-lang="category_heading">Категория:</strong> <span data-lang-role="investigator_category">Следователь</span></p>
+                        <p><strong data-lang="position_heading">Должность:</strong> <span data-lang-role="investigator_position">Следователь следственной группы</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
-                            <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            <h4 data-lang="episode_title">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang="actions_heading">Действия: <span data-lang="action_description_apysov">Включение в группу следователей по уголовному делу №03-050-2024-000029</span></h5>
+                            <p data-lang="episode_text_apysov">Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерным действиям следствия. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
-                        <h5>Источники:</h5>
-                        <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        <h5 data-lang="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p data-lang="legal_article_text_apysov">В действиях данного лица могут быть признаки следующих преступлений: **статьи 202 УК КР (Воспрепятствование деятельности журналиста), 337 УК КР (Злоупотребление полномочиями), 360 УК КР (Принуждение к даче ложных показаний) и 191 УК КР (Незаконное задержание)**.</p>
+                        <h5 data-lang="sources_heading">Источники:</h5>
+                        <p data-lang="sources_text_apysov"><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_apysov_title: "Досье: Апысов Акылбек Айдаралиевич - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                person_name: "Апысов Акылбек Айдаралиевич",
+                category_heading: "Категория:",
+                position_heading: "Должность:",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_title: "Эпизод: «Дело 11 журналистов»",
+                actions_heading: "Действия:",
+                action_description_apysov: "Включение в группу следователей по уголовному делу №03-050-2024-000029",
+                episode_text_apysov: "Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_article_text_apysov: "В действиях данного лица могут быть признаки следующих преступлений: **статьи 202 УК КР (Воспрепятствование деятельности журналиста), 337 УК КР (Злоупотребление полномочиями), 360 УК КР (Принуждение к даче ложных показаний) и 191 УК КР (Незаконное задержание)**.",
+                sources_heading: "Источники:",
+                sources_text_apysov: "Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024.",
+                roles: {
+                    "investigator_category": "Следователь",
+                    "investigator_position": "Следователь следственной группы"
+                }
+            },
+            en: {
+                dossier_apysov_title: "Dossier: Apysov Akylbek Aidaralievich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "Back to 'Case of 11 Journalists'",
+                person_name: "Apysov Akylbek Aidaralievich",
+                category_heading: "Category:",
+                position_heading: "Position:",
+                documented_episodes_heading: "Documented Episodes",
+                episode_title: "Episode: «Case of 11 Journalists»",
+                actions_heading: "Actions:",
+                action_description_apysov: "Included in the group of investigators for criminal case No. 03-050-2024-000029",
+                episode_text_apysov: "Included in the investigative group for criminal case No. 03-050-2024-000029 as an investigator of the investigative group by order of the Head of the Investigative Service Department of the Ministry of Internal Affairs of the Kyrgyz Republic, Police Colonel Zhumabaev A.A., dated 19.02.2024.",
+                legal_qualification_heading: "Legal Qualification (under Criminal Code of KR):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_article_text_apysov: "The actions of this person may show signs of the following crimes: **Articles 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of journalistic activity), 337 of the Criminal Code of the Kyrgyz Republic (Abuse of power), 360 of the Criminal Code of the Kyrgyz Republic (Coercion to give false testimony), and 191 of the Criminal Code of the Kyrgyz Republic (Unlawful detention)**.",
+                sources_heading: "Sources:",
+                sources_text_apysov: "Resolution on entrusting the criminal case to a group of investigators (investigative group) dated 19.02.2024.",
+                roles: {
+                    "investigator_category": "Investigator",
+                    "investigator_position": "Investigator of the investigative group"
+                }
+            },
+            kg: {
+                dossier_apysov_title: "Досье: Апысов Акылбек Айдаралиевич - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "«11 журналисттин» ишине кайтуу",
+                person_name: "Апысов Акылбек Айдаралиевич",
+                category_heading: "Категория:",
+                position_heading: "Кызматы:",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_title: "Эпизод: «11 журналисттин» иши",
+                actions_heading: "Аракеттер:",
+                action_description_apysov: "№03-050-2024-000029 кылмыш иши боюнча тергөө тобуна киргизилген",
+                episode_text_apysov: "Кыргыз Республикасынын Ички иштер министрлигинин Тергөө кызматынын башкармалыгынын начальниги, милициянын полковниги А.А. Жумабаевдин 19.02.2024-жылдагы токтому менен №03-050-2024-000029 кылмыш иши боюнча тергөө тобунун курамына тергөөчү катары киргизилген.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_article_text_apysov: "Бул адамдын аракеттеринде төмөнкү кылмыштардын белгилери болушу мүмкүн: **КР Кылмыш-жаза кодексинин 202-беренеси (Журналисттин ишине тоскоолдук кылуу), 337-беренеси (Кызматтык ыйгарым укуктарды кыянаттык менен пайдалануу), 360-беренеси (Жалган көрсөтмө берүүгө мажбурлоо) жана 191-беренеси (Мыйзамсыз кармоо)**.",
+                sources_heading: "Булактар:",
+                sources_text_apysov: "Кылмыш ишин тергөө тобуна (тергөө тобуна) тапшыруу жөнүндө 19.02.2024-жылдагы токтом.",
+                roles: {
+                    "investigator_category": "Тергөөчү",
+                    "investigator_position": "Тергөө тобунун тергөөчүсү"
+                }
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.dataset.lang;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            document.querySelectorAll('[data-lang-role]').forEach(element => {
+                const roleKey = element.dataset.langRole;
+                if (translations[lang] && translations[lang].roles && translations[lang].roles.hasOwnProperty(roleKey)) {
+                    element.textContent = translations[lang].roles[roleKey];
+                }
+            });
+
+            // Update title specifically
+            document.querySelector('title').textContent = translations[lang].dossier_apysov_title;
+
+            // Update active button state
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            // Load saved language or default to Russian
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
