@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Атаев Замирбек Исмаилович - Архив Подотчетности</title>
+    <title data-lang="dossier_ataev_title">Досье: Атаев Замирбек Исмаилович - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .container {
             max-width: 1100px;
@@ -81,52 +87,6 @@
         }
         .main-nav a:hover {
             color: var(--un-blue); /* Изменение цвета при наведении */
-        }
-
-        /* Заголовки и карточки */
-        .section-title {
-            text-align: center;
-            font-size: 2.5em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-bottom: 40px; /* Увеличить отступ */
-            padding-top: 20px;
-        }
-        .case-card {
-            background-color: #fff; /* Белый фон для карточек */
-            border: 1px solid var(--border-color);
-            padding: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            margin-bottom: 25px; /* Увеличить отступ */
-            box-shadow: var(--card-shadow); /* Легкая тень */
-            transition: all 0.3s ease; /* Плавный переход для ховера */
-        }
-        .case-card:hover {
-            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
-            transform: translateY(-5px); /* Небольшой подъем при наведении */
-        }
-        .case-card h3 {
-            margin-top: 0;
-            font-size: 1.8em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-        }
-        .case-card a {
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок */
-            transition: color 0.3s ease;
-        }
-        .case-card a:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
-            text-decoration: underline;
-        }
-        .dossier-link {
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
-            transition: color 0.3s ease;
-        }
-        .dossier-link:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
-            text-decoration: underline;
         }
 
         /* Досье */
@@ -259,50 +219,214 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-ataev">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://admin-bgs.sot.kg/public/sites/26/2020/07/Ataeva-Z.I.-250x167.jpg);"></div>
-                        <h2>Атаев Замирбек Исмаилович</h2>
-                        <p><strong>Категория:</strong> Судья</p>
-                        <p><strong>Дата рождения:</strong> 02.04.1977</p>
-                        <p><strong>Должность:</strong> Судья Бишкекского городского суда</p>
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Фото);"></div>
+                        <h2 data-lang="person_name">Атаев Замирбек Исмаилович</h2>
+                        <p><strong data-lang="category_heading">Категория:</strong> <span data-lang-role="judge_category">Судья</span></p>
+                        <p><strong data-lang="dob_heading">Дата рождения:</strong> 02.04.1977</p>
+                        <p><strong data-lang="position_heading">Должность:</strong> <span data-lang-role="judge_position">Судья Бишкекского городского суда</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия: Признание законным решения районного суда об изменении меры пресечения</h5>
-                            <p>Атаев Замирбек Исмаилович, как судья Бишкекского городского суда, признал законным решение районного суда об изменении меры пресечения в отношении задержанных журналистов и оставил его без изменений, несмотря на заявления о его незаконности.</p>
+                            <h4 data-lang="episode_title">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang="actions_heading">Действия: <span data-lang="action_description_ataev">Признание законным решения районного суда об изменении меры пресечения</span></h5>
+                            <p data-lang="episode_text_ataev">Атаев Замирбек Исмаилович, как судья Бишкекского городского суда, признал законным решение районного суда об изменении меры пресечения в отношении задержанных журналистов и оставил его без изменений, несмотря на заявления о его незаконности.</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)** и **ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)**. При наличии тяжкого вреда - часть 2 статьи 352 УК КР. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 352 ч.1), лишение свободы от 5 до 8 лет (ст. 352 ч.2).</p>
-                        <h5>Источники:</h5>
-                        <p>Информация из материалов дела "11 журналистов".</p>
+                        <h5 data-lang="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p data-lang="legal_article_text_ataev">Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)** и **ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)**. При наличии тяжкого вреда - часть 2 статьи 352 УК КР. <br><span class="sanction" data-lang="sanction_text">Санкция:</span> штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 352 ч.1), лишение свободы от 5 до 8 лет (ст. 352 ч.2).</p>
+                        <h5 data-lang="sources_heading">Источники:</h5>
+                        <p data-lang="sources_text_ataev">Информация из материалов дела "11 журналистов".</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_ataev_title: "Досье: Атаев Замирбек Исмаилович - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                person_name: "Атаев Замирбек Исмаилович",
+                category_heading: "Категория:",
+                dob_heading: "Дата рождения:",
+                position_heading: "Должность:",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_title: "Эпизод: «Дело 11 журналистов»",
+                actions_heading: "Действия:",
+                action_description_ataev: "Признание законным решения районного суда об изменении меры пресечения",
+                episode_text_ataev: "Атаев Замирбек Исмаилович, как судья Бишкекского городского суда, признал законным решение районного суда об изменении меры пресечения в отношении задержанных журналистов и оставил его без изменений, несмотря на заявления о его незаконности.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_article_text_ataev: "Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)** и **ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)**. При наличии тяжкого вреда - часть 2 статьи 352 УК КР. <br><span class=\"sanction\">Санкция:</span> штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 352 ч.1), лишение свободы от 5 до 8 лет (ст. 352 ч.2).",
+                sanction_text: "Санкция:",
+                sources_heading: "Источники:",
+                sources_text_ataev: "Информация из материалов дела \"11 журналистов\".",
+                roles: {
+                    "judge_category": "Судья",
+                    "judge_position": "Судья Бишкекского городского суда"
+                }
+            },
+            en: {
+                dossier_ataev_title: "Dossier: Ataev Zamirbek Ismailovich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "Back to 'Case of 11 Journalists'",
+                person_name: "Ataev Zamirbek Ismailovich",
+                category_heading: "Category:",
+                dob_heading: "Date of Birth:",
+                position_heading: "Position:",
+                documented_episodes_heading: "Documented Episodes",
+                episode_title: "Episode: «Case of 11 Journalists»",
+                actions_heading: "Actions:",
+                action_description_ataev: "Recognition of the district court's decision on changing the preventive measure as legal",
+                episode_text_ataev: "Ataev Zamirbek Ismailovich, as a judge of the Bishkek City Court, recognized as legal the district court's decision on changing the preventive measure against the detained journalists and upheld it, despite claims of its illegality.",
+                legal_qualification_heading: "Legal Qualification (under Criminal Code of KR):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_article_text_ataev: "Suspected of committing acts falling under the signs of crimes provided for by **Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of lawful professional activity of journalists)** and **Article 352 of the Criminal Code of the Kyrgyz Republic (Issuing a knowingly unjust judicial act)**. In case of grave harm - Part 2 of Article 352 of the Criminal Code of the Kyrgyz Republic. <br><span class=\"sanction\">Sanction:</span> fine or imprisonment for up to 3 years (Art. 202), fine or imprisonment for up to 5 years (Art. 352 Part 1), imprisonment from 5 to 8 years (Art. 352 Part 2).",
+                sanction_text: "Sanction:",
+                sources_heading: "Sources:",
+                sources_text_ataev: "Information from the materials of the '11 Journalists' case.",
+                roles: {
+                    "judge_category": "Judge",
+                    "judge_position": "Judge of the Bishkek City Court"
+                }
+            },
+            kg: {
+                dossier_ataev_title: "Досье: Атаев Замирбек Исмаилович - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "«11 журналисттин» ишине кайтуу",
+                person_name: "Атаев Замирбек Исмаилович",
+                category_heading: "Категория:",
+                dob_heading: "Туулган күнү:",
+                position_heading: "Кызматы:",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_title: "Эпизод: «11 журналисттин» иши",
+                actions_heading: "Аракеттер:",
+                action_description_ataev: "Райондук соттун бөгөт коюу чарасын өзгөртүү жөнүндөгү чечимин мыйзамдуу деп таануу",
+                episode_text_ataev: "Бишкек шаардык сотунун судьясы Атаев Замирбек Исмаилович райондук соттун кармалган журналисттерге карата бөгөт коюу чарасын өзгөртүү жөнүндөгү чечимин мыйзамдуу деп таанып, анын мыйзамсыздыгы тууралуу билдирүүлөргө карабастан, аны өзгөртүүсүз калтырган.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_article_text_ataev: "Кылмыш-жаза кодексинин **202-беренеси (Журналисттердин мыйзамдуу кесиптик ишмердигине тоскоолдук кылуу)** жана **352-беренеси (Атайылап адилетсиз сот актысын чыгаруу)** менен каралган кылмыштардын белгилерине туура келген аракеттерди жасаган деп шектелүүдө. Оор зыян келтирилген учурда - КР Кылмыш-жаза кодексинин 352-беренесинин 2-бөлүгү. <br><span class=\"sanction\">Жаза:</span> айып пул же 3 жылга чейин эркинен ажыратуу (202-берене), айып пул же 5 жылга чейин эркинен ажыратуу (352-берененин 1-бөлүгү), 5 жылдан 8 жылга чейин эркинен ажыратуу (352-берененин 2-бөлүгү).",
+                sanction_text: "Жаза:",
+                sources_heading: "Булактар:",
+                sources_text_ataev: "«11 журналисттин» ишинин материалдарындагы маалымат.",
+                roles: {
+                    "judge_category": "Судья",
+                    "judge_position": "Бишкек шаардык сотунун судьясы"
+                }
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.dataset.lang;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            document.querySelectorAll('[data-lang-role]').forEach(element => {
+                const roleKey = element.dataset.langRole;
+                if (translations[lang] && translations[lang].roles && translations[lang].roles.hasOwnProperty(roleKey)) {
+                    element.textContent = translations[lang].roles[roleKey];
+                }
+            });
+
+            // Update title specifically
+            document.querySelector('title').textContent = translations[lang].dossier_ataev_title;
+
+            // Update active button state
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            // Load saved language or default to Russian
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
