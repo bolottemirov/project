@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Баратов Т. - Архив Подотчетности</title>
+    <title data-lang-key="dossier_baratov_title">Досье: Баратов Т. - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -259,62 +265,285 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-baratov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo"></div>
-                        <h2>Баратов Т.</h2>
-                        <p><strong>Категория:</strong> Прокурор</p>
-                        <p><strong>Должность:</strong> Старший помощник прокурора Первомайского района г. Бишкек</p>
+                        <h2 data-lang-key="name_baratov_full">Баратов Т.</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_prosecutor">Прокурор</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="position_baratov">Старший помощник прокурора Первомайского района г. Бишкек</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия (12.03.2024): Поддержка ходатайства о продлении ареста журналистов</h5>
-                            <p>В судебном заседании Первомайского районного суда города Бишкек, где рассматривалось ходатайство о продлении срока меры пресечения в виде заключения под стражу, Баратов Т. участвовал в качестве старшего помощника прокурора Первомайского района г. Бишкек и поддержал ходатайство следователя о продлении ареста следующих журналистов:</p>
+                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="action_support_extension_arrest">Действия (12.03.2024): Поддержка ходатайства о продлении ареста журналистов</h5>
+                            <p data-lang-key="description_support_extension_arrest">В судебном заседании Первомайского районного суда города Бишкек, где рассматривалось ходатайство о продлении срока меры пресечения в виде заключения под стражу, Баратов Т. участвовал в качестве старшего помощника прокурора Первомайского района г. Бишкек и поддержал ходатайство следователя о продлении ареста следующих журналистов:</p>
                             <ul>
-                                <li>Турдалиев Жумабек Искендерович</li>
-                                <li>Тажибек уулу Максат</li>
-                                <li>Капаров Мааданбек Таалайбекович</li>
-                                <li>Сайпидин Султаналиев</li>
-                                <li>Тажибек кызы Махабат</li>
-                                <li>Акунбеков Сапарбек Акунбекович</li>
-                                <li>Асыпбеков Тыныстан Бекназарович</li>
-                                <li>Бейшекеева Айке Нурлановна</li>
-                                <li>Бузумов Жоодарбек Бакыталыевич</li>
-                                <li>Орозбеков Акылбек Орозбекович</li>
-                                <li>Ишенбеков Азамат Ишенбекович</li>
+                                <li><span data-lang-key="name_turdaliev">Турдалиев Жумабек Искендерович</span></li>
+                                <li><span data-lang-key="name_tazhibek_uulu">Тажибек уулу Максат</span></li>
+                                <li><span data-lang-key="name_kaparov">Капаров Мааданбек Таалайбекович</span></li>
+                                <li><span data-lang-key="name_sultanaliyev">Сайпидин Султаналиев</span></li>
+                                <li><span data-lang-key="name_tazhibek_kyzy_mahabat">Тажибек кызы Махабат</span></li>
+                                <li><span data-lang-key="name_akunbekov">Акунбеков Сапарбек Акунбекович</span></li>
+                                <li><span data-lang-key="name_asypbekov">Асыпбеков Тыныстан Бекназарович</span></li>
+                                <li><span data-lang-key="name_beishekeeva">Бейшекеева Айке Нурлановна</span></li>
+                                <li><span data-lang-key="name_buzumov">Бузумов Жоодарбек Бакыталыевич</span></li>
+                                <li><span data-lang-key="name_orozbekov">Орозбеков Акылбек Орозбекович</span></li>
+                                <li><span data-lang-key="name_ishenbekov">Ишенбеков Азамат Ишенбекович</span></li>
                             </ul>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)**, если его поддержка ходатайства способствовала неправомерному решению. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
-                        <h5>Источники:</h5>
-                        <p><a href="#">Постановление о продлении меры пресечения в отношении Сайпидина Султаналиева от 12.03.2024</a>.</p>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>
+                            <span data-lang-key="legal_qualification_description">В действиях усматриваются признаки преступлений, предусмотренных:</span>
+                            <br>
+                            <strong data-lang-key="article_202_name">ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_202">Санкция: штраф или лишение свободы до 3 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_337_name">ст. 337 УК КР (Злоупотребление должностным положением)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_337">Санкция: штраф или лишение свободы до 5 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_360_name">ст. 360 УК КР (Принуждение к даче показаний)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_360">Санкция: лишение свободы до 10 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_191_name">ст. 191 УК КР (Незаконное задержание или заключение под стражу)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_191">Санкция: лишение свободы до 5 лет.</span>
+                        </p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_resolution_sultanaliyev">Постановление о продлении меры пресечения в отношении Сайпидина Султаналиева от 12.03.2024</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_baratov_title: "Досье: Баратов Т. - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                name_baratov_full: "Баратов Т.",
+                category_label: "Категория:",
+                category_prosecutor: "Прокурор",
+                position_label: "Должность:",
+                position_baratov: "Старший помощник прокурора Первомайского района г. Бишкек",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
+                action_support_extension_arrest: "Действия (12.03.2024): Поддержка ходатайства о продлении ареста журналистов",
+                description_support_extension_arrest: "В судебном заседании Первомайского районного суда города Бишкек, где рассматривалось ходатайство о продлении срока меры пресечения в виде заключения под стражу, Баратов Т. участвовал в качестве старшего помощника прокурора Первомайского района г. Бишкек и поддержал ходатайство следователя о продлении ареста следующих журналистов:",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_qualification_description: "В действиях усматриваются признаки преступлений, предусмотренных:",
+                article_202_name: "ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)",
+                sanction_202: "Санкция: штраф или лишение свободы до 3 лет.",
+                article_337_name: "ст. 337 УК КР (Злоупотребление должностным положением)",
+                sanction_337: "Санкция: штраф или лишение свободы до 5 лет.",
+                article_360_name: "ст. 360 УК КР (Принуждение к даче показаний)",
+                sanction_360: "Санкция: лишение свободы до 10 лет.",
+                article_191_name: "ст. 191 УК КР (Незаконное задержание или заключение под стражу)",
+                sanction_191: "Санкция: лишение свободы до 5 лет.",
+                sources_heading: "Источники:",
+                source_resolution_sultanaliyev: "Постановление о продлении меры пресечения в отношении Сайпидина Султаналиева от 12.03.2024",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+
+                // Names for the list
+                name_turdaliev: "Турдалиев Жумабек Искендерович",
+                name_tazhibek_uulu: "Тажибек уулу Максат",
+                name_kaparov: "Капаров Мааданбек Таалайбекович",
+                name_sultanaliyev: "Сайпидин Султаналиев",
+                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
+                name_akunbekov: "Акунбеков Сапарбек Акунбекович",
+                name_asypbekov: "Асыпбеков Тыныстан Бекназарович",
+                name_beishekeeva: "Бейшекеева Айке Нурлановна",
+                name_buzumov: "Бузумов Жоодарбек Бакыталыевич",
+                name_orozbekov: "Орозбеков Акылбек Орозбекович",
+                name_ishenbekov: "Ишенбеков Азамат Ишенбекович",
+            },
+            en: {
+                dossier_baratov_title: "Dossier: Baratov T. - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                name_baratov_full: "Baratov T.",
+                category_label: "Category:",
+                category_prosecutor: "Prosecutor",
+                position_label: "Position:",
+                position_baratov: "Senior Assistant Prosecutor of Pervomaisky District, Bishkek",
+                documented_episodes_heading: "Documented Episodes",
+                episode_case_journalists: "Episode: «Case of 11 Journalists»",
+                action_support_extension_arrest: "Actions (12.03.2024): Support for the petition to extend the arrest of journalists",
+                description_support_extension_arrest: "At the court session of the Pervomaisky District Court of Bishkek, where the petition to extend the period of detention was considered, Baratov T. participated as a Senior Assistant Prosecutor of Pervomaisky District, Bishkek, and supported the investigator's petition to extend the arrest of the following journalists:",
+                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_qualification_description: "The actions show signs of crimes provided for by:",
+                article_202_name: "Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of the lawful professional activities of journalists)",
+                sanction_202: "Sanction: fine or imprisonment for up to 3 years.",
+                article_337_name: "Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)",
+                sanction_337: "Sanction: fine or imprisonment for up to 5 years.",
+                article_360_name: "Article 360 of the Criminal Code of the Kyrgyz Republic (Coercion to give false testimony)",
+                sanction_360: "Sanction: imprisonment for up to 10 years.",
+                article_191_name: "Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or custody)",
+                sanction_191: "Sanction: imprisonment for up to 5 years.",
+                sources_heading: "Sources:",
+                source_resolution_sultanaliyev: "Resolution on extending the preventive measure against Saipidin Sultanaliyev dated 12.03.2024",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+
+                // Names for the list
+                name_turdaliev: "Turdailev Zhumabek Iskenderovich",
+                name_tazhibek_uulu: "Tazhibek uulu Maksat",
+                name_kaparov: "Kaparov Maadanbek Taalaibekovich",
+                name_sultanaliyev: "Saipidin Sultanaliyev",
+                name_tazhibek_kyzy_mahabat: "Tazhibek kyzy Mahabat",
+                name_akunbekov: "Akunbekov Saparbek Akunbekovich",
+                name_asypbekov: "Asypbekov Tynystan Beknazarovich",
+                name_beishekeeva: "Beishekeeva Aike Nurlanovna",
+                name_buzumov: "Buzumov Zhoodarbek Bakytalievich",
+                name_orozbekov: "Orozbekov Akylbek Orozbekovich",
+                name_ishenbekov: "Ishenbekov Azamat Ishenbekovich",
+            },
+            kg: {
+                dossier_baratov_title: "Досье: Баратов Т. - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                name_baratov_full: "Баратов Т.",
+                category_label: "Категория:",
+                category_prosecutor: "Прокурор",
+                position_label: "Кызматы:",
+                position_baratov: "Бишкек шаарынын Биринчи Май райондук прокурорунун улук жардамчысы",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
+                action_support_extension_arrest: "Аракеттер (12.03.2024): Журналисттердин камактагы мөөнөтүн узартуу өтүнүчүн колдоо",
+                description_support_extension_arrest: "Бишкек шаарынын Биринчи Май райондук сотунун соттук отурумунда, камактагы бөгөт коюу чарасынын мөөнөтүн узартуу жөнүндө өтүнүч каралып жатканда, Баратов Т. Бишкек шаарынын Биринчи Май райондук прокурорунун улук жардамчысы катары катышып, тергөөчүнүн төмөнкү журналисттердин камактагы мөөнөтүн узартуу өтүнүчүн колдогон:",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_qualification_description: "Аракеттерде төмөнкү кылмыштардын белгилери байкалат:",
+                article_202_name: "КР Кылмыш-жаза кодексинин 202-беренеси (Журналисттин мыйзамдуу кесиптик ишмердүүлүгүнө тоскоолдук кылуу)",
+                sanction_202: "Санкция: айып пул же 3 жылга чейин эркиндигинен ажыратуу.",
+                article_337_name: "КР Кылмыш-жаза кодексинин 337-беренеси (Кызмат абалынан кыянаттык менен пайдалануу)",
+                sanction_337: "Санкция: айып пул же 5 жылга чейин эркиндигинен ажыратуу.",
+                article_360_name: "КР Кылмыш-жаза кодексинин 360-беренеси (Көрсөтмө берүүгө мажбурлоо)",
+                sanction_360: "Санкция: 10 жылга чейин эркиндигинен ажыратуу.",
+                article_191_name: "КР Кылмыш-жаза кодексинин 191-беренеси (Мыйзамсыз кармоо же камакка алуу)",
+                sanction_191: "Санкция: 5 жылга чейин эркиндигинен ажыратуу.",
+                sources_heading: "Булактар:",
+                source_resolution_sultanaliyev: "Сайпидин Султаналиевге карата бөгөт коюу чарасын узартуу жөнүндө токтом 12.03.2024",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+
+                // Names for the list
+                name_turdaliev: "Турдалиев Жумабек Искендерович",
+                name_tazhibek_uulu: "Тажибек уулу Максат",
+                name_kaparov: "Капаров Мааданбек Таалайбекович",
+                name_sultanaliyev: "Сайпидин Султаналиев",
+                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
+                name_akunbekov: "Акунбеков Сапарбек Акунбекович",
+                name_asypbekov: "Асыпбеков Тыныстан Бекназарович",
+                name_beishekeeva: "Бейшекеева Айке Нурлановна",
+                name_buzumov: "Бузумов Жоодарбек Бакыталыевич",
+                name_orozbekov: "Орозбеков Акылбек Орозбекович",
+                name_ishenbekov: "Ишенбеков Азамат Ишенбекович",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            // Update all elements with data-lang-key attribute
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update active language button state
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            // Save language preference
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            // Load saved language or default to Russian
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
