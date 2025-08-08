@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Джапекова Улан Джолдошбекович - Архив Подотчетности</title>
+    <title data-lang-key="dossier_dzhapekov_title">Досье: Джапекова Улан Джолдошбекович - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -259,49 +265,230 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section id="dossier-dzhapekova">
+    <main class="flex-grow">
+        <section id="dossier-dzhapekov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo"></div>
-                        <h2>Джапекова Улан Джолдошбекович</h2>
-                        <p><strong>Категория:</strong> Следователь</p>
-                        <p><strong>Должность:</strong> Следователь следственной группы</p>
+                        <h2 data-lang-key="name_dzhapekov_full">Джапекова Улан Джолдошбекович</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_investigator">Следователь</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="position_dzhapekov">Следователь следственной группы</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
-                            <p>Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="action_inclusion_investigation_group">Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029</h5>
+                            <p data-lang-key="description_inclusion_investigation_group">Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)**, если ее участие способствовало неправомерным действиям следствия. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
-                        <h5>Источники:</h5>
-                        <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>
+                            <span data-lang-key="legal_qualification_description">Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных:</span>
+                            <br>
+                            <strong data-lang-key="article_202_name">ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_202">Санкция: штраф или лишение свободы до 3 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_337_name">ст. 337 УК КР (Злоупотребление должностным положением)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_337">Санкция: штраф или лишение свободы до 5 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_360_name">ст. 360 УК КР (Принуждение к даче показаний)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_360">Санкция: лишение свободы до 10 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_191_name">ст. 191 УК КР (Незаконное задержание или заключение под стражу)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_191">Санкция: лишение свободы до 5 лет.</span>
+                        </p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_criminal_case_group_order">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_dzhapekov_title: "Досье: Джапекова Улан Джолдошбекович - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                name_dzhapekov_full: "Джапекова Улан Джолдошбекович",
+                category_label: "Категория:",
+                category_investigator: "Следователь",
+                position_label: "Должность:",
+                position_dzhapekov: "Следователь следственной группы",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
+                action_inclusion_investigation_group: "Действия (19.02.2024): Включение в группу следователей по уголовному делу №03-050-2024-000029",
+                description_inclusion_investigation_group: "Включена в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_qualification_description: "Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных:",
+                article_202_name: "ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)",
+                sanction_202: "Санкция: штраф или лишение свободы до 3 лет.",
+                article_337_name: "ст. 337 УК КР (Злоупотребление должностным положением)",
+                sanction_337: "Санкция: штраф или лишение свободы до 5 лет.",
+                article_360_name: "ст. 360 УК КР (Принуждение к даче показаний)",
+                sanction_360: "Санкция: лишение свободы до 10 лет.",
+                article_191_name: "ст. 191 УК КР (Незаконное задержание или заключение под стражу)",
+                sanction_191: "Санкция: лишение свободы до 5 лет.",
+                sources_heading: "Источники:",
+                source_criminal_case_group_order: "Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+            },
+            en: {
+                dossier_dzhapekov_title: "Dossier: Dzhapekov Ulan Zholdoshbekovich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                name_dzhapekov_full: "Dzhapekov Ulan Zholdoshbekovich",
+                category_label: "Category:",
+                category_investigator: "Investigator",
+                position_label: "Position:",
+                position_dzhapekov: "Investigator of the investigation group",
+                documented_episodes_heading: "Documented Episodes",
+                episode_case_journalists: "Episode: «Case of 11 Journalists»",
+                action_inclusion_investigation_group: "Actions (19.02.2024): Inclusion in the investigation group for criminal case No. 03-050-2024-000029",
+                description_inclusion_investigation_group: "Included in the investigation group for criminal case No. 03-050-2024-000029 as an investigator of the investigation group by order of the Head of the Investigation Service Department of the Ministry of Internal Affairs of the Kyrgyz Republic, Police Colonel Zhumabaev A.A., dated 19.02.2024.",
+                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_qualification_description: "Suspected of committing acts falling under the signs of crimes provided for by:",
+                article_202_name: "Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of the lawful professional activities of journalists)",
+                sanction_202: "Sanction: fine or imprisonment for up to 3 years.",
+                article_337_name: "Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)",
+                sanction_337: "Sanction: fine or imprisonment for up to 5 years.",
+                article_360_name: "Article 360 of the Criminal Code of the Kyrgyz Republic (Coercion to give false testimony)",
+                sanction_360: "Sanction: imprisonment for up to 10 years.",
+                article_191_name: "Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or custody)",
+                sanction_191: "Sanction: imprisonment for up to 5 years.",
+                sources_heading: "Sources:",
+                source_criminal_case_group_order: "Resolution on entrusting a criminal case to an investigative group (investigation group) dated 19.02.2024",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+            },
+            kg: {
+                dossier_dzhapekov_title: "Досье: Жапеков Улан Жолдошбекович - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                name_dzhapekov_full: "Жапеков Улан Жолдошбекович",
+                category_label: "Категория:",
+                category_investigator: "Тергөөчү",
+                position_label: "Кызматы:",
+                position_dzhapekov: "Тергөө тобунун тергөөчүсү",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
+                action_inclusion_investigation_group: "Аракеттер (19.02.2024): №03-050-2024-000029 кылмыш иши боюнча тергөө тобуна киргизилген",
+                description_inclusion_investigation_group: "Кыргыз Республикасынын Ички иштер министрлигинин Тергөө кызматынын башкармалыгынын начальниги, милиция полковниги А.А.Жумабаевдин 19.02.2024-жылдагы токтому менен №03-050-2024-000029 кылмыш иши боюнча тергөө тобунун тергөөчүсү катары тергөө тобунун курамына киргизилген.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_qualification_description: "Аракеттерде төмөнкү кылмыштардын белгилери байкалат:",
+                article_202_name: "КР Кылмыш-жаза кодексинин 202-беренеси (Журналисттин мыйзамдуу кесиптик ишмердүүлүгүнө тоскоолдук кылуу)",
+                sanction_202: "Санкция: айып пул же 3 жылга чейин эркиндигинен ажыратуу.",
+                article_337_name: "КР Кылмыш-жаза кодексинин 337-беренеси (Кызмат абалынан кыянаттык менен пайдалануу)",
+                sanction_337: "Санкция: айып пул же 5 жылга чейин эркиндигинен ажыратуу.",
+                article_360_name: "КР Кылмыш-жаза кодексинин 360-беренеси (Көрсөтмө берүүгө мажбурлоо)",
+                sanction_360: "Санкция: 10 жылга чейин эркиндигинен ажыратуу.",
+                article_191_name: "КР Кылмыш-жаза кодексинин 191-беренеси (Мыйзамсыз кармоо же камакка алуу)",
+                sanction_191: "Санкция: 5 жылга чейин эркиндигинен ажыратуу.",
+                sources_heading: "Булактар:",
+                source_criminal_case_group_order: "19.02.2024-жылдагы кылмыш ишин тергөө тобуна (тергөө тобуна) тапшыруу жөнүндө токтом",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
+
