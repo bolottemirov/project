@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Бекенов Туратбек Орозбаевич - Архив Подотчетности</title>
+    <title data-lang-key="dossier_bekenov_title">Досье: Бекенов Туратбек Орозбаевич - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -125,7 +131,7 @@
             transition: color 0.3s ease;
         }
         .dossier-link:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            color: var(--accent-hover-color);
             text-decoration: underline;
         }
 
@@ -259,68 +265,309 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-bekenov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://cdn-1.aki.kg/cdn-st-0/qZw/N/1150311.7ebc471228a85a0a9bffeeccbf69e14e.500.jpg);"></div>
-                        <h2>Бекенов Туратбек Орозбаевич</h2>
-                        <p><strong>Категория:</strong> Судья</p>
-                        <p><strong>Должность:</strong> Следственный судья Первомайского районного суда города Бишкек</p>
+                        <h2 data-lang-key="name_bekenov_full">Бекенов Туратбек Орозбаевич</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_judge">Судья</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="position_bekenov">Следственный судья Первомайского районного суда города Бишкек</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия (17.01.2024): Проверка законности задержания</h5>
-                            <p>Как следственный судья Первомайского районного суда города Бишкек, в судебном заседании с участием секретаря А.Майрамбек кызы, помощника прокурора А.Карыпбек уулу, следователя Н.Акуналиева, обвиняемых и их адвокатов, рассмотрел ходатайства о проверке законности и обоснованности задержания следующих журналистов:</p>
+                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="action_check_detention_legality">Действия (17.01.2024): Проверка законности задержания</h5>
+                            <p data-lang-key="description_check_detention_legality">Как следственный судья Первомайского районного суда города Бишкек, в судебном заседании с участием секретаря <span data-lang-key="name_mairambek_kyzy">А.Майрамбек кызы</span>, помощника прокурора <span data-lang-key="name_karypbek_uulu">А.Карыпбек уулу</span>, следователя <span data-lang-key="name_akunaliuiev">Н.Акуналиева</span>, обвиняемых и их адвокатов, рассмотрел ходатайства о проверке законности и обоснованности задержания следующих журналистов:</p>
                             <ul>
-                                <li>Капарова Мааданбека Таалайбековича</li>
-                                <li>Турдалиева Жумабека Искендеровича</li>
-                                <li>Тажибек уулу Максата</li>
-                                <li>Сайпидина Султаналиева</li>
-                                <li>Тажибек кызы Махабат</li>
-                                <li>Акунбекова Сапарбека Акунбековича</li>
-                                <li>Асыпбекова Тыныстана Бекназаровича</li>
-                                <li>Бейшекеевой Айке Нурлановны</li>
-                                <li>Бузумова Жоодарбека Бакыталыевича</li>
-                                <li>Орозбекова Акылбека Орозбековича</li>
-                                <li>Ишенбекова Азамата Ишенбековича</li>
+                                <li><span data-lang-key="name_kaparov">Капарова Мааданбека Таалайбековича</span></li>
+                                <li><span data-lang-key="name_turdaliev">Турдалиева Жумабека Искендеровича</span></li>
+                                <li><span data-lang-key="name_tazhibek_uulu">Тажибек уулу Максата</span></li>
+                                <li><span data-lang-key="name_sultanaliyev">Сайпидина Султаналиева</span></li>
+                                <li><span data-lang-key="name_tazhibek_kyzy_mahabat">Тажибек кызы Махабат</span></li>
+                                <li><span data-lang-key="name_akunbekov">Акунбекова Сапарбека Акунбековича</span></li>
+                                <li><span data-lang-key="name_asypbekov">Асыпбекова Тыныстана Бекназаровича</span></li>
+                                <li><span data-lang-key="name_beishekeeva">Бейшекеевой Айке Нурлановны</span></li>
+                                <li><span data-lang-key="name_buzumov">Бузумова Жоодарбека Бакыталыевича</span></li>
+                                <li><span data-lang-key="name_orozbekov">Орозбекова Акылбека Орозбековича</span></li>
+                                <li><span data-lang-key="name_ishenbekov">Ишенбекова Азамата Ишенбековича</span></li>
                             </ul>
-                            <p>Суд удовлетворил ходатайства, признав задержания законными и обоснованными.</p>
+                            <p data-lang-key="description_detention_legality_outcome">Суд удовлетворил ходатайства, признав задержания законными и обоснованными.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (21.02.2024): Оставление жалобы Акылбека Орозбекова без удовлетворения</h5>
-                            <p>Как следственный судья Первомайского районного суда города Бишкек, рассмотрел жалобу обвиняемого Акылбека Орозбекова о признании незаконными действий оперативных сотрудников (получение паролей от телефона и ноутбука под давлением) и возложении обязанности на руководителя следственной группы Байышова К. устранить допущенное нарушение. Суд оставил жалобу без удовлетворения, мотивируя это тем, что обжалуемые действия не являются процессуальными действиями, предусмотренными УПК КР, и жалоба была подана по истечении установленного 10-суточного срока.</p>
+                            <h5 data-lang-key="action_complaint_rejection">Действия (21.02.2024): Оставление жалобы Акылбека Орозбекова без удовлетворения</h5>
+                            <p data-lang-key="description_complaint_rejection">Как следственный судья Первомайского районного суда города Бишкек, рассмотрел жалобу обвиняемого Акылбека Орозбекова о признании незаконными действий оперативных сотрудников (получение паролей от телефона и ноутбука под давлением) и возложении обязанности на руководителя следственной группы Байышова К. устранить допущенное нарушение. Суд оставил жалобу без удовлетворения, мотивируя это тем, что обжалуемые действия не являются процессуальными действиями, предусмотренными УПК КР, и жалоба была подана по истечении установленного 10-суточного срока.</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В действиях могут усматриваться признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)**, если решение о законности задержания было необоснованным или отказ в рассмотрении жалобы был неправомерным. <br><span class="sanction">Санкция:</span> лишение свободы от 5 до 8 лет.</p>
-                        <h5>Источники:</h5>
-                        <p><a href="#">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
-                        <p><a href="#">Постановление об оставлении жалобы без удовлетворения от 21.02.2024</a>.</p>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>
+                            <span data-lang-key="legal_qualification_description">В действиях могут усматриваться признаки преступлений, предусмотренных:</span>
+                            <br>
+                            <strong data-lang-key="article_202_name">ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_202">Санкция: штраф или лишение свободы до 3 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_337_name">ст. 337 УК КР (Злоупотребление должностным положением)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_337">Санкция: штраф или лишение свободы до 5 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_360_name">ст. 360 УК КР (Принуждение к даче показаний)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_360">Санкция: лишение свободы до 10 лет.</span>
+                            <br>
+                            <strong data-lang-key="article_191_name">ст. 191 УК КР (Незаконное задержание или заключение под стражу)</strong>.
+                            <br><span class="sanction" data-lang-key="sanction_191">Санкция: лишение свободы до 5 лет.</span>
+                        </p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_detention_check_resolution">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
+                        <p><a href="#" data-lang-key="source_complaint_rejection_resolution">Постановление об оставлении жалобы без удовлетворения от 21.02.2024</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_bekenov_title: "Досье: Бекенов Туратбек Орозбаевич - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                name_bekenov_full: "Бекенов Туратбек Орозбаевич",
+                category_label: "Категория:",
+                category_judge: "Судья",
+                position_label: "Должность:",
+                position_bekenov: "Следственный судья Первомайского районного суда города Бишкек",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
+                action_check_detention_legality: "Действия (17.01.2024): Проверка законности задержания",
+                description_check_detention_legality: "Как следственный судья Первомайского районного суда города Бишкек, в судебном заседании с участием секретаря А.Майрамбек кызы, помощника прокурора А.Карыпбек уулу, следователя Н.Акуналиева, обвиняемых и их адвокатов, рассмотрел ходатайства о проверке законности и обоснованности задержания следующих журналистов:",
+                description_detention_legality_outcome: "Суд удовлетворил ходатайства, признав задержания законными и обоснованными.",
+                action_complaint_rejection: "Действия (21.02.2024): Оставление жалобы Акылбека Орозбекова без удовлетворения",
+                description_complaint_rejection: "Как следственный судья Первомайского районного суда города Бишкек, рассмотрел жалобу обвиняемого Акылбека Орозбекова о признании незаконными действий оперативных сотрудников (получение паролей от телефона и ноутбука под давлением) и возложении обязанности на руководителя следственной группы Байышова К. устранить допущенное нарушение. Суд оставил жалобу без удовлетворения, мотивируя это тем, что обжалуемые действия не являются процессуальными действиями, предусмотренными УПК КР, и жалоба была подана по истечении установленного 10-суточного срока.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_qualification_description: "В действиях могут усматриваться признаки преступлений, предусмотренных:",
+                article_202_name: "ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)",
+                sanction_202: "Санкция: штраф или лишение свободы до 3 лет.",
+                article_337_name: "ст. 337 УК КР (Злоупотребление должностным положением)",
+                sanction_337: "Санкция: штраф или лишение свободы до 5 лет.",
+                article_360_name: "ст. 360 УК КР (Принуждение к даче показаний)",
+                sanction_360: "Санкция: лишение свободы до 10 лет.",
+                article_191_name: "ст. 191 УК КР (Незаконное задержание или заключение под стражу)",
+                sanction_191: "Санкция: лишение свободы до 5 лет.",
+                sources_heading: "Источники:",
+                source_detention_check_resolution: "Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024",
+                source_complaint_rejection_resolution: "Постановление об оставлении жалобы без удовлетворения от 21.02.2024",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+
+                // Names for the lists
+                name_mairambek_kyzy: "А.Майрамбек кызы",
+                name_karypbek_uulu: "А.Карыпбек уулу",
+                name_akunaliuiev: "Н.Акуналиева",
+                name_kaparov: "Капарова Мааданбека Таалайбековича",
+                name_turdaliev: "Турдалиева Жумабека Искендеровича",
+                name_tazhibek_uulu: "Тажибек уулу Максата",
+                name_sultanaliyev: "Сайпидина Султаналиева",
+                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
+                name_akunbekov: "Акунбекова Сапарбека Акунбековича",
+                name_asypbekov: "Асыпбекова Тыныстана Бекназаровича",
+                name_beishekeeva: "Бейшекеевой Айке Нурлановны",
+                name_buzumov: "Бузумова Жоодарбека Бакыталыевича",
+                name_orozbekov: "Орозбекова Акылбека Орозбековича",
+                name_ishenbekov: "Ишенбекова Азамата Ишенбековича",
+            },
+            en: {
+                dossier_bekenov_title: "Dossier: Bekenov Turatbek Orozbaevich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                name_bekenov_full: "Bekenov Turatbek Orozbaevich",
+                category_label: "Category:",
+                category_judge: "Judge",
+                position_label: "Position:",
+                position_bekenov: "Investigating Judge of Pervomaisky District Court of Bishkek",
+                documented_episodes_heading: "Documented Episodes",
+                episode_case_journalists: "Episode: «Case of 11 Journalists»",
+                action_check_detention_legality: "Actions (17.01.2024): Verification of detention legality",
+                description_check_detention_legality: "As the investigating judge of the Pervomaisky District Court of Bishkek, at the court session with the participation of secretary A. Mairambek kyzy, assistant prosecutor A. Karypbek uulu, investigator N. Akunalieva, the accused and their lawyers, petitions for verifying the legality and validity of the detention of the following journalists were considered:",
+                description_detention_legality_outcome: "The court granted the petitions, recognizing the detentions as legal and justified.",
+                action_complaint_rejection: "Actions (21.02.2024): Dismissal of Akylbek Orozbekov's complaint",
+                description_complaint_rejection: "As the investigating judge of the Pervomaisky District Court of Bishkek, considered the complaint of the accused Akylbek Orozbekov regarding the recognition of illegal actions by operational officers (obtaining passwords from phone and laptop under pressure) and imposing the obligation on the head of the investigation group Baiyshov K. to eliminate the violation. The court dismissed the complaint, arguing that the challenged actions are not procedural actions provided for by the Criminal Procedure Code of the Kyrgyz Republic, and the complaint was filed after the expiration of the established 10-day period.",
+                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_qualification_description: "The actions may show signs of crimes provided for by:",
+                article_202_name: "Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of the lawful professional activities of journalists)",
+                sanction_202: "Sanction: fine or imprisonment for up to 3 years.",
+                article_337_name: "Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)",
+                sanction_337: "Sanction: fine or imprisonment for up to 5 years.",
+                article_360_name: "Article 360 of the Criminal Code of the Kyrgyz Republic (Coercion to give false testimony)",
+                sanction_360: "Sanction: imprisonment for up to 10 years.",
+                article_191_name: "Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or custody)",
+                sanction_191: "Sanction: imprisonment for up to 5 years.",
+                sources_heading: "Sources:",
+                source_detention_check_resolution: "Resolution on verifying the legality and validity of the suspect's detention dated 17.01.2024",
+                source_complaint_rejection_resolution: "Resolution on dismissing the complaint dated 21.02.2024",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+
+                // Names for the lists
+                name_mairambek_kyzy: "A. Mairambek kyzy",
+                name_karypbek_uulu: "A. Karypbek uulu",
+                name_akunaliuiev: "N. Akunalieva",
+                name_kaparov: "Kaparov Maadanbek Taalaibekovich",
+                name_turdaliev: "Turdailev Zhumabek Iskenderovich",
+                name_tazhibek_uulu: "Tazhibek uulu Maksat",
+                name_sultanaliyev: "Saipidin Sultanaliyev",
+                name_tazhibek_kyzy_mahabat: "Tazhibek kyzy Mahabat",
+                name_akunbekov: "Akunbekov Saparbek Akunbekovich",
+                name_asypbekov: "Asypbekov Tynystan Beknazarovich",
+                name_beishekeeva: "Beishekeeva Aike Nurlanovna",
+                name_buzumov: "Buzumov Zhoodarbek Bakytalievich",
+                name_orozbekov: "Orozbekov Akylbek Orozbekovich",
+                name_ishenbekov: "Ishenbekov Azamat Ishenbekovich",
+            },
+            kg: {
+                dossier_bekenov_title: "Досье: Бекенов Туратбек Орозбаевич - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                name_bekenov_full: "Бекенов Туратбек Орозбаевич",
+                category_label: "Категория:",
+                category_judge: "Сот",
+                position_label: "Кызматы:",
+                position_bekenov: "Бишкек шаарынын Биринчи Май райондук сотунун тергөө судьясы",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
+                action_check_detention_legality: "Аракеттер (17.01.2024): Камакка алуунун мыйзамдуулугун текшерүү",
+                description_check_detention_legality: "Бишкек шаарынын Биринчи Май райондук сотунун тергөө судьясы катары, А.Майрамбек кызы катчы, А.Карыпбек уулу прокурордун жардамчысы, Н.Акуналиев тергөөчү, айыпталуучулар жана алардын адвокаттары катышкан сот отурумунда төмөнкү журналисттердин камакка алынышынын мыйзамдуулугун жана негиздүүлүгүн текшерүү жөнүндө өтүнүчтөрдү караган:",
+                description_detention_legality_outcome: "Сот өтүнүчтөрдү канааттандырып, камакка алууларды мыйзамдуу жана негиздүү деп тааныган.",
+                action_complaint_rejection: "Аракеттер (21.02.2024): Акылбек Орозбековдун арызын канааттандыруусуз калтыруу",
+                description_complaint_rejection: "Бишкек шаарынын Биринчи Май райондук сотунун тергөө судьясы катары, айыпталуучу Акылбек Орозбековдун оперативдик кызматкерлердин мыйзамсыз аракеттерин (телефондон жана ноутбуктан басым көрсөтүү менен пароль алуу) мыйзамсыз деп таануу жана тергөө тобунун жетекчиси Байышов К.га жол берилген бузууну жоюу милдетин жүктөө жөнүндө арызын караган. Сот арызды канааттандыруусуз калтырган, муну арызда көрсөтүлгөн аракеттер КР Кылмыш-процессуалдык кодексинде каралган процессуалдык аракеттерге кирбейт жана арыз белгиленген 10 күндүк мөөнөт өткөндөн кийин берилген деп негиздеген.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_qualification_description: "Аракеттерде төмөнкү кылмыштардын белгилери байкалат:",
+                article_202_name: "КР Кылмыш-жаза кодексинин 202-беренеси (Журналисттин мыйзамдуу кесиптик ишмердүүлүгүнө тоскоолдук кылуу)",
+                sanction_202: "Санкция: айып пул же 3 жылга чейин эркиндигинен ажыратуу.",
+                article_337_name: "КР Кылмыш-жаза кодексинин 337-беренеси (Кызмат абалынан кыянаттык менен пайдалануу)",
+                sanction_337: "Санкция: айып пул же 5 жылга чейин эркиндигинен ажыратуу.",
+                article_360_name: "КР Кылмыш-жаза кодексинин 360-беренеси (Көрсөтмө берүүгө мажбурлоо)",
+                sanction_360: "Санкция: 10 жылга чейин эркиндигинен ажыратуу.",
+                article_191_name: "КР Кылмыш-жаза кодексинин 191-беренеси (Мыйзамсыз кармоо же камакка алуу)",
+                sanction_191: "Санкция: 5 жылга чейин эркиндигинен ажыратуу.",
+                sources_heading: "Булактар:",
+                source_detention_check_resolution: "17.01.2024-жылдагы шектүүнү кармоонун мыйзамдуулугун жана негиздүүлүгүн текшерүү жөнүндө токтом",
+                source_complaint_rejection_resolution: "21.02.2024-жылдагы арызды канааттандыруусуз калтыруу жөнүндө токтом",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+
+                // Names for the lists
+                name_mairambek_kyzy: "А.Майрамбек кызы",
+                name_karypbek_uulu: "А.Карыпбек уулу",
+                name_akunaliuiev: "Н.Акуналиева",
+                name_kaparov: "Капаров Мааданбек Таалайбековичти",
+                name_turdaliev: "Турдалиев Жумабек Искендеровичти",
+                name_tazhibek_uulu: "Тажибек уулу Максатты",
+                name_sultanaliyev: "Сайпидин Султаналиевди",
+                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабатты",
+                name_akunbekov: "Акунбеков Сапарбек Акунбековичти",
+                name_asypbekov: "Асыпбеков Тыныстан Бекназаровичти",
+                name_beishekeeva: "Бейшекеева Айке Нурлановнаны",
+                name_buzumov: "Бузумов Жоодарбек Бакыталыевичти",
+                name_orozbekov: "Орозбеков Акылбек Орозбековичти",
+                name_ishenbekov: "Ишенбеков Азамат Ишенбековичти",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
+
