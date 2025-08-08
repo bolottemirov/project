@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Общие стили (скопированы из index.html для удобства) */
+        /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
         :root {
             --primary-color: #0d2a4c;
@@ -131,7 +131,7 @@
             transition: color 0.3s ease;
         }
         .dossier-link:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            color: var(--accent-hover-color);
             text-decoration: underline;
         }
 
@@ -323,8 +323,8 @@
                         <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
                         <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
                         <p>
-                            <span data-lang-key="legal_qualification_description">В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)**, если поручение уголовного дела было связано с неправомерным преследованием.</span>
-                            <br><span class="sanction" data-lang-key="sanction_text">Санкция: штраф или лишение свободы до 5 лет.</span>
+                            <span data-lang-key="legal_qualification_description">Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)**, **ст. 337 УК КР (Злоупотребление должностным положением)**, **ст. 360 УК КР (Принуждение к даче показаний)** и **ст. 191 УК КР (Незаконное задержание)**. </span>
+                            <br><span class="sanction" data-lang-key="sanction_text">Санкция: штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 337), лишение свободы до 10 лет (ст. 360), лишение свободы до 5 лет (ст. 191).</span>
                         </p>
                         <h5 data-lang-key="sources_heading">Источники:</h5>
                         <p><a href="#" data-lang-key="source_criminal_case_assignment_resolution">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
@@ -361,8 +361,8 @@
                 description_criminal_case_assignment: "Как начальник управления Следственной службы МВД Кыргызской Республики, полковник милиции, рассмотрел материалы уголовного дела №03-050-2024-000029 и поручил его группе следователей (следственной группе) из-за сложности и большого объема следственных действий.",
                 legal_qualification_heading: "Юридическая квалификация (по УК КР):",
                 disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
-                legal_qualification_description: "В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)**, если поручение уголовного дела было связано с неправомерным преследованием.",
-                sanction_text: "Санкция: штраф или лишение свободы до 5 лет.",
+                legal_qualification_description: "Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)**, **ст. 337 УК КР (Злоупотребление должностным положением)**, **ст. 360 УК КР (Принуждение к даче показаний)** и **ст. 191 УК КР (Незаконное задержание)**.",
+                sanction_text: "Санкция: штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 337), лишение свободы до 10 лет (ст. 360), лишение свободы до 5 лет (ст. 191).",
                 sources_heading: "Источники:",
                 source_criminal_case_assignment_resolution: "Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024",
                 footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
@@ -386,8 +386,8 @@
                 description_criminal_case_assignment: "As the head of the Investigative Department of the Ministry of Internal Affairs of the Kyrgyz Republic, Police Colonel, reviewed the materials of criminal case No. 03-050-2024-000029 and assigned it to an investigative group due to the complexity and large volume of investigative actions.",
                 legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
                 disclaimer_text: "Estimated qualification. Guilt is established by the court.",
-                legal_qualification_description: "Acts may show signs of **Article 320 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)**, if the assignment of the criminal case was related to unlawful prosecution.",
-                sanction_text: "Sanction: fine or imprisonment for up to 5 years.",
+                legal_qualification_description: "Suspected of committing acts falling under **Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of the lawful professional activity of journalists)**, **Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)**, **Article 360 of the Criminal Code of the Kyrgyz Republic (Coercion to give testimony)**, and **Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention)**.",
+                sanction_text: "Sanction: fine or imprisonment for up to 3 years (Art. 202), fine or imprisonment for up to 5 years (Art. 337), imprisonment for up to 10 years (Art. 360), imprisonment for up to 5 years (Art. 191).",
                 sources_heading: "Sources:",
                 source_criminal_case_assignment_resolution: "Resolution on assigning a criminal case to an investigative group dated 19.02.2024",
                 footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
@@ -411,8 +411,8 @@
                 description_criminal_case_assignment: "Кыргыз Республикасынын Ички иштер министрлигинин Тергөө кызматынын башкармалыгынын начальниги, милициянын полковниги катары №03-050-2024-000029 кылмыш ишинин материалдарын карап чыгып, тергөө аракеттеринин татаалдыгына жана көлөмүнө байланыштуу аны тергөө тобуна (тергөө тобуна) тапшырган.",
                 legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
                 disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
-                legal_qualification_description: "Аракеттерде **КР Кылмыш-жаза кодексинин 320-беренесинин (Кызмат абалынан кыянаттык менен пайдалануу)** белгилери байкалышы мүмкүн, эгерде кылмыш ишин тапшыруу мыйзамсыз куугунтук менен байланыштуу болсо.",
-                sanction_text: "Санкция: айып пул же 5 жылга чейин эркиндигинен ажыратуу.",
+                legal_qualification_description: "КР Кылмыш-жаза кодексинин **202-беренеси (Журналисттин мыйзамдуу кесиптик ишине тоскоолдук кылуу)**, **337-беренеси (Кызмат абалынан кыянаттык менен пайдалануу)**, **360-беренеси (Жалган көрсөтмө берүүгө мажбурлоо)** жана **191-беренеси (Мыйзамсыз кармоо)** боюнча кылмыштардын белгилери бар аракеттерди жасаган деп шектелүүдө.",
+                sanction_text: "Санкция: айып пул же 3 жылга чейин эркиндигинен ажыратуу (202-берене), айып пул же 5 жылга чейин эркиндигинен ажыратуу (337-берене), 10 жылга чейин (360-берене), 5 жылга чейин (191-берене).",
                 sources_heading: "Булактар:",
                 source_criminal_case_assignment_resolution: "19.02.2024-жылдагы кылмыш ишин тергөө тобуна (тергөө тобуна) тапшыруу жөнүндө токтом",
                 footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
