@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Калыбаев Алмаз Жээнкулович - Архив Подотчетности</title>
+    <title data-lang-key="dossier_kalybaev_title">Досье: Калыбаев Алмаз Жээнкулович - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -125,7 +131,7 @@
             transition: color 0.3s ease;
         }
         .dossier-link:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            color: var(--accent-hover-color);
             text-decoration: underline;
         }
 
@@ -259,50 +265,216 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-kalybaev">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://admin-sot.sot.kg/public/sites/4/2018/01/Kalybaev-Almaz-ZHeenkulovich.jpg);"></div>
-                        <h2>Калыбаев Алмаз Жээнкулович</h2>
-                        <p><strong>Категория:</strong> Судья</p>
-                        <p><strong>Дата рождения:</strong> 12.03.1976</p>
-                        <p><strong>Должность:</strong> Судья</p>
+                        <h2 data-lang-key="name_kalybaev_full">Калыбаев Алмаз Жээнкулович</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_judge">Судья</span></p>
+                        <p><strong data-lang-key="dob_label">Дата рождения:</strong> 12.03.1976</p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="position_judge">Судья</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия: Признание законным решения районного суда об изменении меры пресечения</h5>
-                            <p>Калыбаев Алмаз Жээнкулович, как судья, признал законным решение районного суда об изменении меры пресечения в отношении задержанных журналистов и оставил его без изменений, несмотря на заявления о его незаконности.</p>
+                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="action_recognize_court_decision">Действия: Признание законным решения районного суда об изменении меры пресечения</h5>
+                            <p data-lang-key="description_recognize_court_decision">Калыбаев Алмаз Жээнкулович, как судья, признал законным решение районного суда об изменении меры пресечения в отношении задержанных журналистов и оставил его без изменений, несмотря на заявления о его незаконности.</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)** и **ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)**. При наличии тяжкого вреда - часть 2 статьи 352 УК КР. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 352 ч.1), лишение свободы от 5 до 8 лет (ст. 352 ч.2).</p>
-                        <h5>Источники:</h5>
-                        <p>Информация из материалов дела "11 журналистов".</p>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>
+                            <span data-lang-key="legal_qualification_description_original">Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных </span>
+                            <strong data-lang-key="article_202_name">ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)</strong><span data-lang-key="and_separator"> и </span>
+                            <strong data-lang-key="article_352_name">ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)</strong>. <span data-lang-key="if_serious_harm">При наличии тяжкого вреда - часть 2 статьи 352 УК КР.</span>
+                            <br><span class="sanction" data-lang-key="sanction_original">Санкция: штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 352 ч.1), лишение свободы от 5 до 8 лет (ст. 352 ч.2).</span>
+                        </p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_case_materials">Информация из материалов дела "11 журналистов"</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_kalybaev_title: "Досье: Калыбаев Алмаз Жээнкулович - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                name_kalybaev_full: "Калыбаев Алмаз Жээнкулович",
+                category_label: "Категория:",
+                category_judge: "Судья",
+                dob_label: "Дата рождения:",
+                position_label: "Должность:",
+                position_judge: "Судья",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
+                action_recognize_court_decision: "Действия: Признание законным решения районного суда об изменении меры пресечения",
+                description_recognize_court_decision: "Калыбаев Алмаз Жээнкулович, как судья, признал законным решение районного суда об изменении меры пресечения в отношении задержанных журналистов и оставил его без изменений, несмотря на заявления о его незаконности.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_qualification_description_original: "Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных ",
+                article_202_name: "ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)",
+                and_separator: " и ",
+                article_352_name: "ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)",
+                if_serious_harm: "При наличии тяжкого вреда - часть 2 статьи 352 УК КР.",
+                sanction_original: "Санкция: штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 352 ч.1), лишение свободы от 5 до 8 лет (ст. 352 ч.2).",
+                sources_heading: "Источники:",
+                source_case_materials: "Информация из материалов дела \"11 журналистов\"",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+            },
+            en: {
+                dossier_kalybaev_title: "Dossier: Kalybaev Almaz Zheenkuolovich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                name_kalybaev_full: "Kalybaev Almaz Zheenkuolovich",
+                category_label: "Category:",
+                category_judge: "Judge",
+                dob_label: "Date of Birth:",
+                position_label: "Position:",
+                position_judge: "Judge",
+                documented_episodes_heading: "Documented Episodes",
+                episode_case_journalists: "Episode: «Case of 11 Journalists»",
+                action_recognize_court_decision: "Actions: Recognizing the district court's decision on changing the preventive measure as legal",
+                description_recognize_court_decision: "Kalybaev Almaz Zheenkuolovich, as a judge, recognized the district court's decision on changing the preventive measure against the detained journalists as legal and left it unchanged, despite claims of its illegality.",
+                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_qualification_description_original: "Suspected of committing acts falling under the signs of crimes provided for by ",
+                article_202_name: "Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of the lawful professional activities of journalists)",
+                and_separator: " and ",
+                article_352_name: "Article 352 of the Criminal Code of the Kyrgyz Republic (Issuing a knowingly unjust court act)",
+                if_serious_harm: "In case of serious harm - Part 2 of Article 352 of the Criminal Code of the Kyrgyz Republic.",
+                sanction_original: "Sanction: fine or imprisonment for up to 3 years (Art. 202), fine or imprisonment for up to 5 years (Art. 352 part 1), imprisonment from 5 to 8 years (Art. 352 part 2).",
+                sources_heading: "Sources:",
+                source_case_materials: "Information from the materials of the \"Case of 11 Journalists\"",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+            },
+            kg: {
+                dossier_kalybaev_title: "Досье: Калыбаев Алмаз Жээнкулович - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                name_kalybaev_full: "Калыбаев Алмаз Жээнкулович",
+                category_label: "Категория:",
+                category_judge: "Сот",
+                dob_label: "Туулган күнү:",
+                position_label: "Кызматы:",
+                position_judge: "Сот",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
+                action_recognize_court_decision: "Аракеттер: Райондук соттун бөгөт коюу чарасын өзгөртүү жөнүндө чечимин мыйзамдуу деп таануу",
+                description_recognize_court_decision: "Калыбаев Алмаз Жээнкулович, судья катары, райондук соттун кармалган журналисттерге карата бөгөт коюу чарасын өзгөртүү жөнүндө чечимин мыйзамдуу деп таанып, анын мыйзамсыздыгы тууралуу билдирүүлөргө карабастан, аны өзгөрүүсүз калтырган.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_qualification_description_original: "Аракеттерде төмөнкү кылмыштардын белгилери байкалат: ",
+                article_202_name: "КР Кылмыш-жаза кодексинин 202-беренеси (Журналисттин мыйзамдуу кесиптик ишмердүүлүгүнө тоскоолдук кылуу)",
+                and_separator: " жана ",
+                article_352_name: "КР Кылмыш-жаза кодексинин 352-беренеси (Атайылап адилетсиз сот актысын чыгаруу)",
+                if_serious_harm: "Оор зыян келтирилген учурда - КР Кылмыш-жаза кодексинин 352-беренесинин 2-бөлүгү.",
+                sanction_original: "Санкция: айып пул же 3 жылга чейин эркиндигинен ажыратуу (202-берене), айып пул же 5 жылга чейин эркиндигинен ажыратуу (352-берене 1-бөлүгү), 5 жылдан 8 жылга чейин эркиндигинен ажыратуу (352-берене 2-бөлүгү).",
+                sources_heading: "Булактар:",
+                source_case_materials: "\"11 журналисттин иши\" материалдарынан алынган маалымат",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru'; 
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedHRLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
+
