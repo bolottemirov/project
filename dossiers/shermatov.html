@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Шерматов Миран Бакытбекович - Архив Подотчетности</title>
+    <title data-lang-key="dossier_shermatov_title">Досье: Шерматов Миран Бакытбекович - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -125,7 +131,7 @@
             transition: color 0.3s ease;
         }
         .dossier-link:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            color: var(--accent-hover-color);
             text-decoration: underline;
         }
 
@@ -259,86 +265,282 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-shermatov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://cdn-1.aki.kg/cdn-st-0/qYc/I/1012834.85eb3bfa14ddfd485b4fb67523f2c49f.500.jpg);"></div>
-                        <h2>Шерматов Миран Бакытбекович</h2>
-                        <p><strong>Категория:</strong> Судья</p>
+                        <h2 data-lang-key="name_shermatov_full">Шерматов Миран Бакытбекович</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_judge">Судья</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия (17.01.2024): Арест Сайпидина Султаналиева</h5>
-                            <p>Вынес два постановления: о признании задержания журналиста законным и об его аресте на два месяца. В качестве обоснования указал возможность «оказывать негативное влияние на общественное мнение».</p>
+                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="action_arrest_sultanaliyev">Действия (17.01.2024): Арест Сайпидина Султаналиева</h5>
+                            <p data-lang-key="description_arrest_sultanaliyev">Вынес два постановления: о признании задержания журналиста законным и об его аресте на два месяца. В качестве обоснования указал возможность «оказывать негативное влияние на общественное мнение».</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Мааданбека Капарова</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Мааданбека Капарова, обвиненного в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_kaparov">Действия (17.01.2024): Арест Мааданбека Капарова</h5>
+                            <p data-lang-key="description_arrest_kaparov">В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Мааданбека Капарова, обвиненного в «организации» преступления.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Акылбека Орозбекова</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Акылбека Орозбекова, обвиненного в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_orozbekov">Действия (17.01.2024): Арест Акылбека Орозбекова</h5>
+                            <p data-lang-key="description_arrest_orozbekov">В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Акылбека Орозбекова, обвиненного в «организации» преступления.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Жоодарбека Бузумова</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Жоодарбека Бузумова, обвиненного в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_buzumov">Действия (17.01.2024): Арест Жоодарбека Бузумова</h5>
+                            <p data-lang-key="description_arrest_buzumov">В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Жоодарбека Бузумова, обвиненного в «организации» преступления.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Сапарбека Акунбекова</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Сапарбека Акунбекова, обвиненного в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_akunbekov">Действия (17.01.2024): Арест Сапарбека Акунбекова</h5>
+                            <p data-lang-key="description_arrest_akunbekov">В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Сапарбека Акунбекова, обвиненного в «организации» преступления.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Айке Бейшекеевой</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналистки Айке Бейшекеевой, обвиненной в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_beishekeeva">Действия (17.01.2024): Арест Айке Бейшекеевой</h5>
+                            <p data-lang-key="description_arrest_beishekeeva">В тот же день аналогичным образом признал задержание и санкционировал арест журналистки Айке Бейшекеевой, обвиненной в «организации» преступления.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Азамата Ишенбекова</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Азамата Ишенбекова, обвиненного в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_ishenbekov">Действия (17.01.2024): Арест Азамата Ишенбекова</h5>
+                            <p data-lang-key="description_arrest_ishenbekov">В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Азамата Ишенбекова, обвиненного в «организации» преступления.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Тыныстана Асыпбекова</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Тыныстана Асыпбекова, обвиненного в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_asypbekov">Действия (17.01.2024): Арест Тыныстана Асыпбекова</h5>
+                            <p data-lang-key="description_arrest_asypbekov">В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Тыныстана Асыпбекова, обвиненного в «организации» преступления.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Максата Тажибек уулу</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Максата Тажибек уулу, обвиненного в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_tazhibek_uulu">Действия (17.01.2024): Арест Максата Тажибек уулу</h5>
+                            <p data-lang-key="description_arrest_tazhibek_uulu">В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Максата Тажибек уулу, обвиненного в «организации» преступления.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (17.01.2024): Арест Махабат Тажибек кызы</h5>
-                            <p>В тот же день аналогичным образом признал задержание и санкционировал арест журналистки Махабат Тажибек кызы, обвиненной в «организации» преступления.</p>
+                            <h5 data-lang-key="action_arrest_tazhibek_kyzy">Действия (17.01.2024): Арест Махабат Тажибек кызы</h5>
+                            <p data-lang-key="description_arrest_tazhibek_kyzy">В тот же день аналогичным образом признал задержание и санкционировал арест журналистки Махабат Тажибек кызы, обвиненной в «организации» преступления.</p>
                         </div>
                         <div class="un-opinion-box">
-                            <h5>Оценка ООН (Мнение № 57/2024)</h5>
-                            <p>Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Сапарбека Акунбекова, Айке Бейшекеевой, Азамата Ишенбекова, Акылбека («Акыл») Орозбекова, Актилек («Мааданбек») Капарова, Тыныстана Асыпбекова, Сайпидина Султаналиева, Максата Тажибек уулу и Жоодарбека Бузумова, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.</p>
+                            <h5 data-lang-key="un_opinion_heading">Оценка ООН (Мнение № 57/2024)</h5>
+                            <p data-lang-key="un_opinion_description">Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Сапарбека Акунбекова, Айке Бейшекеевой, Азамата Ишенбекова, Акылбека («Акыл») Орозбекова, Актилек («Мааданбек») Капарова, Тыныстана Асыпбекова, Сайпидина Султаналиева, Максата Тажибек уулу и Жоодарбека Бузумова, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В действиях усматриваются признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)**. <br><span class="sanction">Санкция:</span> лишение свободы от 5 до 8 лет.</p>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>
+                            <span data-lang-key="legal_qualification_description">В действиях усматриваются признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)**. </span>
+                            <br><span class="sanction" data-lang-key="sanction_text">Санкция: лишение свободы от 5 до 8 лет.</span>
+                        </p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_shermatov_title: "Досье: Шерматов Миран Бакытбекович - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                name_shermatov_full: "Шерматов Миран Бакытбекович",
+                category_label: "Категория:",
+                category_judge: "Судья",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
+                action_arrest_sultanaliyev: "Действия (17.01.2024): Арест Сайпидина Султаналиева",
+                description_arrest_sultanaliyev: "Вынес два постановления: о признании задержания журналиста законным и об его аресте на два месяца. В качестве обоснования указал возможность «оказывать негативное влияние на общественное мнение».",
+                action_arrest_kaparov: "Действия (17.01.2024): Арест Мааданбека Капарова",
+                description_arrest_kaparov: "В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Мааданбека Капарова, обвиненного в «организации» преступления.",
+                action_arrest_orozbekov: "Действия (17.01.2024): Арест Акылбека Орозбекова",
+                description_arrest_orozbekov: "В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Акылбека Орозбекова, обвиненного в «организации» преступления.",
+                action_arrest_buzumov: "Действия (17.01.2024): Арест Жоодарбека Бузумова",
+                description_arrest_buzumov: "В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Жоодарбека Бузумова, обвиненного в «организации» преступления.",
+                action_arrest_akunbekov: "Действия (17.01.2024): Арест Сапарбека Акунбекова",
+                description_arrest_akunbekov: "В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Сапарбека Акунбекова, обвиненного в «организации» преступления.",
+                action_arrest_beishekeeva: "Действия (17.01.2024): Арест Айке Бейшекеевой",
+                description_arrest_beishekeeva: "В тот же день аналогичным образом признал задержание и санкционировал арест журналистки Айке Бейшекеевой, обвиненной в «организации» преступления.",
+                action_arrest_ishenbekov: "Действия (17.01.2024): Арест Азамата Ишенбекова",
+                description_arrest_ishenbekov: "В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Азамата Ишенбекова, обвиненного в «организации» преступления.",
+                action_arrest_asypbekov: "Действия (17.01.2024): Арест Тыныстана Асыпбекова",
+                description_arrest_asypbekov: "В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Тыныстана Асыпбекова, обвиненного в «организации» преступления.",
+                action_arrest_tazhibek_uulu: "Действия (17.01.2024): Арест Максата Тажибек уулу",
+                description_arrest_tazhibek_uulu: "В тот же день аналогичным образом признал задержание и санкционировал арест журналиста Максата Тажибек уулу, обвиненного в «организации» преступления.",
+                action_arrest_tazhibek_kyzy: "Действия (17.01.2024): Арест Махабат Тажибек кызы",
+                description_arrest_tazhibek_kyzy: "В тот же день аналогичным образом признал задержание и санкционировал арест журналистки Махабат Тажибек кызы, обвиненной в «организации» преступления.",
+                un_opinion_heading: "Оценка ООН (Мнение № 57/2024)",
+                un_opinion_description: "Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Сапарбека Акунбекова, Айке Бейшекеевой, Азамата Ишенбекова, Акылбека («Акыл») Орозбекова, Актилек («Мааданбек») Капарова, Тыныстана Асыпбекова, Сайпидина Султаналиева, Максата Тажибек уулу и Жоодарбека Бузумова, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_qualification_description: "В действиях усматриваются признаки **ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)**.",
+                sanction_text: "Санкция: лишение свободы от 5 до 8 лет.",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+            },
+            en: {
+                dossier_shermatov_title: "Dossier: Shermatov Miran Bakytbekovich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                name_shermatov_full: "Shermatov Miran Bakytbekovich",
+                category_label: "Category:",
+                category_judge: "Judge",
+                documented_episodes_heading: "Documented Episodes",
+                episode_case_journalists: "Episode: «Case of 11 Journalists»",
+                action_arrest_sultanaliyev: "Actions (17.01.2024): Arrest of Saipidin Sultanaliyev",
+                description_arrest_sultanaliyev: "Issued two orders: recognizing the journalist's detention as legal and authorizing his arrest for two months. As justification, he cited the possibility of 'exerting a negative influence on public opinion.'",
+                action_arrest_kaparov: "Actions (17.01.2024): Arrest of Maadanbek Kaparov",
+                description_arrest_kaparov: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Maadanbek Kaparov, accused of 'organizing' a crime.",
+                action_arrest_orozbekov: "Actions (17.01.2024): Arrest of Akylbek Orozbekov",
+                description_arrest_orozbekov: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Akylbek Orozbekov, accused of 'organizing' a crime.",
+                action_arrest_buzumov: "Actions (17.01.2024): Arrest of Zhoodarbek Buzumov",
+                description_arrest_buzumov: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Zhoodarbek Buzumov, accused of 'organizing' a crime.",
+                action_arrest_akunbekov: "Actions (17.01.2024): Arrest of Saparbek Akunbekov",
+                description_arrest_akunbekov: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Saparbek Akunbekov, accused of 'organizing' a crime.",
+                action_arrest_beishekeeva: "Actions (17.01.2024): Arrest of Aike Beishekeeva",
+                description_arrest_beishekeeva: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Aike Beishekeeva, accused of 'organizing' a crime.",
+                action_arrest_ishenbekov: "Actions (17.01.2024): Arrest of Azamat Ishenbekov",
+                description_arrest_ishenbekov: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Azamat Ishenbekov, accused of 'organizing' a crime.",
+                action_arrest_asypbekov: "Actions (17.01.2024): Arrest of Tynystan Asypbekov",
+                description_arrest_asypbekov: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Tynystan Asypbekov, accused of 'organizing' a crime.",
+                action_arrest_tazhibek_uulu: "Actions (17.01.2024): Arrest of Maksat Tazhibek uulu",
+                description_arrest_tazhibek_uulu: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Maksat Tazhibek uulu, accused of 'organizing' a crime.",
+                action_arrest_tazhibek_kyzy: "Actions (17.01.2024): Arrest of Mahabat Tazhibek kyzy",
+                description_arrest_tazhibek_kyzy: "On the same day, similarly recognized the detention and sanctioned the arrest of journalist Mahabat Tazhibek kyzy, accused of 'organizing' a crime.",
+                un_opinion_heading: "UN Assessment (Opinion No. 57/2024)",
+                un_opinion_description: "The UN Working Group on Arbitrary Detention, in its **Opinion No. 57/2024**, found the deprivation of liberty of Saparbek Akunbekov, Aike Beishekeeva, Azamat Ishenbekov, Akylbek ('Akyl') Orozbekov, Aktilek ('Maadanbek') Kaparov, Tynystan Asypbekov, Saipidin Sultanaliyev, Maksat Tazhibek uulu, and Zhoodarbek Buzumov to be contrary to Articles 2, 7, 9, 11, and 19 of the Universal Declaration of Human Rights and Articles 2, 9, 14, 19, and 26 of the International Covenant on Civil and Political Rights, and thus **arbitrary, falling under categories I, II, III, and V**.",
+                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_qualification_description: "Acts show signs of **Article 351 of the Criminal Code of the Kyrgyz Republic (Issuance of a knowingly unjust judicial act)**.",
+                sanction_text: "Sanction: imprisonment for 5 to 8 years.",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+            },
+            kg: {
+                dossier_shermatov_title: "Досье: Шерматов Миран Бакытбекович - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                name_shermatov_full: "Шерматов Миран Бакытбекович",
+                category_label: "Категория:",
+                category_judge: "Сот",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
+                action_arrest_sultanaliyev: "Аракеттер (17.01.2024): Сайпидин Султаналиевди камакка алуу",
+                description_arrest_sultanaliyev: "Эки токтом чыгарган: журналистти кармоону мыйзамдуу деп тааныган жана аны эки айга камакка алууга санкция берген. Негиздеме катары «коомдук пикирге терс таасир этүү» мүмкүнчүлүгүн көрсөткөн.",
+                action_arrest_kaparov: "Аракеттер (17.01.2024): Мааданбек Капаровду камакка алуу",
+                description_arrest_kaparov: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Мааданбек Капаровдун кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                action_arrest_orozbekov: "Аракеттер (17.01.2024): Акылбек Орозбековду камакка алуу",
+                description_arrest_orozbekov: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Акылбек Орозбековдун кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                action_arrest_buzumov: "Аракеттер (17.01.2024): Жоодарбек Бузумовду камакка алуу",
+                description_arrest_buzumov: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Жоодарбек Бузумовдун кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                action_arrest_akunbekov: "Аракеттер (17.01.2024): Сапарбек Акунбековду камакка алуу",
+                description_arrest_akunbekov: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Сапарбек Акунбековдун кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                action_arrest_beishekeeva: "Аракеттер (17.01.2024): Айке Бейшекееваны камакка алуу",
+                description_arrest_beishekeeva: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Айке Бейшекееванын кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                action_arrest_ishenbekov: "Аракеттер (17.01.2024): Азамат Ишенбековду камакка алуу",
+                description_arrest_ishenbekov: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Азамат Ишенбековдун кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                action_arrest_asypbekov: "Аракеттер (17.01.2024): Тыныстан Асыпбековду камакка алуу",
+                description_arrest_asypbekov: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Тыныстан Асыпбековдун кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                action_arrest_tazhibek_uulu: "Аракеттер (17.01.2024): Максат Тажибек уулун камакка алуу",
+                description_arrest_tazhibek_uulu: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Максат Тажибек уулунун кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                action_arrest_tazhibek_kyzy: "Аракеттер (17.01.2024): Махабат Тажибек кызын камакка алуу",
+                description_arrest_tazhibek_kyzy: "Ошол эле күнү кылмышты «уюштуруу» айыбы менен айыпталган журналист Махабат Тажибек кызынын кармалышын мыйзамдуу деп таанып, камакка алууга санкция берген.",
+                un_opinion_heading: "БУУнун баалоосу (№ 57/2024 пикири)",
+                un_opinion_description: "БУУнун Эркиндигинен ажыратуу боюнча жумушчу тобу **№ 57/2024 пикиринде** Сапарбек Акунбековдун, Айке Бейшекееванын, Азамат Ишенбековдун, Акылбек («Акыл») Орозбековдун, Актилек («Мааданбек») Капаровдун, Тыныстан Асыпбековдун, Сайпидин Султаналиевдин, Максат Тажибек уулунун жана Жоодарбек Бузумовдун эркиндигинен ажыратылышын Адам укуктарынын жалпы декларациясынын 2, 7, 9, 11 жана 19-беренелерине жана Жарандык жана саясий укуктар жөнүндө эл аралык пакттын 2, 9, 14, 19 жана 26-беренелерине карама-каршы келет деп таап, аны **эркиндигинен ажыратуунун I, II, III жана V категорияларына кирет** деп билдирген.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_qualification_description: "Аракеттерде **КР Кылмыш-жаза кодексинин 351-беренесинин (Атайылап адилетсиз сот актысын чыгаруу)** белгилери байкалышы мүмкүн.",
+                sanction_text: "Санкция: 5 жылдан 8 жылга чейин эркиндигинен ажыратуу.",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru'; // Using HRLanguage to avoid conflict
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedHRLanguage', lang); // Using HRLanguage to avoid conflict
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
