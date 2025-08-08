@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Зикиралиев Улан Спартакович - Архив Подотчетности</title>
+    <title data-lang-key="dossier_zikiraliev_title">Досье: Зикиралиев Улан Спартакович - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -125,7 +131,7 @@
             transition: color 0.3s ease;
         }
         .dossier-link:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            color: var(--accent-hover-color);
             text-decoration: underline;
         }
 
@@ -259,75 +265,281 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-zikiraliev">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo"></div>
-                        <h2>Зикиралиев Улан Спартакович</h2>
-                        <p><strong>Категория:</strong> Высокопоставленный следователь / Руководитель следственной группы</p>
-                        <p><strong>Должность:</strong> Заместитель начальника Управления Следственной Службы МВД КР / Руководитель следственной группы</p>
+                        <h2 data-lang-key="name_zikiraliev_full">Зикиралиев Улан Спартакович</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_senior_investigator">Высокопоставленный следователь / Руководитель следственной группы</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="position_deputy_head_investigative_service">Заместитель начальника Управления Следственной Службы МВД КР / Руководитель следственной группы</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия (05.03.2024): Продление срока расследования</h5>
-                            <p>Как руководитель следственной группы, ходатайствовал о продлении срока расследования по делу №03-050-2024-000029 на 4 месяца, до 13 мая 2024 года. Это ходатайство было удовлетворено Генеральной прокуратурой КР.</p>
+                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="action_extension_investigation">Действия (05.03.2024): Продление срока расследования</h5>
+                            <p data-lang-key="description_extension_investigation">Как руководитель следственной группы, ходатайствовал о продлении срока расследования по делу №03-050-2024-000029 на 4 месяца, до 13 мая 2024 года. Это ходатайство было удовлетворено Генеральной прокуратурой КР.</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (05.03.2024 / 12.03.2024): Ходатайство о продлении ареста журналистов</h5>
-                            <p>Инициировал и представил в Первомайском районном суде Бишкека ходатайства о продлении меры пресечения в виде заключения под стражу в отношении следующих журналистов на 4 месяца (до 13.05.2024):</p>
+                            <h5 data-lang-key="action_extension_arrest_petition">Действия (05.03.2024 / 12.03.2024): Ходатайство о продлении ареста журналистов</h5>
+                            <p data-lang-key="description_extension_arrest_petition">Инициировал и представил в Первомайском районном суде Бишкека ходатайства о продлении меры пресечения в виде заключения под стражу в отношении следующих журналистов на 4 месяца (до 13.05.2024):</p>
                             <ul>
-                                <li>Капарова Мааданбека Таалайбековича</li>
-                                <li>Турдалиева Жумабека Искендеровича</li>
-                                <li>Тажибек уулу Максата</li>
-                                <li>Сайпидина Султаналиева</li>
-                                <li>Тажибек кызы Махабат</li>
-                                <li>Акунбекова Сапарбека Акунбековича</li>
-                                <li>Асыпбекова Тыныстана Бекназаровича</li>
-                                <li>Бейшекеевой Айке Нурлановны</li>
-                                <li>Бузумова Жоодарбека Бакыталиевича</li>
-                                <li>Орозбекова Акылбека Орозбековича</li>
+                                <li data-lang-key="journalist_kapparov">Капарова Мааданбека Таалайбековича</li>
+                                <li data-lang-key="journalist_turdaliev">Турдалиева Жумабека Искендеровича</li>
+                                <li data-lang-key="journalist_tazhibek_uulu_maksat">Тажибек уулу Максата</li>
+                                <li data-lang-key="journalist_sultanaliyev">Сайпидина Султаналиева</li>
+                                <li data-lang-key="journalist_tazhibek_kyzy_mahabat">Тажибек кызы Махабат</li>
+                                <li data-lang-key="journalist_akunbekov">Акунбекова Сапарбека Акунбековича</li>
+                                <li data-lang-key="journalist_asypbekov">Асыпбекова Тыныстана Бекназаровича</li>
+                                <li data-lang-key="journalist_beishekeeva">Бейшекеевой Айке Нурлановны</li>
+                                <li data-lang-key="journalist_buzumov">Бузумова Жоодарбека Бакыталиевича</li>
+                                <li data-lang-key="journalist_orozbekov">Орозбекова Акылбека Орозбековича</li>
                             </ul>
-                            <p>Ходатайства были удовлетворены судом (в отношении Максата Тажибек уулу) или рассмотрены (в отношении других журналистов).</p>
+                            <p data-lang-key="description_petitions_satisfied">Ходатайства были удовлетворены судом (в отношении Максата Тажибек уулу) или рассмотрены (в отношении других журналистов).</p>
                         </div>
                         <div class="episode-card">
-                            <h5>Действия (19.02.2024): Назначение руководителем следственной группы по уголовному делу №03-050-2024-000029</h5>
-                            <p>Назначен руководителем следственной группы по уголовному делу №03-050-2024-000029 по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
+                            <h5 data-lang-key="action_appointment_head_investigative_group">Действия (19.02.2024): Назначение руководителем следственной группы по уголовному делу №03-050-2024-000029</h5>
+                            <p data-lang-key="description_appointment_head_investigative_group">Назначен руководителем следственной группы по уголовному делу №03-050-2024-000029 по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В действиях могут усматриваться признаки **ст. 320 УК КР (Злоупотребление должностным положением)** или **ст. 350 УК КР (Незаконное задержание или заключение под стражу)**, если ходатайство о продлении ареста было необоснованным, что было установлено судом. <br><span class="sanction">Санкция:</span> (для ст. 320 УК КР) штраф или лишение свободы до 5 лет; (для ст. 350 УК КР) лишение свободы от 3 до 5 лет.</p>
-                        <h5>Источники:</h5>
-                        <p><a href="#">Постановление Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения)</a>.</p>
-                        <p><a href="#">Постановление об инициировании ходатайства о продлении меры пресечения в отношении Тажибек уулу Максата от 05.03.2024</a>.</p>
-                        <p><a href="#">Токтом Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)</a>.</p>
-                        <p><a href="#">Токтом от 08.04.2024 (о возбуждении ходатайства об изменении меры пресечения)</a>.</p>
-                        <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>
+                            <span data-lang-key="legal_qualification_description">Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)**, **ст. 337 УК КР (Злоупотребление должностным положением)**, **ст. 360 УК КР (Принуждение к даче показаний)** и **ст. 191 УК КР (Незаконное задержание)**. </span>
+                            <br><span class="sanction" data-lang-key="sanction_text">Санкция: штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 337), лишение свободы до 10 лет (ст. 360), лишение свободы до 5 лет (ст. 191).</span>
+                        </p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_extension_resolution_12_03_2024">Постановление Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения)</a>.</p>
+                        <p><a href="#" data-lang-key="source_initiation_extension_petition_05_03_2024">Постановление об инициировании ходатайства о продлении меры пресечения в отношении Тажибек уулу Максата от 05.03.2024</a>.</p>
+                        <p><a href="#" data-lang-key="source_resolution_extension_maksat_12_03_2024">Токтом Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)</a>.</p>
+                        <p><a href="#" data-lang-key="source_resolution_amendment_petition_08_04_2024">Токтом от 08.04.2024 (о возбуждении ходатайства об изменении меры пресечения)</a>.</p>
+                        <p><a href="#" data-lang-key="source_criminal_case_assignment_resolution">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_zikiraliev_title: "Досье: Зикиралиев Улан Спартакович - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                name_zikiraliev_full: "Зикиралиев Улан Спартакович",
+                category_label: "Категория:",
+                category_senior_investigator: "Высокопоставленный следователь / Руководитель следственной группы",
+                position_label: "Должность:",
+                position_deputy_head_investigative_service: "Заместитель начальника Управления Следственной Службы МВД КР / Руководитель следственной группы",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
+                action_extension_investigation: "Действия (05.03.2024): Продление срока расследования",
+                description_extension_investigation: "Как руководитель следственной группы, ходатайствовал о продлении срока расследования по делу №03-050-2024-000029 на 4 месяца, до 13 мая 2024 года. Это ходатайство было удовлетворено Генеральной прокуратурой КР.",
+                action_extension_arrest_petition: "Действия (05.03.2024 / 12.03.2024): Ходатайство о продлении ареста журналистов",
+                description_extension_arrest_petition: "Инициировал и представил в Первомайском районном суде Бишкека ходатайства о продлении меры пресечения в виде заключения под стражу в отношении следующих журналистов на 4 месяца (до 13.05.2024):",
+                journalist_kapparov: "Капарова Мааданбека Таалайбековича",
+                journalist_turdaliev: "Турдалиева Жумабека Искендеровича",
+                journalist_tazhibek_uulu_maksat: "Тажибек уулу Максата",
+                journalist_sultanaliyev: "Сайпидина Султаналиева",
+                journalist_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
+                journalist_akunbekov: "Акунбекова Сапарбека Акунбековича",
+                journalist_asypbekov: "Асыпбекова Тыныстана Бекназаровича",
+                journalist_beishekeeva: "Бейшекеевой Айке Нурлановны",
+                journalist_buzumov: "Бузумова Жоодарбека Бакыталиевича",
+                journalist_orozbekov: "Орозбекова Акылбека Орозбековича",
+                description_petitions_satisfied: "Ходатайства были удовлетворены судом (в отношении Максата Тажибек уулу) или рассмотрены (в отношении других журналистов).",
+                action_appointment_head_investigative_group: "Действия (19.02.2024): Назначение руководителем следственной группы по уголовному делу №03-050-2024-000029",
+                description_appointment_head_investigative_group: "Назначен руководителем следственной группы по уголовному делу №03-050-2024-000029 по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_qualification_description: "Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)**, **ст. 337 УК КР (Злоупотребление должностным положением)**, **ст. 360 УК КР (Принуждение к даче показаний)** и **ст. 191 УК КР (Незаконное задержание)**.",
+                sanction_text: "Санкция: штраф или лишение свободы до 3 лет (ст. 202), штраф или лишение свободы до 5 лет (ст. 337), лишение свободы до 10 лет (ст. 360), лишение свободы до 5 лет (ст. 191).",
+                sources_heading: "Источники:",
+                source_extension_resolution_12_03_2024: "Постановление Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения)",
+                source_initiation_extension_petition_05_03_2024: "Постановление об инициировании ходатайства о продлении меры пресечения в отношении Тажибек уулу Максата от 05.03.2024",
+                source_resolution_extension_maksat_12_03_2024: "Токтом Первомайского районного суда Бишкека от 12.03.2024 (о продлении меры пресечения в отношении Тажибек уулу Максата)",
+                source_resolution_amendment_petition_08_04_2024: "Токтом от 08.04.2024 (о возбуждении ходатайства об изменении меры пресечения)",
+                source_criminal_case_assignment_resolution: "Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+            },
+            en: {
+                dossier_zikiraliev_title: "Dossier: Zikiraliev Ulan Spartakovich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                name_zikiraliev_full: "Zikiraliev Ulan Spartakovich",
+                category_label: "Category:",
+                category_senior_investigator: "Senior Investigator / Head of Investigative Group",
+                position_label: "Position:",
+                position_deputy_head_investigative_service: "Deputy Head of the Investigative Service Department of the Ministry of Internal Affairs of the Kyrgyz Republic / Head of Investigative Group",
+                documented_episodes_heading: "Documented Episodes",
+                episode_case_journalists: "Episode: «Case of 11 Journalists»",
+                action_extension_investigation: "Actions (05.03.2024): Extension of investigation period",
+                description_extension_investigation: "As the head of the investigative group, petitioned for the extension of the investigation period in case No. 03-050-2024-000029 for 4 months, until May 13, 2024. This petition was granted by the General Prosecutor's Office of the Kyrgyz Republic.",
+                action_extension_arrest_petition: "Actions (05.03.2024 / 12.03.2024): Petition for extension of journalists' arrest",
+                description_extension_arrest_petition: "Initiated and submitted petitions to the Pervomaysky District Court of Bishkek for the extension of the pre-trial detention period for the following journalists for 4 months (until 13.05.2024):",
+                journalist_kapparov: "Kaparov Maadanbek Taalaibekovich",
+                journalist_turdaliev: "Turdaiev Zhumabek Iskenderovich",
+                journalist_tazhibek_uulu_maksat: "Tazhibek uulu Maksat",
+                journalist_sultanaliyev: "Saipidin Sultanaliyev",
+                journalist_tazhibek_kyzy_mahabat: "Tazhibek kyzy Mahabat",
+                journalist_akunbekov: "Akunbekov Saparbek Akunbekovich",
+                journalist_asypbekov: "Asypbekov Tynystan Beknazarovich",
+                journalist_beishekeeva: "Beishekeeva Aike Nurlanovna",
+                journalist_buzumov: "Buzumov Zhoodarbek Bakytalievich",
+                journalist_orozbekov: "Orozbekov Akylbek Orozbekovich",
+                description_petitions_satisfied: "The petitions were satisfied by the court (in relation to Maksat Tazhibek uulu) or considered (in relation to other journalists).",
+                action_appointment_head_investigative_group: "Actions (19.02.2024): Appointment as head of the investigative group for criminal case No. 03-050-2024-000029",
+                description_appointment_head_investigative_group: "Appointed as the head of the investigative group for criminal case No. 03-050-2024-000029 by the resolution of the Head of the Investigative Service Department of the Ministry of Internal Affairs of the Kyrgyz Republic, Police Colonel Zhumabaev A.A., dated 19.02.2024.",
+                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_qualification_description: "Suspected of committing acts falling under **Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of the lawful professional activity of journalists)**, **Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)**, **Article 360 of the Criminal Code of the Kyrgyz Republic (Coercion to give testimony)**, and **Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention)**.",
+                sanction_text: "Sanction: fine or imprisonment for up to 3 years (Art. 202), fine or imprisonment for up to 5 years (Art. 337), imprisonment for up to 10 years (Art. 360), imprisonment for up to 5 years (Art. 191).",
+                sources_heading: "Sources:",
+                source_extension_resolution_12_03_2024: "Resolution of the Pervomaysky District Court of Bishkek dated 12.03.2024 (on extension of pre-trial detention)",
+                source_initiation_extension_petition_05_03_2024: "Resolution on initiating a petition to extend the pre-trial detention period for Maksat Tazhibek uulu dated 05.03.2024",
+                source_resolution_extension_maksat_12_03_2024: "Toktom of the Pervomaysky District Court of Bishkek dated 12.03.2024 (on extension of pre-trial detention for Maksat Tazhibek uulu)",
+                source_resolution_amendment_petition_08_04_2024: "Toktom dated 08.04.2024 (on initiating a petition to change the measure of restraint)",
+                source_criminal_case_assignment_resolution: "Resolution on assigning a criminal case to an investigative group (investigative team) dated 19.02.2024",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+            },
+            kg: {
+                dossier_zikiraliev_title: "Досье: Зикиралиев Улан Спартакович - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                name_zikiraliev_full: "Зикиралиев Улан Спартакович",
+                category_label: "Категория:",
+                category_senior_investigator: "Жогорку даражалуу тергөөчү / Тергөө тобунун жетекчиси",
+                position_label: "Кызматы:",
+                position_deputy_head_investigative_service: "КР ИИМ Тергөө кызматы башкармалыгынын начальнигинин орун басары / Тергөө тобунун жетекчиси",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
+                action_extension_investigation: "Аракеттер (05.03.2024): Тергөө мөөнөтүн узартуу",
+                description_extension_investigation: "Тергөө тобунун жетекчиси катары №03-050-2024-000029 иши боюнча тергөө мөөнөтүн 4 айга, 2024-жылдын 13-майына чейин узартуу жөнүндө өтүнүч келтирген. Бул өтүнүч КР Генералдык прокуратурасы тарабынан канааттандырылган.",
+                action_extension_arrest_petition: "Аракеттер (05.03.2024 / 12.03.2024): Журналисттердин камагын узартуу жөнүндө өтүнүч",
+                description_extension_arrest_petition: "Бишкек шаарынын Биринчи Май райондук сотуна төмөнкү журналисттерди 4 айга (13.05.2024-жылга чейин) камакта кармоо мөөнөтүн узартуу жөнүндө өтүнүчтөрдү киргизген жана сунуштаган:",
+                journalist_kapparov: "Капаров Мааданбек Таалайбекович",
+                journalist_turdaliev: "Турдалиев Жумабек Искендерович",
+                journalist_tazhibek_uulu_maksat: "Тажибек уулу Максат",
+                journalist_sultanaliyev: "Сайпидин Султаналиев",
+                journalist_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
+                journalist_akunbekov: "Акунбеков Сапарбек Акунбекович",
+                journalist_asypbekov: "Асыпбеков Тыныстан Бекназарович",
+                journalist_beishekeeva: "Бейшекеева Айке Нурлановна",
+                journalist_buzumov: "Бузумов Жоодарбек Бакыталиевич",
+                journalist_orozbekov: "Орозбеков Акылбек Орозбекович",
+                description_petitions_satisfied: "Өтүнүчтөр сот тарабынан канааттандырылган (Максат Тажибек уулуна карата) же каралган (башка журналисттерге карата).",
+                action_appointment_head_investigative_group: "Аракеттер (19.02.2024): №03-050-2024-000029 кылмыш иши боюнча тергөө тобунун жетекчиси болуп дайындалуу",
+                description_appointment_head_investigative_group: "Кыргыз Республикасынын Ички иштер министрлигинин Тергөө кызматынын башкармалыгынын начальниги, милициянын полковниги Жумабаев А.А.нын 19.02.2024-жылдагы токтому менен №03-050-2024-000029 кылмыш иши боюнча тергөө тобунун жетекчиси болуп дайындалган.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_qualification_description: "КР Кылмыш-жаза кодексинин **202-беренеси (Журналисттин мыйзамдуу кесиптик ишине тоскоолдук кылуу)**, **337-беренеси (Кызмат абалынан кыянаттык менен пайдалануу)**, **360-беренеси (Жалган көрсөтмө берүүгө мажбурлоо)** жана **191-беренеси (Мыйзамсыз кармоо)** боюнча кылмыштардын белгилери бар аракеттерди жасаган деп шектелүүдө.",
+                sanction_text: "Санкция: айып пул же 3 жылга чейин эркиндигинен ажыратуу (202-берене), айып пул же 5 жылга чейин эркиндигинен ажыратуу (337-берене), 10 жылга чейин (360-берене), 5 жылга чейин (191-берене).",
+                sources_heading: "Булактар:",
+                source_extension_resolution_12_03_2024: "Бишкек шаарынын Биринчи Май райондук сотунун 12.03.2024-жылдагы токтому (камакта кармоо мөөнөтүн узартуу жөнүндө)",
+                source_initiation_extension_petition_05_03_2024: "Тажибек уулу Максатты камакта кармоо мөөнөтүн узартуу жөнүндө өтүнүчтү баштоо тууралуу 05.03.2024-жылдагы токтом",
+                source_resolution_extension_maksat_12_03_2024: "Бишкек шаарынын Биринчи Май райондук сотунун 12.03.2024-жылдагы токтому (Тажибек уулу Максатты камакта кармоо мөөнөтүн узартуу жөнүндө)",
+                source_resolution_amendment_petition_08_04_2024: "08.04.2024-жылдагы токтом (бөгөт коюу чарасын өзгөртүү жөнүндө өтүнүчтү козгоо тууралуу)",
+                source_criminal_case_assignment_resolution: "19.02.2024-жылдагы кылмыш ишин тергөө тобуна (тергөө тобуна) тапшыруу жөнүндө токтом",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru'; // Using HRLanguage to avoid conflict
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedHRLanguage', lang); // Using HRLanguage to avoid conflict
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
+
 
