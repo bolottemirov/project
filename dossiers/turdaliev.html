@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Турдалиев Жумабек Искендерович - Архив Подотчетности</title>
+    <title data-lang-key="dossier_turdaliev_title">Досье: Турдалиев Жумабек Искендерович - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -259,49 +265,204 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-turdaliev">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo"></div>
-                        <h2>Турдалиев Жумабек Искендерович</h2>
-                        <p><strong>Категория:</strong> Жертва преследования</p>
-                        <p><strong>Должность:</strong> Журналист/Активист</p>
+                        <h2 data-lang-key="person_name">Турдалиев Жумабек Искендерович</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="victim_category">Жертва преследования</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="journalist_activist_position">Журналист/Активист</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия: Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029</h5>
-                            <p>Турдалиев Жумабек Искендерович стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки) и 330 УК КР (Возбуждение расовой, этнической, национальной, религиозной или межрегиональной вражды (розни)).</p>
+                            <h4 data-lang-key="episode_title">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="actions_heading">Действия: <span data-lang-key="action_description_turdaliev">Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029</span></h5>
+                            <p data-lang-key="episode_text_turdaliev">Турдалиев Жумабек Искендерович стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки) и 330 УК КР (Возбуждение расовой, этнической, национальной, религиозной или межрегиональной вражды (розни)).</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В отношении данного лица могли быть нарушены права, предусмотренные **ст. 165 УК КР (Незаконное задержание)**, **ст. 170 УК КР (Незаконное лишение свободы)**, а также, в случае с журналистами, **ст. 155 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)**. <br><span class="sanction">Санкция:</span> лишение свободы до 5 лет (ст. 165), до 10 лет (ст. 170), штраф или лишение свободы до 3 лет (ст. 155).</p>
-                        <h5>Источники:</h5>
-                        <p><a href="#">Постановление о возбуждении уголовного дела</a>.</p>
+                        <div class="un-opinion-box">
+                            <h5 data-lang-key="un_opinion_heading">Оценка ООН (Мнение № 57/2024)</h5>
+                            <p data-lang-key="un_opinion_text">Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Максата Тажибек уулу, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.</p>
+                        </div>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p data-lang-key="legal_qualification_description_victim">В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="sources_text_turdaliev">Постановление о возбуждении уголовного дела</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_turdaliev_title: "Досье: Турдалиев Жумабек Искендерович - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                person_name: "Турдалиев Жумабек Искендерович",
+                category_label: "Категория:",
+                victim_category: "Жертва преследования",
+                position_label: "Должность:",
+                journalist_activist_position: "Журналист/Активист",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_title: "Эпизод: «Дело 11 журналистов»",
+                actions_heading: "Действия:",
+                action_description_turdaliev: "Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029",
+                episode_text_turdaliev: "Турдалиев Жумабек Искендерович стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки) и 330 УК КР (Возбуждение расовой, этнической, национальной, религиозной или межрегиональной вражды (розни)).",
+                un_opinion_heading: "Оценка ООН (Мнение № 57/2024)",
+                un_opinion_text: "Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Максата Тажибек уулу, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_qualification_description_victim: "В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.",
+                sources_heading: "Источники:",
+                sources_text_turdaliev: "Постановление о возбуждении уголовного дела.",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+            },
+            en: {
+                dossier_turdaliev_title: "Dossier: Turdaliev Zhumabek Iskenderovich - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                person_name: "Turdaliev Zhumabek Iskenderovich",
+                category_label: "Category:",
+                victim_category: "Victim of Persecution",
+                position_label: "Position:",
+                journalist_activist_position: "Journalist/Activist",
+                documented_episodes_heading: "Documented Episodes",
+                episode_title: "Episode: «Case of 11 Journalists»",
+                actions_heading: "Actions:",
+                action_description_turdaliev: "Became a target of criminal prosecution within criminal case No. 03-050-2024-000029",
+                episode_text_turdaliev: "Turdaliev Zhumabek Iskenderovich became one of the individuals subjected to criminal prosecution as part of the case initiated under Article 278 of the Criminal Code of the Kyrgyz Republic (Mass riots) and Article 330 of the Criminal Code of the Kyrgyz Republic (Incitement of racial, ethnic, national, religious or interregional hatred (discord)).",
+                un_opinion_heading: "UN Assessment (Opinion No. 57/2024)",
+                un_opinion_text: "The UN Working Group on Arbitrary Detention, in its **Opinion No. 57/2024**, found the deprivation of liberty of Maksat Tazhibek uulu to be contrary to Articles 2, 7, 9, 11 and 19 of the Universal Declaration of Human Rights and Articles 2, 9, 14, 19 and 26 of the International Covenant on Civil and Political Rights, and to be **arbitrary and falling under categories I, II, III and V**.",
+                legal_qualification_heading: "Legal Qualification (under Criminal Code of KR):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_qualification_description_victim: "The rights of this person may have been violated, as provided for by **Article 169 of the Criminal Code of the Kyrgyz Republic (Unlawful deprivation of liberty)** and **Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or custody)**.",
+                sources_heading: "Sources:",
+                sources_text_turdaliev: "Resolution on initiating a criminal case.",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+            },
+            kg: {
+                dossier_turdaliev_title: "Досье: Турдалиев Жумабек Искендерович - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                person_name: "Турдалиев Жумабек Искендерович",
+                category_label: "Категория:",
+                victim_category: "Куугунтуктун курмандыгы",
+                position_label: "Кызматы:",
+                journalist_activist_position: "Журналист/Активист",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_title: "Эпизод: «11 журналисттин иши»",
+                actions_heading: "Аракеттер:",
+                action_description_turdaliev: "№03-050-2024-000029 кылмыш ишинин алкагында кылмыш куугунтугунун объектиси болгон",
+                episode_text_turdaliev: "Турдалиев Жумабек Искендерович КР Кылмыш-жаза кодексинин 278-беренеси (Массалык башаламандыктар) жана 330-беренеси (Расалык, этностук, улуттук, диний же региондор аралык кастыкты (жаңжалды) козутуу) боюнча козголгон иштин алкагында кылмыш куугунтугуна кабылган адамдардын бири болгон.",
+                un_opinion_heading: "БУУнун баалоосу (№ 57/2024 пикири)",
+                un_opinion_text: "БУУнун Эркиндигинен Мыйзамсыз Ажыратуу боюнча Жумушчу тобу өзүнүн **№ 57/2024 пикиринде** Тажибек уулу Максаттын эркиндигинен ажыратылышын Адам укуктарынын жалпы декларациясынын 2, 7, 9, 11 жана 19-беренелерине, ошондой эле Жарандык жана саясий укуктар жөнүндө эл аралык пакттын 2, 9, 14, 19 жана 26-беренелерине карама-каршы келген, **өзүмбилемдик жана I, II, III жана V категорияларына кирген** деп тааныды.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_qualification_description_victim: "Бул адамга карата укуктары бузулушу мүмкүн, алар: **КР Кылмыш-жаза кодексинин 169-беренеси (Мыйзамсыз эркиндигинен ажыратуу)** жана **191-беренеси (Мыйзамсыз кармоо же камакта кармоо)**.",
+                sources_heading: "Булактар:",
+                sources_text_turdaliev: "Кылмыш ишин козгоо жөнүндө токтом.",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru'; // Using HRLanguage to avoid conflict
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedHRLanguage', lang); // Using HRLanguage to avoid conflict
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
