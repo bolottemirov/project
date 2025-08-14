@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="dossier_title">Досье: Ташиев Ч. - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        :root {
+            --primary-color: #0d2a4c;
+            --secondary-color: #f8f9fa;
+            --border-color: #dee2e6;
+            --un-blue: #009edb;
+            --un-light-blue: #eaf8ff;
+            --accent-color: #007bff; /* Новый акцентный цвет */
+            --accent-hover-color: #0056b3; /* Цвет при наведении для акцента */
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень для карточек */
+            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+            --header-gradient-start: #1a4f80; /* Начальный цвет градиента для шапки */
+            --header-gradient-end: #0d2a4c;   /* Конечный цвет градиента для шапки */
+            --column-bg: #ffffff; /* Фон для основных колонок контента */
+            --aside-bg: #eaf8ff; /* Фон для сайдбара/профиля */
+            --executor-color: #dc3545; /* Цвет для категории "Исполнитель" */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #212529;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            padding-top: 80px;
+            margin-top: -60px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+            background-color: var(--column-bg); /* Фон для секций */
+            margin-bottom: 20px; /* Отступ между секциями */
+            border-radius: 8px; /* Закругленные углы для секций */
+            box-shadow: var(--card-shadow); /* Тень для секций */
+        }
+        section:last-of-type {
+            border-bottom: none; /* Убрать нижнюю границу у последней секции */
+        }
+
+
+        /* Шапка */
+        .site-header {
+            background-image: linear-gradient(to right, var(--header-gradient-start), var(--header-gradient-end)); /* Градиентный фон для шапки */
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0; /* Увеличить отступ */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+        }
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.4em; /* Увеличить размер логотипа */
+            font-weight: 700;
+            color: #fff; /* Белый цвет для логотипа */
+            text-decoration: none;
+            text-transform: uppercase; /* Заглавные буквы */
+            letter-spacing: 1px;
+        }
+        .main-nav a {
+            color: #fff; /* Белый цвет для ссылок навигации */
+            text-decoration: none;
+            margin-left: 25px; /* Увеличить отступ между ссылками */
+            font-weight: 500;
+            font-size: 1em; /* Увеличить размер шрифта */
+            transition: color 0.3s ease, transform 0.2s ease; /* Плавный переход цвета и трансформации */
+        }
+        .main-nav a:hover {
+            color: var(--un-blue); /* Изменение цвета при наведении */
+            transform: translateY(-2px); /* Небольшой подъем при наведении */
+        }
+
+        /* Заголовки и карточки */
+        .section-title {
+            text-align: center;
+            font-size: 2.5em; /* Увеличить размер заголовка */
+            color: var(--accent-color); /* Использование акцентного цвета для заголовков секций */
+            margin-bottom: 40px; /* Увеличить отступ */
+            padding-top: 20px;
+        }
+        .case-card {
+            background-color: #fff; /* Белый фон для карточек */
+            border: 1px solid var(--border-color);
+            padding: 30px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            margin-bottom: 25px; /* Увеличить отступ */
+            box-shadow: var(--card-shadow); /* Легкая тень */
+            transition: all 0.3s ease; /* Плавный переход для ховера */
+        }
+        .case-card:hover {
+            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
+            transform: translateY(-5px); /* Небольшой подъем при наведении */
+        }
+        .case-card h3 {
+            margin-top: 0;
+            font-size: 1.8em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+        }
+        .case-card a {
+            text-decoration: none;
+            color: var(--accent-color); /* Акцентный цвет для ссылок */
+            transition: color 0.3s ease;
+        }
+        .case-card a:hover {
+            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            text-decoration: underline;
+        }
+        .dossier-link {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
+            transition: color 0.3s ease;
+        }
+        .dossier-link:hover {
+            color: var(--accent-hover-color);
+            text-decoration: underline;
+        }
+
+        /* Досье */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr; /* Немного увеличить ширину сайдбара */
+            gap: 50px; /* Увеличить отступ */
+            background-color: var(--column-bg); /* Белый фон для досье */
+            padding: 30px; /* Отступ внутри досье */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: var(--card-shadow); /* Тень */
+            margin-bottom: 40px; /* Отступ снизу */
+        }
+        @media (max-width: 800px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .profile-card {
+            background-color: var(--aside-bg); /* Более светлый фон для карточки профиля */
+            padding: 25px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            text-align: center;
+            align-self: start;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень */
+        }
+        .profile-photo {
+            width: 160px; /* Увеличить размер фото */
+            height: 160px;
+            background-color: #e9ecef; /* Более нейтральный цвет для заглушки */
+            border-radius: 50%;
+            margin: 0 auto 25px auto; /* Увеличить отступ */
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--accent-color); /* Акцентная рамка */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+        }
+        .profile-card h2 {
+            margin: 0 0 15px 0; /* Увеличить отступ */
+            font-size: 1.8em; /* Увеличить размер заголовка */
+            line-height: 1.2;
+            color: var(--primary-color);
+        }
+        .profile-card p {
+            margin: 8px 0; /* Увеличить отступ */
+            text-align: left;
+            font-size: 0.95em;
+        }
+        .profile-card strong {
+            color: var(--primary-color);
+        }
+        .category-executor {
+            color: var(--executor-color); /* Цвет для категории "Исполнитель" */
+            font-weight: bold;
+        }
+
+        .dossier-content h3 {
+            font-size: 2em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+        .episode-card {
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--un-blue); /* Цветная левая граница */
+            padding: 25px; /* Увеличить отступ */
+            margin-bottom: 25px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            background-color: #fdfefe; /* Немного более светлый фон */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Очень легкая тень */
+        }
+        .episode-card h4 {
+            margin-top: 0;
+            font-size: 1.5em; /* Увеличить размер заголовка */
+            color: var(--accent-color); /* Акцентный цвет для заголовка эпизода */
+            margin-bottom: 10px;
+        }
+        .episode-card h5 {
+            font-size: 1.2em; /* Увеличить размер заголовка */
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        .un-opinion-box {
+            background-color: var(--un-light-blue);
+            border: 1px solid var(--un-blue);
+            border-left: 8px solid var(--un-blue); /* Более толстая левая граница */
+            padding: 20px 25px; /* Увеличить отступы */
+            margin-top: 30px; /* Увеличить отступ */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Тень для выделения */
+        }
+        .un-opinion-box h5 {
+            color: var(--un-blue); /* Цвет заголовка ООН */
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .un-opinion-box p {
+            font-size: 1em;
+            color: #343a40;
+        }
+        .disclaimer {
+            font-size: 0.85em; /* Немного увеличить размер */
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 15px;
+            display: block;
+        }
+        .sanction {
+            font-weight: 700; /* Более жирный шрифт */
+            color: #dc3545; /* Красный цвет для санкций */
+        }
+
+        /* Секция "О проекте" */
+        #about {
+            text-align: center;
+            padding-bottom: 60px;
+        }
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            color: #495057;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--accent-hover-color);
+            text-decoration: underline;
+        }
+        .lang-switcher button {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: var(--accent-hover-color);
+            transform: translateY(-1px);
+        }
+        .lang-switcher button.active {
+            background-color: var(--un-blue);
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section id="dossier-tashiev">
+            <div class="container">
+                <a href="../dossiers.html" class="back-link" data-lang-key="back_to_dossiers_archive">&larr; Назад к Архиву досье</a>
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
+                        <h2 data-lang-key="person_name">Ташиев Ч.</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="prosecutor_position">Государственный обвинитель (помощник прокурора Свердловского района города Бишкек)</span></p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
+                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_prosecutor">Участие в уголовном преследовании в рамках дела</span></h5>
+                            <p data-lang-key="episode_text_prosecutor">Ташиев Ч., как государственный обвинитель, участвовал в уголовном преследовании Жетиген уулу Аската в рамках уголовного дела, рассмотренного Свердловским районным судом города Бишкек.</p>
+                        </div>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p data-lang-key="legal_qualification_description_prosecutor">В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерным действиям следствия или необоснованному обвинению.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_title: "Досье: Ташиев Ч. - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_dossiers_archive: "← Назад к Архиву досье",
+                person_name: "Ташиев Ч.",
+                category_label: "Категория:",
+                executor_category: "Исполнители (представители госорганов)",
+                position_label: "Должность:",
+                prosecutor_position: "Государственный обвинитель (помощник прокурора Свердловского района города Бишкек)",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_title_general: "Эпизод: «Дело Жетиген уулу Аската»",
+                action_details_heading: "Действия:",
+                action_details_description_prosecutor: "Участие в уголовном преследовании в рамках дела",
+                episode_text_prosecutor: "Ташиев Ч., как государственный обвинитель, участвовал в уголовном преследовании Жетиген уулу Аската в рамках уголовного дела, рассмотренного Свердловским районным судом города Бишкек.",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                legal_qualification_description_prosecutor: "В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерным действиям следствия или необоснованному обвинению.",
+                sources_heading: "Источники:",
+                source_verdict: "Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+            },
+            en: {
+                dossier_title: "Dossier: Tashiev Ch. - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_dossiers_archive: "← Back to Dossiers Archive",
+                person_name: "Tashiev Ch.",
+                category_label: "Category:",
+                executor_category: "Executors (State Authorities Representatives)",
+                position_label: "Position:",
+                prosecutor_position: "State Prosecutor (Assistant Prosecutor of Sverdlovsk District of Bishkek City)",
+                documented_episodes_heading: "Documented Episodes",
+                episode_title_general: "Episode: «Case of Zhetigen uulu Askat»",
+                action_details_heading: "Actions:",
+                action_details_description_prosecutor: "Participation in criminal prosecution within the case",
+                episode_text_prosecutor: "Tashiev Ch., as a state prosecutor, participated in the criminal prosecution of Zhetigen uulu Askat within the criminal case reviewed by the Sverdlovsk District Court of Bishkek City.",
+                legal_qualification_heading: "Legal Qualification (under Criminal Code of KR):",
+                legal_qualification_description_prosecutor: "His actions may show signs of **Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)**, if his participation contributed to unlawful actions of the investigation or unfounded accusation.",
+                sources_heading: "Sources:",
+                source_verdict: "Verdict of Sverdlovsk District Court of Bishkek City dated July 01, 2024.",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+            },
+            kg: {
+                dossier_title: "Досье: Ташиев Ч. - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_dossiers_archive: "← Досье архивине кайтуу",
+                person_name: "Ташиев Ч.",
+                category_label: "Категория:",
+                executor_category: "Аткаруучулар (мамлекеттик органдардын өкүлдөрү)",
+                position_label: "Кызматы:",
+                prosecutor_position: "Мамлекеттик айыптоочу (Бишкек шаарынын Свердлов райондук прокурорунун жардамчысы)",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_title_general: "Эпизод: «Жетиген уулу Аскаттын иши»",
+                action_details_heading: "Аракеттер:",
+                action_details_description_prosecutor: "Иштин алкагында кылмыш куугунтугуна катышуу",
+                episode_text_prosecutor: "Ташиев Ч., мамлекеттик айыптоочу катары, Бишкек шаарынын Свердлов райондук соту тарабынан каралган кылмыш ишинин алкагында Жетиген уулу Аскатты кылмыш куугунтугуна катышкан.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                legal_qualification_description_prosecutor: "Аракеттеринде КР Кылмыш-жаза кодексинин **337-беренесинин (Кызматынан кыянаттык менен пайдалануу)** белгилери болушу мүмкүн, эгерде анын катышуусу тергөөнүн мыйзамсыз аракеттерине же негизсиз айыптоого өбөлгө түзгөн болсо.",
+                sources_heading: "Булактар:",
+                source_verdict: "Бишкек шаарынын Свердлов райондук сотунун 2024-жылдын 1-июлундагы өкүмү.",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedHRLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            setLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
