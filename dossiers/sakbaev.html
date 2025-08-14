@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Досье: Сакбаев Нурлан - Архив Подотчетности</title>
+    <title data-lang-key="dossier_sakbaev_title">Досье: Сакбаев Нурлан - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -27,6 +30,9 @@
             line-height: 1.6;
             margin: 0;
             background-color: #f0f2f5; /* Более мягкий фон для тела */
+            display: flex; /* Для прикрепления футера к низу */
+            flex-direction: column; /* Для прикрепления футера к низу */
+            min-height: 100vh; /* Для прикрепления футера к низу */
         }
         .container {
             max-width: 1100px;
@@ -125,7 +131,7 @@
             transition: color 0.3s ease;
         }
         .dossier-link:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
+            color: var(--accent-hover-color);
             text-decoration: underline;
         }
 
@@ -259,49 +265,192 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <div class="container">
-            <a href="../index.html" class="logo">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="flex-grow">
         <section id="dossier-sakbaev">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://scontent-fra5-1.xx.fbcdn.net/v/t39.30808-6/279304378_105457218821423_2897339354293239801_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=_Z14N1qKVnIQ7kNvwG4Un9p&_nc_oc=Adlcagq3kdrMmjUKYHRJXcBTUIQPD3JOR9EL93toZD2j2JzXVxckqvLdaF3g-XR-OsU&_nc_zt=23&_nc_ht=scontent-fra5-1.xx&_nc_gid=LfOTkrwYMIKKUzHcLEd1xQ&oh=00_AfTYpwt7ZC6a9tDi9FR_LaJtK8FTatuYtwDeQE6s2LiIOQ&oe=68700353);"></div>
-                        <h2>Сакбаев Нурлан</h2>
-                        <p><strong>Категория:</strong> Эксперт</p>
-                        <p><strong>Дата рождения:</strong> 15.04.1975</p>
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
+                        <h2 data-lang-key="person_name">Сакбаев Нурлан</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="expert_category">Эксперт</span></p>
+                        <p><strong data-lang-key="birth_date_label">Дата рождения:</strong> 15.04.1975</p>
                     </aside>
                     <section class="dossier-content">
-                        <h3>Задокументированные эпизоды</h3>
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия: Проведение судебно-лингвистической экспертизы</h5>
-                            <p>Сакбаев Нурлан, как эксперт, проводил судебно-лингвистическую экспертизу материалов YouTube-каналов "Айт Айт Десе" и "Temirov Live". Согласно заключению судебно-лингвистической экспертизы №000007 от 12.01.2024, данные материалы содержат лингвистические признаки призывов к акциям протеста и массовым беспорядкам через дискредитацию власти. Это заключение послужило основанием для возбуждения уголовного дела №03-050-2024-000029 по ст. 278 ч.3 УК КР (Призывы к массовым беспорядкам).</p>
+                            <h4 data-lang-key="episode_title">Эпизод: «Дело 11 журналистов»</h4>
+                            <h5 data-lang-key="actions_heading">Действия: <span data-lang-key="action_description_sakbaev">Проведение судебно-лингвистической экспертизы</span></h5>
+                            <p data-lang-key="episode_text_sakbaev">Сакбаев Нурлан, как эксперт, проводил судебно-лингвистическую экспертизу материалов YouTube-каналов "Айт Айт Десе" и "Temirov Live". Согласно заключению судебно-лингвистической экспертизы №000007 от 12.01.2024, данные материалы содержат лингвистические признаки призывов к акциям протеста и массовым беспорядкам через дискредитацию власти. Это заключение послужило основанием для возбуждения уголовного дела №03-050-2024-000029 по ст. 278 ч.3 УК КР (Призывы к массовым беспорядкам).</p>
                         </div>
-                        <h5>Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>Подозревается в совершении деяний, подпадающих под **ст. 364 УК КР (Заведомо ложное заключение или показания эксперта)**, способствовавшие обвинению лица в совершении преступления. При наличии умысла и последствий может квалифицироваться как участие в фабрикации дела. <br><span class="sanction">Санкция:</span> штраф или лишение свободы до 5 лет.</p>
-                        <h5>Источники:</h5>
-                        <p><a href="#">Заключение судебно-лингвистической экспертизы №000007 от 12.01.2024</a>.</p>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p data-lang-key="legal_article_text_sakbaev">Подозревается в совершении деяний, подпадающих под **ст. 364 УК КР (Заведомо ложное заключение или показания эксперта)**.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="sources_text_sakbaev">Заключение судебно-лингвистической экспертизы №000007 от 12.01.2024</a>.</p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                dossier_sakbaev_title: "Досье: Сакбаев Нурлан - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
+                person_name: "Сакбаев Нурлан",
+                category_label: "Категория:",
+                expert_category: "Эксперт",
+                birth_date_label: "Дата рождения:",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                episode_title: "Эпизод: «Дело 11 журналистов»",
+                actions_heading: "Действия:",
+                action_description_sakbaev: "Проведение судебно-лингвистической экспертизы",
+                episode_text_sakbaev: "Сакбаев Нурлан, как эксперт, проводил судебно-лингвистическую экспертизу материалов YouTube-каналов \"Айт Айт Десе\" и \"Temirov Live\". Согласно заключению судебно-лингвистической экспертизы №000007 от 12.01.2024, данные материалы содержат лингвистические признаки призывов к акциям протеста и массовым беспорядкам через дискредитацию власти. Это заключение послужило основанием для возбуждения уголовного дела №03-050-2024-000029 по ст. 278 ч.3 УК КР (Призывы к массовым беспорядкам).",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                legal_article_text_sakbaev: "Подозревается в совершении деяний, подпадающих под **ст. 364 УК КР (Заведомо ложное заключение или показания эксперта)**.",
+                sources_heading: "Источники:",
+                sources_text_sakbaev: "Заключение судебно-лингвистической экспертизы №000007 от 12.01.2024.",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+            },
+            en: {
+                dossier_sakbaev_title: "Dossier: Sakbaev Nurlan - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_case_journalists: "← Back to Case of 11 Journalists",
+                person_name: "Sakbaev Nurlan",
+                category_label: "Category:",
+                expert_category: "Expert",
+                birth_date_label: "Date of Birth:",
+                documented_episodes_heading: "Documented Episodes",
+                episode_title: "Episode: «Case of 11 Journalists»",
+                actions_heading: "Actions:",
+                action_description_sakbaev: "Conducting forensic linguistic examination",
+                episode_text_sakbaev: "Sakbaev Nurlan, as an expert, conducted a forensic linguistic examination of the materials from the YouTube channels \"Ait Ait Dese\" and \"Temirov Live\". According to the conclusion of the forensic linguistic examination No. 000007 dated 12.01.2024, these materials contain linguistic signs of calls for protests and mass riots through discrediting the authorities. This conclusion served as the basis for initiating criminal case No. 03-050-2024-000029 under Article 278 Part 3 of the Criminal Code of the Kyrgyz Republic (Calls for mass riots).",
+                legal_qualification_heading: "Legal Qualification (under Criminal Code of KR):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                legal_article_text_sakbaev: "Suspected of committing acts falling under **Article 364 of the Criminal Code of the Kyrgyz Republic (Deliberately false conclusion or testimony of an expert)**.",
+                sources_heading: "Sources:",
+                sources_text_sakbaev: "Conclusion of forensic linguistic examination No. 000007 dated 12.01.2024.",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+            },
+            kg: {
+                dossier_sakbaev_title: "Досье: Сакбаев Нурлан - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
+                person_name: "Сакбаев Нурлан",
+                category_label: "Категория:",
+                expert_category: "Эксперт",
+                birth_date_label: "Туулган күнү:",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                episode_title: "Эпизод: «11 журналисттин иши»",
+                actions_heading: "Аракеттер:",
+                action_description_sakbaev: "Соттук-лингвистикалык экспертиза жүргүзүү",
+                episode_text_sakbaev: "Сакбаев Нурлан, эксперт катары, \"Айт Айт Десе\" жана \"Temirov Live\" YouTube-каналдарынын материалдарына соттук-лингвистикалык экспертиза жүргүзгөн. Соттук-лингвистикалык экспертизанын 12.01.2024-жылдагы №000007 корутундусуна ылайык, бул материалдар бийликти дискредитациялоо аркылуу нааразылык акцияларына жана массалык башаламандыктарга чакырыктардын лингвистикалык белгилерин камтыйт. Бул корутунду КР Кылмыш-жаза кодексинин 278-беренесинин 3-бөлүгү (Массалык башаламандыктарга чакырыктар) боюнча №03-050-2024-000029 кылмыш ишин козгоого негиз болгон.",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                legal_article_text_sakbaev: "Кылмыш-жаза кодексинин **364-беренеси (Атайылап жалган корутунду же эксперттин көрсөтмөсү)** боюнча кылмыштын белгилери бар деп шектелүүдө.",
+                sources_heading: "Булактар:",
+                sources_text_sakbaev: "Соттук-лингвистикалык экспертизанын 12.01.2024-жылдагы №000007 корутундусу.",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru'; // Using HRLanguage to avoid conflict
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedHRLanguage', lang); // Using HRLanguage to avoid conflict
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
+
