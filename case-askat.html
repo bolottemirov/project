@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="case_page_title">Дело: Задержание Аската Жетиген уулу - Архив Подотчетности</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Light background */
+            color: #212529; /* Dark text */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px; /* Увеличена ширина контейнера для соответствия index.html */
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .header-bg {
+            background-color: #0d2a4c; /* Primary dark blue */
+        }
+        .nav-link {
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #009edb; /* UN Blue */
+        }
+        /* Шапка */
+        .site-header {
+            background-image: linear-gradient(to right, #1a4f80, #0d2a4c); /* Градиентный фон для шапки из index.html */
+            border-bottom: 1px solid #dee2e6;
+            padding: 1rem 0; /* Отступ из index.html */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+        }
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.75rem; /* Размер логотипа из index.html */
+            font-weight: 700;
+            color: #fff; /* Белый цвет для логотипа */
+            text-decoration: none;
+            text-transform: uppercase; /* Заглавные буквы */
+            letter-spacing: 1px;
+        }
+        .main-nav a {
+            color: #fff; /* Белый цвет для ссылок навигации */
+            text-decoration: none;
+            margin-left: 1.5rem; /* Отступ из index.html */
+            font-weight: 500;
+            font-size: 1rem; /* Размер шрифта из index.html */
+            transition: color 0.3s ease, transform 0.2s ease; /* Плавный переход цвета и трансформации */
+        }
+        .main-nav a:hover {
+            color: #009edb; /* Изменение цвета при наведении */
+            transform: translateY(-2px); /* Небольшой подъем при наведении */
+        }
+        .lang-switcher button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #0056b3;
+        }
+        .lang-switcher button.active {
+            background-color: #009edb;
+            font-weight: bold;
+        }
+
+        /* Общие стили для контента */
+        section {
+            padding-top: 4rem; /* Отступ из index.html */
+            padding-bottom: 4rem; /* Отступ из index.html */
+            background-color: #ffffff; /* Фон для секций */
+            margin-bottom: 2rem; /* Отступ между секциями */
+            border-radius: 12px; /* Закругленные углы для секций из index.html */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Тень для секций из index.html */
+        }
+        section:last-of-type {
+            border-bottom: none; /* Убрать нижнюю границу у последней секции */
+            margin-bottom: 0;
+        }
+
+        /* Стили для страницы дела */
+        .case-details-section {
+            background-color: #ffffff; /* Белый фон */
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            padding: 3rem; /* Увеличенный внутренний отступ */
+            margin-top: 2rem; /* Отступ сверху */
+            margin-bottom: 4rem;
+        }
+        .case-title {
+            font-size: 2.8rem; /* Размер заголовка дела */
+            font-weight: 700;
+            color: #0d2a4c;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-top: 1rem;
+        }
+        .case-title::after {
+            content: '';
+            display: block;
+            width: 100px; /* Шире подчеркивание */
+            height: 4px;
+            background-color: #009edb;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        .description {
+            font-size: 1.15rem;
+            color: #495057;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 3rem auto; /* Увеличенный отступ снизу */
+        }
+        .section-subtitle {
+            font-size: 2.25rem; /* Размер подзаголовка */
+            font-weight: 600;
+            color: #0d2a4c;
+            margin-top: 3.5rem; /* Увеличенный отступ сверху */
+            margin-bottom: 2rem; /* Увеличенный отступ снизу */
+            text-align: center;
+        }
+        .person-card {
+            background-color: #f8f9fa; /* Светлее фон для карточек персон */
+            border: 1px solid #e9ecef; /* Более светлая граница */
+            padding: 1.5rem; /* Отступы */
+            border-radius: 10px; /* Закругление */
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Легкая тень */
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Занять всю доступную высоту */
+        }
+        .person-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Увеличенная тень при наведении */
+            transform: translateY(-5px); /* Небольшой подъем */
+        }
+        .person-card h4 {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #0d2a4c;
+            margin-bottom: 0.75rem;
+            flex-grow: 1;
+        }
+        .person-card p {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        .view-dossier-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem; /* Размеры кнопки */
+            border-radius: 8px; /* Закругление */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 500;
+            margin-top: auto;
+        }
+        .view-dossier-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        /* Dossier Display Area styles (для модального окна/встроенного просмотра) */
+        #dossier-display-area {
+            position: relative;
+            background-color: #fdfefe; /* Очень светлый фон */
+            border: 1px solid #dee2e6;
+            border-radius: 12px; /* Закругленные углы */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+            padding: 2.5rem; /* Отступы */
+            margin-top: 3rem; /* Отступ сверху */
+        }
+        #close-dossier-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+        #close-dossier-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Категории */
+        .category-executor {
+            color: #dc3545; /* Красный для исполнителей */
+            font-weight: bold;
+        }
+        .category-expert {
+            color: #28a745; /* Зеленый для экспертов */
+            font-weight: bold;
+        }
+
+        /* Стили для внутренних досье при загрузке */
+        #loaded-dossier-content .profile-layout {
+            display: flex; /* Изменен на flex для лучшего контроля вложенности */
+            flex-direction: column; /* Элементы будут располагаться вертикально */
+            gap: 1.5rem;
+            padding: 0;
+            box-shadow: none;
+            margin-bottom: 0;
+            background-color: transparent; /* Прозрачный фон для встроенного досье */
+        }
+        #loaded-dossier-content .profile-card {
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: left;
+            background-color: #eaf8ff; /* Соответствует aside-bg */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Мягкая тень */
+            border: 1px solid #dee2e6;
+        }
+        #loaded-dossier-content .profile-photo {
+            width: 90px;
+            height: 90px;
+            margin: 0 1rem 0 0; /* Отступ справа от фото */
+            float: left; /* Размещение фото слева от текста */
+        }
+        #loaded-dossier-content .profile-card h2 {
+            font-size: 1.4em;
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        #loaded-dossier-content .profile-card p {
+            font-size: 0.85em;
+            margin: 0.25rem 0;
+            clear: both; /* Очистить float для следующих элементов */
+        }
+        #loaded-dossier-content .dossier-content {
+            margin-top: 1.5rem;
+        }
+        #loaded-dossier-content .dossier-content h3 {
+            font-size: 1.75em;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0d2a4c;
+        }
+        #loaded-dossier-content .episode-card {
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 5px solid #009edb; /* Цветная левая граница */
+            background-color: #fdfefe;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+        #loaded-dossier-content .episode-card h4 {
+            font-size: 1.2em;
+            color: #007bff;
+        }
+        #loaded-dossier-content .episode-card h5 {
+            font-size: 0.95em;
+            color: #0d2a4c;
+            margin-top: 0.75rem;
+            margin-bottom: 0.4rem;
+        }
+        #loaded-dossier-content .disclaimer {
+            font-size: 0.8em;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        #loaded-dossier-content .sanction {
+            font-weight: 700;
+            color: #dc3545;
+        }
+        #loaded-dossier-content a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        #loaded-dossier-content a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem; /* Отступ из index.html */
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Футер */
+        .footer-bg {
+            background-color: #0d2a4c; /* Primary dark blue */
+            color: #ffffff;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: auto; /* Приклеивает футер к низу */
+        }
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container flex justify-between items-center">
+            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <nav class="main-nav flex items-center">
+                <a href="../index.html" data-lang-key="nav_home">Главная</a>
+                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
+                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
+                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
+                <div class="lang-switcher ml-8">
+                    <button data-lang-code="ru" class="active">РУ</button>
+                    <button data-lang-code="en">EN</button>
+                    <button data-lang-code="kg">КГ</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section id="case-details" class="case-details-section">
+            <div class="container">
+                <a href="../index.html#cases" class="back-link" data-lang-key="back_to_cases_archive">&larr; Назад к делам</a>
+                <h1 class="case-title" data-lang-key="case_name">Дело о задержании Аската Жетиген уулу</h1>
+                <p class="description" data-lang-key="case_description">Данное дело касается уголовного преследования акына Аската Жетиген уулу, обвиненного в публичных призывах к насильственному захвату власти. Это досье объединяет информацию о ключевых фигурах, участвовавших в его деле.</p>
+
+                <h3 class="section-subtitle" data-lang-key="persons_involved_heading">Участники дела:</h3>
+                <div id="persons-involved-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Askat Zhetigen uulu -->
+                    <div class="person-card">
+                        <h4 data-lang-key="person_zhetigen_uulu_askat_name">Жетиген уулу Аскат</h4>
+                        <p data-lang-key="person_zhetigen_uulu_askat_role_short">Фигурант дела / Акын</p>
+                        <button class="view-dossier-btn" data-dossier-id="zhetigen-uulu-askat-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
+                    </div>
+
+                    <!-- Sulaimanov Zh.A. -->
+                    <div class="person-card">
+                        <h4 data-lang-key="person_sulaimanov_name">Сулайманов Ж.А.</h4>
+                        <p data-lang-key="person_sulaimanov_role_short">Председательствующий судья</p>
+                        <button class="view-dossier-btn" data-dossier-id="sulaimanov-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
+                    </div>
+
+                    <!-- Tashiev Ch. -->
+                    <div class="person-card">
+                        <h4 data-lang-key="person_tashiev_name">Ташиев Ч.</h4>
+                        <p data-lang-key="person_tashiev_role_short">Государственный обвинитель</p>
+                        <button class="view-dossier-btn" data-dossier-id="tashiev-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
+                    </div>
+
+                    <!-- Sarybaev U. -->
+                    <div class="person-card">
+                        <h4 data-lang-key="person_sarybaev_name">Сарыбаев У.</h4>
+                        <p data-lang-key="person_sarybaev_role_short">Государственный обвинитель</p>
+                        <button class="view-dossier-btn" data-dossier-id="sarybaev-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
+                    </div>
+
+                    <!-- Muratalieva G.J. -->
+                    <div class="person-card">
+                        <h4 data-lang-key="person_muratalieva_name">Мураталиева Г.Дж.</h4>
+                        <p data-lang-key="person_muratalieva_role_short">Эксперт</p>
+                        <button class="view-dossier-btn" data-dossier-id="muratalieva-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
+                    </div>
+
+                    <!-- Zhumaev R.T. -->
+                    <div class="person-card">
+                        <h4 data-lang-key="person_zhumaev_name">Жумаев Р.Т.</h4>
+                        <p data-lang-key="person_zhumaev_role_short">Старший следователь</p>
+                        <button class="view-dossier-btn" data-dossier-id="zhumaev-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
+                    </div>
+
+                </div>
+
+                <!-- Dossier Display Area -->
+                <div id="dossier-display-area" class="mt-10 p-6 bg-white rounded-lg shadow-lg hidden">
+                    <button id="close-dossier-btn" class="float-right px-4 py-2 bg-red-500 text-white rounded-md" data-lang-key="close_button">Закрыть</button>
+                    <div id="loaded-dossier-content"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container text-center">
+            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                case_page_title: "Дело: Задержание Аската Жетиген уулу - Архив Подотчетности",
+                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                nav_home: "Главная",
+                nav_cases: "Дела",
+                nav_dossiers_archive: "Архив досье",
+                nav_about: "О проекте",
+                back_to_cases_archive: "← Назад к делам",
+                case_name: "Дело о задержании Аската Жетиген уулу",
+                case_description: "Данное дело касается уголовного преследования акына Аската Жетиген уулу, обвиненного в публичных призывах к насильственному захвату власти. Это досье объединяет информацию о ключевых фигурах, участвовавших в его деле.",
+                persons_involved_heading: "Участники дела:",
+                view_dossier_button: "Просмотреть досье",
+                close_button: "Закрыть",
+                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
+
+                // Dossier specific translations (re-used from original dossiers)
+                category_label: "Категория:",
+                case_figure_category: "Фигурант уголовного дела",
+                akyn_role: "Акын",
+                executor_category: "Исполнители (представители госорганов)",
+                expert_category: "Эксперт",
+                position_label: "Должность:",
+                documented_episodes_heading: "Задокументированные эпизоды",
+                action_details_heading: "Действия:",
+                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
+                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
+                sources_heading: "Источники:",
+
+                // Specific person names and roles for this case page display
+                person_zhetigen_uulu_askat_name: "Жетиген уулу Аскат",
+                person_zhetigen_uulu_askat_role_short: "Фигурант дела / Акын",
+                person_sulaimanov_name: "Сулайманов Ж.А.",
+                person_sulaimanov_role_short: "Председательствующий судья",
+                person_tashiev_name: "Ташиев Ч.",
+                person_tashiev_role_short: "Государственный обвинитель",
+                person_sarybaev_name: "Сарыбаев У.",
+                person_sarybaev_role_short: "Государственный обвинитель",
+                person_muratalieva_name: "Мураталиева Г.Дж.",
+                person_muratalieva_role_short: "Эксперт",
+                person_zhumaev_name: "Жумаев Р.Т.",
+                person_zhumaev_role_short: "Старший следователь",
+            },
+            en: {
+                case_page_title: "Case: Detention of Askat Zhetigen uulu - Accountability Archive",
+                org_name: "ACCOUNTABILITY ARCHIVE",
+                nav_home: "Home",
+                nav_cases: "Cases",
+                nav_dossiers_archive: "Dossier Archive",
+                nav_about: "About Project",
+                back_to_cases_archive: "← Back to Cases",
+                case_name: "Case of the Detention of Askat Zhetigen uulu",
+                case_description: "This case concerns the criminal prosecution of the akyn Askat Zhetigen uulu, accused of public calls for violent seizure of power. This dossier compiles information on key figures involved in his case.",
+                persons_involved_heading: "Persons Involved:",
+                view_dossier_button: "View Dossier",
+                close_button: "Close",
+                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
+
+                // Dossier specific translations (re-used from original dossiers)
+                category_label: "Category:",
+                case_figure_category: "Figure in Criminal Case",
+                akyn_role: "Akyn",
+                executor_category: "Executors (State Authorities Representatives)",
+                expert_category: "Expert",
+                position_label: "Position:",
+                documented_episodes_heading: "Documented Episodes",
+                action_details_heading: "Actions:",
+                legal_qualification_heading: "Legal Qualification (under Criminal Code of KR):",
+                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
+                sources_heading: "Sources:",
+
+                // Specific person names and roles for this case page display
+                person_zhetigen_uulu_askat_name: "Zhetigen uulu Askat",
+                person_zhetigen_uulu_askat_role_short: "Case Figure / Akyn",
+                person_sulaimanov_name: "Sulaimanov Zh.A.",
+                person_sulaimanov_role_short: "Presiding Judge",
+                person_tashiev_name: "Tashiev Ch.",
+                person_tashiev_role_short: "State Prosecutor",
+                person_sarybaev_name: "Sarybaev U.",
+                person_sarybaev_role_short: "State Prosecutor",
+                person_muratalieva_name: "Muratalieva G.J.",
+                person_muratalieva_role_short: "Expert",
+                person_zhumaev_name: "Zhumaev R.T.",
+                person_zhumaev_role_short: "Senior Investigator",
+            },
+            kg: {
+                case_page_title: "Иш: Жетиген уулу Аскатты кармоо - Жоопкерчилик Архивы",
+                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
+                nav_home: "Башкы бет",
+                nav_cases: "Иштер",
+                nav_dossiers_archive: "Досье архиви",
+                nav_about: "Долбоор жөнүндө",
+                back_to_cases_archive: "← Иштерге кайтуу",
+                case_name: "Жетиген уулу Аскатты кармоо иши",
+                case_description: "Бул иш акын Жетиген уулу Аскатты бийликти күч менен басып алууга ачык чакырыктар үчүн айыпталып, кылмыш куугунтугуна алынгандыгына байланыштуу. Бул досье анын ишине катышкан негизги фигуралар жөнүндө маалыматтарды камтыйт.",
+                persons_involved_heading: "Ишке катышуучулар:",
+                view_dossier_button: "Досьени көрүү",
+                close_button: "Жабуу",
+                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
+
+                // Dossier specific translations (re-used from original dossiers)
+                category_label: "Категория:",
+                case_figure_category: "Кылмыш ишинин фигуранты",
+                akyn_role: "Акын",
+                executor_category: "Аткаруучулар (мамлекеттик органдардын өкүлдөрү)",
+                expert_category: "Эксперт",
+                position_label: "Кызматы:",
+                documented_episodes_heading: "Документтештирилген эпизоддор",
+                action_details_heading: "Аракеттер:",
+                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
+                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
+                sources_heading: "Булактар:",
+
+                // Specific person names and roles for this case page display
+                person_zhetigen_uulu_askat_name: "Жетиген уулу Аскат",
+                person_zhetigen_uulu_askat_role_short: "Иштин фигуранты / Акын",
+                person_sulaimanov_name: "Сулайманов Ж.А.",
+                person_sulaimanov_role_short: "Төрагалык кылган судья",
+                person_tashiev_name: "Ташиев Ч.",
+                person_tashiev_role_short: "Мамлекеттик айыптоочу",
+                person_sarybaev_name: "Сарыбаев У.",
+                person_sarybaev_role_short: "Мамлекеттик айыптоочу",
+                person_muratalieva_name: "Мураталиева Г.Дж.",
+                person_muratalieva_role_short: "Эксперт",
+                person_zhumaev_name: "Жумаев Р.Т.",
+                person_zhumaev_role_short: "Улук тергөөчү",
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedHRLanguage', lang);
+        }
+
+        const dossierContents = {
+            "zhetigen-uulu-askat-dossier": `
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
+                        <h2 data-lang-key="person_name">Жетиген уулу Аскат</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="case_figure_category">Фигурант уголовного дела</span></p>
+                        <p><strong data-lang-key="birth_date_label">Дата рождения:</strong> 10.10.1993</p>
+                        <p><strong data-lang-key="position_label">Роль:</strong> <span data-lang-key="akyn_role">Акын</span></p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4 data-lang-key="episode_title_general">Эпизод: Уголовное дело в отношении Жетиген уулу Аската</h4>
+                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description">Публичные призывы к насильственному захвату власти</span></h5>
+                            <p data-lang-key="episode_text_1">Жетиген уулу Аскат обвинялся в совершении преступлений, предусмотренных частью 3 статьи 278 УК КР (Массовые беспорядки) и пунктом 1 части 2 статьи 327 УК КР (Публичные призывы к насильственному захвату власти, с использованием средств массовой информации или информационно-коммуникационных сетей).</p>
+                            <p data-lang-key="episode_text_2">Судом признан невиновным и оправдан по части 3 статьи 278 УК КР (Массовые беспорядки) за отсутствием состава преступления.</p>
+                            <p data-lang-key="episode_text_3">Признан виновным по пункту 1 части 2 статьи 327 УК КР (Публичные призывы к насильственному захвату власти) и приговорен к 3 (трем) годам лишения свободы с отбыванием наказания в колонии общего режима.</p>
+                            <p data-lang-key="episode_text_4">Срок содержания под стражей зачтен в срок отбытия наказания из расчета 1 день под стражей за 2 дня лишения свободы. Срок отбытия назначенного наказания исчисляется с момента задержания (с 16 марта 2024 года по 18 марта 2024 года и с 20 марта 2024 года).</p>
+                        </div>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p data-lang-key="legal_article_violated_rights">В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
+                        <p><a href="#" data-lang-key="source_expertise_1">Заключение судебно-лингвистической экспертизы №001805 от 09 февраля 2022 года.</a></p>
+                        <p><a href="#" data-lang-key="source_expertise_2">Заключение судебно-лингвистической экспертизы №001442.</a></p>
+                    </section>
+                </div>
+            `,
+            "sulaimanov-dossier": `
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
+                        <h2 data-lang-key="person_name">Сулайманов Ж.А.</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="judge_position">Председательствующий судья Свердловского районного суда города Бишкек</span></p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
+                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_sulaimanov">Рассмотрение уголовного дела и вынесение приговора</span></h5>
+                            <p data-lang-key="episode_text_sulaimanov">Как председательствующий судья Свердловского районного суда города Бишкек, Сулайманов Ж.А. рассмотрел уголовное дело в отношении Жетиген уулу Аската и вынес по нему приговор от 01 июля 2024 года, которым Жетиген уулу Аскат был оправдан по одной статье и признан виновным по другой.</p>
+                        </div>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p data-lang-key="legal_qualification_description_sulaimanov">В действиях могут усматриваться признаки **ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)**, если приговор был необоснованным или противоречил материалам дела.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
+                    </section>
+                </div>
+            `,
+            "tashiev-dossier": `
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
+                        <h2 data-lang-key="person_name">Ташиев Ч.</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="prosecutor_position">Государственный обвинитель (помощник прокурора Свердловского района города Бишкек)</span></p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
+                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_prosecutor">Участие в уголовном преследовании в рамках дела</span></h5>
+                            <p data-lang-key="episode_text_prosecutor">Ташиев Ч., как государственный обвинитель, участвовал в уголовном преследовании Жетиген уулу Аската в рамках уголовного дела, рассмотренного Свердловским районным судом города Бишкек.</p>
+                        </div>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p data-lang-key="legal_qualification_description_prosecutor">В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерным действиям следствия или необоснованному обвинению.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
+                    </section>
+                </div>
+            `,
+            "sarybaev-dossier": `
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
+                        <h2 data-lang-key="person_name">Сарыбаев У.</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="prosecutor_position">Государственный обвинитель (помощник прокурора Свердловского района города Бишкек)</span></p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
+                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_prosecutor">Участие в уголовном преследовании в рамках дела</span></h5>
+                            <p data-lang-key="episode_text_prosecutor">Сарыбаев У., как государственный обвинитель, участвовал в уголовном преследовании Жетиген уулу Аската в рамках уголовного дела, рассмотренного Свердловским районным судом города Бишкек.</p>
+                        </div>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p data-lang-key="legal_qualification_description_prosecutor">В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерным действиям следствия или необоснованному обвинению.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
+                    </section>
+                </div>
+            `,
+            "muratalieva-dossier": `
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
+                        <h2 data-lang-key="person_name">Мураталиева Г.Дж.</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-expert" data-lang-key="expert_category">Эксперт</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="expert_position">Эксперт лингвистической, религиоведческой и психологической экспертиз Судебно-экспертной службы при Министерстве юстиции Кыргызской Республики</span></p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
+                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_muratalieva">Проведение лингвистической экспертизы</span></h5>
+                            <p data-lang-key="episode_text_muratalieva">Мураталиева Г.Дж. проводила лингвистическую, религиоведческую и психологическую экспертизы в рамках уголовного дела Жетиген уулу Аската. Её заключение указывает на наличие призывов к насильственному захвату власти, но не к возбуждению национальной/религиозной вражды.</p>
+                        </div>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p data-lang-key="legal_qualification_description_muratalieva">В действиях могут усматриваться признаки **ст. 364 УК КР (Заведомо ложное заключение или показания эксперта)**, если заключение было заведомо ложным.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
+                    </section>
+                </div>
+            `,
+            "zhumaev-dossier": `
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
+                        <h2 data-lang-key="person_name">Жумаев Р.Т.</h2>
+                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
+                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="investigator_position">Старший следователь СУ ГУ ГКНБ Кыргызской Республики по г.Бишкек</span></p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
+                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_zhumaev">Привлечение в качестве обвиняемого</span></h5>
+                            <p data-lang-key="episode_text_zhumaev">Жумаев Р.Т., как старший следователь, привлек Жетиген уулу Аската в качестве обвиняемого в рамках уголовного дела, что привело к его дальнейшему судебному преследованию.</p>
+                        </div>
+                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p data-lang-key="legal_qualification_description_zhumaev">В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, **ст. 320 УК КР (Превышение власти или должностных полномочий)**, **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**, если привлечение к уголовной ответственности было необоснованным или с нарушением процессуальных норм.</p>
+                        <h5 data-lang-key="sources_heading">Источники:</h5>
+                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
+                    </section>
+                </div>
+            `
+        };
+
+        function loadDossier(dossierId) {
+            const content = dossierContents[dossierId];
+            if (content) {
+                document.getElementById('loaded-dossier-content').innerHTML = content;
+                // Применить переводы к загруженному контенту досье
+                applyTranslationsToDossierContent();
+                document.getElementById('dossier-display-area').classList.remove('hidden');
+                window.scrollTo({ top: document.getElementById('dossier-display-area').offsetTop - 80, behavior: 'smooth' });
+            }
+        }
+
+        // Новая функция для применения переводов к динамически загружаемому контенту досье
+        function applyTranslationsToDossierContent() {
+            const lang = currentLang; // Используем текущий выбранный язык
+            document.querySelectorAll('#loaded-dossier-content [data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            // Обновляем текст для категорий, которые имеют собственные классы
+            document.querySelectorAll('#loaded-dossier-content .category-executor').forEach(element => {
+                element.innerHTML = translations[lang].executor_category || element.innerHTML;
+            });
+            document.querySelectorAll('#loaded-dossier-content .category-expert').forEach(element => {
+                element.innerHTML = translations[lang].expert_category || element.innerHTML;
+            });
+            // Обновляем текст для ролей, которые используют data-lang-role
+            document.querySelectorAll('#loaded-dossier-content [data-lang-role]').forEach(element => {
+                const originalRole = element.dataset.langRole;
+                if (translations[lang] && translations[lang].roles && translations[lang].roles[originalRole]) {
+                    element.textContent = translations[lang].roles[originalRole];
+                }
+            });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            document.querySelectorAll('.view-dossier-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    loadDossier(event.target.dataset.dossierId);
+                });
+            });
+
+            document.getElementById('close-dossier-btn').addEventListener('click', () => {
+                document.getElementById('dossier-display-area').classList.add('hidden');
+                document.getElementById('loaded-dossier-content').innerHTML = '';
+            });
+
+            // Initial language setting for the case page
+            setLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
