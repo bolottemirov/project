@@ -724,54 +724,41 @@
             }
         }
 
-        // Новая функция для применения переводов к динамически загружаемому контенту досье
-        function applyTranslationsToDossierContent() {
-            const lang = currentLang; // Используем текущий выбранный язык
-            document.querySelectorAll('#loaded-dossier-content [data-lang-key]').forEach(element => {
-                const key = element.dataset.langKey;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    element.innerHTML = translations[lang][key];
+    const translations = {
+    };
+
+    function setLanguage(lang) {
+        document.querySelectorAll('[data-lang], [data-lang-key]').forEach(element => {
+            const key = element.dataset.lang || element.dataset.langKey;
+            if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = translations[lang][key];
+                } else {
+                    element.textContent = translations[lang][key];
                 }
-            });
-            // Обновляем текст для категорий, которые имеют собственные классы
-            document.querySelectorAll('#loaded-dossier-content .category-executor').forEach(element => {
-                element.innerHTML = translations[lang].executor_category || element.innerHTML;
-            });
-            document.querySelectorAll('#loaded-dossier-content .category-expert').forEach(element => {
-                element.innerHTML = translations[lang].expert_category || element.innerHTML;
-            });
-            // Обновляем текст для ролей, которые используют data-lang-role
-            document.querySelectorAll('#loaded-dossier-content [data-lang-role]').forEach(element => {
-                const originalRole = element.dataset.langRole;
-                if (translations[lang] && translations[lang].roles && translations[lang].roles[originalRole]) {
-                    element.textContent = translations[lang].roles[originalRole];
-                }
-            });
-        }
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    setLanguage(event.target.dataset.langCode);
-                });
-            });
-
-            document.querySelectorAll('.view-dossier-btn').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    loadDossier(event.target.dataset.dossierId);
-                });
-            });
-
-            document.getElementById('close-dossier-btn').addEventListener('click', () => {
-                document.getElementById('dossier-display-area').classList.add('hidden');
-                document.getElementById('loaded-dossier-content').innerHTML = '';
-            });
-
-            // Initial language setting for the case page
-            setLanguage(currentLang);
+            }
         });
-    </script>
-</body>
-</html>
+
+        document.querySelectorAll('.lang-switcher button').forEach(button => {
+            if (button.dataset.langCode === lang) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
+
+        localStorage.setItem('selectedLanguage', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
+        setLanguage(savedLang); 
+
+        const langButtons = document.querySelectorAll('.lang-switcher button');
+        langButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const langCode = event.target.dataset.langCode;
+                setLanguage(langCode);
+            });
+        });
+    });
