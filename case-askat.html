@@ -724,48 +724,52 @@
             }
         }
 
- <script>
-    // Define the translations object (you need to fill this with your translations)
-    const translations = {
-        // Your existing translation data goes here
-    };
+let currentLang = localStorage.getItem('selectedLanguage') || 'ru'; // Initialize currentLang
 
-    // Function to set the language and save it to localStorage
-    function setLanguage(lang) {
-        document.querySelectorAll('[data-lang], [data-lang-key]').forEach(element => {
-            const key = element.dataset.lang || element.dataset.langKey;
-            if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                    element.placeholder = translations[lang][key];
-                } else {
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.dataset.lang;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
                     element.textContent = translations[lang][key];
                 }
-            }
-        });
-
-        document.querySelectorAll('.lang-switcher button').forEach(button => {
-            if (button.dataset.langCode === lang) {
-                button.classList.add('active');
-            } else {
-                button.classList.remove('active');
-            }
-        });
-
-        // This is the key line that saves the language for future pages
-        localStorage.setItem('selectedLanguage', lang);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // This is the key line that loads the saved language on every page load
-        const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
-        setLanguage(savedLang);
-
-        const langButtons = document.querySelectorAll('.lang-switcher button');
-        langButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const langCode = event.target.dataset.langCode;
-                setLanguage(langCode);
             });
+            document.querySelector('title').textContent = translations[lang].dossier_title;
+
+            // Handle dossier names
+            document.querySelectorAll('.dossier-link').forEach(linkElement => {
+                const originalName = linkElement.dataset.originalName; // Get original name from data attribute
+                if (translations[lang] && translations[lang].names && translations[lang].names.hasOwnProperty(originalName)) {
+                    linkElement.textContent = translations[lang].names[originalName];
+                } else {
+                    // Fallback to original name if translation not found
+                    linkElement.textContent = originalName;
+                }
+            });
+
+            // Update active button state
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.dataset.langCode === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.langCode);
+                });
+            });
+
+            // Load saved language or default to Russian
+            setLanguage(currentLang); // Apply initial language on load
         });
-    });
-</script>
+    </script>
+</body>
+</html>
