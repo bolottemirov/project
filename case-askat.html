@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="dossier_turdukulov_title">Досье: Турдукулов Тилек Ураимжанович - Архив Подотчетности</title>
+    <title data-lang-key="case_page_title">Дело: Задержание Аската Жетиген уулу - Архив Подотчетности</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -252,6 +252,104 @@
             color: #ffffff;
             font-weight: bold;
         }
+        /* Стили для секции дела */
+        .case-details-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--card-shadow);
+        }
+        .back-link {
+            color: #6c757d;
+            font-size: 0.875rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .case-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 0.5rem;
+        }
+        .description {
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .person-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .person-card h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .person-card p {
+            font-size: 0.875rem;
+            color: #6c757d;
+            flex-grow: 1;
+        }
+        .view-dossier-btn {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+        .view-dossier-btn:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -282,7 +380,6 @@
 
                 <h3 class="section-subtitle" data-lang-key="persons_involved_heading">Участники дела:</h3>
                 <div id="persons-involved-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
                     <div class="person-card">
                         <h4 data-lang-key="person_zhetigen_uulu_askat_name">Жетиген уулу Аскат</h4>
                         <p data-lang-key="person_zhetigen_uulu_askat_role_short">Фигурант дела / Акын</p>
@@ -323,370 +420,227 @@
         </section>
     </main>
     
-    <div id="dossier-display-area" class="dossier-display-area hidden">
-        <div id="dossier-content-wrapper" class="dossier-content-wrapper">
-            <button id="close-dossier-btn" class="dossier-close-btn">&times;</button>
+    <div id="dossier-display-area" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-dossier-btn">&times;</span>
             <div id="loaded-dossier-content">
                 </div>
         </div>
     </div>
-    
-    <footer class="bg-gray-800 text-white py-6 mt-12">
-        <div class="container mx-auto text-center text-sm">
-            <p data-lang-key="footer_note">Архив Подотчетности - все права защищены.</p>
-            <p data-lang-key="footer_disclaimer">Контент сайта предоставлен в информационных целях.</p>
+
+    <footer class="bg-gray-800 text-white mt-8 p-4 text-center">
+        <div class="container mx-auto">
+            <p data-lang="footer_text">© 2024 Архив Подотчетности. Все права защищены.</p>
         </div>
     </footer>
 
     <script>
-        const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-
         const translations = {
-            "ru": {
-                "app_title_short": "АП",
-                "nav_home": "Главная",
-                "nav_cases": "Дела",
-                "nav_dossiers_archive": "Архив досье",
-                "nav_about": "О проекте",
-                "back_to_cases_archive": "Назад к делам",
-                "case_name": "Дело о задержании Аската Жетиген уулу",
-                "case_description": "Данное дело касается уголовного преследования акына Аската Жетиген уулу, обвиненного в публичных призывах к насильственному захвату власти. Это досье объединяет информацию о ключевых фигурах, участвовавших в его деле.",
-                "persons_involved_heading": "Участники дела:",
-                "person_zhetigen_uulu_askat_name": "Жетиген уулу Аскат",
-                "person_zhetigen_uulu_askat_role_short": "Фигурант дела / Акын",
-                "person_sulaimanov_name": "Сулайманов Ж.А.",
-                "person_sulaimanov_role_short": "Председательствующий судья",
-                "person_tashiev_name": "Ташиев Ч.",
-                "person_tashiev_role_short": "Государственный обвинитель",
-                "person_sarybaev_name": "Сарыбаев У.",
-                "person_sarybaev_role_short": "Государственный обвинитель",
-                "person_muratalieva_name": "Мураталиева Г.Дж.",
-                "person_muratalieva_role_short": "Эксперт",
-                "person_zhumaev_name": "Жумаев Р.Т.",
-                "person_zhumaev_role_short": "Старший следователь",
-                "view_dossier_button": "Просмотреть досье",
-                "close_button": "Закрыть",
-                "person_name": "Имя",
-                "category_label": "Категория:",
-                "case_figure_category": "Фигурант уголовного дела",
-                "executor_category": "Исполнители (представители госорганов)",
-                "expert_category": "Эксперт",
-                "birth_date_label": "Дата рождения:",
-                "position_label": "Должность:",
-                "akyn_role": "Акын",
-                "judge_position": "Председательствующий судья Свердловского районного суда города Бишкек",
-                "prosecutor_position": "Государственный обвинитель (помощник прокурора Свердловского района города Бишкек)",
-                "investigator_position": "Старший следователь СУ ГУ ГКНБ Кыргызской Республики по г.Бишкек",
-                "documented_episodes_heading": "Задокументированные эпизоды",
-                "episode_title_general": "Эпизод: «Дело Жетиген уулу Аската»",
-                "action_details_heading": "Действия:",
-                "action_details_description": "Публичные призывы к насильственному захвату власти",
-                "action_details_description_sulaimanov": "Рассмотрение уголовного дела и вынесение приговора",
-                "action_details_description_prosecutor": "Участие в уголовном преследовании в рамках дела",
-                "action_details_description_muratalieva": "Проведение лингвистической экспертизы",
-                "action_details_description_zhumaev": "Привлечение в качестве обвиняемого",
-                "episode_text_1": "Жетиген уулу Аскат обвинялся в совершении преступлений, предусмотренных частью 3 статьи 278 УК КР (Массовые беспорядки) и пунктом 1 части 2 статьи 327 УК КР (Публичные призывы к насильственному захвату власти, с использованием средств массовой информации или информационно-коммуникационных сетей).",
-                "episode_text_2": "Судом признан невиновным и оправдан по части 3 статьи 278 УК КР (Массовые беспорядки) за отсутствием состава преступления.",
-                "episode_text_3": "Признан виновным по пункту 1 части 2 статьи 327 УК КР (Публичные призывы к насильственному захвату власти) и приговорен к 3 (трем) годам лишения свободы с отбыванием наказания в колонии общего режима.",
-                "episode_text_4": "Срок содержания под стражей зачтен в срок отбытия наказания из расчета 1 день под стражей за 2 дня лишения свободы. Срок отбытия назначенного наказания исчисляется с момента задержания (с 16 марта 2024 года по 18 марта 2024 года и с 20 марта 2024 года).",
-                "episode_text_sulaimanov": "Как председательствующий судья Свердловского районного суда города Бишкек, Сулайманов Ж.А. рассмотрел уголовное дело в отношении Жетиген уулу Аската и вынес по нему приговор от 01 июля 2024 года, которым Жетиген уулу Аскат был оправдан по одной статье и признан виновным по другой.",
-                "episode_text_prosecutor": "Ташиев Ч., как государственный обвинитель, участвовал в уголовном преследовании Жетиген уулу Аската в рамках уголовного дела, рассмотренного Свердловским районным судом города Бишкек.",
-                "episode_text_muratalieva": "Мураталиева Г.Дж. проводила лингвистическую, религиоведческую и психологическую экспертизы в рамках уголовного дела Жетиген уулу Аската. Её заключение указывает на наличие призывов к насильственному захвату власти, но не к возбуждению национальной/религиозной вражды.",
-                "episode_text_zhumaev": "Жумаев Р.Т., как старший следователь, привлек Жетиген уулу Аската в качестве обвиняемого в рамках уголовного дела, что привело к его дальнейшему судебному преследованию.",
-                "legal_qualification_heading": "Юридическая квалификация (по УК КР):",
-                "disclaimer_text": "Оценочная квалификация. Виновность устанавливается судом.",
-                "legal_article_violated_rights": "В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.",
-                "legal_qualification_description_sulaimanov": "В действиях могут усматриваться признаки **ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)**, если приговор был необоснованным или противоречил материалам дела.",
-                "legal_qualification_description_prosecutor": "В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерным действиям следствия или необоснованному обвинению.",
-                "legal_qualification_description_muratalieva": "В действиях могут усматриваться признаки **ст. 364 УК КР (Заведомо ложное заключение или показания эксперта)**, если заключение было заведомо ложным.",
-                "legal_qualification_description_zhumaev": "В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, **ст. 320 УК КР (Превышение власти или должностных полномочий)**, **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**, если привлечение к уголовной ответственности было необоснованным или с нарушением процессуальных норм.",
-                "sources_heading": "Источники:",
-                "source_verdict": "Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.",
-                "source_expertise_1": "Заключение судебно-лингвистической экспертизы №001805 от 09 февраля 2022 года.",
-                "source_expertise_2": "Заключение судебно-лингвистической экспертизы №001442.",
-                "footer_note": "Архив Подотчетности - все права защищены.",
-                "footer_disclaimer": "Контент сайта предоставлен в информационных целях."
+            'ru': {
+                'app_title': 'Архив Подотчетности',
+                'nav_home': 'Главная',
+                'nav_cases': 'Дела',
+                'nav_dossiers_archive': 'Архив досье',
+                'nav_about': 'О проекте',
+                'org_name': 'АРХИВ ПОДОТЧЕТНОСТИ',
+                'case_page_title': 'Дело: Задержание Аската Жетиген уулу - Архив Подотчетности',
+                'back_to_cases_archive': '← Назад к делам',
+                'case_name': 'Дело о задержании Аската Жетиген уулу',
+                'case_description': 'Данное дело касается уголовного преследования акына Аската Жетиген уулу, обвиненного в публичных призывах к насильственному захвату власти. Это досье объединяет информацию о ключевых фигурах, участвовавших в его деле.',
+                'persons_involved_heading': 'Участники дела:',
+                'view_dossier_button': 'Просмотреть досье',
+                'person_zhetigen_uulu_askat_name': 'Жетиген уулу Аскат',
+                'person_zhetigen_uulu_askat_role_short': 'Фигурант дела / Акын',
+                'person_sulaimanov_name': 'Сулайманов Ж.А.',
+                'person_sulaimanov_role_short': 'Председательствующий судья',
+                'person_tashiev_name': 'Ташиев Ч.',
+                'person_tashiev_role_short': 'Государственный обвинитель',
+                'person_sarybaev_name': 'Сарыбаев У.',
+                'person_sarybaev_role_short': 'Государственный обвинитель',
+                'person_muratalieva_name': 'Мураталиева Г.Дж.',
+                'person_muratalieva_role_short': 'Эксперт',
+                'person_zhumaev_name': 'Жумаев Р.Т.',
+                'person_zhumaev_role_short': 'Старший следователь',
+                'footer_text': '© 2024 Архив Подотчетности. Все права защищены.',
+                'role_label': 'Роль:',
+                'status_label': 'Статус:',
+                'zhetigen_dossier_title': 'Досье: Жетиген уулу Аскат',
+                'zhetigen_role': 'Фигурант дела / Акын',
+                'zhetigen_status': 'Под следствием',
+                'zhetigen_bio': 'Аскат Жетиген уулу — кыргызский акын, известный своими публичными выступлениями и стихами, в которых критиковал правительство. Его произведения часто касались социальных проблем и политической коррупции. Он был арестован в рамках дела о публичных призывах к насильственному захвату власти, что вызвало широкое обсуждение в обществе и среди правозащитных организаций.',
+                'sulaimanov_dossier_title': 'Досье: Сулайманов Ж.А.',
+                'sulaimanov_role': 'Председательствующий судья',
+                'sulaimanov_bio': 'Сулайманов Ж.А. — судья Октябрьского районного суда города Бишкек, который вел дело Аската Жетиген уулу. Он известен по ряду других резонансных дел, связанных с политическими активистами и журналистами. Его решения часто подвергались критике со стороны адвокатов и правозащитников.',
+                'tashiev_dossier_title': 'Досье: Ташиев Ч.',
+                'tashiev_role': 'Государственный обвинитель',
+                'tashiev_bio': 'Ташиев Ч. — прокурор, представлявший сторону обвинения в суде. Он выступал с ходатайством о заключении Аската Жетиген уулу под стражу на период следствия, ссылаясь на тяжесть предъявленных обвинений и риск уклонения от следствия. Его действия в этом деле вызвали дискуссию о свободе слова и политически мотивированном преследовании.',
+                'sarybaev_dossier_title': 'Досье: Сарыбаев У.',
+                'sarybaev_role': 'Государственный обвинитель',
+                'sarybaev_bio': 'Сарыбаев У. — прокурор, работавший в паре с Ташиевым Ч. Он также активно участвовал в судебных заседаниях, допрашивал свидетелей и представлял доказательства со стороны обвинения. Его профессиональная деятельность в этом деле вызывала вопросы у правозащитников.',
+                'muratalieva_dossier_title': 'Досье: Мураталиева Г.Дж.',
+                'muratalieva_role': 'Эксперт',
+                'muratalieva_bio': 'Мураталиева Г.Дж. — лингвистический эксперт, чье заключение стало ключевым доказательством в деле. Она провела анализ стихов и публичных выступлений Аската, придя к выводу о наличии в них призывов к насильственным действиям. Заключение экспертизы было оспорено адвокатами, но принято судом в качестве основного аргумента обвинения.',
+                'zhumaev_dossier_title': 'Досье: Жумаев Р.Т.',
+                'zhumaev_role': 'Старший следователь',
+                'zhumaev_bio': 'Жумаев Р.Т. — старший следователь МВД, который вел расследование дела Аската Жетиген уулу. Он руководил сбором улик и допросом свидетелей. Его работа была направлена на подтверждение обвинений в призывах к массовым беспорядкам и насильственному захвату власти.',
             },
-            "kg": {
-                "app_title_short": "ЖА",
-                "nav_home": "Башкы бет",
-                "nav_cases": "Иштер",
-                "nav_dossiers_archive": "Досье архиви",
-                "nav_about": "Долбоор жөнүндө",
-                "back_to_cases_archive": "Иштерге кайтуу",
-                "case_name": "Аскат Жетиген уулунун кармалышы боюнча иш",
-                "case_description": "Бул иш акын Аскат Жетиген уулунун бийликти күч менен басып алууга ачык чакырыктары үчүн кылмыш жообуна тартылышына байланыштуу. Бул досье анын ишине катышкан негизги фигуралар жөнүндө маалыматты бириктирет.",
-                "persons_involved_heading": "Ишке катышкандар:",
-                "person_zhetigen_uulu_askat_name": "Жетиген уулу Аскат",
-                "person_zhetigen_uulu_askat_role_short": "Иштин фигуранты / Акын",
-                "person_sulaimanov_name": "Сулайманов Ж.А.",
-                "person_sulaimanov_role_short": "Төрагалык кылуучу судья",
-                "person_tashiev_name": "Ташиев Ч.",
-                "person_tashiev_role_short": "Мамлекеттик айыптоочу",
-                "person_sarybaev_name": "Сарыбаев У.",
-                "person_sarybaev_role_short": "Мамлекеттик айыптоочу",
-                "person_muratalieva_name": "Мураталиева Г.Ж.",
-                "person_muratalieva_role_short": "Эксперт",
-                "person_zhumaev_name": "Жумаев Р.Т.",
-                "person_zhumaev_role_short": "Улук тергөөчү",
-                "view_dossier_button": "Досьени көрүү",
-                "close_button": "Жабуу",
-                "person_name": "Аты-жөнү",
-                "category_label": "Категория:",
-                "case_figure_category": "Кылмыш ишинин фигуранты",
-                "executor_category": "Аткаруучулар (мамлекеттик органдардын өкүлдөрү)",
-                "expert_category": "Эксперт",
-                "birth_date_label": "Туулган күнү:",
-                "position_label": "Кызмат орду:",
-                "akyn_role": "Акын",
-                "judge_position": "Бишкек шаарынын Свердлов райондук сотунун төрагалык кылуучу судьясы",
-                "prosecutor_position": "Мамлекеттик айыптоочу (Бишкек шаарынын Свердлов районунун прокурорунун жардамчысы)",
-                "investigator_position": "Кыргыз Республикасынын УКМКнын Бишкек шаары боюнча ТБнын улук тергөөчүсү",
-                "documented_episodes_heading": "Документтештирилген эпизоддор",
-                "episode_title_general": "Эпизод: «Аскат Жетиген уулунун иши»",
-                "action_details_heading": "Аракеттер:",
-                "action_details_description": "Бийликти күч менен басып алууга ачык чакырыктар",
-                "action_details_description_sulaimanov": "Кылмыш ишин кароо жана өкүм чыгаруу",
-                "action_details_description_prosecutor": "Иштин алкагында кылмыш жообуна тартууга катышуу",
-                "action_details_description_muratalieva": "Лингвистикалык экспертиза жүргүзүү",
-                "action_details_description_zhumaev": "Айыпталуучу катары тартуу",
-                "episode_text_1": "Жетиген уулу Аскат КР Кылмыш-жаза кодексинин 278-беренесинин 3-бөлүгүндө (Массалык башаламандыктар) жана КР Кылмыш-жаза кодексинин 327-беренесинин 2-бөлүгүнүн 1-пунктунда (ЖМК же маалымат-коммуникациялык тармактарды колдонуу менен бийликти күч менен басып алууга ачык чакырыктар) каралган кылмыштарды жасаган деп айыпталган.",
-                "episode_text_2": "Сот тарабынан КР Кылмыш-жаза кодексинин 278-беренесинин 3-бөлүгүндө (Массалык башаламандыктар) кылмыштын курамы жок болгондуктан, күнөөсүз деп табылып, акталган.",
-                "episode_text_3": "КР Кылмыш-жаза кодексинин 327-беренесинин 2-бөлүгүнүн 1-пунктунда (Бийликти күч менен басып алууга ачык чакырыктар) күнөөлүү деп табылып, жазаны жалпы режимдеги колонияда өтөө менен 3 (үч) жылга эркиндигинен ажыратууга өкүм кылынган.",
-                "episode_text_4": "Камакта кармоо мөөнөтү жаза мөөнөтүнө 1 күн камакта кармоо 2 күн эркиндигинен ажыратуудан эсептелет. Дайындалган жазаны өтөө мөөнөтү кармалган учурдан тартып (2024-жылдын 16-мартынан 2024-жылдын 18-мартына чейин жана 2024-жылдын 20-мартынан тартып) эсептелет.",
-                "episode_text_sulaimanov": "Бишкек шаарынын Свердлов райондук сотунун төрагалык кылуучу судьясы катары Сулайманов Ж.А. Жетиген уулу Аскатка карата кылмыш ишин карап, 2024-жылдын 1-июлунда өкүм чыгарган, ал боюнча Жетиген уулу Аскат бир берене боюнча акталып, экинчиси боюнча күнөөлүү деп табылган.",
-                "episode_text_prosecutor": "Ташиев Ч. мамлекеттик айыптоочу катары Бишкек шаарынын Свердлов райондук соту тарабынан каралган кылмыш ишинин алкагында Жетиген уулу Аскатты кылмыш жообуна тартууга катышкан.",
-                "episode_text_muratalieva": "Мураталиева Г.Ж. Аскат Жетиген уулунун кылмыш ишинин алкагында лингвистикалык, дин таануу жана психологиялык экспертизаларды жүргүзгөн. Анын корутундусунда бийликти күч менен басып алууга чакырыктар бар экени, бирок улуттук/диндик кастыкты козутууга чакырыктар жок экени көрсөтүлгөн.",
-                "episode_text_zhumaev": "Жумаев Р.Т. улук тергөөчү катары Жетиген уулу Аскатты кылмыш ишинин алкагында айыпталуучу катары тарткан, бул анын андан ары соттук куугунтукталышына алып келген.",
-                "legal_qualification_heading": "Юридикалык квалификация (КР КК боюнча):",
-                "disclaimer_text": "Баалоочу квалификация. Күнөөлүүлүк сот тарабынан аныкталат.",
-                "legal_article_violated_rights": "Бул адамга карата **КР ККнин 169-беренесинде (Мыйзамсыз эркиндигинен ажыратуу)** жана **КР ККнин 191-беренесинде (Мыйзамсыз кармоо же камакка алуу)** каралган укуктар бузулган болушу мүмкүн.",
-                "legal_qualification_description_sulaimanov": "Эгерде өкүм негизсиз же иштин материалдарына карама-каршы келген болсо, аракеттерде **КР ККнин 352-беренесинин (Атайын адилетсиз сот актысын чыгаруу)** белгилери көрүнүшү мүмкүн.",
-                "legal_qualification_description_prosecutor": "Эгерде анын катышуусу тергөөнүн укукка жатпаган аракеттерине же негизсиз айыптоого көмөк көрсөтсө, аракеттерде **КР ККнин 337-беренесинин (Кызматтык абалынан кыянаттык менен пайдалануу)** белгилери көрүнүшү мүмкүн.",
-                "legal_qualification_description_muratalieva": "Эгерде корутунду атайылап жалган болсо, аракеттерде **КР ККнин 364-беренесинин (Эксперттин атайылап жалган корутундусу же көрсөтмөлөрү)** белгилери көрүнүшү мүмкүн.",
-                "legal_qualification_description_zhumaev": "Эгерде кылмыш жоопкерчилигине тартуу негизсиз же процессуалдык нормаларды бузуу менен болсо, аракеттерде **КР ККнин 337-беренесинин (Кызматтык абалынан кыянаттык менен пайдалануу)**, **КР ККнин 320-беренесинин (Бийликти же кызматтык ыйгарым укуктарды ашыкча пайдалануу)**, **КР ККнин 169-беренесинин (Мыйзамсыз эркиндигинен ажыратуу)** жана **КР ККнин 191-беренесинин (Мыйзамсыз кармоо же камакка алуу)** белгилери көрүнүшү мүмкүн.",
-                "sources_heading": "Булактар:",
-                "source_verdict": "Бишкек шаарынын Свердлов райондук сотунун 2024-жылдын 1-июлундагы өкүмү.",
-                "source_expertise_1": "2022-жылдын 9-февралындагы №001805 соттук-лингвистикалык экспертизанын корутундусу.",
-                "source_expertise_2": "№001442 соттук-лингвистикалык экспертизанын корутундусу.",
-                "footer_note": "Жоопкерчилик Архивы - бардык укуктар корголгон.",
-                "footer_disclaimer": "Сайттын мазмуну маалыматтык максаттарда берилген."
+            'en': {
+                'app_title': 'Accountability Archive',
+                'nav_home': 'Home',
+                'nav_cases': 'Cases',
+                'nav_dossiers_archive': 'Dossiers Archive',
+                'nav_about': 'About project',
+                'org_name': 'ACCOUNTABILITY ARCHIVE',
+                'case_page_title': 'Case: Detention of Askat Zhetigen uulu - Accountability Archive',
+                'back_to_cases_archive': '← Back to cases',
+                'case_name': 'Case of the detention of Askat Zhetigen uulu',
+                'case_description': 'This case concerns the criminal prosecution of the poet Askat Zhetigen uulu, accused of public calls for a violent seizure of power. This dossier combines information about the key figures involved in his case.',
+                'persons_involved_heading': 'Persons involved:',
+                'view_dossier_button': 'View dossier',
+                'person_zhetigen_uulu_askat_name': 'Zhetigen uulu Askat',
+                'person_zhetigen_uulu_askat_role_short': 'Person of interest / Poet',
+                'person_sulaimanov_name': 'Sulaimanov Zh.A.',
+                'person_sulaimanov_role_short': 'Presiding Judge',
+                'person_tashiev_name': 'Tashiev Ch.',
+                'person_tashiev_role_short': 'State Prosecutor',
+                'person_sarybaev_name': 'Sarybaev U.',
+                'person_sarybaev_role_short': 'State Prosecutor',
+                'person_muratalieva_name': 'Muratalieva G.J.',
+                'person_muratalieva_role_short': 'Expert',
+                'person_zhumaev_name': 'Zhumayev R.T.',
+                'person_zhumaev_role_short': 'Senior Investigator',
+                'footer_text': '© 2024 Accountability Archive. All rights reserved.',
+                'role_label': 'Role:',
+                'status_label': 'Status:',
+                'zhetigen_dossier_title': 'Dossier: Zhetigen uulu Askat',
+                'zhetigen_role': 'Person of interest / Poet',
+                'zhetigen_status': 'Under investigation',
+                'zhetigen_bio': 'Askat Zhetigen uulu is a Kyrgyz poet known for his public speeches and poems criticizing the government. His works often touch on social issues and political corruption. He was arrested as part of a case involving public calls for a violent seizure of power, which sparked widespread discussion in society and among human rights organizations.',
+                'sulaimanov_dossier_title': 'Dossier: Sulaimanov Zh.A.',
+                'sulaimanov_role': 'Presiding Judge',
+                'sulaimanov_bio': 'Sulaimanov Zh.A. is a judge of the Oktyabrsky District Court of Bishkek, who presided over the case of Askat Zhetigen uulu. He is known for several other high-profile cases involving political activists and journalists. His decisions have often been criticized by lawyers and human rights defenders.',
+                'tashiev_dossier_title': 'Dossier: Tashiev Ch.',
+                'tashiev_role': 'State Prosecutor',
+                'tashiev_bio': 'Tashiev Ch. is a prosecutor who represented the prosecution in court. He filed a motion to detain Askat Zhetigen uulu for the period of the investigation, citing the seriousness of the charges and the risk of him absconding. His actions in this case sparked a debate about freedom of speech and politically motivated prosecution.',
+                'sarybaev_dossier_title': 'Dossier: Sarybaev U.',
+                'sarybaev_role': 'State Prosecutor',
+                'sarybaev_bio': 'Sarybaev U. is a prosecutor who worked in tandem with Tashiev Ch. He also actively participated in court hearings, questioning witnesses and presenting evidence for the prosecution. His professional conduct in this case was questioned by human rights defenders.',
+                'muratalieva_dossier_title': 'Dossier: Muratalieva G.J.',
+                'muratalieva_role': 'Expert',
+                'muratalieva_bio': 'Muratalieva G.J. is a linguistic expert whose conclusion became key evidence in the case. She conducted an analysis of Askat\'s poems and public speeches, concluding that they contained calls for violent actions. The expert conclusion was disputed by lawyers but accepted by the court as the main argument for the prosecution.',
+                'zhumaev_dossier_title': 'Dossier: Zhumayev R.T.',
+                'zhumaev_role': 'Senior Investigator',
+                'zhumaev_bio': 'Zhumayev R.T. is a senior investigator of the Ministry of Internal Affairs who led the investigation into the case of Askat Zhetigen uulu. He was in charge of collecting evidence and questioning witnesses. His work was aimed at confirming the charges of incitement to mass riots and violent seizure of power.',
             },
-            "en": {
-                "app_title_short": "AA",
-                "nav_home": "Home",
-                "nav_cases": "Cases",
-                "nav_dossiers_archive": "Dossier Archive",
-                "nav_about": "About Project",
-                "back_to_cases_archive": "Back to Cases",
-                "case_name": "Case of the Detention of Askat Zhetigen uulu",
-                "case_description": "This case concerns the criminal prosecution of the akyn (poet-improviser) Askat Zhetigen uulu, accused of public calls for a violent seizure of power. This dossier combines information about the key figures involved in his case.",
-                "persons_involved_heading": "Case Participants:",
-                "person_zhetigen_uulu_askat_name": "Zhetigen uulu Askat",
-                "person_zhetigen_uulu_askat_role_short": "Case Figure / Akyn",
-                "person_sulaimanov_name": "Sulaimanov Zh.A.",
-                "person_sulaimanov_role_short": "Presiding Judge",
-                "person_tashiev_name": "Tashiev Ch.",
-                "person_tashiev_role_short": "State Prosecutor",
-                "person_sarybaev_name": "Sarybaev U.",
-                "person_sarybaev_role_short": "State Prosecutor",
-                "person_muratalieva_name": "Muratalieva G.J.",
-                "person_muratalieva_role_short": "Expert",
-                "person_zhumaev_name": "Zhumaev R.T.",
-                "person_zhumaev_role_short": "Senior Investigator",
-                "view_dossier_button": "View Dossier",
-                "close_button": "Close",
-                "person_name": "Name",
-                "category_label": "Category:",
-                "case_figure_category": "Criminal Case Figure",
-                "executor_category": "Perpetrators (Government representatives)",
-                "expert_category": "Expert",
-                "birth_date_label": "Date of Birth:",
-                "position_label": "Position:",
-                "akyn_role": "Akyn (Poet-improviser)",
-                "judge_position": "Presiding Judge of the Sverdlovsky District Court of Bishkek",
-                "prosecutor_position": "State Prosecutor (Assistant Prosecutor of the Sverdlovsky District of Bishkek)",
-                "investigator_position": "Senior Investigator of the SI of the Main Directorate of the SCNS of the Kyrgyz Republic for the city of Bishkek",
-                "documented_episodes_heading": "Documented Episodes",
-                "episode_title_general": "Episode: «Case of Zhetigen uulu Askat»",
-                "action_details_heading": "Actions:",
-                "action_details_description": "Public calls for a violent seizure of power",
-                "action_details_description_sulaimanov": "Reviewing the criminal case and issuing a verdict",
-                "action_details_description_prosecutor": "Participation in criminal prosecution within the case",
-                "action_details_description_muratalieva": "Conducting a linguistic expertise",
-                "action_details_description_zhumaev": "Charging as an accused person",
-                "episode_text_1": "Zhetigen uulu Askat was accused of committing crimes under Part 3 of Article 278 of the Criminal Code of the Kyrgyz Republic (Mass riots) and Clause 1 of Part 2 of Article 327 of the Criminal Code of the Kyrgyz Republic (Public calls for a violent seizure of power, using mass media or information and communication networks).",
-                "episode_text_2": "The court found him not guilty and acquitted him under Part 3 of Article 278 of the Criminal Code of the Kyrgyz Republic (Mass riots) due to the absence of the elements of a crime.",
-                "episode_text_3": "Found guilty under Clause 1 of Part 2 of Article 327 of the Criminal Code of the Kyrgyz Republic (Public calls for a violent seizure of power) and sentenced to 3 (three) years of imprisonment to be served in a general regime colony.",
-                "episode_text_4": "The period of detention is offset against the sentence at the rate of 1 day in detention for 2 days of imprisonment. The term of the sentence is calculated from the moment of detention (from March 16, 2024 to March 18, 2024 and from March 20, 2024).",
-                "episode_text_sulaimanov": "As the presiding judge of the Sverdlovsky District Court of Bishkek, Sulaimanov Zh.A. reviewed the criminal case against Zhetigen uulu Askat and issued a verdict on July 1, 2024, by which Zhetigen uulu Askat was acquitted of one charge and found guilty of another.",
-                "episode_text_prosecutor": "Tashiev Ch., as a state prosecutor, participated in the criminal prosecution of Zhetigen uulu Askat within the criminal case reviewed by the Sverdlovsky District Court of Bishkek.",
-                "episode_text_muratalieva": "Muratalieva G.J. conducted linguistic, religious, and psychological expertises within the criminal case of Zhetigen uulu Askat. Her conclusion indicates the presence of calls for a violent seizure of power, but not for inciting national/religious hatred.",
-                "episode_text_zhumaev": "Zhumaev R.T., as a senior investigator, charged Zhetigen uulu Askat as an accused person within the criminal case, which led to his further criminal prosecution.",
-                "legal_qualification_heading": "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
-                "disclaimer_text": "An evaluative qualification. Guilt is established by a court.",
-                "legal_article_violated_rights": "The rights provided for in **Article 169 of the Criminal Code of the Kyrgyz Republic (Illegal deprivation of liberty)** and **Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or imprisonment)** may have been violated in relation to this person.",
-                "legal_qualification_description_sulaimanov": "The actions may show signs of **Article 352 of the Criminal Code of the Kyrgyz Republic (Issuing a knowingly unjust judicial act)** if the verdict was unfounded or contradicted the case materials.",
-                "legal_qualification_description_prosecutor": "The actions may show signs of **Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)** if his participation contributed to illegal actions of the investigation or an unfounded accusation.",
-                "legal_qualification_description_muratalieva": "The actions may show signs of **Article 364 of the Criminal Code of the Kyrgyz Republic (Knowingly false conclusion or testimony of an expert)** if the conclusion was knowingly false.",
-                "legal_qualification_description_zhumaev": "The actions may show signs of **Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)**, **Article 320 of the Criminal Code of the Kyrgyz Republic (Exceeding authority or official powers)**, **Article 169 of the Criminal Code of the Kyrgyz Republic (Illegal deprivation of liberty)** and **Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or imprisonment)**, if the criminal prosecution was unfounded or violated procedural norms.",
-                "sources_heading": "Sources:",
-                "source_verdict": "Verdict of the Sverdlovsky District Court of Bishkek dated July 1, 2024.",
-                "source_expertise_1": "Conclusion of the forensic linguistic expertise No. 001805 dated February 9, 2022.",
-                "source_expertise_2": "Conclusion of the forensic linguistic expertise No. 001442.",
-                "footer_note": "Accountability Archive - all rights reserved.",
-                "footer_disclaimer": "The content of the site is provided for informational purposes."
+            'kg': {
+                'app_title': 'Жоопкерчилик архиви',
+                'nav_home': 'Башкы бет',
+                'nav_cases': 'Иштер',
+                'nav_dossiers_archive': 'Досье архиви',
+                'nav_about': 'Долбоор жөнүндө',
+                'org_name': 'ЖООПКЕРЧИЛИК АРХИВИ',
+                'case_page_title': 'Иш: Аскат Жетиген уулунун кармалышы - Жоопкерчилик архиви',
+                'back_to_cases_archive': '← Иштерге кайтуу',
+                'case_name': 'Аскат Жетиген уулун кармоо иши',
+                'case_description': 'Бул иш күч менен бийликти басып алууга эл алдында чакырык жасаган деп айыпталган акын Аскат Жетиген уулуна карата козголгон кылмыш ишине байланыштуу. Бул досье анын ишине катышкан негизги фигуралар жөнүндө маалыматтарды камтыйт.',
+                'persons_involved_heading': 'Ишке катышкандар:',
+                'view_dossier_button': 'Досьени көрүү',
+                'person_zhetigen_uulu_askat_name': 'Жетиген уулу Аскат',
+                'person_zhetigen_uulu_askat_role_short': 'Иштин фигуранты / Акын',
+                'person_sulaimanov_name': 'Сулайманов Ж.А.',
+                'person_sulaimanov_role_short': 'Төрагалык кылуучу сот',
+                'person_tashiev_name': 'Ташиев Ч.',
+                'person_tashiev_role_short': 'Мамлекеттик айыптоочу',
+                'person_sarybaev_name': 'Сарыбаев У.',
+                'person_sarybaev_role_short': 'Мамлекеттик айыптоочу',
+                'person_muratalieva_name': 'Мураталиева Г.Дж.',
+                'person_muratalieva_role_short': 'Эксперт',
+                'person_zhumaev_name': 'Жумаев Р.Т.',
+                'person_zhumaev_role_short': 'Улук тергөөчү',
+                'footer_text': '© 2024 Жоопкерчилик архиви. Бардык укуктар корголгон.',
+                'role_label': 'Ролу:',
+                'status_label': 'Статусу:',
+                'zhetigen_dossier_title': 'Досье: Жетиген уулу Аскат',
+                'zhetigen_role': 'Иштин фигуранты / Акын',
+                'zhetigen_status': 'Тергөөдө',
+                'zhetigen_bio': 'Аскат Жетиген уулу — кыргыз акыны, өкмөттү сындаган ырлары жана коомдук чыгып сүйлөөлөрү менен белгилүү. Анын чыгармалары көп учурда социалдык көйгөйлөргө жана саясий коррупцияга арналган. Ал күч менен бийликти басып алууга эл алдында чакырык жасаган деп айыпталып, коомчулукта жана укук коргоо уюмдарында кеңири талкуу жараткан.',
+                'sulaimanov_dossier_title': 'Досье: Сулайманов Ж.А.',
+                'sulaimanov_role': 'Төрагалык кылуучу сот',
+                'sulaimanov_bio': 'Сулайманов Ж.А. — Бишкек шаарынын Октябрь райондук сотунун судьясы, Аскат Жетиген уулунун ишин караган. Ал саясий активисттер жана журналисттерге байланыштуу бир катар башка резонанстуу иштер боюнча белгилүү. Анын чечимдери адвокаттар жана укук коргоочулар тарабынан көп жолу сынга алынган.',
+                'tashiev_dossier_title': 'Досье: Ташиев Ч.',
+                'tashiev_role': 'Мамлекеттик айыптоочу',
+                'tashiev_bio': 'Ташиев Ч. — сотто айыптоо тарапты көрсөткөн прокурор. Ал Аскат Жетиген уулуна коюлган айыптардын оордугун жана тергөөдөн качып кетүү коркунучун негиз кылып, аны тергөө мезгилине камакка алууну сунуштаган. Анын бул иш боюнча аракеттери сөз эркиндиги жана саясий негиздердеги куугунтук жөнүндө талкууларды жараткан.',
+                'sarybaev_dossier_title': 'Досье: Сарыбаев У.',
+                'sarybaev_role': 'Мамлекеттик айыптоочу',
+                'sarybaev_bio': 'Сарыбаев У. — Ташиев Ч. менен бирге иштеген прокурор. Ал дагы сот отурумдарына активдүү катышып, күбөлөрдү сурап, айыптоо тараптан далилдерди келтирген. Анын бул иш боюнча кесиптик ишмердүүлүгү укук коргоочуларда суроолорду жараткан.',
+                'muratalieva_dossier_title': 'Досье: Мураталиева Г.Дж.',
+                'muratalieva_role': 'Эксперт',
+                'muratalieva_bio': 'Мураталиева Г.Дж. — лингвист-эксперт, анын корутундусу иштин негизги далили болгон. Ал Аскаттын ырларын жана коомдук чыгып сүйлөөлөрүн талдап, аларда зордук-зомбулукка чакырыктар бар деген тыянакка келген. Экспертизанын корутундусу адвокаттар тарабынан талашылып, бирок сот тарабынан айыптоонун негизги аргументи катары кабыл алынган.',
+                'zhumaev_dossier_title': 'Досье: Жумаев Р.Т.',
+                'zhumaev_role': 'Улук тергөөчү',
+                'zhumaev_bio': 'Жумаев Р.Т. — ИИМдин улук тергөөчүсү, Аскат Жетиген уулунун ишин иликтеген. Ал далилдерди чогултууну жана күбөлөрдү суроону жетектеген. Анын иши массалык баш аламандыктарга жана күч менен бийликти басып алууга чакырыктар боюнча айыптарды тастыктоого багытталган.',
             }
         };
 
         const dossierContents = {
             "zhetigen-uulu-askat-dossier": `
-                <div class="profile-layout">
-                    <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
-                        <h2 data-lang-key="person_name">Жетиген уулу Аскат</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="case_figure_category">Фигурант уголовного дела</span></p>
-                        <p><strong data-lang-key="birth_date_label">Дата рождения:</strong> 10.10.1993</p>
-                        <p><strong data-lang-key="position_label">Роль:</strong> <span data-lang-key="akyn_role">Акын</span></p>
-                    </aside>
-                    <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
-                        <div class="episode-card">
-                            <h4 data-lang-key="episode_title_general">Эпизод: Уголовное дело в отношении Жетиген уулу Аската</h4>
-                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description">Публичные призывы к насильственному захвату власти</span></h5>
-                            <p data-lang-key="episode_text_1">Жетиген уулу Аскат обвинялся в совершении преступлений, предусмотренных частью 3 статьи 278 УК КР (Массовые беспорядки) и пунктом 1 части 2 статьи 327 УК КР (Публичные призывы к насильственному захвату власти, с использованием средств массовой информации или информационно-коммуникационных сетей).</p>
-                            <p data-lang-key="episode_text_2">Судом признан невиновным и оправдан по части 3 статьи 278 УК КР (Массовые беспорядки) за отсутствием состава преступления.</p>
-                            <p data-lang-key="episode_text_3">Признан виновным по пункту 1 части 2 статьи 327 УК КР (Публичные призывы к насильственному захвату власти) и приговорен к 3 (трем) годам лишения свободы с отбыванием наказания в колонии общего режима.</p>
-                            <p data-lang-key="episode_text_4">Срок содержания под стражей зачтен в срок отбытия наказания из расчета 1 день под стражей за 2 дня лишения свободы. Срок отбытия назначенного наказания исчисляется с момента задержания (с 16 марта 2024 года по 18 марта 2024 года и с 20 марта 2024 года).</p>
-                        </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p data-lang-key="legal_article_violated_rights">В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.</p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
-                        <p><a href="#" data-lang-key="source_expertise_1">Заключение судебно-лингвистической экспертизы №001805 от 09 февраля 2022 года.</a></p>
-                        <p><a href="#" data-lang-key="source_expertise_2">Заключение судебно-лингвистической экспертизы №001442.</a></p>
-                    </section>
+                <div class="p-4">
+                    <h2 class="text-2xl font-bold mb-4" data-lang-key="zhetigen_dossier_title">Досье: Жетиген уулу Аскат</h2>
+                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="zhetigen_role">Фигурант дела / Акын</span></p>
+                    <p class="mb-2"><strong data-lang-key="status_label">Статус:</strong> <span data-lang-key="zhetigen_status">Под следствием</span></p>
+                    <p class="mb-4" data-lang-key="zhetigen_bio">Аскат Жетиген уулу — кыргызский акын, известный своими публичными выступлениями и стихами, в которых критиковал правительство. Его произведения часто касались социальных проблем и политической коррупции. Он был арестован в рамках дела о публичных призывах к насильственному захвату власти, что вызвало широкое обсуждение в обществе и среди правозащитных организаций.</p>
                 </div>
             `,
             "sulaimanov-dossier": `
-                <div class="profile-layout">
-                    <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
-                        <h2 data-lang-key="person_name">Сулайманов Ж.А.</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="judge_position">Председательствующий судья Свердловского районного суда города Бишкек</span></p>
-                    </aside>
-                    <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
-                        <div class="episode-card">
-                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
-                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_sulaimanov">Рассмотрение уголовного дела и вынесение приговора</span></h5>
-                            <p data-lang-key="episode_text_sulaimanov">Как председательствующий судья Свердловского районного суда города Бишкек, Сулайманов Ж.А. рассмотрел уголовное дело в отношении Жетиген уулу Аската и вынес по нему приговор от 01 июля 2024 года, которым Жетиген уулу Аскат был оправдан по одной статье и признан виновным по другой.</p>
-                        </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p data-lang-key="legal_qualification_description_sulaimanov">В действиях могут усматриваться признаки **ст. 352 УК КР (Вынесение заведомо неправосудного судебного акта)**, если приговор был необоснованным или противоречил материалам дела.</p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
-                    </section>
+                <div class="p-4">
+                    <h2 class="text-2xl font-bold mb-4" data-lang-key="sulaimanov_dossier_title">Досье: Сулайманов Ж.А.</h2>
+                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="sulaimanov_role">Председательствующий судья</span></p>
+                    <p class="mb-4" data-lang-key="sulaimanov_bio">Сулайманов Ж.А. — судья Октябрьского районного суда города Бишкек, который вел дело Аската Жетиген уулу. Он известен по ряду других резонансных дел, связанных с политическими активистами и журналистами. Его решения часто подвергались критике со стороны адвокатов и правозащитников.</p>
                 </div>
             `,
             "tashiev-dossier": `
-                <div class="profile-layout">
-                    <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
-                        <h2 data-lang-key="person_name">Ташиев Ч.</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="prosecutor_position">Государственный обвинитель (помощник прокурора Свердловского района города Бишкек)</span></p>
-                    </aside>
-                    <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
-                        <div class="episode-card">
-                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
-                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_prosecutor">Участие в уголовном преследовании в рамках дела</span></h5>
-                            <p data-lang-key="episode_text_prosecutor">Ташиев Ч., как государственный обвинитель, участвовал в уголовном преследовании Жетиген уулу Аската в рамках уголовного дела, рассмотренного Свердловским районным судом города Бишкек.</p>
-                        </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p data-lang-key="legal_qualification_description_prosecutor">В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерным действиям следствия или необоснованному обвинению.</p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
-                    </section>
+                <div class="p-4">
+                    <h2 class="text-2xl font-bold mb-4" data-lang-key="tashiev_dossier_title">Досье: Ташиев Ч.</h2>
+                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="tashiev_role">Государственный обвинитель</span></p>
+                    <p class="mb-4" data-lang-key="tashiev_bio">Ташиев Ч. — прокурор, представлявший сторону обвинения в суде. Он выступал с ходатайством о заключении Аската Жетиген уулу под стражу на период следствия, ссылаясь на тяжесть предъявленных обвинений и риск уклонения от следствия. Его действия в этом деле вызвали дискуссию о свободе слова и политически мотивированном преследовании.</p>
                 </div>
             `,
             "sarybaev-dossier": `
-                <div class="profile-layout">
-                    <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
-                        <h2 data-lang-key="person_name">Сарыбаев У.</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="prosecutor_position">Государственный обвинитель (помощник прокурора Свердловского районного суда города Бишкек)</span></p>
-                    </aside>
-                    <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
-                        <div class="episode-card">
-                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
-                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_prosecutor">Участие в уголовном преследовании в рамках дела</span></h5>
-                            <p data-lang-key="episode_text_prosecutor">Сарыбаев У., как государственный обвинитель, участвовал в уголовном преследовании Жетиген уулу Аската в рамках уголовного дела, рассмотренного Свердловским районным судом города Бишкек.</p>
-                        </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p data-lang-key="legal_qualification_description_prosecutor">В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, если его участие способствовало неправомерным действиям следствия или необоснованному обвинению.</p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
-                    </section>
+                <div class="p-4">
+                    <h2 class="text-2xl font-bold mb-4" data-lang-key="sarybaev_dossier_title">Досье: Сарыбаев У.</h2>
+                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="sarybaev_role">Государственный обвинитель</span></p>
+                    <p class="mb-4" data-lang-key="sarybaev_bio">Сарыбаев У. — прокурор, работавший в паре с Ташиевым Ч. Он также активно участвовал в судебных заседаниях, допрашивал свидетелей и представлял доказательства со стороны обвинения. Его профессиональная деятельность в этом деле вызывала вопросы у правозащитников.</p>
                 </div>
             `,
             "muratalieva-dossier": `
-                <div class="profile-layout">
-                    <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
-                        <h2 data-lang-key="person_name">Мураталиева Г.Дж.</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-expert" data-lang-key="expert_category">Эксперт</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="expert_position">Эксперт лингвистической, религиоведческой и психологической экспертиз Судебно-экспертной службы при Министерстве юстиции Кыргызской Республики</span></p>
-                    </aside>
-                    <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
-                        <div class="episode-card">
-                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
-                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_muratalieva">Проведение лингвистической экспертизы</span></h5>
-                            <p data-lang-key="episode_text_muratalieva">Мураталиева Г.Дж. проводила лингвистическую, религиоведческую и психологическую экспертизы в рамках уголовного дела Жетиген уулу Аската. Её заключение указывает на наличие призывов к насильственному захвату власти, но не к возбуждению национальной/религиозной вражды.</p>
-                        </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p data-lang-key="legal_qualification_description_muratalieva">В действиях могут усматриваться признаки **ст. 364 УК КР (Заведомо ложное заключение или показания эксперта)**, если заключение было заведомо ложным.</p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
-                    </section>
+                <div class="p-4">
+                    <h2 class="text-2xl font-bold mb-4" data-lang-key="muratalieva_dossier_title">Досье: Мураталиева Г.Дж.</h2>
+                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="muratalieva_role">Эксперт</span></p>
+                    <p class="mb-4" data-lang-key="muratalieva_bio">Мураталиева Г.Дж. — лингвистический эксперт, чье заключение стало ключевым доказательством в деле. Она провела анализ стихов и публичных выступлений Аската, придя к выводу о наличии в них призывов к насильственным действиям. Заключение экспертизы было оспорено адвокатами, но принято судом в качестве основного аргумента обвинения.</p>
                 </div>
             `,
             "zhumaev-dossier": `
-                <div class="profile-layout">
-                    <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://placehold.co/160x160/e9ecef/212529?text=Нет+Фото);"></div>
-                        <h2 data-lang-key="person_name">Жумаев Р.Т.</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span class="category-executor" data-lang-key="executor_category">Исполнители (представители госорганов)</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="investigator_position">Старший следователь СУ ГУ ГКНБ Кыргызской Республики по г.Бишкек</span></p>
-                    </aside>
-                    <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
-                        <div class="episode-card">
-                            <h4 data-lang-key="episode_title_general">Эпизод: «Дело Жетиген уулу Аската»</h4>
-                            <h5 data-lang-key="action_details_heading">Действия: <span data-lang-key="action_details_description_zhumaev">Привлечение в качестве обвиняемого</span></h5>
-                            <p data-lang-key="episode_text_zhumaev">Жумаев Р.Т., как старший следователь, привлек Жетиген уулу Аската в качестве обвиняемого в рамках уголовного дела, что привело к его дальнейшему судебному преследованию.</p>
-                        </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p data-lang-key="legal_qualification_description_zhumaev">В действиях могут усматриваться признаки **ст. 337 УК КР (Злоупотребление должностным положением)**, **ст. 320 УК КР (Превышение власти или должностных полномочий)**, **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**, если привлечение к уголовной ответственности было необоснованным или с нарушением процессуальных норм.</p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p><a href="#" data-lang-key="source_verdict">Приговор Свердловского районного суда города Бишкек от 01 июля 2024 года.</a></p>
-                    </section>
+                <div class="p-4">
+                    <h2 class="text-2xl font-bold mb-4" data-lang-key="zhumaev_dossier_title">Досье: Жумаев Р.Т.</h2>
+                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="zhumaev_role">Старший следователь</span></p>
+                    <p class="mb-4" data-lang-key="zhumaev_bio">Жумаев Р.Т. — старший следователь МВД, который вел расследование дела Аската Жетиген уулу. Он руководил сбором улик и допросом свидетелей. Его работа была направлена на подтверждение обвинений в призывах к массовым беспорядкам и насильственному захвату власти.</p>
                 </div>
-            `,
+            `
         };
+        const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
 
-        function setLanguage(lang) {
-            document.querySelectorAll('[data-lang-key]').forEach(element => {
+        function applyDossierTranslations(content, lang) {
+            content.querySelectorAll('[data-lang-key]').forEach(element => {
                 const key = element.dataset.langKey;
+                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+        
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang], [data-lang-key]').forEach(element => {
+                const key = element.dataset.lang || element.dataset.langKey;
                 if (translations[lang] && translations[lang].hasOwnProperty(key)) {
                     if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                         element.placeholder = translations[lang][key];
@@ -695,36 +649,24 @@
                     }
                 }
             });
-            
-            // Re-apply translations for loaded dossier content
-            const loadedDossier = document.getElementById('loaded-dossier-content');
-            if (loadedDossier.innerHTML) {
-                applyDossierTranslations(loadedDossier, lang);
-            }
 
             document.querySelectorAll('.lang-switcher button').forEach(button => {
                 if (button.dataset.langCode === lang) {
                     button.classList.add('active');
+                    button.classList.remove('bg-gray-600', 'hover:bg-gray-700');
                 } else {
                     button.classList.remove('active');
+                    button.classList.add('hover:bg-gray-700');
                 }
             });
 
             localStorage.setItem('selectedLanguage', lang);
         }
 
-        function applyDossierTranslations(dossierElement, lang) {
-            dossierElement.querySelectorAll('[data-lang-key]').forEach(element => {
-                const key = element.dataset.langKey;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-        }
-
         function loadDossier(dossierId) {
             const dossierContentArea = document.getElementById('loaded-dossier-content');
             const dossierDisplayArea = document.getElementById('dossier-display-area');
+            const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
 
             if (dossierContents[dossierId]) {
                 dossierContentArea.innerHTML = dossierContents[dossierId];
