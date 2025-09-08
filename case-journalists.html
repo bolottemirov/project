@@ -57,6 +57,24 @@
             color: var(--primary-color);
             margin-bottom: 20px;
         }
+        .dossier-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 10px;
+        }
+        .dossier-list li {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .dossier-list li:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-hover-shadow);
+        }
         .dossier-link {
             color: var(--primary-color);
             font-weight: 500;
@@ -66,31 +84,45 @@
             color: var(--accent-color);
             text-decoration: underline;
         }
-        .lang-switcher button {
-            transition: color 0.2s ease, opacity 0.2s ease;
+        .category-heading {
+            font-size: 1.4em;
+            color: var(--accent-color);
+            margin-bottom: 15px;
         }
-        .lang-switcher button.active {
-            font-weight: bold;
-            color: #ffffff;
-            opacity: 1;
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 3rem;
         }
-        .lang-switcher button:not(.active) {
-            opacity: 0.75;
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .search-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
     <header class="header-bg shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold text-white tracking-tight" data-lang="site_title">Архив Подотчетности</a>
+            <a href="index.html" class="text-xl font-bold text-white tracking-tight">КАРА ТИЗМЕ</a>
             <nav class="flex space-x-4">
-                <a href="index.html" class="nav-link" data-lang="home_link">Главная</a>
-                <a href="dossiers.html" class="nav-link" data-lang="dossiers_link">Досье</a>
-                <div class="lang-switcher flex items-center space-x-2">
-                    <button class="text-white font-semibold" data-lang-code="ru">РУ</button>
-                    <span class="text-white">|</span>
-                    <button class="text-white font-semibold" data-lang-code="kg">КГ</button>
-                </div>
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="dossiers.html" class="nav-link">Досье</a>
             </nav>
         </div>
     </header>
@@ -98,377 +130,110 @@
     <main class="flex-grow">
         <section id="case-journalists" class="py-8">
             <div class="container">
-                <a href="index.html" class="back-link" data-lang-key="back_to_home">&larr; Назад на главную</a>
-                <h2 class="section-title" data-lang-key="case_title">Дело: «Дело 11 журналистов»</h2>
-                <p style="font-size: 1.1em; margin-bottom: 30px;"><strong data-lang-key="case_summary_heading">Суть:</strong> <span data-lang-key="case_summary_text">В январе 2024 года была проведена серия обысков и арестов журналистов, связанных с проектами Temirov Live и Ait Ait Dese. Им было предъявлено обвинение в «призывах к массовым беспорядкам» на основании спорной лингвистической экспертизы. Рабочая группа ООН по произвольным задержаниям признала эти действия нарушением международного права.</span></p>
+                <a href="index.html" class="back-link">&larr; Назад на главную</a>
+                <h2 class="section-title">Дело: «Дело 11 журналистов»</h2>
+                <p style="font-size: 1.1em; margin-bottom: 30px;"><strong>Суть:</strong> В январе 2024 года была проведена серия обысков и арестов журналистов, связанных с проектами Temirov Live и Ait Ait Dese. Им было предъявлено обвинение в «призывах к массовым беспорядкам» на основании спорной лингвистической экспертизы. Рабочая группа ООН по произвольным задержаниям признала эти действия нарушением международного права.</p>
 
-                <h4 style="font-size: 1.8em; color: var(--primary-color); margin-top: 40px; margin-bottom: 20px;" data-lang-key="participants_heading">Фигуранты и участники дела:</h4>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Поиск по именам..." class="search-input">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                        <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.027l4.337 4.337a.5.5 0 01-.707.707l-4.337-4.337A7 7 0 012 9z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+
+                <h4 style="font-size: 1.8em; color: var(--primary-color); margin-top: 40px; margin-bottom: 20px;">Фигуранты и участники дела:</h4>
 
                 <h5 style="font-size: 1.4em; color: var(--accent-color); margin-bottom: 15px;" data-lang-key="executors_heading">Исполнители (представители госорганов):</h5>
-                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
-                    <li><a href="dossiers/zhumabaev.html" class="dossier-link"><span data-lang-key="name_zhumabaev">Жумабаев А.А.</span></a> (<span data-lang-key="role_chief_investigator_mvd">Начальник управления Следственной службы МВД Кыргызской Республики</span>)</li>
-                    <li><a href="dossiers/shermatov.html" class="dossier-link"><span data-lang-key="name_shermatov">Шерматов Миран Бакытбекович</span></a> (<span data-lang-key="role_judge">Судья</span>)</li>
-                    <li><a href="dossiers/turdukulov.html" class="dossier-link"><span data-lang-key="name_turdukulov">Турдукулов Тилек Ураимжанович</span></a> (<span data-lang-key="role_judge">Судья</span>)</li>
-                    <li><a href="dossiers/bekenov.html" class="dossier-link"><span data-lang-key="name_bekenov_to">Бекенов Т.О.</span></a> (<span data-lang-key="role_judge">Судья</span>)</li>
-                    <li><a href="dossiers/zikiraliev.html" class="dossier-link"><span data-lang-key="name_zikiraliev">Зикиралиев Улан Спартакович</span></a> (<span data-lang-key="role_head_investigation_group">Руководитель следственной группы</span>)</li>
-                    <li><a href="dossiers/baiyshov.html" class="dossier-link"><span data-lang-key="name_baiyshov">Байышов Кубанбек Эмилбекович</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/kalmuratov.html" class="dossier-link"><span data-lang-key="name_kalmuratov">Калмуратов А.К.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/baratov.html" class="dossier-link"><span data-lang-key="name_baratov">Баратов Т.</span></a> (<span data-lang-key="role_prosecutor">Прокурор</span>)</li>
-                    <li><a href="dossiers/atantaev.html" class="dossier-link"><span data-lang-key="name_atantaev">Атантаев Б.</span></a> (<span data-lang-key="role_prosecutor">Прокурор</span>)</li>
-                    <li><a href="dossiers/karypbek-uulu.html" class="dossier-link"><span data-lang-key="name_karypbek_uulu">А.Карыпбек уулу</span></a> (<span data-lang-key="role_prosecutor">Прокурор</span>)</li>
-                    <li><a href="dossiers/osmonaliev.html" class="dossier-link"><span data-lang-key="name_osmonaliev">Осмоналиев А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/patanov.html" class="dossier-link"><span data-lang-key="name_patanov">Патанов А.К.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/dzhapekov.html" class="dossier-link"><span data-lang-key="name_dzhapekov">Джапеков У.Дж.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/momunaliev.html" class="dossier-link"><span data-lang-key="name_momunaliev">Момуналиев Э.С.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/murzabekov.html" class="dossier-link"><span data-lang-key="name_murzabekov_ab">Мурзабеков А.Б.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/mukanbetov.html" class="dossier-link"><span data-lang-key="name_mukanbetov">Муканбетов У.И.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                <ul id="executors-list" class="dossier-list">
                     <li><a href="dossiers/abdyrahmanov.html" class="dossier-link"><span data-lang-key="name_abdyrahmanov">Абдырахманов У.М.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/narbaev.html" class="dossier-link"><span data-lang-key="name_narbaev">Нарбаев М.Н.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/kozhenberdieva.html" class="dossier-link"><span data-lang-key="name_kozhenberdieva">Коженбердиева С.Б.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/shadmanova.html" class="dossier-link"><span data-lang-key="name_shadmanova">Шадманова С.К.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/akunaliyev.html" class="dossier-link"><span data-lang-key="name_akunaliuiev">Акуналиев Н.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/akzholov.html" class="dossier-link"><span data-lang-key="name_akzholov_aa">Акжолов А.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/alchakpaeva.html" class="dossier-link"><span data-lang-key="name_alchakpaeva">Алчакпаева М.Д.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/aliev.html" class="dossier-link"><span data-lang-key="name_aliev">Алиев Т.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
                     <li><a href="dossiers/apysov.html" class="dossier-link"><span data-lang-key="name_apysov_aa">Апысов А.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/kamalova.html" class="dossier-link"><span data-lang-key="name_kamalova">Камалова А.Д.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/kalmurzaev.html" class="dossier-link"><span data-lang-key="name_kalmurzaev">Калмурзаев Н.С.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/osmonov.html" class="dossier-link"><span data-lang-key="name_osmonov_aa">Осмонов А.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/atantaev.html" class="dossier-link"><span data-lang-key="name_atantaev">Атантаев Б.</span></a> (<span data-lang-key="role_prosecutor">Прокурор</span>)</li>
+                    <li><a href="dossiers/baiyshov.html" class="dossier-link"><span data-lang-key="name_baiyshov">Байышов Кубанбек Эмилбекович</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/baratov.html" class="dossier-link"><span data-lang-key="name_baratov">Баратов Т.</span></a> (<span data-lang-key="role_prosecutor">Прокурор</span>)</li>
+                    <li><a href="dossiers/bekenov.html" class="dossier-link"><span data-lang-key="name_bekenov_to">Бекенов Т.О.</span></a> (<span data-lang-key="role_judge">Судья</span>)</li>
+                    <li><a href="dossiers/dzhapekov.html" class="dossier-link"><span data-lang-key="name_dzhapekov">Джапеков У.Дж.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/dogdurbekov.html" class="dossier-link"><span data-lang-key="name_dogdurabekov">Догдурбеков И.Д.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/zikiraliev.html" class="dossier-link"><span data-lang-key="name_zikiraliev">Зикиралиев Улан Спартакович</span></a> (<span data-lang-key="role_head_investigation_group">Руководитель следственной группы</span>)</li>
+                    <li><a href="dossiers/zhumabaev.html" class="dossier-link"><span data-lang-key="name_zhumabaev">Жумабаев А.А.</span></a> (<span data-lang-key="role_chief_investigator_mvd">Начальник управления Следственной службы МВД Кыргызской Республики</span>)</li>
+                    <li><a href="dossiers/isagaliev.html" class="dossier-link"><span data-lang-key="name_isagaliev">Исагалиев М.И.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
                     <li><a href="dossiers/kadyrkulov.html" class="dossier-link"><span data-lang-key="name_kadyrkulov">Кадыркулов Э.Ш.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
                     <li><a href="dossiers/kaykiev.html" class="dossier-link"><span data-lang-key="name_kaykiev">Кайкиев Р.Б.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/isagaliev.html" class="dossier-link"><span data-lang-key="name_isagaliev">Исагалиев М.И.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/satymkulov.html" class="dossier-link"><span data-lang-key="name_satymkulov">Сатымкулов Б.К.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/akunaliyev.html" class="dossier-link"><span data-lang-key="name_akunaliuiev">Акуналиев Н.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/erkinbekov.html" class="dossier-link"><span data-lang-key="name_erkinbekov">Эркинбеков А.Т.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/akzholov.html" class="dossier-link"><span data-lang-key="name_akzholov_aa">Акжолов А.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/tolubaeva.html" class="dossier-link"><span data-lang-key="name_tolubaeva">Толубаева М.М.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/alchakpaeva.html" class="dossier-link"><span data-lang-key="name_alchakpaeva">Алчакпаева М.Д.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/rayymbekov.html" class="dossier-link"><span data-lang-key="name_raiymbekov">Райымбеков С.Ю.</span></a> (<span data-lang-key="role_investigator">Следователь</span>)</li>
-                    <li><a href="dossiers/koomanov.html" class="dossier-link"><span data-lang-key="name_koomanov">Кооманов У.О.</span></a> (<span data-lang-key="role_investigator">Следователь</span>)</li>
-                    <li><a href="dossiers/aliev.html" class="dossier-link"><span data-lang-key="name_aliev">Алиев Т.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/kalmuratov.html" class="dossier-link"><span data-lang-key="name_kalmuratov">Калмуратов А.К.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/kalmurzaev.html" class="dossier-link"><span data-lang-key="name_kalmurzaev">Калмурзаев Н.С.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/kamalova.html" class="dossier-link"><span data-lang-key="name_kamalova">Камалова А.Д.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
                     <li><a href="dossiers/karazak-uulu.html" class="dossier-link"><span data-lang-key="name_karazak_uulu_nurkyiaz">Каразак уулу Нуркыяз</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/murzuraimov.html" class="dossier-link"><span data-lang-key="name_murzuraimov_kp">Мурзураимов К.П.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/tashmamatov.html" class="dossier-link"><span data-lang-key="name_tashmamatov">Ташмаматов К.Ж.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/dogdurbekov.html" class="dossier-link"><span data-lang-key="name_dogdurabekov">Догдурбеков И.Д.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/karypbek-uulu.html" class="dossier-link"><span data-lang-key="name_karypbek_uulu">А.Карыпбек уулу</span></a> (<span data-lang-key="role_prosecutor">Прокурор</span>)</li>
+                    <li><a href="dossiers/kozhenberdieva.html" class="dossier-link"><span data-lang-key="name_kozhenberdieva">Коженбердиева С.Б.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/koomanov.html" class="dossier-link"><span data-lang-key="name_koomanov">Кооманов У.О.</span></a> (<span data-lang-key="role_investigator">Следователь</span>)</li>
                     <li><a href="dossiers/kydyraliev.html" class="dossier-link"><span data-lang-key="name_kydyraliev">Кыдыралиев Б.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
-                    <li><a href="dossiers/tanchibekov.html" class="dossier-link"><span data-lang-key="name_tanchibekov_ra">Танчибеков Ы.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/momunaliev.html" class="dossier-link"><span data-lang-key="name_momunaliev">Момуналиев Э.С.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/mukanbetov.html" class="dossier-link"><span data-lang-key="name_mukanbetov">Муканбетов У.И.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/murzabekov.html" class="dossier-link"><span data-lang-key="name_murzabekov_ab">Мурзабеков А.Б.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/murzuraimov.html" class="dossier-link"><span data-lang-key="name_murzuraimov_kp">Мурзураимов К.П.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/narbaev.html" class="dossier-link"><span data-lang-key="name_narbaev">Нарбаев М.Н.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/osmonaliev.html" class="dossier-link"><span data-lang-key="name_osmonaliev">Осмоналиев А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/osmonov.html" class="dossier-link"><span data-lang-key="name_osmonov_aa">Осмонов А.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/patanov.html" class="dossier-link"><span data-lang-key="name_patanov">Патанов А.К.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
                     <li><a href="dossiers/ranat-uulu-a.html" class="dossier-link"><span data-lang-key="name_ranat_uulu_aibeku">Ранат уулу Аибеку</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/rayymbekov.html" class="dossier-link"><span data-lang-key="name_raiymbekov">Райымбеков С.Ю.</span></a> (<span data-lang-key="role_investigator">Следователь</span>)</li>
+                    <li><a href="dossiers/satymkulov.html" class="dossier-link"><span data-lang-key="name_satymkulov">Сатымкулов Б.К.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/shadmanova.html" class="dossier-link"><span data-lang-key="name_shadmanova">Шадманова С.К.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/shermatov.html" class="dossier-link"><span data-lang-key="name_shermatov">Шерматов Миран Бакытбекович</span></a> (<span data-lang-key="role_judge">Судья</span>)</li>
+                    <li><a href="dossiers/tanchibekov.html" class="dossier-link"><span data-lang-key="name_tanchibekov_ra">Танчибеков Ы.А.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/tashmamatov.html" class="dossier-link"><span data-lang-key="name_tashmamatov">Ташмаматов К.Ж.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/tolubaeva.html" class="dossier-link"><span data-lang-key="name_tolubaeva">Толубаева М.М.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
+                    <li><a href="dossiers/turdukulov.html" class="dossier-link"><span data-lang-key="name_turdukulov">Турдукулов Тилек Ураимжанович</span></a> (<span data-lang-key="role_judge">Судья</span>)</li>
+                    <li><a href="dossiers/erkinbekov.html" class="dossier-link"><span data-lang-key="name_erkinbekov">Эркинбеков А.Т.</span></a> (<span data-lang-key="role_investigator_group">Следователь следственной группы</span>)</li>
                 </ul>
 
                 <h5 style="font-size: 1.4em; color: var(--accent-color); margin-top: 40px; margin-bottom: 15px;" data-lang-key="victims_heading">Жертвы преследования:</h5>
-                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
-                    <li><a href="dossiers/kaparov.html" class="dossier-link"><span data-lang-key="name_kaparov">Капаров Мааданбек Таалайбекович</span></a></li>
-                    <li><a href="dossiers/turdaliev.html" class="dossier-link"><span data-lang-key="name_turdaliev">Турдалиев Жумабек Искендерович</span></a></li>
-                    <li><a href="dossiers/tazhibek-uulu.html" class="dossier-link"><span data-lang-key="name_tazhibek_uulu">Тажибек уулу Максат</span></a></li>
-                    <li><a href="dossiers/sultanaliyev.html" class="dossier-link"><span data-lang-key="name_sultanaliyev">Сайпидин Султаналиев</span></a></li>
-                    <li><a href="dossiers/tazhibek-kyzy-mahabat.html" class="dossier-link"><span data-lang-key="name_tazhibek_kyzy_mahabat">Тажибек кызы Махабат</span></a></li>
+                <ul id="victims-list" class="dossier-list">
                     <li><a href="dossiers/akunbekov.html" class="dossier-link"><span data-lang-key="name_akunbekov">Акунбеков Сапарбек Акунбекович</span></a></li>
                     <li><a href="dossiers/asypbekov.html" class="dossier-link"><span data-lang-key="name_asypbekov">Асыпбеков Тыныстан Бекназарович</span></a></li>
                     <li><a href="dossiers/beishekeeva.html" class="dossier-link"><span data-lang-key="name_beishekeeva">Бейшекеева Айке Нурлановна</span></a></li>
                     <li><a href="dossiers/buzumov.html" class="dossier-link"><span data-lang-key="name_buzumov">Бузумов Жоодарбек Бакыталиевич</span></a></li>
                     <li><a href="dossiers/ishenbekov.html" class="dossier-link"><span data-lang-key="name_ishenbekov">Ишенбеков Азамат Ишенбекович</span></a></li>
+                    <li><a href="dossiers/kaparov.html" class="dossier-link"><span data-lang-key="name_kaparov">Капаров Мааданбек Таалайбекович</span></a></li>
                     <li><a href="dossiers/orozbekov.html" class="dossier-link"><span data-lang-key="name_orozbekov">Орозбеков Акылбек Орозбекович</span></a></li>
+                    <li><a href="dossiers/sultanaliyev.html" class="dossier-link"><span data-lang-key="name_sultanaliyev">Сайпидин Султаналиев</span></a></li>
+                    <li><a href="dossiers/tazhibek-kyzy-mahabat.html" class="dossier-link"><span data-lang-key="name_tazhibek_kyzy_mahabat">Тажибек кызы Махабат</span></a></li>
+                    <li><a href="dossiers/tazhibek-uulu.html" class="dossier-link"><span data-lang-key="name_tazhibek_uulu">Тажибек уулу Максат</span></a></li>
+                    <li><a href="dossiers/turdaliev.html" class="dossier-link"><span data-lang-key="name_turdaliev">Турдалиев Жумабек Искендерович</span></a></li>
                 </ul>
             </div>
         </section>
     </main>
 
-    <footer class="bg-[#0d2a4c] text-white py-6 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p data-lang="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+    <footer class="bg-[#0d2a4c] text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 Кара Тизме. Все права защищены.</p>
         </div>
     </footer>
 
     <script>
-        const translations = {
-            ru: {
-                case_journalists_title: "Дело 11 журналистов - Архив Подотчетности",
-                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
-                nav_home: "Главная",
-                nav_cases: "Дела",
-                nav_dossiers_archive: "Архив досье",
-                nav_about: "О проекте",
-                back_to_home: "Назад на главную",
-                case_title: "Дело: «Дело 11 журналистов»",
-                case_summary_heading: "Суть:",
-                case_summary_text: "В январе 2024 года была проведена серия обысков и арестов журналистов, связанных с проектами Temirov Live и Ait Ait Dese. Им было предъявлено обвинение в «призывах к массовым беспорядкам» на основании спорной лингвистической экспертизы. Рабочая группа ООН по произвольным задержаниям признала эти действия нарушением международного права.",
-                participants_heading: "Фигуранты и участники дела:",
-                executors_heading: "Исполнители (представители госорганов):",
-                victims_heading: "Жертвы преследования:",
-                footer_text: "© 2024 Архив Подотчетности. Все права защищены.",
-
-                // Names
-                name_zhumabaev: "Жумабаев А.А.",
-                name_shermatov: "Шерматов Миран Бакытбекович",
-                name_turdukulov: "Турдукулов Тилек Ураимжанович",
-                name_bekenov_to: "Бекенов Т.О.",
-                name_chamashova: "Чамашова М.",
-                name_mairambek_kyzy: "А.Майрамбек кызы",
-                name_zikiraliev: "Зикиралиев Улан Спартакович",
-                name_baiyshov: "Байышов Кубанбек Эмилбекович",
-                name_kalmuratov: "Калмуратов А.К.",
-                name_baratov: "Баратов Т.",
-                name_sultanov: "Султанов У.Т.",
-                name_atantaev: "Атантаев Б.",
-                name_karypbek_uulu: "А.Карыпбек уулу",
-                name_osmonaliev: "Осмоналиев А.",
-                name_patanov: "Патанов А.К.",
-                name_dzhapekov: "Джапеков У.Дж.",
-                name_momunaliev: "Момуналиев Э.С.",
-                name_murzabekov_ab: "Мурзабеков А.Б.",
-                name_mukanbetov: "Муканбетов У.И.",
-                name_abdyrahmanov: "Абдырахманов У.М.",
-                name_narbaev: "Нарбаев М.Н.",
-                name_kozhenberdieva: "Коженбердиева С.Б.",
-                name_shadmanova: "Шадманова С.К.",
-                name_apysov_aa: "Апысов А.А.",
-                name_kamalova: "Камалова А.Д.",
-                name_kalmurzaev: "Калмурзаев Н.С.",
-                name_osmonov_aa: "Осмонов А.А.",
-                name_kadyrkulov: "Кадыркулов Э.Ш.",
-                name_kaykiev: "Кайкиев Р.Б.",
-                name_isagaliev: "Исагалиев М.И.",
-                name_satymkulov: "Сатымкулов Б.К.",
-                name_akunaliuiev: "Акуналиев Н.А.",
-                name_erkinbekov: "Эркинбеков А.Т.",
-                name_akzholov_aa: "Акжолов А.А.",
-                name_tolubaeva: "Толубаева М.М.",
-                name_alchakpaeva: "Алчакпаева М.Д.",
-                name_raiymbekov: "Райымбеков С.Ю.",
-                name_koomanov: "Кооманов У.О.",
-                name_aliev: "Алиев Т.",
-                name_karazak_uulu_nurkyiaz: "Каразак уулу Нуркыяз",
-                name_murzuraimov_kp: "Мурзураимов К.П.",
-                name_tashmamatov: "Ташмаматов К.Ж.",
-                name_dogdurabekov: "Догдурбеков И.Д.",
-                name_kydyraliev: "Кыдыралиев Б.А.",
-                name_tanchibekov_ra: "Танчибеков Ы.А.",
-                name_ranat_uulu_aibeku: "Ранат уулу Аибеку",
-                name_kaparov: "Капаров Мааданбек Таалайбекович",
-                name_turdaliev: "Турдалиев Жумабек Искендерович",
-                name_tazhibek_uulu: "Тажибек уулу Максат",
-                name_sultanaliyev: "Сайпидин Султаналиев",
-                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
-                name_akunbekov: "Акунбеков Сапарбек Акунбекович",
-                name_asypbekov: "Асыпбеков Тыныстан Бекназарович",
-                name_beishekeeva: "Бейшекеева Айке Нурлановна",
-                name_buzumov: "Бузумов Жоодарбек Бакыталыевич",
-                name_ishenbekov: "Ишенбеков Азамат Ишенбекович",
-                name_orozbekov: "Орозбеков Асылбек Орозбекович",
-
-                // Roles
-                role_chief_investigator_mvd: "Начальник управления Следственной службы МВД Кыргызской Республики",
-                role_judge: "Судья",
-                role_court_secretary: "Секретарь судебного заседания",
-                role_head_investigation_group: "Руководитель следственной группы",
-                role_investigator_group: "Следователь следственной группы",
-                role_prosecutor: "Прокурор",
-                role_investigator: "Следователь",
-                role_expert: "Эксперт",
-            },
-            en: {
-                case_journalists_title: "Case of 11 Journalists - Accountability Archive",
-                org_name: "ACCOUNTABILITY ARCHIVE",
-                nav_home: "Home",
-                nav_cases: "Cases",
-                nav_dossiers_archive: "Dossier Archive",
-                nav_about: "About Project",
-                back_to_home: "Back to Home",
-                case_title: "Case: «Case of 11 Journalists»",
-                case_summary_heading: "Summary:",
-                case_summary_text: "In January 2024, a series of searches and arrests of journalists associated with Temirov Live and Ait Ait Dese projects were carried out. They were accused of 'inciting mass riots' based on a controversial linguistic examination. The UN Working Group on Arbitrary Detention recognized these actions as a violation of international law.",
-                participants_heading: "Figures and Participants of the Case:",
-                executors_heading: "Perpetrators (Government Officials):",
-                victims_heading: "Victims of Persecution:",
-                footer_text: "© 2024 Accountability Archive. All rights reserved.",
-
-                // Names
-                name_zhumabaev: "Zhumabaev A.A.",
-                name_shermatov: "Shermatov Miran Bakytbekovich",
-                name_turdukulov: "Turdukulov Tilek Uraimzhanovich",
-                name_bekenov_to: "Bekenov T.O.",
-                name_chamashova: "Chamashova M.",
-                name_mairambek_kyzy: "A. Mairambek kyzy",
-                name_zikiraliev: "Zikiraliev Ulan Spartakovich",
-                name_baiyshov: "Baiyshov Kubanbek Emilbekovich",
-                name_kalmuratov: "Kalmuratov A.K.",
-                name_baratov: "Baratov T.",
-                name_sultanov: "Sultanov U.T.",
-                name_atantaev: "Atantaev B.",
-                name_karypbek_uulu: "A. Karypbek uulu",
-                name_osmonaliev: "Osmonaliev A.",
-                name_patanov: "Patanov A.K.",
-                name_dzhapekov: "Dzhapekov U.Dzh.",
-                name_momunaliev: "Momunaliev E.S.",
-                name_murzabekov_ab: "Murzabekov A.B.",
-                name_mukanbetov: "Mukanbetov U.I.",
-                name_abdyrahmanov: "Abdyrahmanov U.M.",
-                name_narbaev: "Narbaev M.N.",
-                name_kozhenberdieva: "Kozhenberdieva S.B.",
-                name_shadmanova: "Shadmanova S.K.",
-                name_apysov_aa: "Apysov A.A.",
-                name_kamalova: "Kamalova A.D.",
-                name_kalmurzaev: "Kalmurzaev N.S.",
-                name_osmonov_aa: "Osmonov A.A.",
-                name_kadyrkulov: "Kadyrkulov E.Sh.",
-                name_kaykiev: "Kaikiev R.B.",
-                name_isagaliev: "Isagaliev M.I.",
-                name_satymkulov: "Satymkulov B.K.",
-                name_akunaliuiev: "Akunaliev N.A.",
-                name_erkinbekov: "Erkinbekov A.T.",
-                name_akzholov_aa: "Akzholov A.A.",
-                name_tolubaeva: "Tolubaeva M.M.",
-                name_alchakpaeva: "Alchakpaeva M.D.",
-                name_raiymbekov: "Raiymbekov S.Yu.",
-                name_koomanov: "Koomanov U.O.",
-                name_aliev: "Aliev T.",
-                name_karazak_uulu_nurkyiaz: "Karazak uulu Nurkyiaz",
-                name_murzuraimov_kp: "Murzuraimov K.P.",
-                name_tashmamatov: "Tashmamatov K.Zh.",
-                name_dogdurabekov: "Dogdurbekov I.D.",
-                name_kydyraliev: "Kydyraliev B.A.",
-                name_tanchibekov_ra: "Tanchibekov R.A.",
-                name_ranat_uulu_aibeku: "Ranat uulu Aibeku",
-                name_kaparov: "Kaparov Maadanbek Taalaibekovich",
-                name_turdaliev: "Turdailev Zhumabek Iskenderovich",
-                name_tazhibek_uulu: "Tazhibek uulu Maksat",
-                name_sultanaliyev: "Saipidin Sultanaliyev",
-                name_tazhibek_kyzy_mahabat: "Tazhibek kyzy Mahabat",
-                name_akunbekov: "Akunbekov Saparbek Akunbekovich",
-                name_asypbekov: "Asypbekov Tynystan Beknazarovich",
-                name_beishekeeva: "Beishekeeva Aike Nurlanovna",
-                name_buzumov: "Buzumov Zhoodarbek Bakytalievich",
-                name_ishenbekov: "Ishenbekov Azamat Ishenbekovich",
-                name_orozbekov: "Orozbekov Asylbek Orozbekovich",
-
-                // Roles
-                role_chief_investigator_mvd: "Head of Investigation Department of the Ministry of Internal Affairs of the Kyrgyz Republic",
-                role_judge: "Judge",
-                role_court_secretary: "Court Secretary",
-                role_head_investigation_group: "Head of Investigation Team",
-                role_investigator_group: "Investigator of the investigation team",
-                role_prosecutor: "Prosecutor",
-                role_investigator: "Investigator",
-                role_expert: "Expert",
-            },
-            kg: {
-                case_journalists_title: "11 журналисттин иши - Жоопкерчилик Архивы",
-                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
-                nav_home: "Башкы бет",
-                nav_cases: "Иштер",
-                nav_dossiers_archive: "Досье архиви",
-                nav_about: "Долбоор жөнүндө",
-                back_to_home: "Башкы бетке кайтуу",
-                case_title: "Иш: «11 журналисттин иши»",
-                case_summary_heading: "Маңызы:",
-                case_summary_text: "2024-жылдын январь айында Temirov Live жана Ait Ait Dese долбоорлоруна байланыштуу журналисттерди тинтүү жана камакка алуу иштери жүргүзүлгөн. Аларга талаштуу лингвистикалык экспертизанын негизинде «массалык башаламандыктарга чакырык жасоо» беренеси боюнча айып тагылган. БУУнун Эркиндигинен ажыратуулар боюнча жумушчу тобу бул аракеттерди эл аралык укуктун бузулушу катары тааныган.",
-                participants_heading: "Иштин фигуранттары жана катышуучулары:",
-                executors_heading: "Аткаруучулар (мамлекеттик органдардын өкүлдөрү):",
-                victims_heading: "Куугунтуктун курмандыктары:",
-                footer_text: "© 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
-
-                // Names
-                name_zhumabaev: "Жумабаев А.А.",
-                name_shermatov: "Шерматов Миран Бакытбекович",
-                name_turdukulov: "Турдукулов Тилек Ураимжанович",
-                name_bekenov_to: "Бекенов Т.О.",
-                name_chamashova: "Чамашова М.",
-                name_mairambek_kyzy: "А.Майрамбек кызы",
-                name_zikiraliev: "Зикиралиев Улан Спартакович",
-                name_baiyshov: "Байышов Кубанбек Эмилбекович",
-                name_kalmuratov: "Калмуратов А.К.",
-                name_baratov: "Баратов Т.",
-                name_sultanov: "Султанов У.Т.",
-                name_atantaev: "Атантаев Б.",
-                name_karypbek_uulu: "А.Карыпбек уулу",
-                name_osmonaliev: "Осмоналиев А.",
-                name_patanov: "Патанов А.К.",
-                name_dzhapekov: "Джапеков У.Дж.",
-                name_momunaliev: "Момуналиев Э.С.",
-                name_murzabekov_ab: "Мурзабеков А.Б.",
-                name_mukanbetov: "Муканбетов У.И.",
-                name_abdyrahmanov: "Абдырахманов У.М.",
-                name_narbaev: "Нарбаев М.Н.",
-                name_kozhenberdieva: "Коженбердиева С.Б.",
-                name_shadmanova: "Шадманова С.К.",
-                name_apysov_aa: "Апысов А.А.",
-                name_kamalova: "Камалова А.Д.",
-                name_kalmurzaev: "Калмурзаев Н.С.",
-                name_osmonov_aa: "Осмонов А.А.",
-                name_kadyrkulov: "Кадыркулов Э.Ш.",
-                name_kaykiev: "Кайкиев Р.Б.",
-                name_isagaliev: "Исагалиев М.И.",
-                name_satymkulov: "Сатымкулов Б.К.",
-                name_akunaliuiev: "Акуналиев Н.А.",
-                name_erkinbekov: "Эркинбеков А.Т.",
-                name_akzholov_aa: "Акжолов А.А.",
-                name_tolubaeva: "Толубаева М.М.",
-                name_alchakpaeva: "Алчакпаева М.Д.",
-                name_raiymbekov: "Райымбеков С.Ю.",
-                name_koomanov: "Кооманов У.О.",
-                name_aliev: "Алиев Т.",
-                name_karazak_uulu_nurkyiaz: "Каразак уулу Нуркыяз",
-                name_murzuraimov_kp: "Мурзураимов К.П.",
-                name_tashmamatov: "Ташмаматов К.Ж.",
-                name_dogdurbekov: "Догдурбеков И.Д.",
-                name_kydyraliev: "Кыдыралиев Б.А.",
-                name_tanchibekov_ra: "Танчибеков Ы.А.",
-                name_ranat_uulu_aibeku: "Ранат уулу Аибеку",
-                name_kaparov: "Капаров Мааданбек Таалайбекович",
-                name_turdaliev: "Турдалиев Жумабек Искендерович",
-                name_tazhibek_uulu: "Тажибек уулу Максат",
-                name_sultanaliyev: "Сайпидин Султаналиев",
-                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
-                name_akunbekov: "Акунбеков Сапарбек Акунбекович",
-                name_asypbekov: "Асыпбеков Тыныстан Бекназарович",
-                name_beishekeeva: "Бейшекеева Айке Нурлановна",
-                name_buzumov: "Бузумов Жоодарбек Бакыталыевич",
-                name_ishenbekov: "Ишенбеков Азамат Ишенбекович",
-                name_orozbekov: "Орозбеков Асылбек Орозбекович",
-
-                // Roles
-                role_chief_investigator_mvd: "Кыргыз Республикасынын ИИМдин Тергөө кызматынын башкармалыгынын башчысы",
-                role_judge: "Сот",
-                role_court_secretary: "Сот катчысы",
-                role_head_investigation_group: "Тергөө тобунун жетекчиси",
-                role_investigator_group: "Тергөө тобунун тергөөчүсү",
-                role_prosecutor: "Прокурор",
-                role_investigator: "Тергөөчү",
-                role_expert: "Эксперт",
-            }
-        };
-
-        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('[data-lang-key]').forEach(element => {
-                const key = element.dataset.langKey;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
-                }
-            });
-
-            // Update state of active language button
-            document.querySelectorAll('.lang-switcher button').forEach(button => {
-                if (button.dataset.langCode === lang) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
-            });
-            localStorage.setItem('selectedLanguage', lang);
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    setLanguage(event.target.dataset.langCode);
+            const searchInput = document.getElementById('searchInput');
+            const executorList = document.getElementById('executors-list');
+            const victimList = document.getElementById('victims-list');
+
+            const allListItems = [...executorList.children, ...victimList.children];
+
+            searchInput.addEventListener('input', (event) => {
+                const searchTerm = event.target.value.toLowerCase().trim();
+
+                allListItems.forEach(item => {
+                    const textContent = item.textContent.toLowerCase();
+                    if (textContent.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
                 });
             });
-
-            setLanguage(currentLang);
         });
     </script>
 </body>
