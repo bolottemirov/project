@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang="app_title">Архив Подотчетности - Обновленная Главная</title>
-    <!-- Tailwind CSS CDN -->
+    <title data-lang="app_title">Кара Тизме - Обновленная Главная</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -177,49 +176,26 @@
             color: #495057;
             margin-bottom: 1rem;
         }
-        .lang-switcher button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .lang-switcher button:hover {
-            background-color: #0056b3;
-        }
-        .lang-switcher button.active {
-            background-color: #009edb;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header -->
     <header class="header-bg shadow-md sticky top-0 z-50">
         <div class="container flex justify-between items-center py-4">
-            <a href="index.html" class="text-white text-2xl font-bold uppercase tracking-wider" data-lang="site_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <a href="index.html" class="text-white text-2xl font-bold uppercase tracking-wider" data-lang="site_name">КАРА ТИЗМЕ</a>
             <nav class="flex items-center space-x-8">
                 <a href="#hero" class="nav-link text-lg" data-lang="nav_home">Главная</a>
                 <a href="#cases" class="nav-link text-lg" data-lang="nav_cases">Дела</a>
                 <a href="dossiers.html" class="nav-link text-lg" data-lang="nav_dossiers_archive">Архив досье</a>
                 <a href="#about" class="nav-link text-lg" data-lang="nav_about">О проекте</a>
-                <div class="lang-switcher ml-8">
-                    <button data-lang-code="ru" class="active">РУ</button>
-                    <button data-lang-code="en">EN</button>
-                    <button data-lang-code="kg">КГ</button>
-                </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="container">
-                <h1 class="hero-title" data-lang="hero_title">Архив Подотчетности</h1>
+                <h1 class="hero-title" data-lang="hero_title">Кара Тизме</h1>
                 <p class="hero-subtitle" data-lang="hero_subtitle">
                     Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.
                 </p>
@@ -235,12 +211,10 @@
             </div>
         </section>
 
-        <!-- Cases Section -->
         <section id="cases" class="py-16">
             <div class="container">
                 <h2 class="section-heading" data-lang="current_cases_heading">Актуальные дела</h2>
                 <div id="cases-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Case Card 1: Дело Аската Жетиген уулу -->
                     <div class="card case-item">
                         <div>
                             <h3 class="card-title" data-lang="case_zhetigen_uulu_title">Дело о задержании Аската Жетиген уулу</h3>
@@ -250,7 +224,6 @@
                         </div>
                         <a href="case-askat.html" class="card-link" data-lang="read_more_button">Подробнее &rarr;</a>
                     </div>
-                    <!-- Case Card 2: Дело 11 журналистов -->
                     <div class="card case-item">
                         <div>
                             <h3 class="card-title" data-lang="case_1_title">Дело «11 журналистов»</h3>
@@ -264,30 +237,25 @@
             </div>
         </section>
 
-        <!-- Featured Dossiers Section -->
         <section id="featured-dossiers" class="py-16 bg-gray-50">
             <div class="container">
                 <h2 class="section-heading" data-lang="featured_dossiers_heading">Избранные досье</h2>
                 <div id="dossiers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Featured Dossier Card 1 -->
                     <a href="dossiers/shermatov.html" class="dossier-card dossier-item block">
                         <div class="dossier-card-photo" style="background-image: url(https://cdn-1.aki.kg/cdn-st-0/qYc/I/1012834.85eb3bfa14ddfd485b4fb67523f2c49f.500.jpg);"></div>
                         <h3 class="dossier-card-name">Шерматов Миран Бакытбекович</h3>
                         <p class="dossier-card-role" data-lang-role="Судья">Судья</p>
                     </a>
-                    <!-- Featured Dossier Card 2 -->
                     <a href="dossiers/zikiraliev.html" class="dossier-card dossier-item block">
                         <div class="dossier-card-photo" style="background-image: url(https://placehold.co/100x100/007bff/ffffff?text=УЗ);"></div>
                         <h3 class="dossier-card-name">Зикиралиев Улан Спартакович</h3>
                         <p class="dossier-card-role" data-lang-role="Руководитель следственной группы">Руководитель следственной группы</p>
                     </a>
-                    <!-- Featured Dossier Card 3 -->
                     <a href="dossiers/momunaliev-adis.html" class="dossier-card dossier-item block">
                         <div class="dossier-card-photo" style="background-image: url(https://admin-bgs.sot.kg/public/sites/26/2020/07/Momunaliev-AZH.-250x167.jpg);"></div>
                         <h3 class="dossier-card-name">Момуналиев Адис Жолдошбекович</h3>
                         <p class="dossier-card-role" data-lang-role="Судья">Судья</p>
                     </a>
-                    <!-- Featured Dossier Card 4 -->
                     <a href="dossiers/baiyshov.html" class="dossier-card dossier-item block">
                         <div class="dossier-card-photo" style="background-image: url(https://placehold.co/100x100/007bff/ffffff?text=КБ);"></div>
                         <h3 class="dossier-card-name">Байышов Кубанбек Эмилбекович</h3>
@@ -297,39 +265,36 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section id="about" class="py-16">
             <div class="container about-section">
                 <h2 class="section-heading" data-lang="about_project_heading">О проекте</h2>
                 <p class="about-text" data-lang="about_project_text">
-                    «Архив Подотчетности» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.
+                    «Кара Тизме» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.
                 </p>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer-bg">
         <div class="container py-6">
-            <p class="footer-text" data-lang="footer_text">2025 Архив Подотчетности. Все права защищены.</p>
+            <p class="footer-text" data-lang="footer_text">2025 Кара Тизме. Все права защищены.</p>
         </div>
     </footer>
 
     <script>
         const translations = {
             ru: {
-                app_title: "Архив Подотчетности - Обновленная Главная",
-                site_name: "АРХИВ ПОДОТЧЕТНОСТИ",
+                app_title: "Кара Тизме - Обновленная Главная",
+                site_name: "КАРА ТИЗМЕ",
                 nav_home: "Главная",
                 nav_cases: "Дела",
                 nav_dossiers_archive: "Архив досье",
                 nav_about: "О проекте",
-                hero_title: "Архив Подотчетности",
+                hero_title: "Кара Тизме",
                 hero_subtitle: "Документируем случаи нарушения прав человека и злоупотребления властью, чтобы обеспечить прозрачность и справедливость.",
                 view_cases_button: "Посмотреть дела",
                 search_placeholder: "Поиск по досье и делам...",
                 current_cases_heading: "Актуальные дела",
-                // New case: Дело о задержании Аската Жетиген уулу
                 case_zhetigen_uulu_title: "Дело о задержании Аската Жетиген уулу",
                 case_zhetigen_uulu_description: "Данное дело касается уголовного преследования акына Аската Жетиген уулу, обвиненного в публичных призывах к насильственному захвату власти. Это досье объединяет информацию о ключевых фигурах, участвовавших в его деле.",
                 case_1_title: "Дело «11 журналистов»",
@@ -337,78 +302,21 @@
                 read_more_button: "Подробнее →",
                 featured_dossiers_heading: "Избранные досье",
                 about_project_heading: "О проекте",
-                about_project_text: "«Архив Подотчетности» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.",
-                footer_text: "2025 Архив Подотчетности. Все права защищены.",
+                about_project_text: "«Кара Тизме» — это независимая инициатива, направленная на документирование случаев нарушения прав человека и злоупотребления властью со стороны государственных органов и должностных лиц. Мы собираем и систематизируем информацию о таких случаях, создавая досье на лиц, причастных к преследованиям, незаконным задержаниям, фабрикации дел и другим нарушениям. Наша цель — обеспечить прозрачность, привлечь виновных к ответственности и способствовать защите гражданских свобод.",
+                footer_text: "2025 Кара Тизме. Все права защищены.",
                 roles: {
                     "Судья": "Судья",
                     "Руководитель следственной группы": "Руководитель следственной группы",
                     "Журналист": "Журналист"
                 }
-            },
-            en: {
-                app_title: "Accountability Archive - Redesigned Home",
-                site_name: "ACCOUNTABILITY ARCHIVE",
-                nav_home: "Home",
-                nav_cases: "Cases",
-                nav_dossiers_archive: "Dossiers Archive",
-                nav_about: "About Project",
-                hero_title: "Accountability Archive",
-                hero_subtitle: "Documenting cases of human rights violations and abuse of power to ensure transparency and justice.",
-                view_cases_button: "View Cases",
-                search_placeholder: "Search dossiers and cases...",
-                current_cases_heading: "Current Cases",
-                // New case: Case of the Detention of Askat Zhetigen uulu
-                case_zhetigen_uulu_title: "Case of the Detention of Askat Zhetigen uulu",
-                case_zhetigen_uulu_description: "This case concerns the criminal prosecution of the akyn Askat Zhetigen uulu, accused of public calls for violent seizure of power. This dossier compiles information on key figures involved in his case.",
-                case_1_title: "Case of «11 Journalists»",
-                case_1_description: "In January 2024, a series of searches and arrests of journalists associated with Temirov Live and Ait Ait Dese projects were carried out. They were accused of 'inciting mass riots' based on a controversial linguistic examination.",
-                read_more_button: "Read More →",
-                featured_dossiers_heading: "Featured Dossiers",
-                about_project_heading: "About the Project",
-                about_project_text: "The 'Accountability Archive' is an independent initiative aimed at documenting cases of human rights violations and abuse of power by state bodies and officials. We collect and systematize information about such cases, creating dossiers on individuals involved in persecutions, illegal detentions, fabrication of cases, and other violations. Our goal is to ensure transparency, hold perpetrators accountable, and promote the protection of civil liberties.",
-                footer_text: "2025 Accountability Archive. All rights reserved.",
-                roles: {
-                    "Судья": "Judge",
-                    "Руководитель следственной группы": "Head of Investigation Team",
-                    "Журналист": "Journalist"
-                }
-            },
-            kg: {
-                app_title: "Жоопкерчилик Архивы - Жаңыланган Башкы Бет",
-                site_name: "ЖООПКЕРЧИЛИК АРХИВИ",
-                nav_home: "Башкы бет",
-                nav_cases: "Иштер",
-                nav_dossiers_archive: "Досье архиви",
-                nav_about: "Долбоор жөнүндө",
-                hero_title: "Жоопкерчилик Архивы",
-                hero_subtitle: "Адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирип, ачык-айкындуулукту жана адилеттүүлүктү камсыз кылабыз.",
-                view_cases_button: "Иштерди көрүү",
-                search_placeholder: "Досье жана иштер боюнча издөө...",
-                current_cases_heading: "Учурдагы иштер",
-                // New case: Дело о задержании Аската Жетиген уулу
-                case_zhetigen_uulu_title: "Жетиген уулу Аскатты кармоо иши",
-                case_zhetigen_uulu_description: "Бул иш акын Жетиген уулу Аскатты бийликти күч менен басып алууга ачык чакырыктар үчүн айыпталып, кылмыш куугунтугуна алынгандыгына байланыштуу. Бул досье анын ишине катышкан негизги фигуралар жөнүндө маалыматтарды камтыйт.",
-                case_1_title: "«11 журналисттин» иши",
-                case_1_description: "2024-жылдын январь айында Temirov Live жана Ait Ait Dese долбоорлоруна байланыштуу журналисттерди тинтүү жана камакка алуу иштери жүргүзүлгөн. Аларга талаштуу лингвистикалык экспертизанын негизинде «массалык башаламандыктарга чакырык жасоо» беренеси боюнча айып тагылган.",
-                read_more_button: "Кененирээк →",
-                featured_dossiers_heading: "Тандалган досьелер",
-                about_project_heading: "Долбоор жөнүндө",
-                about_project_text: "«Жоопкерчилик Архивы» — бул мамлекеттик органдар жана кызмат адамдары тарабынан адам укуктарынын бузулушу жана бийликти кыянаттык менен пайдалануу фактыларын документтештирүүгө багытталган көз карандысыз демилге. Биз мындай учурлар жөнүндө маалыматтарды чогултуп, системалаштырып, куугунтуктоолорго, мыйзамсыз кармоолорго, иштерди жасалмалоого жана башка бузууларга катышкан адамдарга досье түзөбүз. Биздин максат — ачык-айкындуулукту камсыз кылуу, күнөөлүүлөрдү жоопко тартуу жана жарандык эркиндиктерди коргоого көмөктөшүү.",
-                footer_text: "2025 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
-                roles: {
-                    "Судья": "Сот",
-                    "Руководитель следственной группы": "Тергөө тобунун жетекчиси",
-                    "Журналист": "Журналист"
-                }
             }
         };
 
-        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-
-        function setLanguage(lang) {
+        function setRussianLanguage() {
+            const lang = 'ru';
             document.querySelectorAll('[data-lang]').forEach(element => {
                 const key = element.dataset.lang;
-                if (translations[lang] && translations[lang][key]) {
+                if (translations[lang][key]) {
                     if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                         element.placeholder = translations[lang][key];
                     } else {
@@ -418,39 +326,16 @@
             });
             document.querySelectorAll('[data-lang-role]').forEach(element => {
                 const originalRole = element.dataset.langRole;
-                if (translations[lang] && translations[lang].roles && translations[lang].roles[originalRole]) {
+                if (translations[lang].roles[originalRole]) {
                     element.textContent = translations[lang].roles[originalRole];
                 }
             });
-            // Update title specifically as it's not always textContent
             document.querySelector('title').textContent = translations[lang].app_title;
-
-            // Update active button state
-            document.querySelectorAll('.lang-switcher button').forEach(button => {
-                if (button.dataset.langCode === lang) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
-            });
-
-            // Store language preference
-            localStorage.setItem('selectedLanguage', lang);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    setLanguage(event.target.dataset.langCode);
-                });
-            });
+            setRussianLanguage();
 
-            // Load saved language or default to Russian
-            const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
-            setLanguage(savedLang);
-
-            // Search functionality
             const searchInput = document.getElementById('search-input');
             const caseItems = document.querySelectorAll('.case-item');
             const dossierItems = document.querySelectorAll('.dossier-item');
@@ -496,5 +381,3 @@
     </script>
 </body>
 </html>
-
-
