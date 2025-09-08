@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="case_page_title">Дело: Задержание Аската Жетиген уулу - Архив Подотчетности</title>
+    <title data-lang-key="case_page_title">Дело: Задержание Аската Жетиген уулу - Кара Тизме</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -20,627 +20,223 @@
             --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
-        html {
-            scroll-behavior: smooth;
-        }
         body {
             font-family: 'Inter', sans-serif;
+            background-color: var(--secondary-color);
             color: #212529;
             line-height: 1.6;
-            margin: 0;
-            background-color: #f0f2f5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem;
         }
-        section {
-            padding-top: 80px;
-            margin-top: -60px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 40px;
-            background-color: #fff;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: var(--card-shadow);
-        }
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        /* Шапка */
-        .site-header {
+        .header-bg {
             background-color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .site-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .main-nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: 500;
-            font-size: 1em;
+        .nav-link {
+            color: #ffffff;
             transition: color 0.3s ease;
         }
-        .main-nav a:hover {
+        .nav-link:hover {
             color: var(--un-blue);
         }
-
-        /* Заголовки и карточки */
-        .section-title {
-            text-align: center;
-            font-size: 2.5em;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-            padding-top: 20px;
-        }
-        .case-card {
-            background-color: #fff;
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-        }
-        .case-card:hover {
-            box-shadow: var(--card-hover-shadow);
-            transform: translateY(-5px);
-        }
-        .case-card h3 {
-            margin-top: 0;
-            font-size: 1.8em;
-            color: var(--primary-color);
-        }
-        .case-card a {
-            text-decoration: none;
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
             color: var(--accent-color);
-            transition: color 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
         }
-        .case-card a:hover {
-            color: var(--accent-hover-color);
+        .back-link:hover {
             text-decoration: underline;
         }
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .dossier-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 10px;
+        }
+        .dossier-list li {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .dossier-list li:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-hover-shadow);
+        }
         .dossier-link {
+            color: var(--primary-color);
             font-weight: 500;
-            text-decoration: none;
-            color: var(--accent-color);
             transition: color 0.3s ease;
         }
         .dossier-link:hover {
-            color: var(--accent-hover-color);
+            color: var(--accent-color);
             text-decoration: underline;
         }
-
-        /* Досье */
-        .profile-layout {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 50px;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: var(--card-shadow);
-            margin-bottom: 40px;
-        }
-        @media (max-width: 800px) {
-            .profile-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        .profile-card {
-            background-color: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            align-self: start;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        .profile-photo {
-            width: 160px;
-            height: 160px;
-            background-color: #e9ecef;
-            border-radius: 50%;
-            margin: 0 auto 25px auto;
-            background-size: cover;
-            background-position: center;
-            border: 4px solid var(--accent-color);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-        .profile-card h2 {
-            margin: 0 0 15px 0;
-            font-size: 1.8em;
-            line-height: 1.2;
-            color: var(--primary-color);
-        }
-        .profile-card p {
-            margin: 8px 0;
-            text-align: left;
-            font-size: 0.95em;
-        }
-        .profile-card strong {
-            color: var(--primary-color);
-        }
-        .dossier-content h3 {
-            font-size: 2em;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-        }
-        .episode-card {
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            background-color: #fdfefe;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-        }
-        .episode-card h4 {
-            margin-top: 0;
-            font-size: 1.5em;
+        .category-heading {
+            font-size: 1.4em;
             color: var(--accent-color);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
-        .episode-card h5 {
-            font-size: 1.2em;
-            color: var(--primary-color);
-            margin-top: 20px;
-            margin-bottom: 8px;
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 3rem;
         }
-        .un-opinion-box {
-            background-color: var(--un-light-blue);
-            border: 1px solid var(--un-blue);
-            border-left: 8px solid var(--un-blue);
-            padding: 20px 25px;
-            margin-top: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            outline: none;
+            transition: all 0.2s ease-in-out;
         }
-        .un-opinion-box h5 {
-            color: var(--un-blue);
-            font-size: 1.3em;
-            margin-top: 0;
-            margin-bottom: 10px;
+        .search-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
         }
-        .un-opinion-box p {
-            font-size: 1em;
-            color: #343a40;
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
         }
-        .disclaimer {
-            font-size: 0.85em;
-            color: #6c757d;
-            font-style: italic;
-            margin-top: 15px;
-            display: block;
-        }
-        .sanction {
-            font-weight: 700;
-            color: #dc3545;
-        }
-        /* Стили для кнопок языка */
-        .lang-switcher button {
-            background-color: #0d2a4c;
-            color: #ffffff;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            border: 1px solid #0d2a4c;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .lang-switcher button.active {
-            background-color: #009edb;
-            color: #ffffff;
-            font-weight: bold;
-        }
-        /* Стили для секции дела */
-        .case-details-section {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: var(--card-shadow);
-        }
-        .back-link {
-            color: #6c757d;
-            font-size: 0.875rem;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-        .case-title {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: #212529;
-            margin-bottom: 0.5rem;
-        }
-        .description {
-            color: #6c757d;
-            margin-bottom: 2rem;
-        }
-        .section-subtitle {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-        .person-card {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .person-card h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        .person-card p {
-            font-size: 0.875rem;
-            color: #6c757d;
-            flex-grow: 1;
-        }
-        .view-dossier-btn {
-            background-color: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            margin-top: 1rem;
-            cursor: pointer;
-        }
-        .view-dossier-btn:hover {
-            background-color: var(--accent-color);
-            color: #fff;
-        }
-        .modal {
-            display: none;
+        .dossier-overlay {
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 1000;
         }
-        .modal-content {
-            background-color: #fff;
-            margin: auto;
+        .dossier-content-card {
+            background: #fff;
             padding: 2rem;
-            border-radius: 0.5rem;
-            width: 80%;
+            border-radius: 12px;
+            width: 90%;
             max-width: 800px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-height: 90%;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             position: relative;
         }
         .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close-btn:hover,
-        .close-btn:focus {
-            color: #000;
-            text-decoration: none;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            line-height: 1;
             cursor: pointer;
+        }
+        .dossier-content-card h2 {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1em;
+        }
+        .dossier-content-card p {
+            margin-bottom: 1em;
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-    <header class="site-header">
-        <div class="container flex justify-between items-center">
-            <a href="index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav flex items-center">
-                <a href="index.html" data-lang-key="nav_home">Главная</a>
-                <a href="index.html#cases" data-lang-key="nav_cases">Дела</a>
-                <a href="dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
-                <a href="index.html#about" data-lang-key="nav_about">О проекте</a>
-                <div class="lang-switcher ml-8">
-                    <button data-lang-code="ru" class="active">РУ</button>
-                    <button data-lang-code="en">EN</button>
-                    <button data-lang-code="kg">КГ</button>
-                </div>
+    <header class="header-bg shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-white tracking-tight">КАРА ТИЗМЕ</a>
+            <nav class="flex space-x-4">
+                <a href="index.html" class="nav-link" data-lang-key="nav_home">Главная</a>
+                <a href="dossiers.html" class="nav-link" data-lang-key="nav_dossiers_archive">Архив досье</a>
             </nav>
         </div>
     </header>
 
-    <main class="flex-grow py-8">
-        <section id="case-details" class="case-details-section">
+    <main class="flex-grow">
+        <section id="case-askat" class="py-8">
             <div class="container">
-                <a href="../index.html#cases" class="back-link" data-lang-key="back_to_cases_archive">&larr; Назад к делам</a>
-                <h1 class="case-title" data-lang-key="case_name">Дело о задержании Аската Жетиген уулу</h1>
-                <p class="description" data-lang-key="case_description">Данное дело касается уголовного преследования акына Аската Жетиген уулу, обвиненного в публичных призывах к насильственному захвату власти. Это досье объединяет информацию о ключевых фигурах, участвовавших в его деле.</p>
+                <a href="index.html" class="back-link" data-lang-key="back_to_main">← Назад на главную</a>
+                <h2 class="section-title" data-lang-key="case_title">Дело: Задержание Аската Жетиген уулу</h2>
+                <p style="font-size: 1.1em; margin-bottom: 30px;" data-lang-key="case_description">В этом досье собрана информация о ключевых лицах, причастных к уголовному преследованию акына Аската Жетиген уулу по обвинению в публичных призывах к насильственному захвату власти.</p>
 
-                <h3 class="section-subtitle" data-lang-key="persons_involved_heading">Участники дела:</h3>
-                <div id="persons-involved-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="person-card">
-                        <h4 data-lang-key="person_zhetigen_uulu_askat_name">Жетиген уулу Аскат</h4>
-                        <p data-lang-key="person_zhetigen_uulu_askat_role_short">Фигурант дела / Акын</p>
-                        <button class="view-dossier-btn" data-dossier-id="zhetigen-uulu-askat-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
-                    </div>
-
-                    <div class="person-card">
-                        <h4 data-lang-key="person_sulaimanov_name">Сулайманов Ж.А.</h4>
-                        <p data-lang-key="person_sulaimanov_role_short">Председательствующий судья</p>
-                        <button class="view-dossier-btn" data-dossier-id="sulaimanov-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
-                    </div>
-
-                    <div class="person-card">
-                        <h4 data-lang-key="person_tashiev_name">Ташиев Ч.</h4>
-                        <p data-lang-key="person_tashiev_role_short">Государственный обвинитель</p>
-                        <button class="view-dossier-btn" data-dossier-id="tashiev-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
-                    </div>
-
-                    <div class="person-card">
-                        <h4 data-lang-key="person_sarybaev_name">Сарыбаев У.</h4>
-                        <p data-lang-key="person_sarybaev_role_short">Государственный обвинитель</p>
-                        <button class="view-dossier-btn" data-dossier-id="sarybaev-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
-                    </div>
-
-                    <div class="person-card">
-                        <h4 data-lang-key="person_muratalieva_name">Мураталиева Г.Дж.</h4>
-                        <p data-lang-key="person_muratalieva_role_short">Эксперт</p>
-                        <button class="view-dossier-btn" data-dossier-id="muratalieva-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
-                    </div>
-
-                    <div class="person-card">
-                        <h4 data-lang-key="person_zhumaev_name">Жумаев Р.Т.</h4>
-                        <p data-lang-key="person_zhumaev_role_short">Старший следователь</p>
-                        <button class="view-dossier-btn" data-dossier-id="zhumaev-dossier" data-lang-key="view_dossier_button">Просмотреть досье</button>
-                    </div>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Поиск по именам..." class="search-input" data-lang-key="search_placeholder">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                        <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.027l4.337 4.337a.5.5 0 01-.707.707l-4.337-4.337A7 7 0 012 9z" clip-rule="evenodd" />
+                    </svg>
                 </div>
+
+                <h4 style="font-size: 1.8em; color: var(--primary-color); margin-top: 40px; margin-bottom: 20px;" data-lang-key="participants_heading">Фигуранты и участники дела:</h4>
+
+                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-bottom: 15px;" data-lang-key="executors_heading">Исполнители (представители госорганов):</h5>
+                <ul id="executors-list" class="dossier-list">
+                    <li><a href="dossiers/abdykozhoev.html" class="dossier-link">Абдыкожоев Талайбек Ташбаевич</a> (<span data-lang-key="role_judge">Судья</span>)</li>
+                    <li><a href="dossiers/zhanybekov-erik.html" class="dossier-link">Джаныбеков Эрик Сабырбекович</a> (<span data-lang-key="role_investigator_mvd">Следователь УВД Первомайского района</span>)</li>
+                    <li><a href="dossiers/zhumaev.html" class="dossier-link">Жумаев Р.Т.</a> (<span data-lang-key="role_judge">Судья</span>)</li>
+                    <li><a href="dossiers/kozhonberdiev.html" class="dossier-link">Кожомбердиев Нурлан Кожомбердиевич</a> (<span data-lang-key="role_judge">Судья</span>)</li>
+                    <li><a href="dossiers/sarybaev.html" class="dossier-link">Сарыбаев У.</a> (<span data-lang-key="role_investigator_mvd">Следователь УВД Первомайского района</span>)</li>
+                    <li><a href="dossiers/sulaimanov.html" class="dossier-link">Сулайманов Ж.А.</a> (<span data-lang-key="role_judge">Судья</span>)</li>
+                    <li><a href="dossiers/tashiev.html" class="dossier-link">Ташиев Ч.</a> (<span data-lang-key="role_prosecutor">Прокурор</span>)</li>
+                    <li><a href="dossiers/uvaliev.html" class="dossier-link">Увалиев Адилет Куванычбекович</a> (<span data-lang-key="role_investigator_mvd">Следователь УВД Первомайского района</span>)</li>
+                    <li><a href="dossiers/koomanov.html" class="dossier-link">Кооманов У.О.</a> (<span data-lang-key="role_investigator">Следователь</span>)</li>
+                </ul>
+
+                <h5 style="font-size: 1.4em; color: var(--accent-color); margin-top: 40px; margin-bottom: 15px;" data-lang-key="victims_heading">Жертвы преследования:</h5>
+                <ul id="victims-list" class="dossier-list">
+                    <li><a href="dossiers/zhetigen-uulu.html" class="dossier-link">Жетиген уулу Аскат</a></li>
+                </ul>
             </div>
         </section>
     </main>
-    
-    <div id="dossier-display-area" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-btn" id="close-dossier-btn">&times;</span>
-            <div id="loaded-dossier-content">
-                </div>
-        </div>
-    </div>
 
-    <footer class="bg-gray-800 text-white mt-8 p-4 text-center">
-        <div class="container mx-auto">
-            <p data-lang="footer_text">© 2024 Архив Подотчетности. Все права защищены.</p>
+    <footer class="bg-[#0d2a4c] text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
+            <p data-lang-key="footer_text">&copy; 2024 Кара Тизме. Все права защищены.</p>
         </div>
     </footer>
 
     <script>
         const translations = {
-            'ru': {
-                'app_title': 'Архив Подотчетности',
-                'nav_home': 'Главная',
-                'nav_cases': 'Дела',
-                'nav_dossiers_archive': 'Архив досье',
-                'nav_about': 'О проекте',
-                'org_name': 'АРХИВ ПОДОТЧЕТНОСТИ',
-                'case_page_title': 'Дело: Задержание Аската Жетиген уулу - Архив Подотчетности',
-                'back_to_cases_archive': '← Назад к делам',
-                'case_name': 'Дело о задержании Аската Жетиген уулу',
-                'case_description': 'Данное дело касается уголовного преследования акына Аската Жетиген уулу, обвиненного в публичных призывах к насильственному захвату власти. Это досье объединяет информацию о ключевых фигурах, участвовавших в его деле.',
-                'persons_involved_heading': 'Участники дела:',
-                'view_dossier_button': 'Просмотреть досье',
-                'person_zhetigen_uulu_askat_name': 'Жетиген уулу Аскат',
-                'person_zhetigen_uulu_askat_role_short': 'Фигурант дела / Акын',
-                'person_sulaimanov_name': 'Сулайманов Ж.А.',
-                'person_sulaimanov_role_short': 'Председательствующий судья',
-                'person_tashiev_name': 'Ташиев Ч.',
-                'person_tashiev_role_short': 'Государственный обвинитель',
-                'person_sarybaev_name': 'Сарыбаев У.',
-                'person_sarybaev_role_short': 'Государственный обвинитель',
-                'person_muratalieva_name': 'Мураталиева Г.Дж.',
-                'person_muratalieva_role_short': 'Эксперт',
-                'person_zhumaev_name': 'Жумаев Р.Т.',
-                'person_zhumaev_role_short': 'Старший следователь',
-                'footer_text': '© 2024 Архив Подотчетности. Все права защищены.',
-                'role_label': 'Роль:',
-                'status_label': 'Статус:',
-                'zhetigen_dossier_title': 'Досье: Жетиген уулу Аскат',
-                'zhetigen_role': 'Фигурант дела / Акын',
-                'zhetigen_status': 'Под следствием',
-                'zhetigen_bio': 'Аскат Жетиген уулу — кыргызский акын, известный своими публичными выступлениями и стихами, в которых критиковал правительство. Его произведения часто касались социальных проблем и политической коррупции. Он был арестован в рамках дела о публичных призывах к насильственному захвату власти, что вызвало широкое обсуждение в обществе и среди правозащитных организаций.',
-                'sulaimanov_dossier_title': 'Досье: Сулайманов Ж.А.',
-                'sulaimanov_role': 'Председательствующий судья',
-                'sulaimanov_bio': 'Сулайманов Ж.А. — судья Октябрьского районного суда города Бишкек, который вел дело Аската Жетиген уулу. Он известен по ряду других резонансных дел, связанных с политическими активистами и журналистами. Его решения часто подвергались критике со стороны адвокатов и правозащитников.',
-                'tashiev_dossier_title': 'Досье: Ташиев Ч.',
-                'tashiev_role': 'Государственный обвинитель',
-                'tashiev_bio': 'Ташиев Ч. — прокурор, представлявший сторону обвинения в суде. Он выступал с ходатайством о заключении Аската Жетиген уулу под стражу на период следствия, ссылаясь на тяжесть предъявленных обвинений и риск уклонения от следствия. Его действия в этом деле вызвали дискуссию о свободе слова и политически мотивированном преследовании.',
-                'sarybaev_dossier_title': 'Досье: Сарыбаев У.',
-                'sarybaev_role': 'Государственный обвинитель',
-                'sarybaev_bio': 'Сарыбаев У. — прокурор, работавший в паре с Ташиевым Ч. Он также активно участвовал в судебных заседаниях, допрашивал свидетелей и представлял доказательства со стороны обвинения. Его профессиональная деятельность в этом деле вызывала вопросы у правозащитников.',
-                'muratalieva_dossier_title': 'Досье: Мураталиева Г.Дж.',
-                'muratalieva_role': 'Эксперт',
-                'muratalieva_bio': 'Мураталиева Г.Дж. — лингвистический эксперт, чье заключение стало ключевым доказательством в деле. Она провела анализ стихов и публичных выступлений Аската, придя к выводу о наличии в них призывов к насильственным действиям. Заключение экспертизы было оспорено адвокатами, но принято судом в качестве основного аргумента обвинения.',
-                'zhumaev_dossier_title': 'Досье: Жумаев Р.Т.',
-                'zhumaev_role': 'Старший следователь',
-                'zhumaev_bio': 'Жумаев Р.Т. — старший следователь МВД, который вел расследование дела Аската Жетиген уулу. Он руководил сбором улик и допросом свидетелей. Его работа была направлена на подтверждение обвинений в призывах к массовым беспорядкам и насильственному захвату власти.',
-            },
-            'en': {
-                'app_title': 'Accountability Archive',
-                'nav_home': 'Home',
-                'nav_cases': 'Cases',
-                'nav_dossiers_archive': 'Dossiers Archive',
-                'nav_about': 'About project',
-                'org_name': 'ACCOUNTABILITY ARCHIVE',
-                'case_page_title': 'Case: Detention of Askat Zhetigen uulu - Accountability Archive',
-                'back_to_cases_archive': '← Back to cases',
-                'case_name': 'Case of the detention of Askat Zhetigen uulu',
-                'case_description': 'This case concerns the criminal prosecution of the poet Askat Zhetigen uulu, accused of public calls for a violent seizure of power. This dossier combines information about the key figures involved in his case.',
-                'persons_involved_heading': 'Persons involved:',
-                'view_dossier_button': 'View dossier',
-                'person_zhetigen_uulu_askat_name': 'Zhetigen uulu Askat',
-                'person_zhetigen_uulu_askat_role_short': 'Person of interest / Poet',
-                'person_sulaimanov_name': 'Sulaimanov Zh.A.',
-                'person_sulaimanov_role_short': 'Presiding Judge',
-                'person_tashiev_name': 'Tashiev Ch.',
-                'person_tashiev_role_short': 'State Prosecutor',
-                'person_sarybaev_name': 'Sarybaev U.',
-                'person_sarybaev_role_short': 'State Prosecutor',
-                'person_muratalieva_name': 'Muratalieva G.J.',
-                'person_muratalieva_role_short': 'Expert',
-                'person_zhumaev_name': 'Zhumayev R.T.',
-                'person_zhumaev_role_short': 'Senior Investigator',
-                'footer_text': '© 2024 Accountability Archive. All rights reserved.',
-                'role_label': 'Role:',
-                'status_label': 'Status:',
-                'zhetigen_dossier_title': 'Dossier: Zhetigen uulu Askat',
-                'zhetigen_role': 'Person of interest / Poet',
-                'zhetigen_status': 'Under investigation',
-                'zhetigen_bio': 'Askat Zhetigen uulu is a Kyrgyz poet known for his public speeches and poems criticizing the government. His works often touch on social issues and political corruption. He was arrested as part of a case involving public calls for a violent seizure of power, which sparked widespread discussion in society and among human rights organizations.',
-                'sulaimanov_dossier_title': 'Dossier: Sulaimanov Zh.A.',
-                'sulaimanov_role': 'Presiding Judge',
-                'sulaimanov_bio': 'Sulaimanov Zh.A. is a judge of the Oktyabrsky District Court of Bishkek, who presided over the case of Askat Zhetigen uulu. He is known for several other high-profile cases involving political activists and journalists. His decisions have often been criticized by lawyers and human rights defenders.',
-                'tashiev_dossier_title': 'Dossier: Tashiev Ch.',
-                'tashiev_role': 'State Prosecutor',
-                'tashiev_bio': 'Tashiev Ch. is a prosecutor who represented the prosecution in court. He filed a motion to detain Askat Zhetigen uulu for the period of the investigation, citing the seriousness of the charges and the risk of him absconding. His actions in this case sparked a debate about freedom of speech and politically motivated prosecution.',
-                'sarybaev_dossier_title': 'Dossier: Sarybaev U.',
-                'sarybaev_role': 'State Prosecutor',
-                'sarybaev_bio': 'Sarybaev U. is a prosecutor who worked in tandem with Tashiev Ch. He also actively participated in court hearings, questioning witnesses and presenting evidence for the prosecution. His professional conduct in this case was questioned by human rights defenders.',
-                'muratalieva_dossier_title': 'Dossier: Muratalieva G.J.',
-                'muratalieva_role': 'Expert',
-                'muratalieva_bio': 'Muratalieva G.J. is a linguistic expert whose conclusion became key evidence in the case. She conducted an analysis of Askat\'s poems and public speeches, concluding that they contained calls for violent actions. The expert conclusion was disputed by lawyers but accepted by the court as the main argument for the prosecution.',
-                'zhumaev_dossier_title': 'Dossier: Zhumayev R.T.',
-                'zhumaev_role': 'Senior Investigator',
-                'zhumaev_bio': 'Zhumayev R.T. is a senior investigator of the Ministry of Internal Affairs who led the investigation into the case of Askat Zhetigen uulu. He was in charge of collecting evidence and questioning witnesses. His work was aimed at confirming the charges of incitement to mass riots and violent seizure of power.',
-            },
-            'kg': {
-                'app_title': 'Жоопкерчилик архиви',
-                'nav_home': 'Башкы бет',
-                'nav_cases': 'Иштер',
-                'nav_dossiers_archive': 'Досье архиви',
-                'nav_about': 'Долбоор жөнүндө',
-                'org_name': 'ЖООПКЕРЧИЛИК АРХИВИ',
-                'case_page_title': 'Иш: Аскат Жетиген уулунун кармалышы - Жоопкерчилик архиви',
-                'back_to_cases_archive': '← Иштерге кайтуу',
-                'case_name': 'Аскат Жетиген уулун кармоо иши',
-                'case_description': 'Бул иш күч менен бийликти басып алууга эл алдында чакырык жасаган деп айыпталган акын Аскат Жетиген уулуна карата козголгон кылмыш ишине байланыштуу. Бул досье анын ишине катышкан негизги фигуралар жөнүндө маалыматтарды камтыйт.',
-                'persons_involved_heading': 'Ишке катышкандар:',
-                'view_dossier_button': 'Досьени көрүү',
-                'person_zhetigen_uulu_askat_name': 'Жетиген уулу Аскат',
-                'person_zhetigen_uulu_askat_role_short': 'Иштин фигуранты / Акын',
-                'person_sulaimanov_name': 'Сулайманов Ж.А.',
-                'person_sulaimanov_role_short': 'Төрагалык кылуучу сот',
-                'person_tashiev_name': 'Ташиев Ч.',
-                'person_tashiev_role_short': 'Мамлекеттик айыптоочу',
-                'person_sarybaev_name': 'Сарыбаев У.',
-                'person_sarybaev_role_short': 'Мамлекеттик айыптоочу',
-                'person_muratalieva_name': 'Мураталиева Г.Дж.',
-                'person_muratalieva_role_short': 'Эксперт',
-                'person_zhumaev_name': 'Жумаев Р.Т.',
-                'person_zhumaev_role_short': 'Улук тергөөчү',
-                'footer_text': '© 2024 Жоопкерчилик архиви. Бардык укуктар корголгон.',
-                'role_label': 'Ролу:',
-                'status_label': 'Статусу:',
-                'zhetigen_dossier_title': 'Досье: Жетиген уулу Аскат',
-                'zhetigen_role': 'Иштин фигуранты / Акын',
-                'zhetigen_status': 'Тергөөдө',
-                'zhetigen_bio': 'Аскат Жетиген уулу — кыргыз акыны, өкмөттү сындаган ырлары жана коомдук чыгып сүйлөөлөрү менен белгилүү. Анын чыгармалары көп учурда социалдык көйгөйлөргө жана саясий коррупцияга арналган. Ал күч менен бийликти басып алууга эл алдында чакырык жасаган деп айыпталып, коомчулукта жана укук коргоо уюмдарында кеңири талкуу жараткан.',
-                'sulaimanov_dossier_title': 'Досье: Сулайманов Ж.А.',
-                'sulaimanov_role': 'Төрагалык кылуучу сот',
-                'sulaimanov_bio': 'Сулайманов Ж.А. — Бишкек шаарынын Октябрь райондук сотунун судьясы, Аскат Жетиген уулунун ишин караган. Ал саясий активисттер жана журналисттерге байланыштуу бир катар башка резонанстуу иштер боюнча белгилүү. Анын чечимдери адвокаттар жана укук коргоочулар тарабынан көп жолу сынга алынган.',
-                'tashiev_dossier_title': 'Досье: Ташиев Ч.',
-                'tashiev_role': 'Мамлекеттик айыптоочу',
-                'tashiev_bio': 'Ташиев Ч. — сотто айыптоо тарапты көрсөткөн прокурор. Ал Аскат Жетиген уулуна коюлган айыптардын оордугун жана тергөөдөн качып кетүү коркунучун негиз кылып, аны тергөө мезгилине камакка алууну сунуштаган. Анын бул иш боюнча аракеттери сөз эркиндиги жана саясий негиздердеги куугунтук жөнүндө талкууларды жараткан.',
-                'sarybaev_dossier_title': 'Досье: Сарыбаев У.',
-                'sarybaev_role': 'Мамлекеттик айыптоочу',
-                'sarybaev_bio': 'Сарыбаев У. — Ташиев Ч. менен бирге иштеген прокурор. Ал дагы сот отурумдарына активдүү катышып, күбөлөрдү сурап, айыптоо тараптан далилдерди келтирген. Анын бул иш боюнча кесиптик ишмердүүлүгү укук коргоочуларда суроолорду жараткан.',
-                'muratalieva_dossier_title': 'Досье: Мураталиева Г.Дж.',
-                'muratalieva_role': 'Эксперт',
-                'muratalieva_bio': 'Мураталиева Г.Дж. — лингвист-эксперт, анын корутундусу иштин негизги далили болгон. Ал Аскаттын ырларын жана коомдук чыгып сүйлөөлөрүн талдап, аларда зордук-зомбулукка чакырыктар бар деген тыянакка келген. Экспертизанын корутундусу адвокаттар тарабынан талашылып, бирок сот тарабынан айыптоонун негизги аргументи катары кабыл алынган.',
-                'zhumaev_dossier_title': 'Досье: Жумаев Р.Т.',
-                'zhumaev_role': 'Улук тергөөчү',
-                'zhumaev_bio': 'Жумаев Р.Т. — ИИМдин улук тергөөчүсү, Аскат Жетиген уулунун ишин иликтеген. Ал далилдерди чогултууну жана күбөлөрдү суроону жетектеген. Анын иши массалык баш аламандыктарга жана күч менен бийликти басып алууга чакырыктар боюнча айыптарды тастыктоого багытталган.',
+            ru: {
+                case_page_title: "Дело: Задержание Аската Жетиген уулу - Кара Тизме",
+                nav_home: "Главная",
+                nav_dossiers_archive: "Архив досье",
+                back_to_main: "← Назад на главную",
+                case_title: "Дело: Задержание Аската Жетиген уулу",
+                case_description: "В этом досье собрана информация о ключевых лицах, причастных к уголовному преследованию акына Аската Жетиген уулу по обвинению в публичных призывах к насильственному захвату власти.",
+                search_placeholder: "Поиск по именам...",
+                participants_heading: "Фигуранты и участники дела:",
+                executors_heading: "Исполнители (представители госорганов):",
+                victims_heading: "Жертвы преследования:",
+                footer_text: "© 2024 Кара Тизме. Все права защищены.",
+                role_judge: "Судья",
+                role_investigator_mvd: "Следователь УВД Первомайского района",
+                role_prosecutor: "Прокурор",
+                role_investigator: "Следователь"
             }
         };
 
-        const dossierContents = {
-            "zhetigen-uulu-askat-dossier": `
-                <div class="p-4">
-                    <h2 class="text-2xl font-bold mb-4" data-lang-key="zhetigen_dossier_title">Досье: Жетиген уулу Аскат</h2>
-                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="zhetigen_role">Фигурант дела / Акын</span></p>
-                    <p class="mb-2"><strong data-lang-key="status_label">Статус:</strong> <span data-lang-key="zhetigen_status">Под следствием</span></p>
-                    <p class="mb-4" data-lang-key="zhetigen_bio">Аскат Жетиген уулу — кыргызский акын, известный своими публичными выступлениями и стихами, в которых критиковал правительство. Его произведения часто касались социальных проблем и политической коррупции. Он был арестован в рамках дела о публичных призывах к насильственному захвату власти, что вызвало широкое обсуждение в обществе и среди правозащитных организаций.</p>
-                </div>
-            `,
-            "sulaimanov-dossier": `
-                <div class="p-4">
-                    <h2 class="text-2xl font-bold mb-4" data-lang-key="sulaimanov_dossier_title">Досье: Сулайманов Ж.А.</h2>
-                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="sulaimanov_role">Председательствующий судья</span></p>
-                    <p class="mb-4" data-lang-key="sulaimanov_bio">Сулайманов Ж.А. — судья Октябрьского районного суда города Бишкек, который вел дело Аската Жетиген уулу. Он известен по ряду других резонансных дел, связанных с политическими активистами и журналистами. Его решения часто подвергались критике со стороны адвокатов и правозащитников.</p>
-                </div>
-            `,
-            "tashiev-dossier": `
-                <div class="p-4">
-                    <h2 class="text-2xl font-bold mb-4" data-lang-key="tashiev_dossier_title">Досье: Ташиев Ч.</h2>
-                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="tashiev_role">Государственный обвинитель</span></p>
-                    <p class="mb-4" data-lang-key="tashiev_bio">Ташиев Ч. — прокурор, представлявший сторону обвинения в суде. Он выступал с ходатайством о заключении Аската Жетиген уулу под стражу на период следствия, ссылаясь на тяжесть предъявленных обвинений и риск уклонения от следствия. Его действия в этом деле вызвали дискуссию о свободе слова и политически мотивированном преследовании.</p>
-                </div>
-            `,
-            "sarybaev-dossier": `
-                <div class="p-4">
-                    <h2 class="text-2xl font-bold mb-4" data-lang-key="sarybaev_dossier_title">Досье: Сарыбаев У.</h2>
-                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="sarybaev_role">Государственный обвинитель</span></p>
-                    <p class="mb-4" data-lang-key="sarybaev_bio">Сарыбаев У. — прокурор, работавший в паре с Ташиевым Ч. Он также активно участвовал в судебных заседаниях, допрашивал свидетелей и представлял доказательства со стороны обвинения. Его профессиональная деятельность в этом деле вызывала вопросы у правозащитников.</p>
-                </div>
-            `,
-            "muratalieva-dossier": `
-                <div class="p-4">
-                    <h2 class="text-2xl font-bold mb-4" data-lang-key="muratalieva_dossier_title">Досье: Мураталиева Г.Дж.</h2>
-                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="muratalieva_role">Эксперт</span></p>
-                    <p class="mb-4" data-lang-key="muratalieva_bio">Мураталиева Г.Дж. — лингвистический эксперт, чье заключение стало ключевым доказательством в деле. Она провела анализ стихов и публичных выступлений Аската, придя к выводу о наличии в них призывов к насильственным действиям. Заключение экспертизы было оспорено адвокатами, но принято судом в качестве основного аргумента обвинения.</p>
-                </div>
-            `,
-            "zhumaev-dossier": `
-                <div class="p-4">
-                    <h2 class="text-2xl font-bold mb-4" data-lang-key="zhumaev_dossier_title">Досье: Жумаев Р.Т.</h2>
-                    <p class="mb-2"><strong data-lang-key="role_label">Роль:</strong> <span data-lang-key="zhumaev_role">Старший следователь</span></p>
-                    <p class="mb-4" data-lang-key="zhumaev_bio">Жумаев Р.Т. — старший следователь МВД, который вел расследование дела Аската Жетиген уулу. Он руководил сбором улик и допросом свидетелей. Его работа была направлена на подтверждение обвинений в призывах к массовым беспорядкам и насильственному захвату власти.</p>
-                </div>
-            `
-        };
-        const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+        const currentLang = 'ru';
 
-        function applyDossierTranslations(content, lang) {
-            content.querySelectorAll('[data-lang-key]').forEach(element => {
-                const key = element.dataset.langKey;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-        }
-        
         function setLanguage(lang) {
-            document.querySelectorAll('[data-lang], [data-lang-key]').forEach(element => {
-                const key = element.dataset.lang || element.dataset.langKey;
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
                 if (translations[lang] && translations[lang].hasOwnProperty(key)) {
                     if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                         element.placeholder = translations[lang][key];
@@ -649,53 +245,27 @@
                     }
                 }
             });
-
-            document.querySelectorAll('.lang-switcher button').forEach(button => {
-                if (button.dataset.langCode === lang) {
-                    button.classList.add('active');
-                    button.classList.remove('bg-gray-600', 'hover:bg-gray-700');
-                } else {
-                    button.classList.remove('active');
-                    button.classList.add('hover:bg-gray-700');
-                }
-            });
-
-            localStorage.setItem('selectedLanguage', lang);
-        }
-
-        function loadDossier(dossierId) {
-            const dossierContentArea = document.getElementById('loaded-dossier-content');
-            const dossierDisplayArea = document.getElementById('dossier-display-area');
-            const currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-
-            if (dossierContents[dossierId]) {
-                dossierContentArea.innerHTML = dossierContents[dossierId];
-                applyDossierTranslations(dossierContentArea, currentLang);
-                dossierDisplayArea.classList.remove('hidden');
-                dossierDisplayArea.focus(); 
-            }
+            document.querySelector('title').textContent = translations[lang].case_page_title;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            setLanguage(currentLang); 
+            setLanguage(currentLang);
 
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const langCode = event.target.dataset.langCode;
-                    setLanguage(langCode);
+            const searchInput = document.getElementById('searchInput');
+            const executorListItems = document.querySelectorAll('#executors-list li');
+            const victimListItems = document.querySelectorAll('#victims-list li');
+            const allListItems = [...executorListItems, ...victimListItems];
+
+            searchInput.addEventListener('input', (event) => {
+                const searchTerm = event.target.value.toLowerCase().trim();
+                allListItems.forEach(item => {
+                    const textContent = item.textContent.toLowerCase();
+                    if (textContent.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
                 });
-            });
-
-            document.querySelectorAll('.view-dossier-btn').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    loadDossier(event.target.dataset.dossierId);
-                });
-            });
-
-            document.getElementById('close-dossier-btn').addEventListener('click', () => {
-                document.getElementById('dossier-display-area').classList.add('hidden');
-                document.getElementById('loaded-dossier-content').innerHTML = '';
             });
         });
     </script>
