@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="dossier_akunbekov_title">Досье: Акунбеков Сапарбек Акунбекович - Архив Подотчетности</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Досье: Акунбеков Сапарбек Акунбекович - Кара Тизме</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -16,10 +15,10 @@
             --border-color: #dee2e6;
             --un-blue: #009edb;
             --un-light-blue: #eaf8ff;
-            --accent-color: #007bff; /* Новый акцентный цвет */
-            --accent-hover-color: #0056b3; /* Цвет при наведении для акцента */
-            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень для карточек */
-            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+            --accent-color: #007bff;
+            --accent-hover-color: #0056b3;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
         html {
             scroll-behavior: smooth;
@@ -29,7 +28,7 @@
             color: #212529;
             line-height: 1.6;
             margin: 0;
-            background-color: #f0f2f5; /* Более мягкий фон для тела */
+            background-color: #f0f2f5;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -44,25 +43,22 @@
             margin-top: -60px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 40px;
-            background-color: #fff; /* Фон для секций */
-            margin-bottom: 20px; /* Отступ между секциями */
-            border-radius: 8px; /* Закругленные углы для секций */
-            box-shadow: var(--card-shadow); /* Тень для секций */
+            background-color: #fff;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
         }
         section:last-of-type {
-            border-bottom: none; /* Убрать нижнюю границу у последней секции */
+            border-bottom: none;
         }
-
-
-        /* Шапка */
         .site-header {
-            background-color: var(--primary-color); /* Темный фон для шапки */
+            background-color: var(--primary-color);
             border-bottom: 1px solid var(--border-color);
-            padding: 15px 0; /* Увеличить отступ */
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .site-header .container {
             display: flex;
@@ -70,35 +66,33 @@
             align-items: center;
         }
         .logo {
-            font-size: 1.4em; /* Увеличить размер логотипа */
+            font-size: 1.4em;
             font-weight: 700;
-            color: #fff; /* Белый цвет для логотипа */
+            color: #fff;
             text-decoration: none;
-            text-transform: uppercase; /* Заглавные буквы */
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
         .main-nav a {
-            color: #fff; /* Белый цвет для ссылок навигации */
+            color: #fff;
             text-decoration: none;
-            margin-left: 25px; /* Увеличить отступ между ссылками */
+            margin-left: 25px;
             font-weight: 500;
-            font-size: 1em; /* Увеличить размер шрифта */
-            transition: color 0.3s ease; /* Плавный переход цвета */
+            font-size: 1em;
+            transition: color 0.3s ease;
         }
         .main-nav a:hover {
-            color: var(--un-blue); /* Изменение цвета при наведении */
+            color: var(--un-blue);
         }
-
-        /* Досье */
         .profile-layout {
             display: grid;
-            grid-template-columns: 320px 1fr; /* Немного увеличить ширину сайдбара */
-            gap: 50px; /* Увеличить отступ */
-            background-color: #fff; /* Белый фон для досье */
-            padding: 30px; /* Отступ внутри досье */
-            border-radius: 8px; /* Закругленные углы */
-            box-shadow: var(--card-shadow); /* Тень */
-            margin-bottom: 40px; /* Отступ снизу */
+            grid-template-columns: 320px 1fr;
+            gap: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
         }
         @media (max-width: 800px) {
             .profile-layout {
@@ -106,61 +100,60 @@
             }
         }
         .profile-card {
-            background-color: #f8f9fa; /* Более светлый фон для карточки профиля */
-            padding: 25px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
             text-align: center;
             align-self: start;
             border: 1px solid var(--border-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         .profile-photo {
-            width: 160px; /* Увеличить размер фото */
+            width: 160px;
             height: 160px;
-            background-color: #e9ecef; /* Более нейтральный цвет для заглушки */
+            background-color: #e9ecef;
             border-radius: 50%;
-            margin: 0 auto 25px auto; /* Увеличить отступ */
+            margin: 0 auto 25px auto;
             background-size: cover;
             background-position: center;
-            border: 4px solid var(--accent-color); /* Акцентная рамка */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
         .profile-card h2 {
-            margin: 0 0 15px 0; /* Увеличить отступ */
-            font-size: 1.8em; /* Увеличить размер заголовка */
+            margin: 0 0 15px 0;
+            font-size: 1.8em;
             line-height: 1.2;
             color: var(--primary-color);
         }
         .profile-card p {
-            margin: 8px 0; /* Увеличить отступ */
+            margin: 8px 0;
             text-align: left;
             font-size: 0.95em;
         }
         .profile-card strong {
             color: var(--primary-color);
         }
-
         .dossier-content h3 {
-            font-size: 2em; /* Увеличить размер заголовка */
+            font-size: 2em;
             color: var(--primary-color);
             margin-bottom: 25px;
         }
         .episode-card {
             border: 1px solid var(--border-color);
-            padding: 25px; /* Увеличить отступ */
-            margin-bottom: 25px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            background-color: #fdfefe; /* Немного более светлый фон */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Очень легкая тень */
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            background-color: #fdfefe;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
         }
         .episode-card h4 {
             margin-top: 0;
-            font-size: 1.5em; /* Увеличить размер заголовка */
-            color: var(--accent-color); /* Акцентный цвет для заголовка эпизода */
+            font-size: 1.5em;
+            color: var(--accent-color);
             margin-bottom: 10px;
         }
         .episode-card h5 {
-            font-size: 1.2em; /* Увеличить размер заголовка */
+            font-size: 1.2em;
             color: var(--primary-color);
             margin-top: 20px;
             margin-bottom: 8px;
@@ -168,14 +161,14 @@
         .un-opinion-box {
             background-color: var(--un-light-blue);
             border: 1px solid var(--un-blue);
-            border-left: 8px solid var(--un-blue); /* Более толстая левая граница */
-            padding: 20px 25px; /* Увеличить отступы */
-            margin-top: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Тень для выделения */
+            border-left: 8px solid var(--un-blue);
+            padding: 20px 25px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         .un-opinion-box h5 {
-            color: var(--un-blue); /* Цвет заголовка ООН */
+            color: var(--un-blue);
             font-size: 1.3em;
             margin-top: 0;
             margin-bottom: 10px;
@@ -185,18 +178,16 @@
             color: #343a40;
         }
         .disclaimer {
-            font-size: 0.85em; /* Немного увеличить размер */
+            font-size: 0.85em;
             color: #6c757d;
             font-style: italic;
             margin-top: 15px;
             display: block;
         }
         .sanction {
-            font-weight: 700; /* Более жирный шрифт */
-            color: #dc3545; /* Красный цвет для санкций */
+            font-weight: 700;
+            color: #dc3545;
         }
-
-        /* Секция "О проекте" */
         #about {
             text-align: center;
             padding-bottom: 60px;
@@ -219,39 +210,18 @@
             color: var(--accent-hover-color);
             text-decoration: underline;
         }
-        .lang-switcher button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .lang-switcher button:hover {
-            background-color: #0056b3;
-        }
-        .lang-switcher button.active {
-            background-color: #009edb;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
     <header class="site-header">
         <div class="container flex justify-between items-center">
-            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
+            <a href="../index.html" class="logo">КАРА ТИЗМЕ</a>
             <nav class="main-nav flex items-center">
-                <a href="../index.html" data-lang-key="nav_home">Главная</a>
-                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
-                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
-                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
-                <div class="lang-switcher ml-8">
-                    <button data-lang-code="ru" class="active">РУ</button>
-                    <button data-lang-code="en">EN</button>
-                    <button data-lang-code="kg">КГ</button>
-                </div>
+                <a href="../index.html">Главная</a>
+                <a href="../index.html#cases">Дела</a>
+                <a href="../dossiers.html">Архив досье</a>
+                <a href="../index.html#about">О проекте</a>
             </nav>
         </div>
     </header>
@@ -259,26 +229,26 @@
     <main class="flex-grow">
         <section id="dossier-akunbekov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_Akunbekov.jpg);"></div>
-                        <h2 data-lang-key="person_name">Акунбеков Сапарбек Акунбекович</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-role="victim_role">Жертва преследования</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-role="journalist_activist_position">Журналист/Активист</span></p>
+                        <h2>Акунбеков Сапарбек Акунбекович</h2>
+                        <p><strong>Категория:</strong> <span>Жертва преследования</span></p>
+                        <p><strong>Должность:</strong> <span>Журналист/Активист</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <h3>Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4 data-lang-key="episode_title">Эпизод: «Дело 11 журналистов»</h4>
-                            <h5 data-lang-key="actions_heading">Действия: <span data-lang-key="action_description_akunbekov">Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029</span></h5>
-                            <p data-lang-key="episode_text_akunbekov">Акунбеков Сапарбек Акунбекович стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки)).</p>
+                            <h4>Эпизод: «Дело 11 журналистов»</h4>
+                            <h5>Действия: <span>Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029</span></h5>
+                            <p>Акунбеков Сапарбек Акунбекович стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки)).</p>
                         </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p data-lang-key="legal_article_text_akunbekov">В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.</p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p data-lang-key="sources_text_akunbekov"><a href="#">Постановление о возбуждении уголовного дела</a>.</p>
+                        <h5>Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.</p>
+                        <h5>Источники:</h5>
+                        <p><a href="#">Постановление о возбуждении уголовного дела</a>.</p>
                     </section>
                 </div>
             </div>
@@ -287,136 +257,8 @@
 
     <footer class="bg-gray-800 text-white py-8 mt-auto">
         <div class="container text-center">
-            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+            <p>&copy; 2024 Кара Тизме. Все права защищены.</p>
         </div>
     </footer>
-
-    <script>
-        const translations = {
-            ru: {
-                dossier_akunbekov_title: "Досье: Акунбеков Сапарбек Акунбекович - Архив Подотчетности",
-                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
-                nav_home: "Главная",
-                nav_cases: "Дела",
-                nav_dossiers_archive: "Архив досье",
-                nav_about: "О проекте",
-                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
-                person_name: "Акунбеков Сапарбек Акунбекович",
-                category_label: "Категория:",
-                victim_role: "Жертва преследования",
-                position_label: "Должность:",
-                journalist_activist_position: "Журналист/Активист",
-                documented_episodes_heading: "Задокументированные эпизоды",
-                episode_title: "Эпизод: «Дело 11 журналистов»",
-                actions_heading: "Действия:",
-                action_description_akunbekov: "Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029",
-                episode_text_akunbekov: "Акунбеков Сапарбек Акунбекович стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки)).",
-                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
-                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
-                legal_article_text_akunbekov: "В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.",
-                sources_heading: "Источники:",
-                sources_text_akunbekov: "Постановление о возбуждении уголовного дела.",
-                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
-            },
-            en: {
-                dossier_akunbekov_title: "Dossier: Akunbekov Saparbek Akunbekovich - Accountability Archive",
-                org_name: "ACCOUNTABILITY ARCHIVE",
-                nav_home: "Home",
-                nav_cases: "Cases",
-                nav_dossiers_archive: "Dossier Archive",
-                nav_about: "About Project",
-                back_to_case_journalists: "← Back to Case of 11 Journalists",
-                person_name: "Akunbekov Saparbek Akunbekovich",
-                category_label: "Category:",
-                victim_role: "Victim of persecution",
-                position_label: "Position:",
-                journalist_activist_position: "Journalist/Activist",
-                documented_episodes_heading: "Documented Episodes",
-                episode_title: "Episode: «Case of 11 Journalists»",
-                actions_heading: "Actions:",
-                action_description_akunbekov: "Became the object of criminal prosecution within criminal case No. 03-050-2024-000029",
-                episode_text_akunbekov: "Akunbekov Saparbek Akunbekovich became one of the persons subjected to criminal prosecution within the case initiated under Article 278 of the Criminal Code of the Kyrgyz Republic (Mass riots)).",
-                legal_qualification_heading: "Legal Qualification (under Criminal Code of KR):",
-                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
-                legal_article_text_akunbekov: "The rights of this person may have been violated, as provided for by **Article 169 of the Criminal Code of the Kyrgyz Republic (Unlawful deprivation of liberty)** and **Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or custody)**.",
-                sources_heading: "Sources:",
-                sources_text_akunbekov: "Resolution on initiating a criminal case.",
-                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
-            },
-            kg: {
-                dossier_akunbekov_title: "Досье: Акунбеков Сапарбек Акунбекович - Жоопкерчилик Архивы",
-                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
-                nav_home: "Башкы бет",
-                nav_cases: "Иштер",
-                nav_dossiers_archive: "Досье архиви",
-                nav_about: "Долбоор жөнүндө",
-                back_to_case_journalists: "«11 журналисттин» ишине кайтуу",
-                person_name: "Акунбеков Сапарбек Акунбекович",
-                category_label: "Категория:",
-                victim_role: "Куугунтуктун курмандыгы",
-                position_label: "Кызматы:",
-                journalist_activist_position: "Журналист/Активист",
-                documented_episodes_heading: "Документтештирилген эпизоддор",
-                episode_title: "Эпизод: «11 журналисттин» иши",
-                actions_heading: "Аракеттер:",
-                action_description_akunbekov: "№03-050-2024-000029 кылмыш ишинин алкагында кылмыш куугунтугунун объектиси болуп калды",
-                episode_text_akunbekov: "Акунбеков Сапарбек Акунбекович КР Кылмыш-жаза кодексинин 278-беренеси (Массалык башаламандыктар) боюнча козголгон иштин алкагында кылмыш куугунтугуна кабылган адамдардын бири болду.",
-                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
-                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
-                legal_article_text_akunbekov: "Бул адамга карата укуктары бузулушу мүмкүн, алар: **КР Кылмыш-жаза кодексинин 169-беренеси (Мыйзамсыз эркиндигинен ажыратуу)** жана **191-беренеси (Мыйзамсыз кармоо же камакта кармоо)**.",
-                sources_heading: "Булактар:",
-                sources_text_akunbekov: "Кылмыш ишин козгоо жөнүндө токтом.",
-                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
-            }
-        };
-
-        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru'; // Using HRLanguage to avoid conflict
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('[data-lang-key]').forEach(element => {
-                const key = element.dataset.langKey;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-            document.querySelectorAll('[data-lang-role]').forEach(element => {
-                const roleKey = element.dataset.langRole;
-                if (translations[lang] && translations[lang].roles && translations[lang].roles.hasOwnProperty(roleKey)) {
-                    element.textContent = translations[lang].roles[roleKey];
-                }
-            });
-
-            // Update title specifically
-            document.querySelector('title').textContent = translations[lang].dossier_akunbekov_title;
-
-            // Update active button state
-            document.querySelectorAll('.lang-switcher button').forEach(button => {
-                if (button.dataset.langCode === lang) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
-            });
-
-            localStorage.setItem('selectedHRLanguage', lang); // Using HRLanguage to avoid conflict
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    setLanguage(event.target.dataset.langCode);
-                });
-            });
-
-            // Load saved language or default to Russian
-            setLanguage(currentLang);
-        });
-    </script>
 </body>
 </html>
