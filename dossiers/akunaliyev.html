@@ -7,196 +7,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
         :root {
             --primary-color: #0d2a4c;
             --secondary-color: #f8f9fa;
-            --border-color: #dee2e6;
             --un-blue: #009edb;
-            --un-light-blue: #eaf8ff;
             --accent-color: #007bff;
-            --accent-hover-color: #0056b3;
-            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        html {
-            scroll-behavior: smooth;
         }
         body {
             font-family: 'Inter', sans-serif;
+            background-color: var(--secondary-color);
             color: #212529;
             line-height: 1.6;
             margin: 0;
-            background-color: #f0f2f5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            padding: 0;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem;
         }
-        section {
-            padding-top: 80px;
-            margin-top: -60px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 40px;
-            background-color: #fff;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: var(--card-shadow);
-        }
-        section:last-of-type {
-            border-bottom: none;
-        }
-        .site-header {
+        .header-bg {
             background-color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .site-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .main-nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: 500;
-            font-size: 1em;
+        .nav-link {
+            color: #ffffff;
             transition: color 0.3s ease;
         }
-        .main-nav a:hover {
+        .nav-link:hover {
             color: var(--un-blue);
-        }
-        .profile-layout {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 50px;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: var(--card-shadow);
-            margin-bottom: 40px;
-        }
-        @media (max-width: 800px) {
-            .profile-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        .profile-card {
-            background-color: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            align-self: start;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        .profile-photo {
-            width: 160px;
-            height: 160px;
-            background-color: #e9ecef;
-            border-radius: 50%;
-            margin: 0 auto 25px auto;
-            background-size: cover;
-            background-position: center;
-            border: 4px solid var(--accent-color);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-        .profile-card h2 {
-            margin: 0 0 15px 0;
-            font-size: 1.8em;
-            line-height: 1.2;
-            color: var(--primary-color);
-        }
-        .profile-card p {
-            margin: 8px 0;
-            text-align: left;
-            font-size: 0.95em;
-        }
-        .profile-card strong {
-            color: var(--primary-color);
-        }
-        .dossier-content h3 {
-            font-size: 2em;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-        }
-        .episode-card {
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            background-color: #fdfefe;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-        }
-        .episode-card h4 {
-            margin-top: 0;
-            font-size: 1.5em;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-        .episode-card h5 {
-            font-size: 1.2em;
-            color: var(--primary-color);
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-        .un-opinion-box {
-            background-color: var(--un-light-blue);
-            border: 1px solid var(--un-blue);
-            border-left: 8px solid var(--un-blue);
-            padding: 20px 25px;
-            margin-top: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-        .un-opinion-box h5 {
-            color: var(--un-blue);
-            font-size: 1.3em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .un-opinion-box p {
-            font-size: 1em;
-            color: #343a40;
-        }
-        .disclaimer {
-            font-size: 0.85em;
-            color: #6c757d;
-            font-style: italic;
-            margin-top: 15px;
-            display: block;
-        }
-        .sanction {
-            font-weight: 700;
-            color: #dc3545;
-        }
-        #about {
-            text-align: center;
-            padding-bottom: 60px;
-        }
-        #about p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1em;
-            color: #495057;
         }
         .back-link {
             display: inline-block;
@@ -204,40 +43,99 @@
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
         }
         .back-link:hover {
-            color: var(--accent-hover-color);
             text-decoration: underline;
         }
-        .lang-switcher button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .lang-switcher button:hover {
-            background-color: #0056b3;
+        @media (min-width: 768px) {
+            .profile-layout {
+                grid-template-columns: 280px 1fr;
+            }
         }
-        .lang-switcher button.active {
-            background-color: #009edb;
-            font-weight: bold;
+        .profile-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center left 10%; /* Изменено здесь */
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 1.5rem;
+        }
+        .profile-card h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .profile-card p {
+            font-size: 1em;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        .dossier-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .dossier-content h3 {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .episode-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .episode-card h4 {
+            font-size: 1.25em;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .episode-card h5 {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        .disclaimer {
+            font-style: italic;
+            color: #999;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .sanction {
+            font-weight: 600;
+        }
+        .footer-bg {
+            background-color: var(--primary-color);
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-
-    <header class="site-header">
-        <div class="container flex justify-between items-center">
-            <a href="../index.html" class="logo">КАРА ТИЗМЕ</a>
-            <nav class="main-nav flex items-center">
-                <a href="../index.html">Главная</a>
-                <a href="../index.html#cases">Дела</a>
-                <a href="../dossiers.html">Архив досье</a>
-                <a href="../index.html#about">О проекте</a>
+    <header class="header-bg shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-white tracking-tight">КАРА ТИЗМЕ</a>
+            <nav class="flex space-x-4">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="dossiers.html" class="nav-link">Архив досье</a>
             </nav>
         </div>
     </header>
@@ -248,7 +146,7 @@
                 <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
-                        <div class="profile-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_Akunaliev.jpg);"></div>
+                        <div class="profile-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_Abdyrahmanov.jpg);"></div>
                         <h2>Акуналиев Н.А.</h2>
                         <p><strong>Категория:</strong> <span>Следователь</span></p>
                         <p><strong>Должность:</strong> <span>Следователь следственной группы</span></p>
@@ -257,103 +155,24 @@
                         <h3>Задокументированные эпизоды</h3>
                         <div class="episode-card">
                             <h4>Эпизод: «Дело 11 журналистов»</h4>
-                            <h5>Действия (19.02.2024): <span>Включение в группу следователей по уголовному делу №03-050-2024-000029</span></h5>
+                            <h5>Действия: <span>Включение в группу следователей по уголовному делу №03-050-2024-000029</span></h5>
                             <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
                         </div>
                         <h5>Юридическая квалификация (по УК КР):</h5>
                         <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>В действиях данного лица могут быть признаки следующих преступлений: **статьи 202 УК КР (Воспрепятствование деятельности журналиста), 337 УК КР (Злоупотребление полномочиями), 360 УК КР (Принуждение к даче ложных показаний) и 191 УК КР (Незаконное задержание)**.</p>
+                        <p>В действиях данного лица могут быть признаки следующих преступлений: **статьи 202 УК КР (Воспрепятствование деятельности журналиста), 337 УК КР (Злоупотребление полномочиями), 360 УК КР (Принуждение к даче ложных показаний) и 191 УК КР (Незаконное задержание)**. <br><span class="sanction">Санкция:</span> <span>штраф или лишение свободы от 5 до 10 лет.</span></p>
                         <h5>Источники:</h5>
-                        <p><a href="#">Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a>.</p>
+                        <p>Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a></p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-auto">
-        <div class="container text-center">
+    <footer class="footer-bg text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
             <p>&copy; 2024 Кара Тизме. Все права защищены.</p>
         </div>
     </footer>
-
-    <script>
-        const translations = {
-            ru: {
-                dossier_akunaliyev_title: "Досье: Акуналиев Н.А. - Кара Тизме",
-                org_name: "КАРА ТИЗМЕ",
-                nav_home: "Главная",
-                nav_cases: "Дела",
-                nav_dossiers_archive: "Архив досье",
-                nav_about: "О проекте",
-                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
-                person_name: "Акуналиев Н.А.",
-                category_heading: "Категория:",
-                position_heading: "Должность:",
-                documented_episodes_heading: "Задокументированные эпизоды",
-                episode_title: "Эпизод: «Дело 11 журналистов»",
-                actions_heading: "Действия (19.02.2024):",
-                action_description_akunaliyev: "Включение в группу следователей по уголовному делу №03-050-2024-000029",
-                episode_text_akunaliyev: "Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.",
-                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
-                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
-                legal_article_text_akunaliyev: "В действиях данного лица могут быть признаки следующих преступлений: **статьи 202 УК КР (Воспрепятствование деятельности журналиста), 337 УК КР (Злоупотребление полномочиями), 360 УК КР (Принуждение к даче ложных показаний) и 191 УК КР (Незаконное задержание)**.",
-                sources_heading: "Источники:",
-                sources_text_akunaliyev: "Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024.",
-                roles: {
-                    "investigator_role": "Следователь",
-                    "investigator_position": "Следователь следственной группы"
-                }
-            }
-        };
-
-        let currentLang = 'ru';
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('[data-lang]').forEach(element => {
-                const key = element.dataset.lang;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
-                }
-            });
-            document.querySelectorAll('[data-lang-role]').forEach(element => {
-                const roleKey = element.dataset.langRole;
-                if (translations[lang] && translations[lang].roles && translations[lang].roles.hasOwnProperty(roleKey)) {
-                    element.textContent = translations[lang].roles[roleKey];
-                }
-            });
-
-            // Update title specifically
-            document.querySelector('title').textContent = translations[lang].dossier_akunaliyev_title;
-
-            // Update active button state
-            document.querySelectorAll('.lang-switcher button').forEach(button => {
-                if (button.dataset.langCode === lang) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
-            });
-
-            localStorage.setItem('selectedLanguage', lang);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    setLanguage(event.target.dataset.langCode);
-                });
-            });
-
-            // Load saved language or default to Russian
-            setLanguage(currentLang);
-        });
-    </script>
 </body>
 </html>
