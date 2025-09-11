@@ -3,255 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="dossier_bekenov_title">Досье: Бекенов Туратбек Орозбаевич - Архив Подотчетности</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Досье: Бекенов Туратбек Орозбаевич - Кара Тизме</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
         :root {
             --primary-color: #0d2a4c;
             --secondary-color: #f8f9fa;
-            --border-color: #dee2e6;
             --un-blue: #009edb;
-            --un-light-blue: #eaf8ff;
-            --accent-color: #007bff; /* Новый акцентный цвет */
-            --accent-hover-color: #0056b3; /* Цвет при наведении для акцента */
-            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень для карточек */
-            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень при наведении */
-        }
-        html {
-            scroll-behavior: smooth;
+            --accent-color: #007bff;
         }
         body {
             font-family: 'Inter', sans-serif;
+            background-color: var(--secondary-color);
             color: #212529;
             line-height: 1.6;
             margin: 0;
-            background-color: #f0f2f5; /* Более мягкий фон для тела */
-            display: flex; /* Для прикрепления футера к низу */
-            flex-direction: column; /* Для прикрепления футера к низу */
-            min-height: 100vh; /* Для прикрепления футера к низу */
+            padding: 0;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem;
         }
-        section {
-            padding-top: 80px;
-            margin-top: -60px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 40px;
-            background-color: #fff; /* Фон для секций */
-            margin-bottom: 20px; /* Отступ между секциями */
-            border-radius: 8px; /* Закругленные углы для секций */
-            box-shadow: var(--card-shadow); /* Тень для секций */
+        .header-bg {
+            background-color: var(--primary-color);
         }
-        section:last-of-type {
-            border-bottom: none; /* Убрать нижнюю границу у последней секции */
-        }
-
-
-        /* Шапка */
-        .site-header {
-            background-color: var(--primary-color); /* Темный фон для шапки */
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0; /* Увеличить отступ */
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
-        }
-        .site-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.4em; /* Увеличить размер логотипа */
-            font-weight: 700;
-            color: #fff; /* Белый цвет для логотипа */
-            text-decoration: none;
-            text-transform: uppercase; /* Заглавные буквы */
-            letter-spacing: 1px;
-        }
-        .main-nav a {
-            color: #fff; /* Белый цвет для ссылок навигации */
-            text-decoration: none;
-            margin-left: 25px; /* Увеличить отступ между ссылками */
-            font-weight: 500;
-            font-size: 1em; /* Увеличить размер шрифта */
-            transition: color 0.3s ease; /* Плавный переход цвета */
-        }
-        .main-nav a:hover {
-            color: var(--un-blue); /* Изменение цвета при наведении */
-        }
-
-        /* Заголовки и карточки */
-        .section-title {
-            text-align: center;
-            font-size: 2.5em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-bottom: 40px; /* Увеличить отступ */
-            padding-top: 20px;
-        }
-        .case-card {
-            background-color: #fff; /* Белый фон для карточек */
-            border: 1px solid var(--border-color);
-            padding: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            margin-bottom: 25px; /* Увеличить отступ */
-            box-shadow: var(--card-shadow); /* Легкая тень */
-            transition: all 0.3s ease; /* Плавный переход для ховера */
-        }
-        .case-card:hover {
-            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
-            transform: translateY(-5px); /* Небольшой подъем при наведении */
-        }
-        .case-card h3 {
-            margin-top: 0;
-            font-size: 1.8em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-        }
-        .case-card a {
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок */
+        .nav-link {
+            color: #ffffff;
             transition: color 0.3s ease;
         }
-        .case-card a:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
-            text-decoration: underline;
-        }
-        .dossier-link {
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
-            transition: color 0.3s ease;
-        }
-        .dossier-link:hover {
-            color: var(--accent-hover-color);
-            text-decoration: underline;
-        }
-
-        /* Досье */
-        .profile-layout {
-            display: grid;
-            grid-template-columns: 320px 1fr; /* Немного увеличить ширину сайдбара */
-            gap: 50px; /* Увеличить отступ */
-            background-color: #fff; /* Белый фон для досье */
-            padding: 30px; /* Отступ внутри досье */
-            border-radius: 8px; /* Закругленные углы */
-            box-shadow: var(--card-shadow); /* Тень */
-            margin-bottom: 40px; /* Отступ снизу */
-        }
-        @media (max-width: 800px) {
-            .profile-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        .profile-card {
-            background-color: #f8f9fa; /* Более светлый фон для карточки профиля */
-            padding: 25px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            text-align: center;
-            align-self: start;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень */
-        }
-        .profile-photo {
-            width: 160px; /* Увеличить размер фото */
-            height: 160px;
-            background-color: #e9ecef; /* Более нейтральный цвет для заглушки */
-            border-radius: 50%;
-            margin: 0 auto 25px auto; /* Увеличить отступ */
-            background-size: cover;
-            background-position: center;
-            border: 4px solid var(--accent-color); /* Акцентная рамка */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
-        }
-        .profile-card h2 {
-            margin: 0 0 15px 0; /* Увеличить отступ */
-            font-size: 1.8em; /* Увеличить размер заголовка */
-            line-height: 1.2;
-            color: var(--primary-color);
-        }
-        .profile-card p {
-            margin: 8px 0; /* Увеличить отступ */
-            text-align: left;
-            font-size: 0.95em;
-        }
-        .profile-card strong {
-            color: var(--primary-color);
-        }
-
-        .dossier-content h3 {
-            font-size: 2em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-bottom: 25px;
-        }
-        .episode-card {
-            border: 1px solid var(--border-color);
-            padding: 25px; /* Увеличить отступ */
-            margin-bottom: 25px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            background-color: #fdfefe; /* Немного более светлый фон */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Очень легкая тень */
-        }
-        .episode-card h4 {
-            margin-top: 0;
-            font-size: 1.5em; /* Увеличить размер заголовка */
-            color: var(--accent-color); /* Акцентный цвет для заголовка эпизода */
-            margin-bottom: 10px;
-        }
-        .episode-card h5 {
-            font-size: 1.2em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-        .un-opinion-box {
-            background-color: var(--un-light-blue);
-            border: 1px solid var(--un-blue);
-            border-left: 8px solid var(--un-blue); /* Более толстая левая граница */
-            padding: 20px 25px; /* Увеличить отступы */
-            margin-top: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Тень для выделения */
-        }
-        .un-opinion-box h5 {
-            color: var(--un-blue); /* Цвет заголовка ООН */
-            font-size: 1.3em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .un-opinion-box p {
-            font-size: 1em;
-            color: #343a40;
-        }
-        .disclaimer {
-            font-size: 0.85em; /* Немного увеличить размер */
-            color: #6c757d;
-            font-style: italic;
-            margin-top: 15px;
-            display: block;
-        }
-        .sanction {
-            font-weight: 700; /* Более жирный шрифт */
-            color: #dc3545; /* Красный цвет для санкций */
-        }
-
-        /* Секция "О проекте" */
-        #about {
-            text-align: center;
-            padding-bottom: 60px;
-        }
-        #about p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1em;
-            color: #495057;
+        .nav-link:hover {
+            color: var(--un-blue);
         }
         .back-link {
             display: inline-block;
@@ -259,45 +43,99 @@
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
         }
         .back-link:hover {
-            color: var(--accent-hover-color);
             text-decoration: underline;
         }
-        .lang-switcher button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .lang-switcher button:hover {
-            background-color: #0056b3;
+        @media (min-width: 768px) {
+            .profile-layout {
+                grid-template-columns: 280px 1fr;
+            }
         }
-        .lang-switcher button.active {
-            background-color: #009edb;
-            font-weight: bold;
+        .profile-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center left 10%; /* Изменено здесь */
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 1.5rem;
+        }
+        .profile-card h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .profile-card p {
+            font-size: 1em;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        .dossier-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .dossier-content h3 {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .episode-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .episode-card h4 {
+            font-size: 1.25em;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .episode-card h5 {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        .disclaimer {
+            font-style: italic;
+            color: #999;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .sanction {
+            font-weight: 600;
+        }
+        .footer-bg {
+            background-color: var(--primary-color);
         }
     </style>
 </head>
-<body>
-
-    <header class="site-header">
-        <div class="container flex justify-between items-center">
-            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav flex items-center">
-                <a href="../index.html" data-lang-key="nav_home">Главная</a>
-                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
-                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
-                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
-                <div class="lang-switcher ml-8">
-                    <button data-lang-code="ru" class="active">РУ</button>
-                    <button data-lang-code="en">EN</button>
-                    <button data-lang-code="kg">КГ</button>
-                </div>
+<body class="flex flex-col min-h-screen">
+    <header class="header-bg shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-white tracking-tight">КАРА ТИЗМЕ</a>
+            <nav class="flex space-x-4">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="dossiers.html" class="nav-link">Архив досье</a>
             </nav>
         </div>
     </header>
@@ -305,244 +143,36 @@
     <main class="flex-grow">
         <section id="dossier-bekenov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://cdn-1.aki.kg/cdn-st-0/qZw/N/1150311.7ebc471228a85a0a9bffeeccbf69e14e.500.jpg);"></div>
-                        <h2 data-lang-key="name_bekenov_full">Бекенов Туратбек Орозбаевич</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_judge">Судья</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="position_bekenov">Следственный судья Первомайского районного суда города Бишкек</span></p>
+                        <h2>Бекенов Туратбек Орозбаевич</h2>
+                        <p><strong>Категория:</strong> <span>Исполнитель (представитель госорганов)</span></p>
+                        <p><strong>Должность:</strong> <span>Следственный судья Первомайского районного суда города Бишкек</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <h3>Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
-                            <h5 data-lang-key="action_check_detention_legality">Действия (17.01.2024): Проверка законности задержания</h5>
-                            <p data-lang-key="description_check_detention_legality">Как следственный судья Первомайского районного суда города Бишкек, в судебном заседании с участием секретаря <span data-lang-key="name_mairambek_kyzy">А.Майрамбек кызы</span>, помощника прокурора <span data-lang-key="name_karypbek_uulu">А.Карыпбек уулу</span>, следователя <span data-lang-key="name_akunaliuiev">Н.Акуналиева</span>, обвиняемых и их адвокатов, рассмотрел ходатайства о проверке законности и обоснованности задержания следующих журналистов:</p>
-                            <ul>
-                                <li><span data-lang-key="name_kaparov">Капарова Мааданбека Таалайбековича</span></li>
-                                <li><span data-lang-key="name_turdaliev">Турдалиева Жумабека Искендеровича</span></li>
-                                <li><span data-lang-key="name_tazhibek_uulu">Тажибек уулу Максата</span></li>
-                                <li><span data-lang-key="name_sultanaliyev">Сайпидина Султаналиева</span></li>
-                                <li><span data-lang-key="name_tazhibek_kyzy_mahabat">Тажибек кызы Махабат</span></li>
-                                <li><span data-lang-key="name_akunbekov">Акунбекова Сапарбека Акунбековича</span></li>
-                                <li><span data-lang-key="name_asypbekov">Асыпбекова Тыныстана Бекназаровича</span></li>
-                                <li><span data-lang-key="name_beishekeeva">Бейшекеевой Айке Нурлановны</span></li>
-                                <li><span data-lang-key="name_buzumov">Бузумова Жоодарбека Бакыталыевича</span></li>
-                                <li><span data-lang-key="name_orozbekov">Орозбекова Акылбека Орозбековича</span></li>
-                                <li><span data-lang-key="name_ishenbekov">Ишенбекова Азамата Ишенбековича</span></li>
-                            </ul>
-                            <p data-lang-key="description_detention_legality_outcome">Суд удовлетворил ходатайства, признав задержания законными и обоснованными.</p>
+                            <h4>Эпизод: «Дело 11 журналистов»</h4>
+                            <h5>Действия: <span>Проверка законности задержания</span></h5>
+                            <p>Суд удовлетворил ходатайства, признав задержания законными и обоснованными..</p>
                         </div>
-                        <div class="episode-card">
-                            <h5 data-lang-key="action_complaint_rejection">Действия (21.02.2024): Оставление жалобы Акылбека Орозбекова без удовлетворения</h5>
-                            <p data-lang-key="description_complaint_rejection">Как следственный судья Первомайского районного суда города Бишкек, рассмотрел жалобу обвиняемого Акылбека Орозбекова о признании незаконными действий оперативных сотрудников (получение паролей от телефона и ноутбука под давлением) и возложении обязанности на руководителя следственной группы Байышова К. устранить допущенное нарушение. Суд оставил жалобу без удовлетворения, мотивируя это тем, что обжалуемые действия не являются процессуальными действиями, предусмотренными УПК КР, и жалоба была подана по истечении установленного 10-суточного срока.</p>
-                        </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>
-                            <span data-lang-key="legal_qualification_description_original">В действиях могут усматриваться признаки </span>
-                            <strong data-lang-key="article_351_name">ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)</strong><span data-lang-key="legal_qualification_description_suffix">, если решение о законности задержания было необоснованным или отказ в рассмотрении жалобы был неправомерным.</span>
-                            <br><span class="sanction" data-lang-key="sanction_351">Санкция: лишение свободы от 5 до 8 лет.</span>
-                        </p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p><a href="#" data-lang-key="source_detention_check_resolution">Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024</a>.</p>
-                        <p><a href="#" data-lang-key="source_complaint_rejection_resolution">Постановление об оставлении жалобы без удовлетворения от 21.02.2024</a>.</p>
+                        <h5>Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>В действиях данного лица могут быть признаки следующих преступлений:ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта), если решение о законности задержания было необоснованным или отказ в рассмотрении жалобы был неправомерным. <br><span class="sanction">Санкция:</span> <span>штраф или лишение свободы от 5 до 8 лет.</span></p>
+                        <h5>Источники:</h5>
+                        <p>Постановление об оставлении жалобы без удовлетворения от 21.02.2024</a></p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-auto">
-        <div class="container text-center">
-            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+    <footer class="footer-bg text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 Кара Тизме. Все права защищены.</p>
         </div>
     </footer>
-
-    <script>
-        const translations = {
-            ru: {
-                dossier_bekenov_title: "Досье: Бекенов Туратбек Орозбаевич - Архив Подотчетности",
-                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
-                nav_home: "Главная",
-                nav_cases: "Дела",
-                nav_dossiers_archive: "Архив досье",
-                nav_about: "О проекте",
-                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
-                name_bekenov_full: "Бекенов Туратбек Орозбаевич",
-                category_label: "Категория:",
-                category_judge: "Судья",
-                position_label: "Должность:",
-                position_bekenov: "Следственный судья Первомайского районного суда города Бишкек",
-                documented_episodes_heading: "Задокументированные эпизоды",
-                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
-                action_check_detention_legality: "Действия (17.01.2024): Проверка законности задержания",
-                description_check_detention_legality: "Как следственный судья Первомайского районного суда города Бишкек, в судебном заседании с участием секретаря А.Майрамбек кызы, помощника прокурора А.Карыпбек уулу, следователя Н.Акуналиева, обвиняемых и их адвокатов, рассмотрел ходатайства о проверке законности и обоснованности задержания следующих журналистов:",
-                description_detention_legality_outcome: "Суд удовлетворил ходатайства, признав задержания законными и обоснованными.",
-                action_complaint_rejection: "Действия (21.02.2024): Оставление жалобы Акылбека Орозбекова без удовлетворения",
-                description_complaint_rejection: "Как следственный судья Первомайского районного суда города Бишкек, рассмотрел жалобу обвиняемого Акылбека Орозбекова о признании незаконными действий оперативных сотрудников (получение паролей от телефона и ноутбука под давлением) и возложении обязанности на руководителя следственной группы Байышова К. устранить допущенное нарушение. Суд оставил жалобу без удовлетворения, мотивируя это тем, что обжалуемые действия не являются процессуальными действиями, предусмотренными УПК КР, и жалоба была подана по истечении установленного 10-суточного срока.",
-                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
-                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
-                legal_qualification_description_original: "В действиях могут усматриваться признаки ",
-                article_351_name: "ст. 351 УК КР (Вынесение заведомо неправосудного судебного акта)",
-                legal_qualification_description_suffix: ", если решение о законности задержания было необоснованным или отказ в рассмотрении жалобы был неправомерным.",
-                sanction_351: "Санкция: лишение свободы от 5 до 8 лет.",
-                sources_heading: "Источники:",
-                source_detention_check_resolution: "Постановление о проверке законности и обоснованности задержания подозреваемого от 17.01.2024",
-                source_complaint_rejection_resolution: "Постановление об оставлении жалобы без удовлетворения от 21.02.2024",
-                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
-
-                // Names for the lists
-                name_mairambek_kyzy: "А.Майрамбек кызы",
-                name_karypbek_uulu: "А.Карыпбек уулу",
-                name_akunaliuiev: "Н.Акуналиева",
-                name_kaparov: "Капарова Мааданбека Таалайбековича",
-                name_turdaliev: "Турдалиева Жумабека Искендеровича",
-                name_tazhibek_uulu: "Тажибек уулу Максата",
-                name_sultanaliyev: "Сайпидина Султаналиева",
-                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабат",
-                name_akunbekov: "Акунбекова Сапарбека Акунбековича",
-                name_asypbekov: "Асыпбекова Тыныстана Бекназаровича",
-                name_beishekeeva: "Бейшекеевой Айке Нурлановны",
-                name_buzumov: "Бузумова Жоодарбека Бакыталыевича",
-                name_orozbekov: "Орозбекова Акылбека Орозбековича",
-                name_ishenbekov: "Ишенбекова Азамата Ишенбековича",
-            },
-            en: {
-                dossier_bekenov_title: "Dossier: Bekenov Turatbek Orozbaevich - Accountability Archive",
-                org_name: "ACCOUNTABILITY ARCHIVE",
-                nav_home: "Home",
-                nav_cases: "Cases",
-                nav_dossiers_archive: "Dossier Archive",
-                nav_about: "About Project",
-                back_to_case_journalists: "← Back to Case of 11 Journalists",
-                name_bekenov_full: "Bekenov Turatbek Orozbaevich",
-                category_label: "Category:",
-                category_judge: "Judge",
-                position_label: "Position:",
-                position_bekenov: "Investigating Judge of Pervomaisky District Court of Bishkek",
-                documented_episodes_heading: "Documented Episodes",
-                episode_case_journalists: "Episode: «Case of 11 Journalists»",
-                action_check_detention_legality: "Actions (17.01.2024): Verification of detention legality",
-                description_check_detention_legality: "As the investigating judge of the Pervomaisky District Court of Bishkek, at the court session with the participation of secretary A. Mairambek kyzy, assistant prosecutor A. Karypbek uulu, investigator N. Akunalieva, the accused and their lawyers, petitions for verifying the legality and validity of the detention of the following journalists were considered:",
-                description_detention_legality_outcome: "The court granted the petitions, recognizing the detentions as legal and justified.",
-                action_complaint_rejection: "Actions (21.02.2024): Dismissal of Akylbek Orozbekov's complaint",
-                description_complaint_rejection: "As the investigating judge of the Pervomaisky District Court of Bishkek, considered the complaint of the accused Akylbek Orozbekov regarding the recognition of illegal actions by operational officers (obtaining passwords from phone and laptop under pressure) and imposing the obligation on the head of the investigation group Baiyshov K. to eliminate the violation. The court dismissed the complaint, arguing that the challenged actions are not procedural actions provided for by the Criminal Procedure Code of the Kyrgyz Republic, and the complaint was filed after the expiration of the established 10-day period.",
-                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
-                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
-                legal_qualification_description_original: "The actions may show signs of crime provided for by ",
-                article_351_name: "Article 351 of the Criminal Code of the Kyrgyz Republic (Issuing a knowingly unjust judicial act)",
-                legal_qualification_description_suffix: ", if the decision on the legality of detention was unfounded or the refusal to consider the complaint was unlawful.",
-                sanction_351: "Sanction: imprisonment from 5 to 8 years.",
-                sources_heading: "Sources:",
-                source_detention_check_resolution: "Resolution on verifying the legality and validity of the suspect's detention dated 17.01.2024",
-                source_complaint_rejection_resolution: "Resolution on dismissing the complaint dated 21.02.2024",
-                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
-
-                // Names for the lists
-                name_mairambek_kyzy: "A. Mairambek kyzy",
-                name_karypbek_uulu: "A. Karypbek uulu",
-                name_akunaliuiev: "N. Akunalieva",
-                name_kaparov: "Kaparov Maadanbek Taalaibekovich",
-                name_turdaliev: "Turdailev Zhumabek Iskenderovich",
-                name_tazhibek_uulu: "Tazhibek uulu Maksat",
-                name_sultanaliyev: "Saipidin Sultanaliyev",
-                name_tazhibek_kyzy_mahabat: "Tazhibek kyzy Mahabat",
-                name_akunbekov: "Akunbekov Saparbek Akunbekovich",
-                name_asypbekov: "Asypbekov Tynystan Beknazarovich",
-                name_beishekeeva: "Beishekeeva Aike Nurlanovna",
-                name_buzumov: "Buzumov Zhoodarbek Bakytalievich",
-                name_orozbekov: "Orozbekov Akylbek Orozbekovich",
-                name_ishenbekov: "Ishenbekov Azamat Ishenbekovich",
-            },
-            kg: {
-                dossier_bekenov_title: "Досье: Бекенов Туратбек Орозбаевич - Жоопкерчилик Архивы",
-                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
-                nav_home: "Башкы бет",
-                nav_cases: "Иштер",
-                nav_dossiers_archive: "Досье архиви",
-                nav_about: "Долбоор жөнүндө",
-                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
-                name_bekenov_full: "Бекенов Туратбек Орозбаевич",
-                category_label: "Категория:",
-                category_judge: "Сот",
-                position_label: "Кызматы:",
-                position_bekenov: "Бишкек шаарынын Биринчи Май райондук сотунун тергөө судьясы",
-                documented_episodes_heading: "Документтештирилген эпизоддор",
-                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
-                action_check_detention_legality: "Аракеттер (17.01.2024): Камакка алуунун мыйзамдуулугун текшерүү",
-                description_check_detention_legality: "Бишкек шаарынын Биринчи Май райондук сотунун тергөө судьясы катары, А.Майрамбек кызы катчы, А.Карыпбек уулу прокурордун жардамчысы, Н.Акуналиев тергөөчү, айыпталуучулар жана алардын адвокаттары катышкан сот отурумунда төмөнкү журналисттердин камакка алынышынын мыйзамдуулугун жана негиздүүлүгүн текшерүү жөнүндө өтүнүчтөрдү караган:",
-                description_detention_legality_outcome: "Сот өтүнүчтөрдү канааттандырып, камакка алууларды мыйзамдуу жана негиздүү деп тааныган.",
-                action_complaint_rejection: "Аракеттер (21.02.2024): Акылбек Орозбековдун арызын канааттандыруусуз калтыруу",
-                description_complaint_rejection: "Бишкек шаарынын Биринчи Май райондук сотунун тергөө судьясы катары, айыпталуучу Акылбек Орозбековдун оперативдик кызматкерлердин мыйзамсыз аракеттерин (телефондон жана ноутбуктан басым көрсөтүү менен пароль алуу) мыйзамсыз деп таануу жана тергөө тобунун жетекчиси Байышов К.га жол берилген бузууну жоюу милдетин жүктөө жөнүндө арызын караган. Сот арызды канааттандыруусуз калтырган, муну арызда көрсөтүлгөн аракеттер КР Кылмыш-процессуалдык кодексинде каралган процессуалдык аракеттерге кирбейт жана арыз белгиленген 10 күндүк мөөнөт өткөндөн кийин берилген деп негиздеген.",
-                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
-                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
-                legal_qualification_description_original: "Аракеттерде төмөнкү кылмыштын белгилери байкалат: ",
-                article_351_name: "КР Кылмыш-жаза кодексинин 351-беренеси (Атайылап адилетсиз сот актысын чыгаруу)",
-                legal_qualification_description_suffix: ", эгерде камакка алуунун мыйзамдуулугу жөнүндө чечим негизсиз болсо же арызды кароодон баш тартуу мыйзамсыз болсо.",
-                sanction_351: "Санкция: 5 жылдан 8 жылга чейин эркиндигинен ажыратуу.",
-                sources_heading: "Булактар:",
-                source_detention_check_resolution: "17.01.2024-жылдагы шектүүнү кармоонун мыйзамдуулугун жана негиздүүлүгүн текшерүү жөнүндө токтом",
-                source_complaint_rejection_resolution: "21.02.2024-жылдагы арызды канааттандыруусуз калтыруу жөнүндө токтом",
-                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
-
-                // Names for the lists (unchanged from previous version as they represent fixed names)
-                name_mairambek_kyzy: "А.Майрамбек кызы",
-                name_karypbek_uulu: "А.Карыпбек уулу",
-                name_akunaliuiev: "Н.Акуналиева",
-                name_kaparov: "Капаров Мааданбек Таалайбековичти",
-                name_turdaliev: "Турдалиев Жумабек Искендеровичти",
-                name_tazhibek_uulu: "Тажибек уулу Максатты",
-                name_sultanaliyev: "Сайпидин Султаналиевди",
-                name_tazhibek_kyzy_mahabat: "Тажибек кызы Махабатты",
-                name_akunbekov: "Акунбеков Сапарбек Акунбековичти",
-                name_asypbekov: "Асыпбеков Тыныстан Бекназаровичти",
-                name_beishekeeva: "Бейшекеева Айке Нурлановнаны",
-                name_buzumov: "Бузумов Жоодарбек Бакыталыевичти",
-                name_orozbekov: "Орозбеков Акылбек Орозбековичти",
-                name_ishenbekov: "Ишенбеков Азамат Ишенбековичти",
-            }
-        };
-
-        let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-
-        function setLanguage(lang) {
-            currentLang = lang;
-
-            document.querySelectorAll('[data-lang-key]').forEach(element => {
-                const key = element.dataset.langKey;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-
-            document.querySelectorAll('.lang-switcher button').forEach(button => {
-                if (button.dataset.langCode === lang) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
-            });
-
-            localStorage.setItem('selectedLanguage', lang);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    setLanguage(event.target.dataset.langCode);
-                });
-            });
-
-            setLanguage(currentLang);
-        });
-    </script>
 </body>
 </html>
-
