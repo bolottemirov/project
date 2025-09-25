@@ -3,255 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="dossier_kalmuratov_title">Досье: Калмуратов А.К. - Архив Подотчетности</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Досье: Калмуратов А.К - Кара тизме</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
         :root {
             --primary-color: #0d2a4c;
             --secondary-color: #f8f9fa;
-            --border-color: #dee2e6;
             --un-blue: #009edb;
-            --un-light-blue: #eaf8ff;
-            --accent-color: #007bff; /* Новый акцентный цвет */
-            --accent-hover-color: #0056b3; /* Цвет при наведении для акцента */
-            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень для карточек */
-            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень при наведении */
-        }
-        html {
-            scroll-behavior: smooth;
+            --accent-color: #007bff;
         }
         body {
             font-family: 'Inter', sans-serif;
+            background-color: var(--secondary-color);
             color: #212529;
             line-height: 1.6;
             margin: 0;
-            background-color: #f0f2f5; /* Более мягкий фон для тела */
-            display: flex; /* Для прикрепления футера к низу */
-            flex-direction: column; /* Для прикрепления футера к низу */
-            min-height: 100vh; /* Для прикрепления футера к низу */
+            padding: 0;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem;
         }
-        section {
-            padding-top: 80px;
-            margin-top: -60px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 40px;
-            background-color: #fff; /* Фон для секций */
-            margin-bottom: 20px; /* Отступ между секциями */
-            border-radius: 8px; /* Закругленные углы для секций */
-            box-shadow: var(--card-shadow); /* Тень для секций */
+        .header-bg {
+            background-color: var(--primary-color);
         }
-        section:last-of-type {
-            border-bottom: none; /* Убрать нижнюю границу у последней секции */
-        }
-
-
-        /* Шапка */
-        .site-header {
-            background-color: var(--primary-color); /* Темный фон для шапки */
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0; /* Увеличить отступ */
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
-        }
-        .site-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.4em; /* Увеличить размер логотипа */
-            font-weight: 700;
-            color: #fff; /* Белый цвет для логотипа */
-            text-decoration: none;
-            text-transform: uppercase; /* Заглавные буквы */
-            letter-spacing: 1px;
-        }
-        .main-nav a {
-            color: #fff; /* Белый цвет для ссылок навигации */
-            text-decoration: none;
-            margin-left: 25px; /* Увеличить отступ между ссылками */
-            font-weight: 500;
-            font-size: 1em; /* Увеличить размер шрифта */
-            transition: color 0.3s ease; /* Плавный переход цвета */
-        }
-        .main-nav a:hover {
-            color: var(--un-blue); /* Изменение цвета при наведении */
-        }
-
-        /* Заголовки и карточки */
-        .section-title {
-            text-align: center;
-            font-size: 2.5em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-bottom: 40px; /* Увеличить отступ */
-            padding-top: 20px;
-        }
-        .case-card {
-            background-color: #fff; /* Белый фон для карточек */
-            border: 1px solid var(--border-color);
-            padding: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            margin-bottom: 25px; /* Увеличить отступ */
-            box-shadow: var(--card-shadow); /* Легкая тень */
-            transition: all 0.3s ease; /* Плавный переход для ховера */
-        }
-        .case-card:hover {
-            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
-            transform: translateY(-5px); /* Небольшой подъем при наведении */
-        }
-        .case-card h3 {
-            margin-top: 0;
-            font-size: 1.8em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-        }
-        .case-card a {
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок */
+        .nav-link {
+            color: #ffffff;
             transition: color 0.3s ease;
         }
-        .case-card a:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
-            text-decoration: underline;
-        }
-        .dossier-link {
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
-            transition: color 0.3s ease;
-        }
-        .dossier-link:hover {
-            color: var(--accent-hover-color);
-            text-decoration: underline;
-        }
-
-        /* Досье */
-        .profile-layout {
-            display: grid;
-            grid-template-columns: 320px 1fr; /* Немного увеличить ширину сайдбара */
-            gap: 50px; /* Увеличить отступ */
-            background-color: #fff; /* Белый фон для досье */
-            padding: 30px; /* Отступ внутри досье */
-            border-radius: 8px; /* Закругленные углы */
-            box-shadow: var(--card-shadow); /* Тень */
-            margin-bottom: 40px; /* Отступ снизу */
-        }
-        @media (max-width: 800px) {
-            .profile-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        .profile-card {
-            background-color: #f8f9fa; /* Более светлый фон для карточки профиля */
-            padding: 25px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            text-align: center;
-            align-self: start;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень */
-        }
-        .profile-photo {
-            width: 160px; /* Увеличить размер фото */
-            height: 160px;
-            background-color: #e9ecef; /* Более нейтральный цвет для заглушки */
-            border-radius: 50%;
-            margin: 0 auto 25px auto; /* Увеличить отступ */
-            background-size: cover;
-            background-position: center;
-            border: 4px solid var(--accent-color); /* Акцентная рамка */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
-        }
-        .profile-card h2 {
-            margin: 0 0 15px 0; /* Увеличить отступ */
-            font-size: 1.8em; /* Увеличить размер заголовка */
-            line-height: 1.2;
-            color: var(--primary-color);
-        }
-        .profile-card p {
-            margin: 8px 0; /* Увеличить отступ */
-            text-align: left;
-            font-size: 0.95em;
-        }
-        .profile-card strong {
-            color: var(--primary-color);
-        }
-
-        .dossier-content h3 {
-            font-size: 2em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-bottom: 25px;
-        }
-        .episode-card {
-            border: 1px solid var(--border-color);
-            padding: 25px; /* Увеличить отступ */
-            margin-bottom: 25px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            background-color: #fdfefe; /* Немного более светлый фон */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Очень легкая тень */
-        }
-        .episode-card h4 {
-            margin-top: 0;
-            font-size: 1.5em; /* Увеличить размер заголовка */
-            color: var(--accent-color); /* Акцентный цвет для заголовка эпизода */
-            margin-bottom: 10px;
-        }
-        .episode-card h5 {
-            font-size: 1.2em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-        .un-opinion-box {
-            background-color: var(--un-light-blue);
-            border: 1px solid var(--un-blue);
-            border-left: 8px solid var(--un-blue); /* Более толстая левая граница */
-            padding: 20px 25px; /* Увеличить отступы */
-            margin-top: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Тень для выделения */
-        }
-        .un-opinion-box h5 {
-            color: var(--un-blue); /* Цвет заголовка ООН */
-            font-size: 1.3em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .un-opinion-box p {
-            font-size: 1em;
-            color: #343a40;
-        }
-        .disclaimer {
-            font-size: 0.85em; /* Немного увеличить размер */
-            color: #6c757d;
-            font-style: italic;
-            margin-top: 15px;
-            display: block;
-        }
-        .sanction {
-            font-weight: 700; /* Более жирный шрифт */
-            color: #dc3545; /* Красный цвет для санкций */
-        }
-
-        /* Секция "О проекте" */
-        #about {
-            text-align: center;
-            padding-bottom: 60px;
-        }
-        #about p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1em;
-            color: #495057;
+        .nav-link:hover {
+            color: var(--un-blue);
         }
         .back-link {
             display: inline-block;
@@ -259,45 +43,99 @@
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
         }
         .back-link:hover {
-            color: var(--accent-hover-color);
             text-decoration: underline;
         }
-        .lang-switcher button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .lang-switcher button:hover {
-            background-color: #0056b3;
+        @media (min-width: 768px) {
+            .profile-layout {
+                grid-template-columns: 280px 1fr;
+            }
         }
-        .lang-switcher button.active {
-            background-color: #009edb;
-            font-weight: bold;
+        .profile-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center left 10%; /* Изменено здесь */
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 1.5rem;
+        }
+        .profile-card h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .profile-card p {
+            font-size: 1em;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        .dossier-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .dossier-content h3 {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .episode-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .episode-card h4 {
+            font-size: 1.25em;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .episode-card h5 {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        .disclaimer {
+            font-style: italic;
+            color: #999;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .sanction {
+            font-weight: 600;
+        }
+        .footer-bg {
+            background-color: var(--primary-color);
         }
     </style>
 </head>
-<body>
-
-    <header class="site-header">
-        <div class="container flex justify-between items-center">
-            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav flex items-center">
-                <a href="../index.html" data-lang-key="nav_home">Главная</a>
-                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
-                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
-                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
-                <div class="lang-switcher ml-8">
-                    <button data-lang-code="ru" class="active">РУ</button>
-                    <button data-lang-code="en">EN</button>
-                    <button data-lang-code="kg">КГ</button>
-                </div>
+<body class="flex flex-col min-h-screen">
+    <header class="header-bg shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-white tracking-tight">КАРА ТИЗМЕ</a>
+            <nav class="flex space-x-4">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="dossiers.html" class="nav-link">Архив досье</a>
             </nav>
         </div>
     </header>
@@ -305,245 +143,36 @@
     <main class="flex-grow">
         <section id="dossier-kalmuratov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
-                        <div class="profile-photo"></div>
-                        <h2 data-lang-key="name_kalmuratov_full">Калмуратов А.К.</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="category_investigator">Следователь</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="position_kalmuratov">Следователь следственной группы</span></p>
+                        <div class="profile-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_kalmuratov.jpg);"></div>
+                        <h2>Калмуратов А.К.</h2>
+                        <p><strong>Категория:</strong> <span>Исполнитель (представитель госорганов)</span></p>
+                        <p><strong>Должность:</strong> <span>Следователь следственной группы</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <h3>Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4 data-lang-key="episode_case_journalists">Эпизод: «Дело 11 журналистов»</h4>
-                            <h5 data-lang-key="action_support_arrest_extension">Действия (12.03.2024): Поддержка ходатайства о продлении ареста журналистов</h5>
-                            <p data-lang-key="description_support_arrest_extension">В судебном заседании Первомайского районного суда города Бишкек, где рассматривалось ходатайство о продлении срока меры пресечения в виде заключения под стражу, Калмуратов А.К. участвовал в качестве следователя следственной группы и поддержал ходатайство о продлении ареста следующих журналистов:</p>
-                            <ul>
-                                <li><span data-lang-key="journalist_kaparov">Капаров Мааданбек Таалайбекович</span></li>
-                                <li><span data-lang-key="journalist_turdaliev">Турдалиев Жумабек Искендерович</span></li>
-                                <li><span data-lang-key="journalist_tazhibek_uulu">Тажибек уулу Максат</span></li>
-                                <li><span data-lang-key="journalist_sultanaliyev">Сайпидин Султаналиев</span></li>
-                                <li><span data-lang-key="journalist_tazhibek_kyzy">Тажибек кызы Махабат</span></li>
-                                <li><span data-lang-key="journalist_akunbekov">Акунбеков Сапарбек Акунбекович</span></li>
-                                <li><span data-lang-key="journalist_asypbekov">Асыпбеков Тыныстан Бекназарович</span></li>
-                                <li><span data-lang-key="journalist_beishekeeva">Бейшекеева Айке Нурлановна</span></li>
-                                <li><span data-lang-key="journalist_buzumov">Бузумов Жоодарбек Бакыталыевич</span></li>
-                                <li><span data-lang-key="journalist_orozbekov">Орозбеков Акылбек Орозбекович</span></li>
-                                <li><span data-lang-key="journalist_ishenbekov">Ишенбеков Азамат Ишенбекович</span></li>
-                            </ul>
+                            <h4>Эпизод: «Дело 11 журналистов»</h4>
+                            <h5>Действия: <span>Включение в группу следователей по уголовному делу №03-050-2024-000029</span></h5>
+                            <p>Включен в состав группы следователей по уголовному делу №03-050-2024-000029 в качестве следователя следственной группы по постановлению Начальника управления Следственной службы МВД Кыргызской Республики полковника милиции Жумабаева А.А. от 19.02.2024.</p>
                         </div>
-                        <div class="un-opinion-box">
-                            <h5 data-lang-key="un_opinion_heading">Оценка ООН (Мнение № 57/2024)</h5>
-                            <p data-lang-key="un_opinion_description">Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Сапарбека Акунбекова, Айке Бейшекеевой, Азамата Ишенбекова, Акылбека («Акыл») Орозбекова, Актилек («Мааданбек») Капарова, Тыныстана Асыпбекова, Сайпидина Султаналиева, Максата Тажибек уулу и Жоодарбека Бузумова, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.</p>
-                        </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p>
-                            <span data-lang-key="legal_qualification_description">Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных:</span>
-                            <br>
-                            <strong data-lang-key="article_202_name">ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)</strong>.
-                            <br><span class="sanction" data-lang-key="sanction_202">Санкция: штраф или лишение свободы до 3 лет.</span>
-                            <br>
-                            <strong data-lang-key="article_337_name">ст. 337 УК КР (Злоупотребление должностным положением)</strong>.
-                            <br><span class="sanction" data-lang-key="sanction_337">Санкция: штраф или лишение свободы до 5 лет.</span>
-                            <br>
-                            <strong data-lang-key="article_360_name">ст. 360 УК КР (Принуждение к даче показаний)</strong>.
-                            <br><span class="sanction" data-lang-key="sanction_360">Санкция: лишение свободы до 10 лет.</span>
-                            <br>
-                            <strong data-lang-key="article_191_name">ст. 191 УК КР (Незаконное задержание или заключение под стражу)</strong>.
-                            <br><span class="sanction" data-lang-key="sanction_191">Санкция: лишение свободы до 5 лет.</span>
-                        </p>
-                        <h5 data-lang-key="sources_heading">Источники:</h5>
-                        <p><a href="#" data-lang-key="source_arrest_extension_resolution">Постановление о продлении меры пресечения в отношении Сайпидина Султаналиева от 12.03.2024</a>.</p>
+                        <h5>Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>В действиях данного лица могут быть признаки следующих преступлений: **статьи 202 УК КР (Воспрепятствование деятельности журналиста), 337 УК КР (Злоупотребление полномочиями), 360 УК КР (Принуждение к даче ложных показаний) и 191 УК КР (Незаконное задержание)**. <br><span class="sanction">Санкция:</span> <span>штраф или лишение свободы от 5 до 10 лет.</span></p>
+                        <h5>Источники:</h5>
+                        <p>Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a></p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-auto">
-        <div class="container text-center">
-            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+    <footer class="footer-bg text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Кара тизме. Все права защищены.</p>
         </div>
     </footer>
-
-    <script>
-        const translations = {
-            ru: {
-                dossier_kalmuratov_title: "Досье: Калмуратов А.К. - Архив Подотчетности",
-                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
-                nav_home: "Главная",
-                nav_cases: "Дела",
-                nav_dossiers_archive: "Архив досье",
-                nav_about: "О проекте",
-                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
-                name_kalmuratov_full: "Калмуратов А.К.",
-                category_label: "Категория:",
-                category_investigator: "Следователь",
-                position_label: "Должность:",
-                position_kalmuratov: "Следователь следственной группы",
-                documented_episodes_heading: "Задокументированные эпизоды",
-                episode_case_journalists: "Эпизод: «Дело 11 журналистов»",
-                action_support_arrest_extension: "Действия (12.03.2024): Поддержка ходатайства о продлении ареста журналистов",
-                description_support_arrest_extension: "В судебном заседании Первомайского районного суда города Бишкек, где рассматривалось ходатайство о продлении срока меры пресечения в виде заключения под стражу, Калмуратов А.К. участвовал в качестве следователя следственной группы и поддержал ходатайство о продлении ареста следующих журналистов:",
-                journalist_kaparov: "Капаров Мааданбек Таалайбекович",
-                journalist_turdaliev: "Турдалиев Жумабек Искендерович",
-                journalist_tazhibek_uulu: "Тажибек уулу Максат",
-                journalist_sultanaliyev: "Сайпидин Султаналиев",
-                journalist_tazhibek_kyzy: "Тажибек кызы Махабат",
-                journalist_akunbekov: "Акунбеков Сапарбек Акунбекович",
-                journalist_asypbekov: "Асыпбеков Тыныстан Бекназарович",
-                journalist_beishekeeva: "Бейшекеева Айке Нурлановна",
-                journalist_buzumov: "Бузумов Жоодарбек Бакыталыевич",
-                journalist_orozbekov: "Орозбеков Акылбек Орозбекович",
-                journalist_ishenbekov: "Ишенбеков Азамат Ишенбекович",
-                un_opinion_heading: "Оценка ООН (Мнение № 57/2024)",
-                un_opinion_description: "Рабочая группа ООН по произвольным задержаниям в своем Мнении № 57/2024 признала лишение свободы Сапарбека Акунбекова, Айке Бейшекеевой, Азамата Ишенбекова, Акылбека («Акыл») Орозбекова, Актилек («Мааданбек») Капарова, Тыныстана Асыпбекова, Сайпидина Султаналиева, Максата Тажибек уулу и Жоодарбека Бузумова, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, произвольным и подпадающим под категории I, II, III и V.",
-                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
-                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
-                legal_qualification_description: "Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных:",
-                article_202_name: "ст. 202 УК КР (Воспрепятствование законной профессиональной деятельности журналистов)",
-                sanction_202: "Санкция: штраф или лишение свободы до 3 лет.",
-                article_337_name: "ст. 337 УК КР (Злоупотребление должностным положением)",
-                sanction_337: "Санкция: штраф или лишение свободы до 5 лет.",
-                article_360_name: "ст. 360 УК КР (Принуждение к даче показаний)",
-                sanction_360: "Санкция: лишение свободы до 10 лет.",
-                article_191_name: "ст. 191 УК КР (Незаконное задержание или заключение под стражу)",
-                sanction_191: "Санкция: лишение свободы до 5 лет.",
-                sources_heading: "Источники:",
-                source_arrest_extension_resolution: "Постановление о продлении меры пресечения в отношении Сайпидина Султаналиева от 12.03.2024",
-                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
-            },
-            en: {
-                dossier_kalmuratov_title: "Dossier: Kalmuratov A.K. - Accountability Archive",
-                org_name: "ACCOUNTABILITY ARCHIVE",
-                nav_home: "Home",
-                nav_cases: "Cases",
-                nav_dossiers_archive: "Dossier Archive",
-                nav_about: "About Project",
-                back_to_case_journalists: "← Back to Case of 11 Journalists",
-                name_kalmuratov_full: "Kalmuratov A.K.",
-                category_label: "Category:",
-                category_investigator: "Investigator",
-                position_label: "Position:",
-                position_kalmuratov: "Investigator of the investigative group",
-                documented_episodes_heading: "Documented Episodes",
-                episode_case_journalists: "Episode: «Case of 11 Journalists»",
-                action_support_arrest_extension: "Actions (12.03.2024): Support for the petition to extend the arrest of journalists",
-                description_support_arrest_extension: "At the court session of the Pervomaisky District Court of Bishkek, where the petition to extend the pre-trial detention period was considered, Kalmuratov A.K. participated as an investigator of the investigative group and supported the petition to extend the arrest of the following journalists:",
-                journalist_kaparov: "Kaparov Maadanbek Taalaibekovich",
-                journalist_turdaliev: "Turdaliev Zhumabek Iskenderovich",
-                journalist_tazhibek_uulu: "Tazhibek uulu Maksat",
-                journalist_sultanaliyev: "Saipidin Sultanaliyev",
-                journalist_tazhibek_kyzy: "Tazhibek kyzy Mahabat",
-                journalist_akunbekov: "Akunbekov Saparbek Akunbekovich",
-                journalist_asypbekov: "Asypbekov Tynystan Beknazarovich",
-                journalist_beishekeeva: "Beishekeeva Aike Nurlanovna",
-                journalist_buzumov: "Buzumov Zhoodarbek Bakytalievich",
-                journalist_orozbekov: "Orozbekov Akylbek Orozbekovich",
-                journalist_ishenbekov: "Ishenbekov Azamat Ishenbekovich",
-                un_opinion_heading: "UN Assessment (Opinion No. 57/2024)",
-                un_opinion_description: "The UN Working Group on Arbitrary Detention, in its Opinion No. 57/2024, recognized the deprivation of liberty of Saparbek Akunbekov, Aike Beishekeeva, Azamat Ishenbekov, Akylbek (\"Akyl\") Orozbekov, Aktilek (\"Maadanbek\") Kaparov, Tynystan Asypbekov, Saipidin Sultanaliyev, Maksat Tazhibek uulu, and Zhoodarbek Buzumov, as arbitrary and falling under categories I, II, III, and V, contradicting Articles 2, 7, 9, 11, and 19 of the Universal Declaration of Human Rights and Articles 2, 9, 14, 19, and 26 of the International Covenant on Civil and Political Rights.",
-                legal_qualification_heading: "Legal Qualification (under the Criminal Code of the Kyrgyz Republic):",
-                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
-                legal_qualification_description: "Suspected of committing acts falling under the signs of crimes provided for by:",
-                article_202_name: "Article 202 of the Criminal Code of the Kyrgyz Republic (Obstruction of the lawful professional activities of journalists)",
-                sanction_202: "Sanction: fine or imprisonment for up to 3 years.",
-                article_337_name: "Article 337 of the Criminal Code of the Kyrgyz Republic (Abuse of official position)",
-                sanction_337: "Sanction: fine or imprisonment for up to 5 years.",
-                article_360_name: "Article 360 of the Criminal Code of the Kyrgyz Republic (Coercion to give false testimony)",
-                sanction_360: "Sanction: imprisonment for up to 10 years.",
-                article_191_name: "Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or custody)",
-                sanction_191: "Sanction: imprisonment for up to 5 years.",
-                sources_heading: "Sources:",
-                source_arrest_extension_resolution: "Resolution on extending the measure of restraint against Saipidin Sultanaliyev dated 12.03.2024",
-                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
-            },
-            kg: {
-                dossier_kalmuratov_title: "Досье: Калмуратов А.К. - Жоопкерчилик Архивы",
-                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
-                nav_home: "Башкы бет",
-                nav_cases: "Иштер",
-                nav_dossiers_archive: "Досье архиви",
-                nav_about: "Долбоор жөнүндө",
-                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
-                name_kalmuratov_full: "Калмуратов А.К.",
-                category_label: "Категория:",
-                category_investigator: "Тергөөчү",
-                position_label: "Кызматы:",
-                position_kalmuratov: "Тергөө тобунун тергөөчүсү",
-                documented_episodes_heading: "Документтештирилген эпизоддор",
-                episode_case_journalists: "Эпизод: «11 журналисттин иши»",
-                action_support_arrest_extension: "Аракеттер (12.03.2024): Журналисттерди камакка алуу мөөнөтүн узартуу өтүнүчүн колдоо",
-                description_support_arrest_extension: "Бишкек шаарынын Биринчи Май райондук сотунун соттук отурумунда, камакка алуу мөөнөтүн узартуу өтүнүчү каралып жатканда, А.К.Калмуратов тергөө тобунун тергөөчүсү катары катышып, төмөнкү журналисттерди камакка алууну узартуу өтүнүчүн колдоду:",
-                journalist_kaparov: "Капаров Мааданбек Таалайбекович",
-                journalist_turdaliev: "Турдалиев Жумабек Искендерович",
-                journalist_tazhibek_uulu: "Тажибек уулу Максат",
-                journalist_sultanaliyev: "Сайпидин Султаналиев",
-                journalist_tazhibek_kyzy: "Тажибек кызы Махабат",
-                journalist_akunbekov: "Акунбеков Сапарбек Акунбекович",
-                journalist_asypbekov: "Асыпбеков Тыныстан Бекназарович",
-                journalist_beishekeeva: "Бейшекеева Айке Нурлановна",
-                journalist_buzumov: "Бузумов Жоодарбек Бакыталыевич",
-                journalist_orozbekov: "Орозбеков Акылбек Орозбекович",
-                journalist_ishenbekov: "Ишенбеков Азамат Ишенбекович",
-                un_opinion_heading: "БУУнун баалоосу (№ 57/2024 Корутунду)",
-                un_opinion_description: "БУУнун Эркиндигинен ажыратуулар боюнча жумушчу тобу өзүнүн № 57/2024 Корутундусунда Сапарбек Акунбековдун, Айке Бейшекееванын, Азамат Ишенбековдун, Акылбек («Акыл») Орозбековдун, Актилек («Мааданбек») Капаровдун, Тыныстан Асыпбековдун, Сайпидин Султаналиевдин, Максат Тажибек уулунун жана Жоодарбек Бузумовдун эркиндигинен ажыратылышын Адам укуктарынын жалпы декларациясынын 2, 7, 9, 11 жана 19-беренелерине, ошондой эле Жарандык жана саясий укуктар жөнүндө эл аралык пактынын 2, 9, 14, 19 жана 26-беренелерине карама-каршы келген, ээнбаштык жана I, II, III жана V категорияларына кирген деп тааныды.",
-                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
-                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
-                legal_qualification_description: "Аракеттерде төмөнкү кылмыштардын белгилери байкалат:",
-                article_202_name: "КР Кылмыш-жаза кодексинин 202-беренеси (Журналисттин мыйзамдуу кесиптик ишмердүүлүгүнө тоскоолдук кылуу)",
-                sanction_202: "Санкция: айып пул же 3 жылга чейин эркиндигинен ажыратуу.",
-                article_337_name: "КР Кылмыш-жаза кодексинин 337-беренеси (Кызмат абалынан кыянаттык менен пайдалануу)",
-                sanction_337: "Санкция: айып пул же 5 жылга чейин эркиндигинен ажыратуу.",
-                article_360_name: "КР Кылмыш-жаза кодексинин 360-беренеси (Көрсөтмө берүүгө мажбурлоо)",
-                sanction_360: "Санкция: 10 жылга чейин эркиндигинен ажыратуу.",
-                article_191_name: "КР Кылмыш-жаза кодексинин 191-беренеси (Мыйзамсыз кармоо же камакка алуу)",
-                sanction_191: "Санкция: 5 жылга чейин эркиндигинен ажыратуу.",
-                sources_heading: "Булактар:",
-                source_arrest_extension_resolution: "12.03.2024-жылдагы Сайпидин Султаналиевге карата бөгөт коюу чарасын узартуу жөнүндө токтом",
-                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
-            }
-        };
-
-        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru'; // Using HRLanguage to avoid conflict
-
-        function setLanguage(lang) {
-            currentLang = lang;
-
-            document.querySelectorAll('[data-lang-key]').forEach(element => {
-                const key = element.dataset.langKey;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-
-            document.querySelectorAll('.lang-switcher button').forEach(button => {
-                if (button.dataset.langCode === lang) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
-            });
-
-            localStorage.setItem('selectedHRLanguage', lang); // Using HRLanguage to avoid conflict
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    setLanguage(event.target.dataset.langCode);
-                });
-            });
-
-            setLanguage(currentLang);
-        });
-    </script>
 </body>
 </html>
