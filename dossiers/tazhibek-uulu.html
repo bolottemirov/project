@@ -1,257 +1,42 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="dossier_tazhibek_uulu_title">Досье: Тажибек уулу Максат - Архив Подотчетности</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Досье: Тажибек уулу Максат - Кара тизме</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Общие стили */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
         :root {
             --primary-color: #0d2a4c;
             --secondary-color: #f8f9fa;
-            --border-color: #dee2e6;
             --un-blue: #009edb;
-            --un-light-blue: #eaf8ff;
-            --accent-color: #007bff; /* Новый акцентный цвет */
-            --accent-hover-color: #0056b3; /* Цвет при наведении для акцента */
-            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень для карточек */
-            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень при наведении */
-        }
-        html {
-            scroll-behavior: smooth;
+            --accent-color: #007bff;
         }
         body {
             font-family: 'Inter', sans-serif;
+            background-color: var(--secondary-color);
             color: #212529;
             line-height: 1.6;
             margin: 0;
-            background-color: #f0f2f5; /* Более мягкий фон для тела */
-            display: flex; /* Для прикрепления футера к низу */
-            flex-direction: column; /* Для прикрепления футера к низу */
-            min-height: 100vh; /* Для прикрепления футера к низу */
+            padding: 0;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem;
         }
-        section {
-            padding-top: 80px;
-            margin-top: -60px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 40px;
-            background-color: #fff; /* Фон для секций */
-            margin-bottom: 20px; /* Отступ между секциями */
-            border-radius: 8px; /* Закругленные углы для секций */
-            box-shadow: var(--card-shadow); /* Тень для секций */
+        .header-bg {
+            background-color: var(--primary-color);
         }
-        section:last-of-type {
-            border-bottom: none; /* Убрать нижнюю границу у последней секции */
-        }
-
-
-        /* Шапка */
-        .site-header {
-            background-color: var(--primary-color); /* Темный фон для шапки */
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0; /* Увеличить отступ */
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для шапки */
-        }
-        .site-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.4em; /* Увеличить размер логотипа */
-            font-weight: 700;
-            color: #fff; /* Белый цвет для логотипа */
-            text-decoration: none;
-            text-transform: uppercase; /* Заглавные буквы */
-            letter-spacing: 1px;
-        }
-        .main-nav a {
-            color: #fff; /* Белый цвет для ссылок навигации */
-            text-decoration: none;
-            margin-left: 25px; /* Увеличить отступ между ссылками */
-            font-weight: 500;
-            font-size: 1em; /* Увеличить размер шрифта */
-            transition: color 0.3s ease; /* Плавный переход цвета */
-        }
-        .main-nav a:hover {
-            color: var(--un-blue); /* Изменение цвета при наведении */
-        }
-
-        /* Заголовки и карточки */
-        .section-title {
-            text-align: center;
-            font-size: 2.5em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-bottom: 40px; /* Увеличить отступ */
-            padding-top: 20px;
-        }
-        .case-card {
-            background-color: #fff; /* Белый фон для карточек */
-            border: 1px solid var(--border-color);
-            padding: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            margin-bottom: 25px; /* Увеличить отступ */
-            box-shadow: var(--card-shadow); /* Легкая тень */
-            transition: all 0.3s ease; /* Плавный переход для ховера */
-        }
-        .case-card:hover {
-            box-shadow: var(--card-hover-shadow); /* Увеличенная тень при наведении */
-            transform: translateY(-5px); /* Небольшой подъем при наведении */
-        }
-        .case-card h3 {
-            margin-top: 0;
-            font-size: 1.8em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-        }
-        .case-card a {
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок */
+        .nav-link {
+            color: #ffffff;
             transition: color 0.3s ease;
         }
-        .case-card a:hover {
-            color: var(--accent-hover-color); /* Изменение цвета при наведении */
-            text-decoration: underline;
-        }
-        .dossier-link {
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--accent-color); /* Акцентный цвет для ссылок досье */
-            transition: color 0.3s ease;
-        }
-        .dossier-link:hover {
-            color: var(--accent-hover-color);
-            text-decoration: underline;
-        }
-
-        /* Досье */
-        .profile-layout {
-            display: grid;
-            grid-template-columns: 320px 1fr; /* Немного увеличить ширину сайдбара */
-            gap: 50px; /* Увеличить отступ */
-            background-color: #fff; /* Белый фон для досье */
-            padding: 30px; /* Отступ внутри досье */
-            border-radius: 8px; /* Закругленные углы */
-            box-shadow: var(--card-shadow); /* Тень */
-            margin-bottom: 40px; /* Отступ снизу */
-        }
-        @media (max-width: 800px) {
-            .profile-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        .profile-card {
-            background-color: #f8f9fa; /* Более светлый фон для карточки профиля */
-            padding: 25px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            text-align: center;
-            align-self: start;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень */
-        }
-        .profile-photo {
-            width: 160px; /* Увеличить размер фото */
-            height: 160px;
-            background-color: #e9ecef; /* Более нейтральный цвет для заглушки */
-            border-radius: 50%;
-            margin: 0 auto 25px auto; /* Увеличить отступ */
-            background-size: cover;
-            background-position: center;
-            border: 4px solid var(--accent-color); /* Акцентная рамка */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
-        }
-        .profile-card h2 {
-            margin: 0 0 15px 0; /* Увеличить отступ */
-            font-size: 1.8em; /* Увеличить размер заголовка */
-            line-height: 1.2;
-            color: var(--primary-color);
-        }
-        .profile-card p {
-            margin: 8px 0; /* Увеличить отступ */
-            text-align: left;
-            font-size: 0.95em;
-        }
-        .profile-card strong {
-            color: var(--primary-color);
-        }
-
-        .dossier-content h3 {
-            font-size: 2em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-bottom: 25px;
-        }
-        .episode-card {
-            border: 1px solid var(--border-color);
-            padding: 25px; /* Увеличить отступ */
-            margin-bottom: 25px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            background-color: #fdfefe; /* Немного более светлый фон */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Очень легкая тень */
-        }
-        .episode-card h4 {
-            margin-top: 0;
-            font-size: 1.5em; /* Увеличить размер заголовка */
-            color: var(--accent-color); /* Акцентный цвет для заголовка эпизода */
-            margin-bottom: 10px;
-        }
-        .episode-card h5 {
-            font-size: 1.2em; /* Увеличить размер заголовка */
-            color: var(--primary-color);
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-        .un-opinion-box {
-            background-color: var(--un-light-blue);
-            border: 1px solid var(--un-blue);
-            border-left: 8px solid var(--un-blue); /* Более толстая левая граница */
-            padding: 20px 25px; /* Увеличить отступы */
-            margin-top: 30px; /* Увеличить отступ */
-            border-radius: 8px; /* Закругленные углы */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Тень для выделения */
-        }
-        .un-opinion-box h5 {
-            color: var(--un-blue); /* Цвет заголовка ООН */
-            font-size: 1.3em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .un-opinion-box p {
-            font-size: 1em;
-            color: #343a40;
-        }
-        .disclaimer {
-            font-size: 0.85em; /* Немного увеличить размер */
-            color: #6c757d;
-            font-style: italic;
-            margin-top: 15px;
-            display: block;
-        }
-        .sanction {
-            font-weight: 700; /* Более жирный шрифт */
-            color: #dc3545; /* Красный цвет для санкций */
-        }
-
-        /* Секция "О проекте" */
-        #about {
-            text-align: center;
-            padding-bottom: 60px;
-        }
-        #about p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1em;
-            color: #495057;
+        .nav-link:hover {
+            color: var(--un-blue);
         }
         .back-link {
             display: inline-block;
@@ -259,45 +44,99 @@
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
         }
         .back-link:hover {
-            color: var(--accent-hover-color);
             text-decoration: underline;
         }
-        .lang-switcher button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .lang-switcher button:hover {
-            background-color: #0056b3;
+        @media (min-width: 768px) {
+            .profile-layout {
+                grid-template-columns: 280px 1fr;
+            }
         }
-        .lang-switcher button.active {
-            background-color: #009edb;
-            font-weight: bold;
+        .profile-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center left 10%; /* Изменено здесь */
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 1.5rem;
+        }
+        .profile-card h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .profile-card p {
+            font-size: 1em;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        .dossier-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .dossier-content h3 {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .episode-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .episode-card h4 {
+            font-size: 1.25em;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .episode-card h5 {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        .disclaimer {
+            font-style: italic;
+            color: #999;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .sanction {
+            font-weight: 600;
+        }
+        .footer-bg {
+            background-color: var(--primary-color);
         }
     </style>
 </head>
-<body>
-
-    <header class="site-header">
-        <div class="container flex justify-between items-center">
-            <a href="../index.html" class="logo" data-lang-key="org_name">АРХИВ ПОДОТЧЕТНОСТИ</a>
-            <nav class="main-nav flex items-center">
-                <a href="../index.html" data-lang-key="nav_home">Главная</a>
-                <a href="../index.html#cases" data-lang-key="nav_cases">Дела</a>
-                <a href="../dossiers.html" data-lang-key="nav_dossiers_archive">Архив досье</a>
-                <a href="../index.html#about" data-lang-key="nav_about">О проекте</a>
-                <div class="lang-switcher ml-8">
-                    <button data-lang-code="ru" class="active">РУ</button>
-                    <button data-lang-code="en">EN</button>
-                    <button data-lang-code="kg">КГ</button>
-                </div>
+<body class="flex flex-col min-h-screen">
+    <header class="header-bg shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-white tracking-tight">КАРА ТИЗМЕ</a>
+            <nav class="flex space-x-4">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="dossiers.html" class="nav-link">Архив досье</a>
             </nav>
         </div>
     </header>
@@ -305,156 +144,38 @@
     <main class="flex-grow">
         <section id="dossier-tazhibek-uulu">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link" data-lang-key="back_to_case_journalists">&larr; Назад к делу "11 журналистов"</a>
+                <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
                 <div class="profile-layout">
                     <aside class="profile-card">
-                        <div class="profile-photo"></div>
-                        <h2 data-lang-key="person_name">Тажибек уулу Максат</h2>
-                        <p><strong data-lang-key="category_label">Категория:</strong> <span data-lang-key="victim_category">Жертва преследования</span></p>
-                        <p><strong data-lang-key="position_label">Должность:</strong> <span data-lang-key="journalist_activist_position">Журналист/Активист</span></p>
+                        <div class="profile-photo" style="background-image: url(no-photo);"></div>
+                        <h2>Тажибек уулу Максат</h2>
+                        <p><strong>Категория:</strong> <span>Жертва преследования</span></p>
+                        <p><strong>Должность:</strong> <span>Журналист/Активист</span></p>
                     </aside>
                     <section class="dossier-content">
-                        <h3 data-lang-key="documented_episodes_heading">Задокументированные эпизоды</h3>
+                        <h3>Задокументированные эпизоды</h3>
                         <div class="episode-card">
-                            <h4 data-lang-key="episode_title">Эпизод: «Дело 11 журналистов»</h4>
-                            <h5 data-lang-key="actions_heading">Действия: <span data-lang-key="action_description_tazhibek_uulu">Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029</span></h5>
-                            <p data-lang-key="episode_text_tazhibek_uulu">Тажибек уулу Максат стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки)).</p>
-                        <div class="un-opinion-box">
-                            <h5 data-lang-key="un_opinion_heading">Оценка ООН (Мнение № 57/2024)</h5>
-                            <p data-lang-key="un_opinion_text">Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Максата Тажибек уулу, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.</p>
+                            <h4>Эпизод: «Дело 11 журналистов»</h4>
+                            <h5>Действия: <span>Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029</span></h5>
+                            <p>Тажибек уулу Максат стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки).</p>
                         </div>
-                        <h5 data-lang-key="legal_qualification_heading">Юридическая квалификация (по УК КР):</h5>
-                        <p class="disclaimer" data-lang-key="disclaimer_text">Оценочная квалификация. Виновность устанавливается судом.</p>
-                        <p data-lang-key="legal_qualification_description_victim">В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.</p>
+                        <h5>Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**..
+                        <h5>Источники:</h5>
+                        <p>Постановление о поручении уголовного дела группе следователей (следственной группе) от 19.02.2024</a></p>
                     </section>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-auto">
-        <div class="container text-center">
-            <p data-lang-key="footer_text">&copy; 2024 Архив Подотчетности. Все права защищены.</p>
+    <footer class="footer-bg text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Кара тизме. Все права защищены.</p>
         </div>
     </footer>
-
-    <script>
-        const translations = {
-            ru: {
-                dossier_tazhibek_uulu_title: "Досье: Тажибек уулу Максат - Архив Подотчетности",
-                org_name: "АРХИВ ПОДОТЧЕТНОСТИ",
-                nav_home: "Главная",
-                nav_cases: "Дела",
-                nav_dossiers_archive: "Архив досье",
-                nav_about: "О проекте",
-                back_to_case_journalists: "Назад к делу \"11 журналистов\"",
-                person_name: "Тажибек уулу Максат",
-                category_label: "Категория:",
-                victim_category: "Жертва преследования",
-                position_label: "Должность:",
-                journalist_activist_position: "Журналист/Активист",
-                documented_episodes_heading: "Задокументированные эпизоды",
-                episode_title: "Эпизод: «Дело 11 журналистов»",
-                actions_heading: "Действия:",
-                action_description_tazhibek_uulu: "Стал объектом уголовного преследования в рамках уголовного дела №03-050-2024-000029",
-                episode_text_tazhibek_uulu: "Тажибек уулу Максат стал одним из лиц, подвергшихся уголовному преследованию в рамках дела, возбужденного по статье 278 УК КР (Массовые беспорядки)).",
-                un_opinion_heading: "Оценка ООН (Мнение № 57/2024)",
-                un_opinion_text: "Рабочая группа ООН по произвольным задержаниям в своем **Мнении № 57/2024** признала лишение свободы Максата Тажибек уулу, противоречащее статьям 2, 7, 9, 11 и 19 Всеобщей Декларации прав человека и статьям 2, 9, 14, 19 и 26 Международного пакта о гражданских и политических правах, **произвольным и подпадающим под категории I, II, III и V**.",
-                legal_qualification_heading: "Юридическая квалификация (по УК КР):",
-                disclaimer_text: "Оценочная квалификация. Виновность устанавливается судом.",
-                legal_qualification_description_victim: "В отношении данного лица могли быть нарушены права, предусмотренные **ст. 169 УК КР (Незаконное лишение свободы)** и **ст. 191 УК КР (Незаконное задержание или заключение под стражу)**.",
-                footer_text: "&copy; 2024 Архив Подотчетности. Все права защищены.",
-            },
-            en: {
-                dossier_tazhibek_uulu_title: "Dossier: Tazhibek uulu Maksat - Accountability Archive",
-                org_name: "ACCOUNTABILITY ARCHIVE",
-                nav_home: "Home",
-                nav_cases: "Cases",
-                nav_dossiers_archive: "Dossier Archive",
-                nav_about: "About Project",
-                back_to_case_journalists: "← Back to Case of 11 Journalists",
-                person_name: "Tazhibek uulu Maksat",
-                category_label: "Category:",
-                victim_category: "Victim of Persecution",
-                position_label: "Position:",
-                journalist_activist_position: "Journalist/Activist",
-                documented_episodes_heading: "Documented Episodes",
-                episode_title: "Episode: «Case of 11 Journalists»",
-                actions_heading: "Actions:",
-                action_description_tazhibek_uulu: "Became a target of criminal prosecution within criminal case No. 03-050-2024-000029",
-                episode_text_tazhibek_uulu: "Tazhibek uulu Maksat became one of the individuals subjected to criminal prosecution in the case initiated under Article 278 of the Criminal Code of the Kyrgyz Republic (Mass riots)).",
-                un_opinion_heading: "UN Assessment (Opinion No. 57/2024)",
-                un_opinion_text: "The UN Working Group on Arbitrary Detention, in its **Opinion No. 57/2024**, found the deprivation of liberty of Maksat Tazhibek uulu to be contrary to Articles 2, 7, 9, 11 and 19 of the Universal Declaration of Human Rights and Articles 2, 9, 14, 19 and 26 of the International Covenant on Civil and Political Rights, and to be **arbitrary and falling under categories I, II, III and V**.",
-                legal_qualification_heading: "Legal Qualification (under Criminal Code of KR):",
-                disclaimer_text: "Estimated qualification. Guilt is established by the court.",
-                legal_qualification_description_victim: "The rights of this person may have been violated, as provided for by **Article 169 of the Criminal Code of the Kyrgyz Republic (Unlawful deprivation of liberty)** and **Article 191 of the Criminal Code of the Kyrgyz Republic (Illegal detention or custody)**.",
-                footer_text: "&copy; 2024 Accountability Archive. All rights reserved.",
-            },
-            kg: {
-                dossier_tazhibek_uulu_title: "Досье: Тажибек уулу Максат - Жоопкерчилик Архивы",
-                org_name: "ЖООПКЕРЧИЛИК АРХИВИ",
-                nav_home: "Башкы бет",
-                nav_cases: "Иштер",
-                nav_dossiers_archive: "Досье архиви",
-                nav_about: "Долбоор жөнүндө",
-                back_to_case_journalists: "← 11 журналисттин ишине кайтуу",
-                person_name: "Тажибек уулу Максат",
-                category_label: "Категория:",
-                victim_category: "Куугунтуктун курмандыгы",
-                position_label: "Кызматы:",
-                journalist_activist_position: "Журналист/Активист",
-                documented_episodes_heading: "Документтештирилген эпизоддор",
-                episode_title: "Эпизод: «11 журналисттин иши»",
-                actions_heading: "Аракеттер:",
-                action_description_tazhibek_uulu: "№03-050-2024-000029 кылмыш ишинин алкагында кылмыш куугунтугунун объектиси болгон",
-                episode_text_tazhibek_uulu: "Тажибек уулу Максат КР Кылмыш-жаза кодексинин 278-беренеси (Массалык башаламандыктар) боюнча козголгон иштин алкагында кылмыш куугунтугуна дуушар болгондордун бири болгон.",
-                un_opinion_heading: "БУУнун баалоосу (№ 57/2024 пикири)",
-                un_opinion_text: "БУУнун Эркиндигинен Мыйзамсыз Ажыратуу боюнча Жумушчу тобу өзүнүн **№ 57/2024 пикиринде** Тажибек уулу Максаттын эркиндигинен ажыратылышын Адам укуктарынын жалпы декларациясынын 2, 7, 9, 11 жана 19-беренелерине, ошондой эле Жарандык жана саясий укуктар жөнүндө эл аралык пакттын 2, 9, 14, 19 жана 26-беренелерине карама-каршы келген, **өзүмбилемдик жана I, II, III жана V категорияларына кирген** деп тааныды.",
-                legal_qualification_heading: "Юридикалык квалификация (КР Кылмыш-жаза кодекси боюнча):",
-                disclaimer_text: "Баалоочу квалификация. Күнөө сот тарабынан аныкталат.",
-                legal_qualification_description_victim: "Бул адамга карата укуктары бузулушу мүмкүн, алар: **КР Кылмыш-жаза кодексинин 169-беренеси (Мыйзамсыз эркиндигинен ажыратуу)** жана **191-беренеси (Мыйзамсыз кармоо же камакта кармоо)**.",
-                footer_text: "&copy; 2024 Жоопкерчилик Архивы. Бардык укуктар корголгон.",
-            }
-        };
-
-        let currentLang = localStorage.getItem('selectedHRLanguage') || 'ru'; // Using HRLanguage to avoid conflict
-
-        function setLanguage(lang) {
-            currentLang = lang;
-
-            document.querySelectorAll('[data-lang-key]').forEach(element => {
-                const key = element.dataset.langKey;
-                if (translations[lang] && translations[lang].hasOwnProperty(key)) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-
-            document.querySelectorAll('.lang-switcher button').forEach(button => {
-                if (button.dataset.langCode === lang) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
-            });
-
-            localStorage.setItem('selectedHRLanguage', lang); // Using HRLanguage to avoid conflict
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-switcher button');
-            langButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    setLanguage(event.target.dataset.langCode);
-                });
-            });
-
-            setLanguage(currentLang);
-        });
-    </script>
 </body>
 </html>
+
 
