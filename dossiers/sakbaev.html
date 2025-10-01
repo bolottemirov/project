@@ -146,30 +146,6 @@
                 <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
                 <a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>
                <div class="profile-layout">
-<footer class="footer-bg text-white py-6 mt-12 text-center">
-        </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const referrer = document.referrer;
-            const journalistsLink = document.getElementById('link-journalists');
-            const askatLink = document.getElementById('link-askat');
-
-            // Hides the irrelevant link based on the referring page URL
-            if (referrer && referrer.includes('case-journalists')) {
-                if (askatLink) {
-                    askatLink.style.display = 'none';
-                }
-            } else if (referrer && referrer.includes('case-askat')) {
-                if (journalistsLink) {
-                    journalistsLink.style.display = 'none';
-                }
-            }
-            
-            // If the referrer is unknown (e.g., direct access, search engine),
-            // both links will remain visible, or you can add a rule to hide one.
-        });
-    </script>
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_sakbaev.jpg);"></div>
                         <h2>Сакбаев Нурлан</h2>
