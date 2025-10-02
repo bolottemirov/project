@@ -143,7 +143,28 @@
     <main class="flex-grow">
         <section id="dossier-turdukulov">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
+                <div id="back-links-container">
+                    </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const caseParam = urlParams.get('case');
+                        const container = document.getElementById('back-links-container');
+                        let linkHTML = '';
+
+                        // 1. Check for the specific 'askat' parameter
+                        if (caseParam === 'askat') {
+                            linkHTML = '<a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>';
+                        } 
+                        // 2. Default to 'journalists' if parameter is missing or different
+                        else {
+                            linkHTML = '<a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>';
+                        }
+                        
+                        container.innerHTML = linkHTML;
+                    });
+                </script>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://data.kaktus.media/image/big/2022-10-25_18-19-55_997526.jpg);"></div>
