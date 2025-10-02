@@ -143,8 +143,23 @@
     <main class="flex-grow">
         <section id="dossier-sakbaev">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
-                <a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>
+    <div id="back-links-container">
+        </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const caseParam = urlParams.get('case');
+            const container = document.getElementById('back-links-container');
+
+            if (caseParam === 'askat') {
+                container.innerHTML = '<a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>';
+            } else {
+                // Default to 'journalists' case if no parameter or an unknown parameter is present
+                container.innerHTML = '<a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>';
+            }
+        });
+    </script>
                <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_sakbaev.jpg);"></div>
