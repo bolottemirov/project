@@ -144,22 +144,26 @@
         <section id="dossier-sakbaev">
             <div class="container">
     <div id="back-links-container">
-        </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const caseParam = urlParams.get('case');
-            const container = document.getElementById('back-links-container');
+    </div>
 
-            if (caseParam === 'askat') {
-                container.innerHTML = '<a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>';
-            } else {
-                // Default to 'journalists' case if no parameter or an unknown parameter is present
-                container.innerHTML = '<a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>';
-            }
-        });
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const caseParam = urlParams.get('case');
+        const container = document.getElementById('back-links-container');
+        let linkHTML = '';
+
+        if (caseParam === 'askat') {
+            // Case 2: Askat
+            linkHTML = '<a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>';
+        } else {
+            // Default Case: Journalists (or any other case)
+            linkHTML = '<a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>';
+        }
+        
+        container.innerHTML = linkHTML;
+    });
+</script>
                <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_sakbaev.jpg);"></div>
