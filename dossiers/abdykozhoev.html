@@ -143,7 +143,28 @@
     <main class="flex-grow">
         <section id="dossier-abdykozhoev">
             <div class="container">
-                <a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>
+               <div id="back-links-container">
+                    </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const caseParam = urlParams.get('case');
+                        const container = document.getElementById('back-links-container');
+                        let linkHTML = '';
+
+                        // 1. Check for the specific 'askat' parameter
+                        if (caseParam === 'askat') {
+                            linkHTML = '<a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>';
+                        } 
+                        // 2. Default to 'journalists' if parameter is missing or different
+                        else {
+                            linkHTML = '<a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>';
+                        }
+                        
+                        container.innerHTML = linkHTML;
+                    });
+                </script>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://kloop.kg/wp-content/uploads/2024/02/sot_Kloop_Abdykozhoev.jpg);"></div>
@@ -158,6 +179,11 @@
                             <h4>Эпизод: «Дело 11 журналистов»</h4>
                             <h5>Действия: <span>Выдача заведомо ложного заключения</span></h5>
                             <p>Абдыкожоев Талайбек Ташбаевич, как эксперт, проводил судебно-лингвистическую экспертизу материалов YouTube-каналов "Айт Айт Десе" и "Temirov Live". Согласно заключению судебно-лингвистической экспертизы №000007 от 12.01.2024, данные материалы содержат лингвистические признаки призывов к акциям протеста и массовым беспорядкам через дискредитацию власти. Это заключение послужило основанием для возбуждения уголовного дела №03-050-2024-000029 по ст. 278 ч.3 УК КР (Призывы к массовым беспорядкам).</p>
+                        </div>
+                        <div class="episode-card">
+                            <h4>Эпизод: «Дело акына Аската Жетигена»</h4>
+                            <h5>Действия: <span>Выдача заведомо ложного заключения</span></h5>
+                            <p>Абдыкожоев Таалайбек, подтвердил наличие в видео манипулятивных элементов, но не выявил призывов к насилию или массовым беспорядкам</p>
                         </div>
                         <h5>Юридическая квалификация (по УК КР):</h5>
                         <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
