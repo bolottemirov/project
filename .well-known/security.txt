@@ -1,0 +1,4 @@
+Contact: mailto:bolot.temirov@gmail.com
+Expires: 2026-10-05T12:00:00Z
+Policy: https://karatizme.info/policy.html
+Acknowledgments: https://karatizme.info/acknowledgments
