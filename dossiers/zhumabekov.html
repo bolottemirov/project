@@ -127,6 +127,15 @@
         .footer-bg {
             background-color: var(--primary-color);
         }
+        @media (max-width: 767px) {
+        .header-bg .container {
+            flex-direction: column; /* Stack logo and nav vertically */
+            align-items: center; /* Center them horizontally */
+        }
+        .header-bg nav {
+            margin-top: 10px; /* Add space between logo and nav */
+        }
+}
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
