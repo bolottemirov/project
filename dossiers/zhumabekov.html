@@ -130,7 +130,7 @@
         .footer-bg {
             background-color: var(--primary-color);
         }
-        @media (max-width: 767px) {
+            @media (max-width: 767px) {
         .header-bg .container {
             flex-direction: column; /* Stack logo and nav vertically */
             align-items: center; /* Center them horizontally */
@@ -138,6 +138,12 @@
         .header-bg nav {
             margin-top: 10px; /* Add space between logo and nav */
         }
+        /* ADD THIS NEW BLOCK: Reduce side padding on the profile card */
+        .profile-card {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
