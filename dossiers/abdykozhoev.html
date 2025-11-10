@@ -183,8 +183,8 @@
             <div class="container">
                 <div id="back-links-container">
                     </div>
-
-            <script>
+               
+                <script>
                     document.addEventListener('DOMContentLoaded', () => {
                         const urlParams = new URLSearchParams(window.location.search);
                         const caseParam = urlParams.get('case');
@@ -195,11 +195,11 @@
                         if (caseParam === 'askat') {
                             linkHTML = '<a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>';
                         } 
-                        // 👇 YOUR NEW THIRD OPTION (case-kloop.html) 👇
+                        // 2. CHECK FOR THE 'kloop' PARAMETER
                         else if (caseParam === 'kloop') {
-                            linkHTML = '<a href="../case-kloop.html" class="back-link">← Назад к делу "Kloop"</a>';
+                            linkHTML = '<a href="../case-kloop.html" class="back-link">← Назад к делу "Kloop Media"</a>';
                         }
-                        // 2. Default to 'journalists' if parameter is missing or different
+                        // 3. Default to 'journalists' if parameter is missing or different
                         else {
                             linkHTML = '<a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>';
                         }
