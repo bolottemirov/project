@@ -184,28 +184,35 @@
                 <div id="back-links-container">
                     </div>
 
-                <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const caseParam = urlParams.get('case');
-                        const container = document.getElementById('back-links-container');
-                        let linkHTML = '';
+             <script>
+    // Assuming 'selection' is the variable being checked
+    let selection = 'option3'; 
 
-                        // 1. Check for the specific 'askat' parameter
-                        if (caseParam === 'askat') {
-                            linkHTML = '<a href="../case-askat.html" class="back-link">← Назад к делу Аската Жетиген уулу</a>';
-                        } 
-                        // 2. Default to 'journalists' if parameter is missing or different
-                        else {
-                            linkHTML = '<a href="../case-journalists.html" class="back-link">← Назад к делу "11 журналистов"</a>';
-                        }
-                         else {
-                            linkHTML = '<a href="../case-kloop.html" class="back-link">← Назад к делу "Клооп"</a>';
-                        }
-                        
-                        container.innerHTML = linkHTML;
-                    });
-                </script>
+    switch (selection) {
+        // Existing case 1
+        case 'case-kloop.html':
+            // Code for the first case
+            console.log("Option 1 selected.");
+            break;
+        
+        // Existing case 2 (Example of another case)
+        case 'second-option.html':
+            // Code for the second case
+            console.log("Option 2 selected.");
+            break;
+
+        // 👇 YOUR NEW THIRD OPTION 👇
+        case 'third-option.html':
+            // Place the code you want to run for the third option here
+            console.log("Option 3 selected!");
+            // For example, redirecting the user:
+            window.location.href = 'new-page-3.html'; 
+            break;
+        
+        default:
+            console.log("No valid option selected.");
+    }
+</script>
                 <div class="profile-layout">
                     <aside class="profile-card">
                         <div class="profile-photo" style="background-image: url(https://i.postimg.cc/MH3qBj38/sot-Kloop-Abdykozhoev.jpg);"></div>
