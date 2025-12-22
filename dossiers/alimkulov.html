@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Досье: Алимкулов Э. Н. - Кара тизме</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* NEW FIX: Prevents elements from overflowing viewport due to padding/border */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        :root {
+            --primary-color: #0d2a4c;
+            --secondary-color: #f8f9fa;
+            --un-blue: #009edb;
+            --accent-color: #007bff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--secondary-color);
+            color: #212529;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            /* CRITICAL FIX: Force stop horizontal overflow on stubborn mobile browsers */
+            overflow-x: hidden; 
+            -webkit-hyphens: auto; 
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .header-bg {
+            background-color: var(--primary-color);
+        }
+        .nav-link {
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--un-blue);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            .profile-layout {
+                grid-template-columns: 280px 1fr;
+            }
+        }
+        .profile-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center; 
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 1.5rem;
+        }
+        .profile-card h2 {
+            /* FIX: Increased default size for PC/Desktop */
+            font-size: 1.8em; 
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-align: center; 
+        }
+        .profile-card p {
+            font-size: 1em;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+            /* Aggressive centering and word break for long Russian words */
+            text-align: center; 
+            word-break: break-word; 
+            -webkit-hyphens: auto; 
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+        .dossier-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .dossier-content h3 {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .episode-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .episode-card h4 {
+            font-size: 1.25em;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .episode-card h5 {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        .disclaimer {
+            font-style: italic;
+            color: #999;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .sanction {
+            font-weight: 600;
+        }
+        .footer-bg {
+            background-color: var(--primary-color);
+        }
+        /* Mobile Optimizations (Max Width 767px) */
+        @media (max-width: 767px) {
+            .header-bg .container {
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .header-bg nav {
+                margin-top: 10px; 
+            }
+            /* FIX: Reduce horizontal padding only on the profile card for more text space */
+            .profile-card {
+                padding: 2rem 1rem; /* Keep 2rem vertical, use 1rem horizontal */
+            }
+        }
+        /* Font size reduction for very small phones (Max Width 480px) */
+        @media (max-width: 480px) {
+            .profile-card h2 {
+                font-size: 1.3em; 
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="header-bg shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/index.html" class="text-xl font-bold text-white tracking-tight">КАРА ТИЗМЕ</a>
+            <nav class="flex space-x-4">
+                <a href="/index.html" class="nav-link">Главная</a>
+                <a href="/dossiers.html" class="nav-link">Архив досье</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section id="dossier-alimkulov">
+            <div class="container">
+                <a href="../case-kloop.html" class="back-link">← Назад к делу против "Клооп"</a>
+                <div class="profile-layout">
+                    <aside class="profile-card">
+                        <div class="profile-photo" style="background-image: url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png);"></div>
+                        <h2>Алимкулов Э. Н.</h2>
+                        <p><strong>Категория:</strong> <span>Исполнитель (представитель госорганов)</span></p>
+                        <p><strong>Должность:</strong> <span>Следователь Следственного управления ГКНБ КР</span></p>
+                    </aside>
+                    <section class="dossier-content">
+                        <h3>Задокументированные эпизоды</h3>
+                        <div class="episode-card">
+                            <h4>Эпизод: Дело против "Клооп" и его сотрудников</h4>
+                            <h5>Действия: <span>Инициация и ведение следственных действий, послуживших основой для закрытия независимого СМИ и уголовного преследования его сотрудников.</span></h5>
+                            <p></p>Экспертизы: Назначил психолого-психиатрические исследования материалов Kloop.kg, ставшие поводом для закрытия СМИ.
+
+Репрессии: Руководил задержаниями и допросами журналистов (А. Александрова, Ж. Дуулатова и др.).
+
+Фабрикация: Искусственно объединил дело «Клоопа» с делом «11 журналистов» через версию о «скрытом финансировании».</p>
+                        </div>
+                        <h5>Юридическая квалификация (по УК КР):</h5>
+                        <p class="disclaimer">Оценочная квалификация. Виновность устанавливается судом.</p>
+                        <p>Подозревается в совершении деяний, подпадающих под признаки преступлений, предусмотренных **статьи 202 УК КР (Воспрепятствование деятельности журналиста), 337 УК КР (Злоупотребление полномочиями), 360 УК КР (Принуждение к даче ложных показаний) и 191 УК КР (Незаконное задержание)**. <br><span class="sanction">Санкция:</span> <span>штраф или лишение свободы от 5 до 10 лет.</span></p>
+                        <h5>Источники:</h5>
+                        <p>Материалы дела о ликвидации ОФ «Клооп Медиа».</p>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-bg text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
+               <p class="footer-text mb-2 text-white" data-lang="footer_contact" style="font-size: 1.1rem;">
+                ЕСЛИ У ВАС ЕСТЬ ДОПОЛНЕНИЕ К ИНФОРМАЦИИ НА САЙТЕ, ПРОСИМ ОБРАЩАТЬСЯ НА ПОЧТУ: 
+                <a href="mailto:bolot.temirov@gmail.com" class="font-semibold underline" style="color: #009edb; font-size: 1.1rem;">bolot.temirov@gmail.com</a>
+            </p>
+            <p>&copy; 2026 Кара тизме. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
